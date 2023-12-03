@@ -48,11 +48,13 @@ a.loginBox-btnSocial:hover {
     transform: scale(1.1);
 }
 
-.register {
+.registerBox-banner {
+    right: unset !important;
+    left: 0;
 }
 
-.registerBox-banner {
-    right: 0 !important;
+.register-box{
+    right: 100px;
 }
 
 /* Responsive Options */
@@ -61,10 +63,11 @@ a.loginBox-btnSocial:hover {
         height: 100vh;
     }
 
-    .login-box {
+    .login-box, .register-box {
         position: flex !important;
         top: unset;
         left: unset;
+        right: unset;
         padding: 0 !important;
         border-radius: 15px !important;
         width: 80vw;

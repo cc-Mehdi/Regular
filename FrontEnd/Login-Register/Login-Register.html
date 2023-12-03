@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regular - Login</title>
+    <title>Regular - ورود</title>
 
     <!-- Bootstrap Icon v1.11.0 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -46,17 +46,20 @@
         <div id="login" class="login d-flex p-0 m-0 justify-content-center align-items-center">
             <div data-aos="fade-left"
                 class="loginBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
-                <img class="banner w-100 rounded-start-5"
-                    src="/FrontEnd/global/media/banner-blue.jpg">
+                <img class="banner w-100 rounded-start-5" src="/FrontEnd/global/media/banner-blue.jpg">
             </div>
             <div data-aos="fade-right"
                 class="login-box bc-primary col-lg-4 col-md-6 col-sm-4 d-flex flex-column align-items-center px-3 py-5 rounded-start-0 position-absolute bc-secondary bc-blur z-1">
                 <div class="row w-100">
                     <a class="offcanvas-title text-decoration-none text-black d-flex align-items-center justify-content-end"
                         id="offcanvasExampleLabel">
-                        <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3">R e g u l a r</span>
-                        <img class="app-brand-logo" src="/FrontEnd/global/media/icons/logo.png" width="80px"
-                            height="80px" alt="Regular Logo">
+                        <a href="/FrontEnd/index.html"
+                            class="text-decoration-none d-flex justify-content-end align-items-center">
+                            <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3 text-light">R e g u l a
+                                r</span>
+                            <img class="app-brand-logo" src="/FrontEnd/global/media/icons/logo.png" width="80px"
+                                height="80px" alt="Regular Logo">
+                        </a>
                     </a>
                 </div>
                 <div class="row w-100">
@@ -109,18 +112,21 @@
         <!-- Register Side -->
         <div id="register" class="register login d-none p-0 m-0 justify-content-center align-items-center">
             <div id="registerBox-banner" data-aos="fade-left"
-                class="loginBox-banner registerBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
-                <img class="banner w-100 rounded-end-5"
-                    src="/FrontEnd/global/media/banner-purple.jpg">
+                class="loginBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
+                <img class="banner w-100 rounded-end-5" src="/FrontEnd/global/media/banner-purple.jpg">
             </div>
-            <div data-aos="fade-right"
+            <div id="register-box" data-aos="fade-right"
                 class="login-box bg-dark col-lg-4 col-md-6 col-sm-4 d-flex flex-column align-items-center px-3 py-5 rounded-start-0 position-absolute bc-secondary bc-blur z-1">
                 <div class="row w-100">
                     <a class="offcanvas-title text-decoration-none text-black d-flex align-items-center justify-content-end"
                         id="offcanvasExampleLabel">
-                        <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3 text-light">R e g u l a r</span>
-                        <img class="app-brand-logo" src="/FrontEnd/global/media/icons/logo.png" width="80px"
-                            height="80px" alt="Regular Logo">
+                        <a href="/FrontEnd/index.html"
+                            class="text-decoration-none d-flex justify-content-end align-items-center">
+                            <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3 text-light">R e g u l a
+                                r</span>
+                            <img class="app-brand-logo" src="/FrontEnd/global/media/icons/logo.png" width="80px"
+                                height="80px" alt="Regular Logo">
+                        </a>
                     </a>
                 </div>
                 <div class="row w-100">
@@ -142,7 +148,8 @@
                                 id="exampleInputPassword1" placeholder="تکرار کلمه عبور">
                         </div>
                         <a href="#"
-                            class="btn bc-primary mt-3 tc-secondary col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ثبت نام</a>
+                            class="btn bc-primary mt-3 tc-secondary col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ثبت
+                            نام</a>
                     </form>
                 </div>
                 <div class="row w-100 loginBox-links">
@@ -175,25 +182,23 @@
     </div>
 
 
-
     <!-- Loading page -->
-    <!-- <div id="loader-animation"
-        class="position-fixed top-0 d-flex justify-content-center align-items-center w-100 h-100 bg-black"
+    <div id="loader-animation"
+        class="position-fixed top-0 d-flex justify-content-center bc-blur-primary align-items-center w-100 h-100"
         style="z-index: 1100;">
-        <div class="d-flex justify-content-center align-items-center my-3 p-3 position-fixed">
-            <img src="/FrontEnd/global/media/icons/logo.png" alt="LOGO" width="200rem" height="200rem"
-                class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
-                data-aos-duration="2000">
-
-            <div class="wrapper">
+        <div class="d-flex justify-content-center align-items-center my-3 p-3 position-fixed bc-blur-secondary rounded-5">
+            <div class="wrapper bg-transparent">
                 <svg>
                     <text x="50%" y="50%" dy=".35em" text-anchor="middle">
                         R e g u l a r
                     </text>
                 </svg>
             </div>
+                        <img src="/FrontEnd/global/media/icons/logo.png" alt="LOGO" width="200rem" height="200rem"
+                class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000">
         </div>
-    </div> -->
+    </div>
 
 
     <!-- JQuery Script CDN -->
@@ -221,6 +226,7 @@
         AOS.init({
             duration: 1500
         });
+        isRegister();
         ShowLoadingPageAnimation();
     </script>
 </body>
