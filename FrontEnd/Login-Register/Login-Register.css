@@ -35,6 +35,7 @@ a.btn{
 
 a.btn:hover{
     border: 1px solid var(--tc-secondary);
+    color: var(--tc-secondary);
 }
 
 a.loginBox-btnSocial {
@@ -47,6 +48,12 @@ a.loginBox-btnSocial:hover {
     transform: scale(1.1);
 }
 
+.register {
+}
+
+.registerBox-banner {
+    right: 0 !important;
+}
 
 /* Responsive Options */
 @media screen and (max-width: 768px) {

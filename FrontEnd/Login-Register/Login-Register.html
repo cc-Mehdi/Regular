@@ -43,10 +43,11 @@
 <body dir="rtl" class="overflow-x-hidden">
     <div class="container-fluid p-0 m-0 row">
         <!-- Login Side -->
-        <div class="login d-flex p-0 m-0 justify-content-center align-items-center">
-            <div data-aos="fade-left" class="loginBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
+        <div id="login" class="login d-flex p-0 m-0 justify-content-center align-items-center">
+            <div data-aos="fade-left"
+                class="loginBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
                 <img class="banner w-100 rounded-start-5"
-                    src="https://w0.peakpx.com/wallpaper/413/696/HD-wallpaper-low-angle-of-curtain-wall-building.jpg">
+                    src="/FrontEnd/global/media/banner-blue.jpg">
             </div>
             <div data-aos="fade-right"
                 class="login-box bc-primary col-lg-4 col-md-6 col-sm-4 d-flex flex-column align-items-center px-3 py-5 rounded-start-0 position-absolute bc-secondary bc-blur z-1">
@@ -69,8 +70,8 @@
                                 aria-describedby="emailHelp" placeholder="ایمیل">
                         </div>
                         <div class="form-group my-2">
-                            <input type="password" class="form-control border-0 tc-primary fs-6" id="exampleInputPassword1"
-                                placeholder="کلمه عبور">
+                            <input type="password" class="form-control border-0 tc-primary fs-6"
+                                id="exampleInputPassword1" placeholder="کلمه عبور">
                         </div>
                         <a href="#"
                             class="btn bc-primary mt-3 tc-secondary col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ورود</a>
@@ -78,8 +79,10 @@
                 </div>
                 <div class="row w-100 loginBox-links">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="fs-6">حساب کاربری ندارید؟ <a href="MoveToRegister()" class="fw-bold text-decoration-none">ثبت نام</a></h5>
-                        <h5 class="fs-6">کلمه عبورتان را گم کرده اید؟ <a href="#" class="fw-bold text-decoration-none">بازیابی کلمه عبور</a></h5>
+                        <h5 class="fs-6">حساب کاربری ندارید؟ <a href="javascript:MoveToRegister()"
+                                class="fw-bold text-decoration-none">ثبت نام</a></h5>
+                        <h5 class="fs-6">کلمه عبورتان را گم کرده اید؟ <a href="#"
+                                class="fw-bold text-decoration-none">بازیابی کلمه عبور</a></h5>
                     </div>
                 </div>
                 <div class="row w-100 my-1">
@@ -87,37 +90,42 @@
                 </div>
                 <div class="row w-100 my-1">
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/google.png" width="40px"></a>
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/facebook_logo.png" width="40px"></a>
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/github.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/google.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/facebook_logo.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/github.png" width="40px"></a>
                     </div>
                 </div>
                 <div class="row w-75 mt-5">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="fs-6">ورود شما به معنای پذیرش <a href="#">شرایط استفاده از خدمات</a> و <a href="#">سیاست حفظ حریم خصوصی</a> است</h5>
+                        <h5 class="fs-6">ورود شما به معنای پذیرش <a href="#">شرایط استفاده از خدمات</a> و <a
+                                href="#">سیاست حفظ حریم خصوصی</a> است</h5>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Register Side -->
-        <div class="register d-none p-0 m-0 justify-content-center align-items-center">
-            <div data-aos="fade-left" class="loginBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
-                <img class="banner w-100 rounded-start-5"
-                    src="https://w0.peakpx.com/wallpaper/413/696/HD-wallpaper-low-angle-of-curtain-wall-building.jpg">
+        <div id="register" class="register login d-none p-0 m-0 justify-content-center align-items-center">
+            <div id="registerBox-banner" data-aos="fade-left"
+                class="loginBox-banner registerBox-banner col-lg-9 col-md-8 col-sm-6 position-absolute end-0 top-0 z-0">
+                <img class="banner w-100 rounded-end-5"
+                    src="/FrontEnd/global/media/banner-purple.jpg">
             </div>
             <div data-aos="fade-right"
-                class="login-box bc-primary col-lg-4 col-md-6 col-sm-4 d-flex flex-column align-items-center px-3 py-5 rounded-start-0 position-absolute bc-secondary bc-blur z-1">
+                class="login-box bg-dark col-lg-4 col-md-6 col-sm-4 d-flex flex-column align-items-center px-3 py-5 rounded-start-0 position-absolute bc-secondary bc-blur z-1">
                 <div class="row w-100">
                     <a class="offcanvas-title text-decoration-none text-black d-flex align-items-center justify-content-end"
                         id="offcanvasExampleLabel">
-                        <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3">R e g u l a r</span>
+                        <span class="app-brand-text demo menu-text fs-3 fw-bold ms-3 text-light">R e g u l a r</span>
                         <img class="app-brand-logo" src="/FrontEnd/global/media/icons/logo.png" width="80px"
                             height="80px" alt="Regular Logo">
                     </a>
                 </div>
                 <div class="row w-100">
-                    <h1 class="fs-l3 d-flex justify-content-center align-items-center tc-primary p-0 m-0 txtLogin">ورود
-                    </h1>
+                    <h1 class="fs-l3 d-flex justify-content-center align-items-center tc-primary p-0 m-0 txtLogin">ثبت
+                        نام</h1>
                 </div>
                 <div class="row w-75 my-4 loginBox-inputs">
                     <form>
@@ -126,17 +134,21 @@
                                 aria-describedby="emailHelp" placeholder="ایمیل">
                         </div>
                         <div class="form-group my-2">
-                            <input type="password" class="form-control border-0 tc-primary fs-6" id="exampleInputPassword1"
-                                placeholder="کلمه عبور">
+                            <input type="password" class="form-control border-0 tc-primary fs-6"
+                                id="exampleInputPassword1" placeholder="کلمه عبور">
+                        </div>
+                        <div class="form-group my-2">
+                            <input type="password" class="form-control border-0 tc-primary fs-6"
+                                id="exampleInputPassword1" placeholder="تکرار کلمه عبور">
                         </div>
                         <a href="#"
-                            class="btn bc-primary mt-3 tc-secondary col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ورود</a>
+                            class="btn bc-primary mt-3 tc-secondary col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ثبت نام</a>
                     </form>
                 </div>
                 <div class="row w-100 loginBox-links">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="fs-6">حساب کاربری ندارید؟ <a href="MoveToRegister()" class="fw-bold text-decoration-none">ثبت نام</a></h5>
-                        <h5 class="fs-6">کلمه عبورتان را گم کرده اید؟ <a href="#" class="fw-bold text-decoration-none">بازیابی کلمه عبور</a></h5>
+                        <h5 class="fs-6 text-light">حساب کاربری دارید؟ <a href="javascript:MoveToLogin()"
+                                class="fw-bold text-decoration-none">ورود</a></h5>
                     </div>
                 </div>
                 <div class="row w-100 my-1">
@@ -144,18 +156,23 @@
                 </div>
                 <div class="row w-100 my-1">
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/google.png" width="40px"></a>
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/facebook_logo.png" width="40px"></a>
-                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img src="/FrontEnd/global/media/icons/github.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/google.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/facebook_logo.png" width="40px"></a>
+                        <a href="#" class="p-1 mx-2 bc-primary rounded-3 loginBox-btnSocial"><img
+                                src="/FrontEnd/global/media/icons/github.png" width="40px"></a>
                     </div>
                 </div>
                 <div class="row w-75 mt-5">
                     <div class="d-flex flex-column justify-content-center align-items-center">
-                        <h5 class="fs-6">ورود شما به معنای پذیرش <a href="#">شرایط استفاده از خدمات</a> و <a href="#">سیاست حفظ حریم خصوصی</a> است</h5>
+                        <h5 class="fs-6 text-light">ورود شما به معنای پذیرش <a href="#">شرایط استفاده از خدمات</a> و <a
+                                href="#">سیاست حفظ حریم خصوصی</a> است</h5>
                     </div>
                 </div>
             </div>
-        </div>    </div>
+        </div>
+    </div>
 
 
 
@@ -196,7 +213,7 @@
 
     <!-- Custom Scripts -->
     <script src="/FrontEnd/global/public.js"></script>
-    <script src="script.js"></script>
+    <script src="/FrontEnd/Login-Register/Login-Register.js"></script>
 
 
     <!-- AOS Configuration -->
