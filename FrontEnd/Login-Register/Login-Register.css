@@ -37,6 +37,16 @@ a.btn:hover{
     border: 1px solid var(--tc-secondary);
 }
 
+a.loginBox-btnSocial {
+    box-shadow: 0 0 10px var(--tc-secondary) !important;
+    transition: transform .5s;
+}
+
+a.loginBox-btnSocial:hover {
+    box-shadow: 0 0 50px var(--tc-secondary) !important;
+    transform: scale(1.1);
+}
+
 
 /* Responsive Options */
 @media screen and (max-width: 768px) {
@@ -56,6 +66,10 @@ a.btn:hover{
     .loginBox-banner {
         display: none;
     }
+
+    .loginBox-links h5 {
+        font-size: 10px !important;
+    }
 }
 
 @media screen and (max-width: 300px) {
@@ -68,7 +82,7 @@ a.btn:hover{
         font-size: 16px !important;
     }
 
-    .loginInputs-box{
+    .loginBox-inputs{
         width: 100% !important;
     }
 }
