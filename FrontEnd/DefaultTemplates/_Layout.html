@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyper Clouds</title>
+
+    <!-- Bootstrap Icon v1.11.0 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Bootstrap Styles v5.3.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- OWL Carousel Styles CDNs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Normalize Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- AOS  -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.css" rel="stylesheet">
+
+    <!-- Primary Icon -->
+    <link rel="shortcut icon" href="../global/src/img/logo3.png" type="image/x-icon">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="../global/public.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body style="overflow-x: hidden;">
+    <!-- Header -->
+    <div class="index d-flex justify-content-center align-items-center container-fluid">
+        <!-- header navbar -->
+        <header id="header-navbar-top"
+            class=" w-100 d-flex justify-content-center align-items-center position-fixed top-0 end-0 start-0 mt-5"
+            style="z-index: 1000;">
+            <div class="header-navbar w-75">
+                <nav id="nav-container"
+                    class="w-100 navbar bg-transparent rounded-2 border text-dark 4 navbar-expand-md">
+                    <div class="container-fluid">
+                        <a href="#">
+                            <img src="../global/src/img/logo3.png" class="navbar-brand" width="90px" height="70px">
+                        </a>
+                        <button class="navbar-toggler btn fw-bolder fs-2" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse  navbar-collapse-header navbar-collapse justify-content-end"
+                            id="top-nav-header">
+                            <ul class="navbar-nav">
+                                <li class="nav-item mx-0 mx-lg-2">
+                                    <a href="" class="nav-link active text-white">Security</a>
+                                </li>
+                                <li class="nav-item mx-0 mx-lg-2 ">
+                                    <a href="" class="nav-link text-white">Web Development</a>
+                                </li>
+                                <li class="nav-item mx-0 mx-lg-2 ">
+                                    <a href="" class="nav-link text-white">SSL/Domain</a>
+                                </li>
+                                <li class="nav-item mx-0 mx-lg-2 ">
+                                    <a href="" class="nav-link text-white">CDN</a>
+                                </li>
+                                <li class="nav-item mx-0 mx-lg-2 ">
+                                    <a href="" class="nav-link text-white">Options</a>
+                                </li>
+                                <li class="nav-item mx-0 mx-lg-2 ">
+                                    <a href="" class="nav-link text-white bg-primary rounded-5">Components</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- end of header navbar -->
+
+        <!-- center content -->
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <p class="display-6 m-0 text-white fw-bold" data-aos="fade-down" data-aos-duration="1000">Small Team With
+                Big Ideas</p>
+            <h1 class="display-1 text-white fw-bold my-3" data-aos="fade-up" data-aos-duration="1000">HyperClouds</h1>
+            <div class="d-flex">
+                <button class="rounded-3 fs-5 shadow-sm px-5 py-2 btn btn-primary mx-2" data-aos="fade-right">Shop
+                </button>
+                <button class="rounded-3 fs-5 shadow-sm px-5 py-2 btn btn-warning mx-2" data-aos="fade-left">Options
+                </button>
+            </div>
+        </div>
+        <!-- end of center content -->
+    </div>
+    <!-- End Header -->
+
+    <!-- Sidebar -->
+    <!-- OffCanvas menu -->
+    <div class="offcanvas offcanvas-end" style="width: 259px;" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header flex-row-reverse">
+            <a class="offcanvas-title text-decoration-none text-black d-flex flex-row-reverse justify-content-center align-items-center"
+                id="offcanvasExampleLabel">
+                <img src="../global/src/img/logo3.png" width="40px" height="40px" alt="hyper cloud logo">
+                <span class="app-brand-text demo menu-text fs-4 fw-bold me-2">هایپر کلود</span>
+            </a>
+        </div>
+        <div class="offcanvas-body d-flex flex-row">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" dir="rtl">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">خانه</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">منوی اول</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        منوی دوم
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item d-flex" href="#">زیر منوی اول</a></li>
+                        <li><a class="dropdown-item d-flex" href="#">زیر منوی دوم</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item d-flex" href="#">زیر منوی سوم </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End OffCanvas menu -->
+    <!-- End Sidebar -->
+
+    <!-- Main Content -->
+
+
+
+    <!-- End Main Content -->
+
+    <!-- Footer -->
+    <footer class="transparent-backgroundImage-Footer " dir="rtl">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center py-4 text-center">
+                <div class="col-lg-3 col-sm-6 col-11 my-2">
+                    <h3 class="text-brand">محصولات</h3>
+                    <ul class="list-unstyled p-0">
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">سرور ابری</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">فضای ابری</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">سرور مجازی</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی وب سایت</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی API</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">هاست دانلود</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">SSL رایگان</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">هاست بک آپ</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">شبکه توزیع محتوا CDN</a>
+                        </li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی اتوماسیون داخلی و
+                                اداری</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-11 my-2">
+                    <h3 class="text-brand">منابع</h3>
+                    <ul class="list-unstyled p-0">
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">خدمات اداری و دولتی</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">پرسش های رایج</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">گزارش تغییرات</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">مستندات API</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">نشانی IP های HyperClouds</a>
+                        </li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">فروشگاه آنلاین</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">SSL رایگان</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">هاست بک آپ</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">شبکه توزیع محتوا CDN</a>
+                        </li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی اتوماسیون داخلی و
+                                اداری</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-11 my-2">
+                    <h3 class="text-brand">هایپر کلود</h3>
+                    <ul class="list-unstyled p-0">
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">درباره هایپر کلود</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">خط مشی</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">ارتباط با ما</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">در رسانه ها</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">بلاگ</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">اتاق خبر</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">مسابقه کشف باگ</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی اتوماسیون داخلی و
+                                اداری</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-sm-6 col-11 my-2">
+                    <h3 class="text-brand">محصولات</h3>
+                    <ul class="list-unstyled p-0">
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">سرور ابری</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">فضای ابری</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">سرور مجازی</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی وب سایت</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی API</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">هاست دانلود</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">SSL رایگان</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">هاست بک آپ</a></li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">شبکه توزیع محتوا CDN</a>
+                        </li>
+                        <li class="my-3"><a class="text-white text-decoration-none" href="">طراحی اتوماسیون داخلی و
+                                اداری</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-12">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+                            <a href="#">
+                                <i class="bi bi-linkedin fs-2 text-white mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-stack-overflow fs-2 text-white mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-telegram fs-2 text-white mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-twitter-x fs-2 text-white mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-twitch fs-2 text-white mx-2"></i>
+                            </a>
+                            <a href="#">
+                                <i class="bi bi-youtube fs-2 text-white mx-2"></i>
+                            </a>
+                        </div>
+                        <div class="col-10 border-bottom fs-2 text-white mx-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-xxl d-flex flex-wrap justify-content-start py-2 flex-md-row flex-column">
+            <div class="mb-2 mb-md-0">
+                ©
+                ساخته شده با ❤️ توسط
+                <a href="https://hyperclouds.ir" target="_blank"
+                    class="footer-link fw-bolder text-decoration-none">HyperClouds</a>
+                (
+                <script>document.write(new Date().getFullYear());</script>)
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Loading page -->
+    <div id="loader-animation"
+        class="position-fixed top-0 d-flex justify-content-center align-items-center w-100 h-100 bg-black"
+        style="z-index: 1100;">
+        <div class="d-flex justify-content-center align-items-center my-3 p-5 position-fixed">
+            <img src="../global/src/img/logo3.png" alt="LOGO" width="150rem" height="100rem"
+                class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
+                data-aos-duration="5000">
+
+            <div class="wrapper">
+                <svg>
+                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                        Hyper Clouds
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS Configuration -->
+    <script>
+        AOS.init({
+            duration: 1500
+        })
+    </script>
+
+    <!-- JQuery Script CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- OWL Carousel Scripts CDNs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Bootstrap Script v5.3.2 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../global/public.js"></script>
+    <script src="../script.js"></script>
+</body>
+
+</html>

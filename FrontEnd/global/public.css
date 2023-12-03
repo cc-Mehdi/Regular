@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Turret+Road&display=swap");
+
+:root{
+    /* text-colors */
+    --tc-primary: #4f007d !important;
+    --tc-secondary: #1d6cff !important;
+    --tc-black: #111;
+    --tc-white: #111;
+    --tc-dark: #111;
+    --tc-light: #111;
+
+    /* background-colors */
+    --bc-primary: #4f007d !important;
+    --bc-secondary: #1d6cff !important;
+    --bc-black: #111;
+    --bc-white: #111;
+    --bc-dark: #111;
+    --bc-light: #111;
+
+    /* font-families */
+    --ff-test1 : serif;
+    --ff-test2 : serif;
+    --ff-test3 : serif;
+    --ff-test4 : serif;
+
+    /* font-sizes */
+    --fs-7: .75rem!important;
+    --fs-8: .50rem!important;
+    --fs-9: .25rem!important;
+    --fs-l1: 5rem!important;
+    --fs-l2: 4rem!important;
+    --fs-l3: 3rem!important;
+
+    /* other */
+    --animation-speed: 1s;
+}
+
+/* text-colors */
+.tc-primary {
+    color: var(--tc-primary);
+}
+
+.tc-secondary {
+    color: var(--tc-secondary);
+}
+/* end text-colors */
+
+/* background-colors */
+.bc-primary {
+    background-color: var(--bc-primary);
+}
+
+.bc-secondary {
+    background-color: var(--bc-secondary);
+}
+
+.bc-blur-primary {
+    background-color: #4f007d6d;
+}
+
+.bc-blur-secondary {
+    background-color: #1d6cffa8;
+}
+/* end background-colors */
+
+/* fonts */
+
+.fs-7 {
+    font-size: var(--fs-7);
+}
+
+.fs-8 {
+    font-size: var(--fs-8);
+}
+
+.fs-9 {
+    font-size: var(--fs-9);
+}
+
+.fs-l1 {
+    font-size: var(--fs-l1);
+}
+
+.fs-l2 {
+    font-size: var(--fs-l2);
+}
+
+.fs-l3 {
+    font-size: var(--fs-l3);
+}
+
+/* end fonts */
+
+body{
+    background: rgb(29,108,255);
+    background: linear-gradient(45deg, rgba(29,108,255,1) 0%, rgba(79,0,125,1) 71%);
+}
+
+
+
+/* Loading Page */
+svg {
+    font-family: "Turret Road", sans-serif;
+    width: fit-content;
+    height: fit-content;
+}
+
+svg text {
+    animation: stroke 2.7s infinite alternate;
+    stroke-width: 2;
+    stroke: var(--tc-secondary);
+    font-size: 3rem;
+}
+
+@keyframes stroke {
+    0% {
+        fill: rgba(28, 231, 234, 0);
+        stroke: var(--tc-primary);
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 2;
+    }
+    70% {
+        fill: rgba(28, 231, 234, 0);
+        stroke: var(--tc-primary);
+    }
+    80% {
+        fill: rgba(28, 231, 234, 0);
+        stroke: var(--tc-primary);
+        stroke-width: 3;
+    }
+    100% {
+        fill: var(--tc-primary);
+        stroke: rgba(37, 117, 203, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 0;
+    }
+}
+
+.wrapper {
+    background-color: #000000
+}
+
+
+#loader-animation {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* End Loading Page */
+
+/* Responsive Options */
+
+@media (max-width: 400px) {
+    #loader-animation > div {
+        flex-direction: column;
+    }
+}
+
+/* End Responsive Options */
