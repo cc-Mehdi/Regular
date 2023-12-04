@@ -1,0 +1,9 @@
+.imgMenuButton {
+    box-shadow: 0 0 10px var(--tc-secondary);
+    transition: box-shadow .3s, transform .3s;
+}
+
+.imgMenuButton:hover {
+    box-shadow: none;
+    transform: scale(1.1);
+}
