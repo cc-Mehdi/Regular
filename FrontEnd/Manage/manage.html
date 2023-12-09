@@ -45,35 +45,105 @@
     <div class="container-fluid p-0" style="height: 100vh;">
 
         <!-- OffCanvas button -->
-        <button class="btn m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling">
-            <img src="/FrontEnd/global/media/icons/Menu.png" class="imgMenuButton rounded-circle" width="60px"
-                height="60px">
+        <button id="btnShowMenuToggler" onclick="ShowoffcanvasMenu()"
+            class="btn m-2 position-fixed z-3 border-0 visually-hidden" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+            <img src="/FrontEnd/global/media/icons/Menu.png" class="boxShadow-secondary boxShadow-hover rounded-circle"
+                width="60px" height="60px">
         </button>
 
-
         <!-- OffCanvas menu -->
-        <div class="offcanvas offcanvas-end show" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
-            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+        <div id="offcanvasMenu" class="offcanvas offcanvas-end bg-transparent show rounded-start-5"
+            data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling"
+            aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <a href="/FrontEnd/index.html"
                     class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
                     id="offcanvasExampleLabel">
                     <img src="/FrontEnd/global/media/icons/logo.png" width="40px" height="40px" alt="hyper cloud logo">
-                    <span class="app-brand-text demo menu-text fs-4 fw-bold me-2">Regular</span>
+                    <span class="app-brand-text demo menu-text text-white fs-4 fw-bold me-2">R e g u l a r</span>
                 </a>
-                <button type="button" class="btn" data-bs-dismiss="offcanvas">
-                    <img src="/FrontEnd/global/media/icons/Menu.png" class="imgMenuButton rounded-circle" width="40px"
-                        height="40px">
+                <button type="button" onclick="HideoffcanvasMenu()" class="btn border-0" data-bs-dismiss="offcanvas">
+                    <img src="/FrontEnd/global/media/icons/Menu.png"
+                        class="boxShadow-secondary boxShadowSecondary-hover rounded-circle" width="40px" height="40px">
                 </button>
             </div>
-            <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
+            <div class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex justify-content-center w-100">
+                <div class="w-100 d-flex flex-column align-items-center">
+                    <div class="row w-100">
+                        <div class="inputBox row bg-light rounded-4 d-flex justify-content-between p-0 m-0">
+                            <input class="border-0 col-10 h-100 px-3 bg-transparent" name="txtSearch" id="txtSearch"
+                                type="text" placeholder="جستجو" />
+                            <button class="btn border-0 col-2">
+                                <img src="/FrontEnd/global/media/icons/search.png"
+                                    class="boxShadow-secondary boxShadowSecondary-hover rounded-circle p-2" width="40px"
+                                    height="40px">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row w-100 mt-5 d-flex justify-content-center align-items-center">
+                        <h5>وظایف</h5>
+                        <h5 class="mt-2 border-1 border-bottom"></h5>
+                    </div>
+                    <div class="row w-100">
+                        <ul class="list-unstyled">
+                            <li
+                                class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                                همه
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                            </li>
+                            <li
+                                class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                                امروز
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                            </li>
+                            <li
+                                class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                                فردا
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                            </li>
+                            <li
+                                class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                                تقویم
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row w-100 mt-5 d-flex justify-content-center align-items-center">
+                        <h5 class="col-10">همکاران</h5>
+                        <button class="col-2 fs-2 text-center bg-transparent border-0">
+                            <img src="/FrontEnd/global/media/icons/add.png" width="40px" height="40px">
+                        </button>
+                        <h5 class="mt-2 border-1 border-bottom"></h5>
+                    </div>
+                    <div class="row w-100">
+                        <ul class="list-unstyled">
+                            <li
+                                class="taskItem d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
+                                <div class="col-3">
+                                    <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg" class="rounded-circle" width="60px" height="60px">
+                                </div>
+                                <div class="col-9">
+                                    <h5 class="text-white my-0">مهدی غلامی</h5>
+                                    <span class="text-white-50 fs-6">فعالیت روزانه : <span class="text-white">4 ساعت</span> </span>
+                                </div>
+                            </li>
+                            <li
+                                class="taskItem d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
+                                <div class="col-3">
+                                    <img src="/FrontEnd/global/media/Customer/Users/02_Person.jpg" class="rounded-circle" width="60px" height="60px">
+                                </div>
+                                <div class="col-9">
+                                    <h5 class="text-white my-0">رضا احمدی</h5>
+                                    <span class="text-white-50 fs-6">فعالیت روزانه : <span class="text-white">2 ساعت</span> </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- End OffCanvas menu -->
-
-
 
         <!-- Footer -->
         <footer class="d-flex align-items-center justify-content-center py-3 w-100 pt-5" dir="rtl">
