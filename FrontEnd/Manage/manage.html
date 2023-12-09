@@ -42,11 +42,11 @@
 
 
 <body dir="rtl" class="overflow-x-hidden">
-    <div class="container-fluid p-0" style="height: 100vh;">
+    <div class="container-fluid p-0 d-flex align-items-center" style="height: 100vh;">
 
         <!-- OffCanvas button -->
         <button id="btnShowMenuToggler" onclick="ShowoffcanvasMenu()"
-            class="btn m-2 position-fixed z-3 border-0 visually-hidden" type="button" data-bs-toggle="offcanvas"
+            class="btn m-2 position-fixed top-0 z-3 border-0 visually-hidden" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <img src="/FrontEnd/global/media/icons/Menu.png" class="boxShadow-secondary boxShadow-hover rounded-circle"
                 width="60px" height="60px">
@@ -95,17 +95,16 @@
                             <li
                                 class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 امروز
-                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">6</div>
                             </li>
                             <li
                                 class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 فردا
-                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
+                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">7</div>
                             </li>
                             <li
                                 class="taskItem d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 تقویم
-                                <div class="taskItem-notif boxShadow-secondary p-2 px-3 fs-6 rounded-circle">3</div>
                             </li>
                         </ul>
                     </div>
@@ -121,22 +120,26 @@
                             <li
                                 class="taskItem d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
                                 <div class="col-3">
-                                    <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg" class="rounded-circle" width="60px" height="60px">
+                                    <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
+                                        class="rounded-circle" width="60px" height="60px">
                                 </div>
                                 <div class="col-7">
                                     <h5 class="text-white my-0 overflow-hidden">مهدی غلامی</h5>
-                                    <span class="text-white-50 fs-6 overflow-hidden">فعالیت روزانه : <span class="text-white">4 ساعت</span> </span>
+                                    <span class="text-white-50 fs-6 overflow-hidden">فعالیت روزانه : <span
+                                            class="text-white">4 ساعت</span> </span>
                                 </div>
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
                             </li>
                             <li
                                 class="taskItem d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
                                 <div class="col-3">
-                                    <img src="/FrontEnd/global/media/Customer/Users/02_Person.jpg" class="rounded-circle" width="60px" height="60px">
+                                    <img src="/FrontEnd/global/media/Customer/Users/02_Person.jpg"
+                                        class="rounded-circle" width="60px" height="60px">
                                 </div>
                                 <div class="col-7">
                                     <h5 class="text-white my-0 overflow-hidden">رضا احمدی</h5>
-                                    <span class="text-white-50 fs-6 overflow-hidden">فعالیت روزانه : <span class="text-white">2 ساعت</span> </span>
+                                    <span class="text-white-50 fs-6 overflow-hidden">فعالیت روزانه : <span
+                                            class="text-white">2 ساعت</span> </span>
                                 </div>
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">19</span>
                             </li>
@@ -147,26 +150,34 @@
         </div>
         <!-- End OffCanvas menu -->
 
+        <div class="col-lg-4 col-xxl-4" style="height: 100vh;"></div>
 
+        <!-- Main -->
+        <main class="col-lg-8 col-xxl-6 d-flex justify-content-center align-items-center" style="height: 95vh;">
+            <h1 class="text-danger fs-l1">Main</h1>
+        </main>
+        <!-- End Main -->
 
-
-
-        
-
-        <!-- Footer -->
-        <footer class="d-flex align-items-center justify-content-center py-3 w-100 pt-5" dir="rtl">
-            <div class="container-xxl">
-                <div class="mb-2 mb-md-0 text-center">
-                    ©
-                    ساخته شده با ❤️ توسط
-                    <a href="https://hyperclouds.ir" target="_blank"
-                        class="footer-link fw-bolder text-decoration-none">HyperClouds</a>
-                    (
-                    <script>document.write(new Date().getFullYear());</script>)
-                </div>
-            </div>
-        </footer>
+        <!-- Sidebar -->
+        <aside class="col-lg-2 col-xxl-2 position-fixed top-0 start-0 d-flex justify-content-center align-items-center" style="height: 100vh;">
+            <h1 class="text-danger fs-l1">Sidebar</h1>
+        </aside>
+        <!-- End Sidebar -->
     </div>
+
+    <!-- Footer -->
+    <footer class="d-flex align-items-center justify-content-center py-3 w-100 pt-5" dir="rtl">
+        <div class="container-xxl">
+            <div class="mb-2 mb-md-0 text-center text-white">
+                ©
+                ساخته شده با ❤️ توسط
+                <a href="https://hyperclouds.ir" target="_blank"
+                    class="footer-link fw-bolder text-decoration-none">HyperClouds</a>
+                (
+                <script>document.write(new Date().getFullYear());</script>)
+            </div>
+        </div>
+    </footer>
 
 
 
