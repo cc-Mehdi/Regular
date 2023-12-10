@@ -9,9 +9,5 @@ namespace DataLayer.Data
         {
 
         }
-
-        public DbSet<Coffee> Coffee { get; set; }
-        public DbSet<Users> Users { get; set; }
-        public DbSet<BuyHistory> BuyHistories { get; set; }
     }
 }
