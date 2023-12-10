@@ -640,7 +640,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
         },
         "runtime": {
-          "Datalayer.dll": {}
+          "DataLayer.dll": {}
         }
       }
     }
