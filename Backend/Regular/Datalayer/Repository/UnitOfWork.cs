@@ -11,10 +11,12 @@ namespace DataLayer.Repository
             _db = db;
             UsersRepository = new UsersRepository(_db);
             ProjectsRepository = new ProjectsRepository(_db);
+            TasksRepository = new TasksRepository(_db);
         }
 
         public IUsersRepository UsersRepository { get; set; }
         public IProjectsRepository ProjectsRepository { get; set; }
+        public ITasksRepository TasksRepository { get; set; }
 
         public void Dispose()
         {
