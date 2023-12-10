@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "/yIPlOqP3Fqtb7yj/fKK9vIXNYOUKVhCSIj/SG2n5MQyBdoBVRN2WU/0q4x01FxB/9AZCoHgLN1ipHD/qGGiXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\CC-Mehdi\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\CC-Mehdi\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\CC-Mehdi\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
