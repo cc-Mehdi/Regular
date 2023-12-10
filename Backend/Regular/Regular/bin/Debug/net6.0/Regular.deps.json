@@ -636,7 +636,8 @@
       },
       "Datalayer/1.0.0": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.14"
+          "Microsoft.EntityFrameworkCore": "7.0.14",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
         },
         "runtime": {
           "Datalayer.dll": {}
