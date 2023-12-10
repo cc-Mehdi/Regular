@@ -79,3 +79,11 @@ C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Datal
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Datalayer.pdb
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net6.0\Regular.csproj.AssemblyReference.cache
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net6.0\Regular.csproj.CopyComplete
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Humanizer.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\Mono.TextTemplating.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
