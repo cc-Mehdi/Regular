@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Datalayer.Migrations
+namespace DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20231210160324_InitialDatabase")]
@@ -24,7 +24,7 @@ namespace Datalayer.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Datalayer.Models.Friends", b =>
+            modelBuilder.Entity("DataLayer.Models.Friends", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -43,7 +43,7 @@ namespace Datalayer.Migrations
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Projects", b =>
+            modelBuilder.Entity("DataLayer.Models.Projects", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace Datalayer.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Tasks", b =>
+            modelBuilder.Entity("DataLayer.Models.Tasks", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,7 +129,7 @@ namespace Datalayer.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Users", b =>
+            modelBuilder.Entity("DataLayer.Models.Users", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -167,15 +167,15 @@ namespace Datalayer.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Tasks", b =>
+            modelBuilder.Entity("DataLayer.Models.Tasks", b =>
                 {
-                    b.HasOne("Datalayer.Models.Projects", "Project")
+                    b.HasOne("DataLayer.Models.Projects", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Datalayer.Models.Users", "User")
+                    b.HasOne("DataLayer.Models.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

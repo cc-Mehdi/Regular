@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Datalayer.Models
+namespace DataLayer.Models
 {
     public class Users
     {

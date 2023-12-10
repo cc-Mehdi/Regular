@@ -1049,7 +1049,7 @@
           }
         }
       },
-      "Datalayer/1.0.0": {
+      "DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -1057,10 +1057,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.14"
         },
         "compile": {
-          "bin/placeholder/Datalayer.dll": {}
+          "bin/placeholder/DataLayer.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Datalayer.dll": {}
+          "bin/placeholder/DataLayer.dll": {}
         }
       }
     }
@@ -2860,15 +2860,15 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Datalayer/1.0.0": {
+    "DataLayer/1.0.0": {
       "type": "project",
-      "path": "../Datalayer/Datalayer.csproj",
-      "msbuildProject": "../Datalayer/Datalayer.csproj"
+      "path": "../Datalayer/DataLayer.csproj",
+      "msbuildProject": "../Datalayer/DataLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Datalayer >= 1.0.0",
+      "DataLayer >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.14",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.14",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.14"
@@ -2907,8 +2907,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
-              "projectPath": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
+            "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\DataLayer\\DataLayer.csproj": {
+              "projectPath": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\DataLayer\\DataLayer.csproj"
             }
           }
         }

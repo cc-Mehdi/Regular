@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Datalayer.Migrations
+namespace DataLayer.Migrations
 {
     /// <inheritdoc />
     public partial class InitialDatabase : Migration
