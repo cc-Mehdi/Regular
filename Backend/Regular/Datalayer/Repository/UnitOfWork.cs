@@ -9,7 +9,12 @@ namespace DataLayer.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            UsersRepository = new UsersRepository(_db);
+            ProjectsRepository = new ProjectsRepository(_db);
         }
+
+        public IUsersRepository UsersRepository { get; set; }
+        public IProjectsRepository ProjectsRepository { get; set; }
 
         public void Dispose()
         {
