@@ -3,3 +3,10 @@ C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Dat
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Datalayer.AssemblyInfoInputs.cache
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Datalayer.AssemblyInfo.cs
 C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Datalayer.csproj.CoreCompileInputs.cache
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Debug\net6.0\Datalayer.deps.json
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Debug\net6.0\Datalayer.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Debug\net6.0\Datalayer.pdb
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Datalayer.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\refint\Datalayer.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\Datalayer.pdb
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net6.0\ref\Datalayer.dll

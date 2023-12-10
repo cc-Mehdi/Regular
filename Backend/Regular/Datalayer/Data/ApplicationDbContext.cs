@@ -1,5 +1,4 @@
-﻿using DataLayer.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Data
 {
@@ -7,7 +6,6 @@ namespace DataLayer.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
         {
-
         }
     }
 }
