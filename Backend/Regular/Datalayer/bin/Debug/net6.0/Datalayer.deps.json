@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "Datalayer/1.0.0": {
+      "DataLayer/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.14",
           "Microsoft.EntityFrameworkCore.Design": "7.0.14",
@@ -14,7 +14,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "7.0.14"
         },
         "runtime": {
-          "Datalayer.dll": {}
+          "DataLayer.dll": {}
         }
       },
       "Azure.Core/1.25.0": {
@@ -642,7 +642,7 @@
     }
   },
   "libraries": {
-    "Datalayer/1.0.0": {
+    "DataLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
