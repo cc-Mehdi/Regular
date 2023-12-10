@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CtqUxoiLGI89UepNjZINyKeUanZ1M8R7z3XxSPTstWc=",
+  "Hash": "fvLx0t0WGqB+VHWRXiOLczTTCwCKGe4+w57ezzSCrqk=",
   "Source": "Regular",
   "BasePath": "_content/Regular",
   "Mode": "Default",
@@ -423,6 +423,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\FrontEnd\\global\\public.js"
+    },
+    {
+      "Identity": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Login-Register\\Login-Register.css",
+      "SourceId": "Regular",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\",
+      "BasePath": "_content/Regular",
+      "RelativePath": "FrontEnd/Login-Register/Login-Register.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\FrontEnd\\Login-Register\\Login-Register.css"
+    },
+    {
+      "Identity": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Login-Register\\Login-Register.js",
+      "SourceId": "Regular",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\",
+      "BasePath": "_content/Regular",
+      "RelativePath": "FrontEnd/Login-Register/Login-Register.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\FrontEnd\\Login-Register\\Login-Register.js"
     },
     {
       "Identity": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\script.js",

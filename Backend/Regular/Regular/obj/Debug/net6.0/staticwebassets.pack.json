@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Regular.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Login-Register\\Login-Register.css",
+      "PackagePath": "staticwebassets\\FrontEnd\\Login-Register\\Login-Register.css"
+    },
+    {
+      "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Login-Register\\Login-Register.js",
+      "PackagePath": "staticwebassets\\FrontEnd\\Login-Register\\Login-Register.js"
+    },
+    {
       "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\global\\media\\Customer\\Users\\01_Person.jpg",
       "PackagePath": "staticwebassets\\FrontEnd\\global\\media\\Customer\\Users\\01_Person.jpg"
     },
