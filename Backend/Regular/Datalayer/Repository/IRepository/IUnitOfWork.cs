@@ -5,6 +5,7 @@
         IUsersRepository UsersRepository { get; set; }
         IProjectsRepository ProjectsRepository { get; set; }
         ITasksRepository TasksRepository { get; set; }
+        IFriendsRepository FriendsRepository { get; set; }
         void Save();
     }
 }
