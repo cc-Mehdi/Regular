@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\FrontEnd\\Login-Register\\Login-Register.js"
     },
     {
+      "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Manage\\manage.css",
+      "PackagePath": "staticwebassets\\FrontEnd\\Manage\\manage.css"
+    },
+    {
+      "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\Manage\\manage.js",
+      "PackagePath": "staticwebassets\\FrontEnd\\Manage\\manage.js"
+    },
+    {
       "Id": "C:\\Users\\CC-Mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\FrontEnd\\global\\media\\Customer\\Users\\01_Person.jpg",
       "PackagePath": "staticwebassets\\FrontEnd\\global\\media\\Customer\\Users\\01_Person.jpg"
     },

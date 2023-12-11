@@ -10,6 +10,8 @@
     <None Include="wwwroot\FrontEnd\global\public.js" />
     <None Include="wwwroot\FrontEnd\Login-Register\Login-Register.css" />
     <None Include="wwwroot\FrontEnd\Login-Register\Login-Register.js" />
+    <None Include="wwwroot\FrontEnd\Manage\manage.css" />
+    <None Include="wwwroot\FrontEnd\Manage\manage.js" />
     <None Include="wwwroot\FrontEnd\script.js" />
   </ItemGroup>
 
