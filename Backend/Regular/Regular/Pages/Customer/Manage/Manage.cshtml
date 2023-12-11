@@ -102,7 +102,7 @@
                                     <div class="col-7">
                                         <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
                                     </div>
-                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">3</span>
+                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
                                 </li>
                             }
                         </ul>
@@ -115,19 +115,19 @@
                         <ul class="list-unstyled">
                             <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 همه
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
+                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.allTasksCount</span>
                             </li>
                             <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-warning border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 درحال انجام
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
+                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.inProgressTasksCount</span>
                             </li>
                             <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-success border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 انجام شده
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
+                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.doneTasksCount</span>
                             </li>
                             <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-secondary border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 برای بررسی
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
+                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.inPreviewTasksCount</span>
                             </li>
                         </ul>
                     </div>
@@ -140,32 +140,22 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
-                                <div class="col-3">
-                                    <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
-                                         class="rounded-circle" width="60px" height="60px">
-                                </div>
-                                <div class="col-7">
-                                    <h5 class="text-white my-0 overflow-hidden">مهدی غلامی</h5>
-                                    <span class="text-white-50 fs-6 overflow-hidden">
-                                        فعالیت روزانه : <span class="text-white">4 ساعت</span>
-                                    </span>
-                                </div>
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">8</span>
-                            </li>
-                            <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
-                                <div class="col-3">
-                                    <img src="/FrontEnd/global/media/Customer/Users/02_Person.jpg"
-                                         class="rounded-circle" width="60px" height="60px">
-                                </div>
-                                <div class="col-7">
-                                    <h5 class="text-white my-0 overflow-hidden">رضا احمدی</h5>
-                                    <span class="text-white-50 fs-6 overflow-hidden">
-                                        فعالیت روزانه : <span class="text-white">2 ساعت</span>
-                                    </span>
-                                </div>
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">19</span>
-                            </li>
+                            @foreach(var item in Model.Users)
+                            {
+                                <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
+                                    <div class="col-3">
+                                        <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
+                                             class="rounded-circle" width="60px" height="60px">
+                                    </div>
+                                    <div class="col-7">
+                                        <h5 class="text-white my-0 overflow-hidden">@item.FullName</h5>
+                                        <span class="text-white-50 fs-6 overflow-hidden">
+                                            فعالیت روزانه : <span class="text-white">@item.DailyTimeSpend</span>
+                                        </span>
+                                    </div>
+                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </div>

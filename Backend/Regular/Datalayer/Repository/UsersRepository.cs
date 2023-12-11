@@ -17,8 +17,11 @@ namespace DataLayer.Repository
             objFromDb.Email = user.Email;
             objFromDb.Password = user.Password;
             objFromDb.Username = user.Username;
-            objFromDb.FirstName = user.FirstName;
-            objFromDb.LastName = user.LastName;
+            objFromDb.FullName = user.FullName;
+            objFromDb.DailyTimeSpend = user.DailyTimeSpend;
+            objFromDb.TasksCount = user.TasksCount;
+            if (user.ImageAddress != "")
+                objFromDb.ImageAddress = user.ImageAddress;
         }
     }
 }

@@ -52,7 +52,7 @@ namespace Regular.Pages.Customer.Login_Register
                     var userEmails = _unitOfWork.UsersRepository.GetAll().Where(u => u.Email == user.Email).ToList();
                     if(userEmails.Count == 0)
                     {
-                        user.FirstName = user.LastName = "";
+                        user.FullName = "";
                         _unitOfWork.UsersRepository.Add(user);
                         _unitOfWork.Save();
 

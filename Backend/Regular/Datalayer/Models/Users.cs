@@ -25,16 +25,22 @@ namespace DataLayer.Models
         [DataType(DataType.Text)]
         public string Username { get; set; }
 
-        [Display(Name = "نام")]
+        [Display(Name = "نام و نام خانوادگی")]
         [Required(ErrorMessage = "لطفا {0} را صحیح وارد کنید")]
-        [MaxLength(150, ErrorMessage = "مقدار {0} بیش از حد مجاز طولانی است")]
+        [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز طولانی است")]
         [DataType(DataType.Text)]
-        public string FirstName { get; set; }
+        public string FullName { get; set; }
 
-        [Display(Name = "نام خانوادگی")]
-        [Required(ErrorMessage = "لطفا {0} را صحیح وارد کنید")]
-        [MaxLength(150, ErrorMessage = "مقدار {0} بیش از حد مجاز طولانی است")]
+        [Display(Name = "تصویر")]
         [DataType(DataType.Text)]
-        public string LastName { get; set; }
+        public string ImageAddress { get; set; }
+
+        [Display(Name = "فعالیت روزانه")]
+        [MaxLength(100, ErrorMessage = "مقدار {0} بیش از حد مجاز طولانی است")]
+        [DataType(DataType.Text)]
+        public string DailyTimeSpend { get; set; }
+
+        [Display(Name = "تعداد وظایف")]
+        public int TasksCount { get; set; }
     }
 }
