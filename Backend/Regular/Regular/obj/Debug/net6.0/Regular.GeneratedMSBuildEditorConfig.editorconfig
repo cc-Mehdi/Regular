@@ -36,6 +36,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFByb2plY3RVcHNlcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Tasks/TaskDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFRhc2tzXFRhc2tEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Tasks/TasksList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFRhc2tzXFRhc2tzTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Tasks/TaskUpsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFRhc2tzXFRhc2tVcHNlcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

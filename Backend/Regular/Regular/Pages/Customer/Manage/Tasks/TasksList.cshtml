@@ -1,0 +1,55 @@
+﻿@page
+@model Regular.Pages.Customer.Manage.Tasks.TasksListModel
+@{
+}
+
+
+<div class="p-5" style="height: 100vh;">
+    <div class="row px-2">
+        <h2 class="text-primary fw-bolder fs-3 col-sm-4 col-12">لیست وظایف‌</h2>
+        <a href="/Customer/Manage/Manage" class="btn btn-secondary m-1 rounded-2 col-sm-3 col-12">برگشت</a>
+        <a href="/Customer/Manage/Tasks/TaskUpsert" class="btn btn-primary m-1 rounded-2 col-sm-4 col-12">افزودن وظیفه جدید</a>
+    </div>
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">کد وظیفه</th>
+                <th scope="col">عنوان</th>
+                <th scope="col">کد پروژه</th>
+                <th scope="col">کد مسئول</th>
+                <th scope="col">وضعیت وظیفه</th>
+                <th scope="col">اولویت</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Tasks != null)
+            {
+                int i = 1;
+                foreach (var item in Model.Tasks)
+                {
+                    <tr class="table-dark">
+                        <td>
+                            @(i++)
+                        </td>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+                        <td>@item.ProjectId</td>
+                        <td>@item.UserId</td>
+                        <td>@item.TaskStatus</td>
+                        <td>@item.TaskPriority</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/Customer/Manage/Tasks/TaskDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
+                                <a href="/Customer/Manage/Tasks/TaskUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
