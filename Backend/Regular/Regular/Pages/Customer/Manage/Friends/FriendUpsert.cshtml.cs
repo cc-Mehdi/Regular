@@ -1,3 +1,4 @@
+using DataLayer.Models;
 using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -30,6 +31,15 @@ namespace Regular.Pages.Customer.Manage.Friends
             //Create
             if (Friend.Id == 0)
             {
+                if (userId == Friend.UserId2)
+                    return Page();
+
+                IEnumerable<DataLayer.Models.Friends> firends = _unitOfWork.FriendsRepository.GetAll();
+
+                foreach (var item in firends)
+                    if (item.UserId2 == Friend.UserId2)
+                        return Page();
+
                 _unitOfWork.FriendsRepository.Add(Friend);
                 _unitOfWork.Save();
             }
