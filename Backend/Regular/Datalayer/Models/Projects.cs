@@ -14,6 +14,9 @@ namespace DataLayer.Models
         [DataType(DataType.Text)]
         public string ProjectName { get; set; }
 
+        [Display(Name = "تعداد وظایف پروژه")]
+        public int TasksCount { get; set; }
+
         [ForeignKey("Users")]
         public int UserId { get; set; }
         public Users User { get; set; }
