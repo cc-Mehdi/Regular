@@ -5,8 +5,9 @@
 
 <div class="p-5" style="height: 100vh;">
     <div class="row px-2">
-        <h2 class="text-primary fw-bolder fs-3 col-sm-8 col-12">لیست پروژه ‌ها</h2>
-        <a href="/Customer/Manage/ProjectUpsert" class="btn btn-primary rounded-2 col-sm-4 col-12">افزودن پروژه جدید</a>
+        <h2 class="text-primary fw-bolder fs-3 col-sm-4 col-12">لیست پروژه ‌ها</h2>
+        <a href="/Customer/Manage/Manage" class="btn btn-secondary m-1 rounded-2 col-sm-3 col-12">برگشت</a>
+        <a href="/Customer/Manage/ProjectUpsert" class="btn btn-primary m-1 rounded-2 col-sm-4 col-12">افزودن پروژه جدید</a>
     </div>
     <hr />
 
@@ -38,7 +39,7 @@
                         <td>
                             <div class="btn-group">
                                 <a href="/Customer/Manage/ProjectDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
-                                <a href="/Customer/Manage/ManageProjects/ProjectUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
+                                <a href="/Customer/Manage/ProjectUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
                             </div>
                         </td>
                     </tr>
