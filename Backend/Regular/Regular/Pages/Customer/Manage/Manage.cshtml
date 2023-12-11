@@ -89,9 +89,9 @@
                     </div>
                     <div class="row w-100 mt-5 d-flex justify-content-center align-items-center">
                         <h5 class="col-10">پروژه ها</h5>
-                        <button class="col-2 fs-2 text-center bg-transparent border-0">
+                        <a href="/Customer/Manage/ProjectsList" class="col-2 fs-2 text-center bg-transparent border-0">
                             <img src="/FrontEnd/global/media/icons/add.png" width="40px" height="40px">
-                        </button>
+                        </a>
                         <h5 class="mt-2 border-1 border-bottom"></h5>
                     </div>
                     <div class="row w-100">
@@ -108,7 +108,10 @@
                         </ul>
                     </div>
                     <div class="row w-100 mt-3 d-flex justify-content-center align-items-center">
-                        <h5>وظایف</h5>
+                        <h5 class="col-10">وظایف</h5>
+                        <button class="col-2 fs-2 text-center bg-transparent border-0">
+                            <img src="/FrontEnd/global/media/icons/add.png" width="40px" height="40px">
+                        </button>
                         <h5 class="mt-2 border-1 border-bottom"></h5>
                     </div>
                     <div class="row w-100">
@@ -140,21 +143,24 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            @foreach(var item in Model.Users)
+                            @if(Model.Users != null)
                             {
-                                <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
-                                    <div class="col-3">
-                                        <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
-                                             class="rounded-circle" width="60px" height="60px">
-                                    </div>
-                                    <div class="col-7">
-                                        <h5 class="text-white my-0 overflow-hidden">@item.FullName</h5>
-                                        <span class="text-white-50 fs-6 overflow-hidden">
-                                            فعالیت روزانه : <span class="text-white">@item.DailyTimeSpend</span>
-                                        </span>
-                                    </div>
-                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
-                                </li>
+                                @foreach (var item in Model.Users)
+                                {
+                                    <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
+                                        <div class="col-3">
+                                            <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
+                                                 class="rounded-circle" width="60px" height="60px">
+                                        </div>
+                                        <div class="col-7">
+                                            <h5 class="text-white my-0 overflow-hidden">@item.FullName</h5>
+                                            <span class="text-white-50 fs-6 overflow-hidden">
+                                                فعالیت روزانه : <span class="text-white">@item.DailyTimeSpend</span>
+                                            </span>
+                                        </div>
+                                        <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
+                                    </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -180,24 +186,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
-                                <th scope="row">1</th>
-                                <td>T-54</td>
-                                <td>حذف داده های اضافی</td>
-                                <td>رضا احمدی</td>
-                            </tr>
-                            <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
-                                <th scope="row">2</th>
-                                <td>T-86</td>
-                                <td>اضافه کردن روابط به جداول</td>
-                                <td>مهدی غلامی</td>
-                            </tr>
-                            <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
-                                <th scope="row">3</th>
-                                <td>T-14</td>
-                                <td>ساخت صفحات ورود</td>
-                                <td>مهدی غلامی</td>
-                            </tr>
+                            @foreach(var item in Model.Tasks)
+                            {
+                                <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
+                                    <th scope="row">1</th>
+                                    <td>@item.UserId</td>
+                                    <td>@item.Title</td>
+                                    <td>@item.User.Email</td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

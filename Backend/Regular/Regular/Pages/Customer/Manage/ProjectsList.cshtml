@@ -1,0 +1,49 @@
+﻿@page
+@model Regular.Pages.Customer.Manage.ManageProjectsModel
+@{
+}
+
+<div class="p-5" style="height: 100vh;">
+    <div class="row px-2">
+        <h2 class="text-primary fw-bolder fs-3 col-sm-8 col-12">لیست پروژه ‌ها</h2>
+        <a href="/Customer/Manage/ProjectUpsert" class="btn btn-primary rounded-2 col-sm-4 col-12">افزودن پروژه جدید</a>
+    </div>
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">کد پروژه</th>
+                <th scope="col">نام پروژه</th>
+                <th scope="col">کد مسئول پروژه</th>
+                <th scope="col">تعداد وظایف</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Projects != null)
+            {
+                int i = 1;
+                foreach (var item in Model.Projects)
+                {
+                    <tr class="table-dark">
+                        <td>
+                            @(i++)
+                        </td>
+                        <td>@item.Id</td>
+                        <td>@item.ProjectName</td>
+                        <td>@item.UserId</td>
+                        <td>@item.TasksCount</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/Customer/Manage/ProjectDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
+                                <a href="/Customer/Manage/ManageProjects/ProjectUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

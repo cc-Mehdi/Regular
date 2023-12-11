@@ -11,6 +11,7 @@ namespace Regular.Pages.Manage
         private int userId = 0;
         private readonly IUnitOfWork _unitOfWork;
         public Users User { get; set; }
+        public Tasks Task { get; set; }
         public IEnumerable<Users> Users { get; set; }
         public IEnumerable<Friends> Friends { get; set; }
         public IEnumerable<Projects> Projects { get; set; }
