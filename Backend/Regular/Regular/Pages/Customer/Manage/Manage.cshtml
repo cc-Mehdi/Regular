@@ -96,12 +96,15 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            <li class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
-                                <div class="col-7">
-                                    <h5 class="text-white my-0 overflow-hidden">پروژه آزمایشی 1</h5>
-                                </div>
-                                <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">3</span>
-                            </li>
+                            @foreach(var item in Model.Projects)
+                            {
+                                <li class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
+                                    <div class="col-7">
+                                        <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
+                                    </div>
+                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">3</span>
+                                </li>
+                            }
                         </ul>
                     </div>
                     <div class="row w-100 mt-3 d-flex justify-content-center align-items-center">
