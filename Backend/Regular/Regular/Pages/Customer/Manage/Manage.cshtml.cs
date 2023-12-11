@@ -12,7 +12,7 @@ namespace Regular.Pages.Manage
         private readonly IUnitOfWork _unitOfWork;
         public Users User { get; set; }
         public Tasks Task { get; set; }
-        public IEnumerable<Users> Users { get; set; }
+        public List<Users> Users { get; set; }
         public IEnumerable<Friends> Friends { get; set; }
         public IEnumerable<Projects> Projects { get; set; }
         public IEnumerable<Tasks> Tasks { get; set; }
@@ -50,8 +50,10 @@ namespace Regular.Pages.Manage
                 inPreviewTasksCount = Tasks.Where(u => u.TaskStatus == "برای بررسی").ToList().Count();
                 userTasksCount = Tasks.Where(u => u.UserId == userId).ToList().Count();
 
-                foreach (var item in Friends)
-                    Users.Append(_unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == item.UserId2));
+                Users = new List<Users>();
+                foreach (var friend in Friends)
+                    Users.Add(_unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == friend.UserId2));
+
             }
         }
     }

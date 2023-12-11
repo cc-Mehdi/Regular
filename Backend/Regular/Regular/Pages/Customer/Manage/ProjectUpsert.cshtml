@@ -15,14 +15,12 @@
             @*Id*@
             <input asp-for="@Model.Project.Id" hidden />
 
-            @*Coffee Name*@
             <div class="form-group">
                 <label asp-for="@Model.Project.ProjectName" class="form-label mt-4"></label>
                 <input class="form-control" asp-for="@Model.Project.ProjectName">
                 <span asp-validation-for="@Model.Project.ProjectName" class="form-text text-danger"></span>
             </div>
 
-            @*Rate and Price*@
             <div class="row">
                 <div class="col">
                     <div class="form-group">

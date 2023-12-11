@@ -20,6 +20,18 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTG9naW4tUmVnaXN0ZXJcTG9naW4tUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Friends/FriendsList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXEZyaWVuZHNcRnJpZW5kc0xpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Friends/FriendUpsert.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXEZyaWVuZHNcRnJpZW5kVXBzZXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Friends/FrinedDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXEZyaWVuZHNcRnJpbmVkRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Manage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXE1hbmFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

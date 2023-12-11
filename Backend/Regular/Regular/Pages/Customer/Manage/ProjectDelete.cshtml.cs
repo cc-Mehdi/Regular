@@ -32,7 +32,6 @@ namespace Regular.Pages.Customer.Manage
                 //Save db
                 _unitOfWork.Save();
 
-                //Redirect to coffee list
                 return RedirectToPage("/Customer/Manage/ProjectsList");
             }
             return Page();

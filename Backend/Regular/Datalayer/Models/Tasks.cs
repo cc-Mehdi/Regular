@@ -14,10 +14,12 @@ namespace DataLayer.Models
         [DataType(DataType.Text)]
         public string Title { get; set; }
 
+        [Display(Name = "کد پروژه")]
         [ForeignKey("Projects")]
         public int ProjectId { get; set; }
         public Projects Project { get; set; }
 
+        [Display(Name = "کد مسئول")]
         [ForeignKey("Users")]
         public int UserId { get; set; }
         public Users User { get; set; }

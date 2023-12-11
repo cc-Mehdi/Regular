@@ -38,7 +38,7 @@ namespace Regular.Pages.Customer.Login_Register
                     cookieOptions.Path = "/";
                     Response.Cookies.Append("UserId", checkUser.Id.ToString(), cookieOptions);
 
-                    return RedirectToPage("/Privacy");
+                    return RedirectToPage("/Customer/Manage/Manage");
                 }
                 else
                 {

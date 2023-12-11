@@ -1,0 +1,47 @@
+﻿@page
+@model Regular.Pages.Customer.Manage.Friends.FriendsListModel
+@{
+}
+
+
+<div class="p-5" style="min-height: 100vh;">
+    <div class="row px-2">
+        <h2 class="text-primary fw-bolder fs-3 col-sm-4 col-12">لیست همکاران‌</h2>
+        <a href="/Customer/Manage/Manage" class="btn btn-secondary m-1 rounded-2 col-sm-3 col-12">برگشت</a>
+        <a href="/Customer/Manage/Friends/FriendUpsert" class="btn btn-primary m-1 rounded-2 col-sm-4 col-12">افزودن همکار جدید</a>
+    </div>
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">کد</th>
+                <th scope="col">کد همکار</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Friends != null)
+            {
+                int i = 1;
+                foreach (var item in Model.Friends)
+                {
+                    <tr class="table-dark">
+                        <td>
+                            @(i++)
+                        </td>
+                        <td>@item.Id</td>
+                        <td>@item.UserId2</td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="/Customer/Manage/Friends/FriendDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
+                                <a href="/Customer/Manage/Friends/FriendUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
