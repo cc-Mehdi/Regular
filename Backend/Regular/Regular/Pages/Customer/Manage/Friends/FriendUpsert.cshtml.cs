@@ -32,13 +32,29 @@ namespace Regular.Pages.Customer.Manage.Friends
             if (Friend.Id == 0)
             {
                 if (userId == Friend.UserId2)
+                {
                     return Page();
+                }
 
                 IEnumerable<DataLayer.Models.Friends> firends = _unitOfWork.FriendsRepository.GetAll();
-
                 foreach (var item in firends)
+                {
                     if (item.UserId2 == Friend.UserId2)
+                    {
                         return Page();
+                    }
+                }
+
+                var users = _unitOfWork.UsersRepository.GetAll();
+                bool isUserExist = false;
+                foreach (var user in users)
+                    if (Friend.UserId2 == user.Id)
+                        isUserExist = true;
+                if(!isUserExist)
+                {
+                    return Page();
+                }    
+             
 
                 _unitOfWork.FriendsRepository.Add(Friend);
                 _unitOfWork.Save();
@@ -49,7 +65,7 @@ namespace Regular.Pages.Customer.Manage.Friends
                 _unitOfWork.Save();
             }
 
-            return RedirectToPage("/Customer/Friends/FirendsList");
+            return RedirectToPage("/Customer/Manage/friends/friendsList");
         }
     }
 }
