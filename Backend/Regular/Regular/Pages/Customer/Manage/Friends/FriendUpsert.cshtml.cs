@@ -56,14 +56,15 @@ namespace Regular.Pages.Customer.Manage.Friends
                 {
                     TempData["error"] = "کاربر مورد نظر وجود ندارد";
                     return Page();
-                }    
-             
+                }
 
+                TempData["success"] = "همکار با موفقیت اضافه شد";
                 _unitOfWork.FriendsRepository.Add(Friend);
                 _unitOfWork.Save();
             }
             else //Edit
             {
+                TempData["success"] = "همکار با موفقیت ویرایش شد";
                 _unitOfWork.FriendsRepository.Update(Friend);
                 _unitOfWork.Save();
             }
