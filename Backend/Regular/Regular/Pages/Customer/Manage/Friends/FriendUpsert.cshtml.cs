@@ -49,7 +49,7 @@ namespace Regular.Pages.Customer.Manage.Friends
                 _unitOfWork.Save();
             }
 
-            return RedirectToPage("/Customer/Manage/Friends/FirendsList");
+            return RedirectToPage("/Customer/Friends/FirendsList");
         }
     }
 }

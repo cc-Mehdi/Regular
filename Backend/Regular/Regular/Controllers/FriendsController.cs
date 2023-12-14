@@ -29,7 +29,7 @@ namespace Regular.Controllers
 
             _unitOfWork.FriendsRepository.Remove(objFromDb);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete successful." });
+            return Json(new { success = true, message = "حذف با موفقیت انجام شد" });
         }
     }
 }

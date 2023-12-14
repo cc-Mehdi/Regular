@@ -1,5 +1,5 @@
 // Loading Page
-function ShowLoadingPageAnimation(duration = 3000) {
+function ShowLoadingPageAnimation(duration = 1000) {
     document.getElementsByTagName("body")[0].style = "overflow-y: hidden";
     //this function show loading animation in each page
     let startTime = new Date();
