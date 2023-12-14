@@ -12,44 +12,84 @@
     </div>
     <hr />
 
-    <table class="table table-hover">
+    <table class="table table-hover w-100" id="DT_load">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">کد وظیفه</th>
                 <th scope="col">عنوان</th>
-                <th scope="col">کد پروژه</th>
-                <th scope="col">کد مسئول</th>
                 <th scope="col">وضعیت وظیفه</th>
-                <th scope="col">اولویت</th>
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody>
-            @if (Model.Tasks != null)
-            {
-                int i = 1;
-                foreach (var item in Model.Tasks)
-                {
-                    <tr class="table-dark">
-                        <td>
-                            @(i++)
-                        </td>
-                        <td>@item.Id</td>
-                        <td>@item.Title</td>
-                        <td>@item.ProjectId</td>
-                        <td>@item.UserId</td>
-                        <td>@item.TaskStatus</td>
-                        <td>@item.TaskPriority</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="/Customer/Manage/Tasks/TaskDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
-                                <a href="/Customer/Manage/Tasks/TaskUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
     </table>
 </div>
+
+@section Scripts {
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var dataTable;
+
+        function Delete(url) {
+            Swal.fire({
+                title: 'از حذف مطمعن هستید؟',
+                text: "شما نمی توانید این را برگردانید",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data.success) {
+                                dataTable.ajax.reload();
+                                //success notification
+                                toastr.success(data.message);
+                            }
+                            else {
+                                //failsure notification
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            dataTable = $('#DT_load').DataTable({
+                "ajax": {
+                    "url": "/api/Tasks",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "title" },
+                    { "data": "taskStatus" },
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            return `<div class="w-75 btn-group" >
+                                    <a href="/Customer/Manage/Tasks/TaskUpsert?id=${data}"  class="btn btn-warning text-white rounded-0 rounded-end-3 mx-2">
+                                    <i class="bi bi-pencil-square"></i>  </a>
+                                            <a onClick=Delete('/api/Tasks/${data}')  class="btn btn-danger text-white rounded-0 rounded-start-3 mx-2">
+                                    <i class="bi bi-trash-fill"></i>  </a>
+                                    </div>`
+                        },
+                    }
+                ],
+                "width": "100%"
+            });
+        });
+
+
+    </script>
+}
