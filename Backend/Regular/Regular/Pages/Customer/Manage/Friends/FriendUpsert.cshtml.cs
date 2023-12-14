@@ -1,4 +1,4 @@
-using DataLayer.Models;
+﻿using DataLayer.Models;
 using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -33,6 +33,7 @@ namespace Regular.Pages.Customer.Manage.Friends
             {
                 if (userId == Friend.UserId2)
                 {
+                    TempData["error"] = "شما نمیتوانید به خودتان درخواست بدهید";
                     return Page();
                 }
 
@@ -41,6 +42,7 @@ namespace Regular.Pages.Customer.Manage.Friends
                 {
                     if (item.UserId2 == Friend.UserId2)
                     {
+                        TempData["error"] = "برای این کاربر درخواست ثبت شده";
                         return Page();
                     }
                 }
@@ -52,6 +54,7 @@ namespace Regular.Pages.Customer.Manage.Friends
                         isUserExist = true;
                 if(!isUserExist)
                 {
+                    TempData["error"] = "کاربر مورد نظر وجود ندارد";
                     return Page();
                 }    
              
