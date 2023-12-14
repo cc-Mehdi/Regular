@@ -108,7 +108,7 @@ svg {
 }
 
 svg text {
-    animation: stroke 2.7s infinite alternate;
+    animation: stroke 1.5s infinite alternate;
     stroke-width: 2;
     stroke: var(--tc-secondary);
     font-size: 3rem;
