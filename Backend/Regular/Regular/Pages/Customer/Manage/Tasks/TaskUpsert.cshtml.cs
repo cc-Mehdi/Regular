@@ -24,6 +24,21 @@ namespace Regular.Pages.Customer.Manage.Tasks
 
         public async Task<IActionResult> OnPost()
         {
+            var cookie = Request.Cookies["UserId"];
+            int userId = int.Parse(cookie);
+
+            var friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
+
+            bool isUserFriend = false;
+            foreach (var friend in friends)
+                if (Tasks.UserId == friend.UserId2 || Tasks.UserId == userId)
+                    isUserFriend = true;
+            if(!isUserFriend)
+            {
+                TempData["error"] = "مسئول مورد نظر یافت نشد";
+                return Page();
+            }
+            
             //Create
             if (Tasks.Id == 0)
             {
