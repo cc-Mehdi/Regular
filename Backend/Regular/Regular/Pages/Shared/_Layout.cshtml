@@ -37,10 +37,17 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/FrontEnd/global/public.css">
     <link rel="stylesheet" href="/FrontEnd/style.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
 </head>
 
 <body dir="rtl" class="overflow-x-hidden">
-
+    <partial name="_Notification" />
     @RenderBody()
 
         <!-- Footer -->
@@ -100,6 +107,14 @@
     <script src="/FrontEnd/global/public.js"></script>
     <script src="script.js"></script>
 
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Toastr -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- AOS Configuration -->
     <script>

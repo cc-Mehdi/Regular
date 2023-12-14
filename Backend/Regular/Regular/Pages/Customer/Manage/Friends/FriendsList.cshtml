@@ -3,7 +3,6 @@
 @{
 }
 
-
 <div class="p-5" style="min-height: 100vh;">
     <div class="row px-2">
         <h2 class="text-primary fw-bolder fs-3 col-sm-4 col-12">لیست همکاران‌</h2>
@@ -12,36 +11,101 @@
     </div>
     <hr />
 
-    <table class="table table-hover">
+    <table id="DT_load" class="table table-hover w-100">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">کد</th>
-                <th scope="col">کد همکار</th>
-                <th scope="col"></th>
+                <th class="text-end" scope="col">کد</th>
+                <th class="text-end" scope="col">کد همکار</th>
+                <th class="text-end" scope="col"></th>
             </tr>
         </thead>
-        <tbody>
-            @if (Model.Friends != null)
-            {
-                int i = 1;
-                foreach (var item in Model.Friends)
-                {
-                    <tr class="table-dark">
-                        <td>
-                            @(i++)
-                        </td>
-                        <td>@item.Id</td>
-                        <td>@item.UserId2</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="/Customer/Manage/Friends/FriendDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
-                                <a href="/Customer/Manage/Friends/FriendUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
+        @*<tbody>
+
+        @if (Model.Friends != null)
+        {
+        int i = 1;
+        foreach (var item in Model.Friends)
+        {
+        <tr class="table-dark">
+        <td>
+        @(i++)
+        </td>
+        <td>@item.Id</td>
+        <td>@item.UserId2</td>
+        <td>
+        <div class="btn-group">
+        <a href="/Customer/Manage/Friends/FriendDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
+        <a href="/Customer/Manage/Friends/FriendUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
+        </div>
+        </td>
+        </tr>
+        }
+        }
+        </tbody> *@
     </table>
 </div>
+
+@section Scripts {
+    <script>
+        var dataTable;
+
+        $(document).ready(function () {
+            dataTable = $('#DT_load').DataTable({
+                "ajax": {
+                    "url": "/api/Friends",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id"  },
+                    { "data": "userId2" },
+
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            return `<div class="w-75 btn-group" >
+                                            <a href="/Customer/Manage/Friends/FriendUpsert?id=${data}"  class="btn btn-warning text-white rounded-0 rounded-end-3 mx-2">
+                                            <i class="bi bi-pencil-square"></i>  </a>
+                                            <a onClick=Delete('/api/Friends/'+${data})  class="btn btn-danger text-white rounded-0 rounded-start-3 mx-2">
+                                            <i class="bi bi-trash-fill"></i>  </a>
+                                            </div>`
+                        },
+
+                        "width": "50%"
+                    }
+                ],
+                "width": "100%"
+            });
+        });
+
+
+        function Delete(url) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data.success) {
+                                dataTable.ajax.reload();
+                                //success notification
+                                toastr.success(data.message);
+                            }
+                            else {
+                                //failsure notification
+                                toastr.error(data.message);
+                            }
+                        }
+                    })
+                }
+            });
+    </script>
+}
