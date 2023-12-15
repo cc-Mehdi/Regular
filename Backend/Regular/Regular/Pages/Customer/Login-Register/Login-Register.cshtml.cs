@@ -1,4 +1,4 @@
-using DataLayer.Models;
+﻿using DataLayer.Models;
 using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -47,12 +47,14 @@ namespace Regular.Pages.Customer.Login_Register
             }
             else //Register
             {
-                if(user.Email != "" && user.Password != "" && user.Username != "")
+                if(user.Email != "" && user.Password != "" && user.FullName != "")
                 {
                     var userEmails = _unitOfWork.UsersRepository.GetAll().Where(u => u.Email == user.Email).ToList();
                     if(userEmails.Count == 0)
                     {
-                        user.FullName = "";
+                        user.Username = "";
+                        user.DailyTimeSpend = "تازه کار";
+                        user.ImageAddress = "";
                         _unitOfWork.UsersRepository.Add(user);
                         _unitOfWork.Save();
 
