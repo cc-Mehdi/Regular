@@ -21,23 +21,11 @@
                 <span asp-validation-for="@Model.Project.ProjectName" class="form-text text-danger"></span>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label asp-for="@Model.Project.TasksCount" class="form-label mt-4"></label>
-                        <input type="number" class="form-control" asp-for="@Model.Project.TasksCount">
-                        <span asp-validation-for="@Model.Project.TasksCount" class="form-text text-danger"></span>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label asp-for="@Model.Project.UserId" class="form-label mt-4"></label>
-                        <input type="number" class="form-control" asp-for="@Model.Project.UserId">
-                        <span asp-validation-for="@Model.Project.UserId" class="form-text text-danger"></span>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label asp-for="@Model.Project.UserId" class="form-label mt-4"></label>
+                <input class="form-control" asp-for="@Model.Project.UserId">
+                <span asp-validation-for="@Model.Project.UserId" class="form-text text-danger"></span>
             </div>
-
 
             <div class="row btn-group my-5 pb-5 w-100">
                 @{
