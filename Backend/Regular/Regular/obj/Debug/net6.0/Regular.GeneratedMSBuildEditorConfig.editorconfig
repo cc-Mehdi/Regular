@@ -28,16 +28,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXEZyaWVuZHNcRnJpZW5kVXBzZXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Friends/FrinedDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXEZyaWVuZHNcRnJpbmVkRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Manage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXE1hbmFnZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/ProjectDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFByb2plY3REZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/ProjectsList.cshtml]
@@ -46,10 +38,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/ProjectUpsert.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFByb2plY3RVcHNlcnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Tasks/TaskDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTWFuYWdlXFRhc2tzXFRhc2tEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/CC-Mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Manage/Tasks/TasksList.cshtml]
