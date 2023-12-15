@@ -1,4 +1,4 @@
-using DataLayer.Models;
+﻿using DataLayer.Models;
 using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -28,11 +28,13 @@ namespace Regular.Pages.Customer.Manage
             //Create
             if(project.Id == 0)
             {
+                TempData["success"] = "پروژه با موفقیت اضافه شد";
                 _unitOfWork.ProjectsRepository.Add(project);
                 _unitOfWork.Save();
             }
             else //Edit
             {
+                TempData["success"] = "پروژه با موفقیت ویرایش شد";
                 _unitOfWork.ProjectsRepository.Update(project);
                 _unitOfWork.Save();
             }
