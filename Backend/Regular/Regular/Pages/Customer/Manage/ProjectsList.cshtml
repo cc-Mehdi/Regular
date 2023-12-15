@@ -11,40 +11,84 @@
     </div>
     <hr />
 
-    <table class="table table-hover">
+    <table class="table table-hover w-100" id="DT_load">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">کد پروژه</th>
-                <th scope="col">نام پروژه</th>
-                <th scope="col">کد مسئول پروژه</th>
-                <th scope="col">تعداد وظایف</th>
-                <th scope="col"></th>
+                <th scope="col" class="text-end">کد پروژه</th>
+                <th scope="col" class="text-end">نام پروژه</th>
+                <th scope="col" class="text-end"></th>
             </tr>
         </thead>
-        <tbody>
-            @if (Model.Projects != null)
-            {
-                int i = 1;
-                foreach (var item in Model.Projects)
-                {
-                    <tr class="table-dark">
-                        <td>
-                            @(i++)
-                        </td>
-                        <td>@item.Id</td>
-                        <td>@item.ProjectName</td>
-                        <td>@item.UserId</td>
-                        <td>@item.TasksCount</td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="/Customer/Manage/ProjectDelete?id=@item.Id" class="btn btn-danger d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-trash"></i></a>
-                                <a href="/Customer/Manage/ProjectUpsert?id=@item.Id" class="btn btn-warning d-flex justify-content-center align-items-center btn-sm rounded-2 mx-1"><i class="bi bi-pencil-square"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
     </table>
 </div>
+
+@section Scripts {
+    <!-- SweetAlert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var dataTable;
+
+        function Delete(url) {
+            Swal.fire({
+                title: 'از حذف مطمعن هستید؟',
+                text: "شما نمی توانید این را برگردانید",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله، حذف کن',
+                cancelButtonText: 'انصراف'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        success: function (data) {
+                            if (data.success) {
+                                dataTable.ajax.reload();
+                                //success notification
+                                toastr.success(data.message);
+                            }
+                            else {
+                                //failsure notification
+                                toastr.error(data.message);
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            dataTable = $('#DT_load').DataTable({
+                "ajax": {
+                    "url": "/api/Projects",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "projectName" },
+
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            return `<div class="w-75 btn-group" >
+                                    <a href="/Customer/Manage/Projects/ProjectUpsert?id=${data}"  class="btn btn-warning text-white rounded-0 rounded-end-3 mx-2">
+                                    <i class="bi bi-pencil-square"></i>  </a>
+                                    <a onClick=Delete('/api/Projects/${data}')  class="btn btn-danger text-white rounded-0 rounded-start-3 mx-2">
+                                    <i class="bi bi-trash-fill"></i>  </a>
+                                    </div>`
+                        },
+
+                        "width": "50%"
+                    }
+                ],
+                "width": "100%"
+            });
+        });
+
+
+    </script>
+}
