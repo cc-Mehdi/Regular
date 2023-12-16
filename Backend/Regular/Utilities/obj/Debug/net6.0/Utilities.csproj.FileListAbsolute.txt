@@ -1,0 +1,11 @@
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Debug\net6.0\Utilities.deps.json
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Debug\net6.0\Utilities.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Debug\net6.0\Utilities.pdb
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfoInputs.cache
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfo.cs
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.csproj.CoreCompileInputs.cache
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\refint\Utilities.dll
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\Utilities.pdb
+C:\Users\CC-Mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net6.0\ref\Utilities.dll
