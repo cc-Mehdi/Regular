@@ -8,6 +8,7 @@ namespace Regular.Pages.Customer.Manage.Friends
     [BindProperties]
     public class FriendUpsertModel : PageModel
     {
+        int userId = 0;
         private readonly IUnitOfWork _unitOfWork;
         public DataLayer.Models.Friends Friend { get; set; }
 
@@ -19,8 +20,18 @@ namespace Regular.Pages.Customer.Manage.Friends
 
         public void OnGet(int? id = 0)
         {
-            if (id != 0)
+            isUserLogin();
+            if (userId != 0)
+                if (id != 0)
                 Friend = _unitOfWork.FriendsRepository.GetFirstOrDefault(u => u.Id == id);
+        }
+
+        private void isUserLogin()
+        {
+            if (Request.Cookies["UserId"] == null)
+                Response.Redirect("/Customer/Login-Register/Login-Register");
+            else
+                userId = int.Parse(Request.Cookies["UserId"]);
         }
 
         public async Task<IActionResult> OnPost()

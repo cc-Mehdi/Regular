@@ -1,4 +1,5 @@
-﻿using DataLayer.Repository.IRepository;
+﻿using DataLayer.Models;
+using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,6 +8,7 @@ namespace Regular.Pages.Customer.Manage.Tasks
     [BindProperties]
     public class TaskUpsertModel : PageModel
     {
+        int userId = 0;
         private readonly IUnitOfWork _unitOfWork;
         public DataLayer.Models.Tasks Tasks { get; set; }
 
@@ -18,8 +20,18 @@ namespace Regular.Pages.Customer.Manage.Tasks
 
         public void OnGet(int? id = 0)
         {
-            if (id != 0)
+            isUserLogin();
+            if (userId != 0)
+                if (id != 0)
                 Tasks = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
+        }
+
+        private void isUserLogin()
+        {
+            if (Request.Cookies["UserId"] == null)
+                Response.Redirect("/Customer/Login-Register/Login-Register");
+            else
+                userId = int.Parse(Request.Cookies["UserId"]);
         }
 
         public async Task<IActionResult> OnPost()

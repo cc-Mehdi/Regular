@@ -96,15 +96,18 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            @foreach(var item in Model.Projects)
-                            {
-                                <li class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
-                                    <div class="col-7">
-                                        <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
-                                    </div>
-                                    <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
-                                </li>
-                            }
+                                @try{
+                                    foreach (var item in Model.Projects)
+                                    {
+                                        <li class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
+                                            <div class="col-7">
+                                                <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
+                                            </div>
+                                            <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
+                                        </li>
+                                    }
+                                }catch{}
+
                         </ul>
                     </div>
                     <div class="row w-100 mt-3 d-flex justify-content-center align-items-center">
@@ -186,15 +189,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var item in Model.Tasks)
-                            {
-                                <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
-                                    <th scope="row">1</th>
-                                    <td>@item.UserId</td>
-                                    <td>@item.Title</td>
-                                    <td>@item.User.Email</td>
-                                </tr>
-                            }
+                            @try{
+                                foreach (var item in Model.Tasks)
+                                {
+                                    <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
+                                        <th scope="row">1</th>
+                                        <td>@item.UserId</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.User.Email</td>
+                                    </tr>
+                                }
+                            }catch{}
                         </tbody>
                     </table>
                 </div>

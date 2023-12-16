@@ -8,6 +8,7 @@ namespace Regular.Pages.Customer.Manage
     [BindProperties]
     public class ProjectUpsertModel : PageModel
     {
+        int userId = 0;
         private readonly IUnitOfWork _unitOfWork;
         public Projects Project { get; set; }
 
@@ -19,14 +20,24 @@ namespace Regular.Pages.Customer.Manage
 
         public void OnGet(int? id = 0)
         {
-            if (id != 0)
-                Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == id);
+            isUserLogin();
+            if (userId != 0)
+                if (id != 0)
+                    Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == id);
+        }
+
+        private void isUserLogin()
+        {
+            if (Request.Cookies["UserId"] == null)
+                Response.Redirect("/Customer/Login-Register/Login-Register");
+            else
+                userId = int.Parse(Request.Cookies["UserId"]);
         }
 
         public async Task<IActionResult> OnPost(Projects project)
         {
             //Create
-            if(project.Id == 0)
+            if (project.Id == 0)
             {
                 TempData["success"] = "پروژه با موفقیت اضافه شد";
                 _unitOfWork.ProjectsRepository.Add(project);
