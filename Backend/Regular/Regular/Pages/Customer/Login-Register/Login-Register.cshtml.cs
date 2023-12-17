@@ -38,12 +38,12 @@ namespace Regular.Pages.Customer.Login_Register
                     cookieOptions.Path = "/";
                     Response.Cookies.Append("UserId", checkUser.Id.ToString(), cookieOptions);
 
-                    return RedirectToPage("/Customer/Manage/Manage");
+                    TempData["success"] = $"{checkUser.FullName} خوش آمدید!";
+                    return Redirect("/Customer/Manage/Manage");
                 }
                 else
-                {
-                    //Show error message (user not exist)
-                }
+                    TempData["error"] = "ایمیل یا کلمه عبور اشتباه است";
+
             }
             else //Register
             {
@@ -66,16 +66,15 @@ namespace Regular.Pages.Customer.Login_Register
                         cookieOptions.Path = "/";
                         Response.Cookies.Append("UserId", checkUser.Id.ToString(), cookieOptions);
 
-                        return RedirectToPage("/Customer/Manage/Manage.cshtml");
+                        TempData["success"] = "ثبت نام با موفقیت انجام شد";
+                        return Redirect("/Customer/Manage/Manage");
                     }
                     else
-                    {
-                        //show error message (user exist with the same email address
-                    }
+                        TempData["error"] = "شما قبلا ثبت نام کرده اید";
                 }
             }
 
-            return RedirectToPage(user);
+            return Page();
         }
 
     }

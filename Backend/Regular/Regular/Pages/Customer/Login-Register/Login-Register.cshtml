@@ -44,9 +44,13 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/FrontEnd/global/public.css">
     <link rel="stylesheet" href="/FrontEnd/Login-Register/Login-register.css">
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body dir="rtl" class="overflow-x-hidden">
+    <partial name="_Notification" />
     <div class="container-fluid p-0 m-0 row">
         <!-- Login Side -->
         <div id="login" class="login d-flex p-0 m-0 justify-content-center align-items-center">
@@ -213,25 +217,6 @@
     </div>
 
 
-    <!-- Loading page -->
-    <div id="loader-animation"
-         class="position-fixed top-0 d-flex justify-content-center bc-blur-primary align-items-center w-100 h-100"
-         style="z-index: 1100;">
-        <div class="d-flex justify-content-center align-items-center my-3 p-3 position-fixed bc-blur-secondary rounded-5">
-            <div class="wrapper bg-transparent">
-                <svg>
-                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                        R e g u l a r
-                    </text>
-                </svg>
-            </div>
-            <img src="/FrontEnd/global/media/icons/logo.png" alt="LOGO" width="200rem" height="200rem"
-                 class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
-                 data-aos-duration="2000">
-        </div>
-    </div>
-
-
     <!-- JQuery Script CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -251,6 +236,9 @@
     <script src="/FrontEnd/global/public.js"></script>
     <script src="/FrontEnd/Login-Register/Login-Register.js"></script>
 
+    <!-- Toastr -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 
     <!-- AOS Configuration -->
     <script>
@@ -258,7 +246,6 @@
             duration: 1500
         });
         isRegister();
-        ShowLoadingPageAnimation();
     </script>
 
     @section Scripts{

@@ -45,10 +45,15 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/FrontEnd/global/public.css">
     <link rel="stylesheet" href="/FrontEnd/Manage/manage.css">
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 
 <body dir="rtl" class="overflow-x-hidden">
+    <partial name="_Notification" />
+
     <div class="container-fluid p-0 d-flex align-items-center justify-content-center" style="height: 100vh;">
 
         <!-- OffCanvas button -->
@@ -313,6 +318,8 @@
     <script src="/FrontEnd/global/public.js"></script>
     <script src="/FrontEnd/Manage/manage.js"></script>
 
+    <!-- Toastr -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- AOS Configuration -->
     <script>
