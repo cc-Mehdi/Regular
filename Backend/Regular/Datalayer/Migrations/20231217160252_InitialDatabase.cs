@@ -11,6 +11,25 @@ namespace DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    ImageAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DailyTimeSpend = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    TasksCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Friends",
                 columns: table => new
                 {
@@ -22,6 +41,12 @@ namespace DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Friends", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Friends_Users_UserId2",
+                        column: x => x.UserId2,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,28 +55,19 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false)
+                    ProjectName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    TasksCount = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projects", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Projects_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,6 +79,7 @@ namespace DataLayer.Migrations
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ProjectId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
+                    ReporterId = table.Column<int>(type: "int", nullable: false),
                     TaskType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     EstimateTime = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     LogedTime = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -82,17 +99,38 @@ namespace DataLayer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Tasks_Users_ReporterId",
+                        column: x => x.ReporterId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
                         name: "FK_Tasks_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Friends_UserId2",
+                table: "Friends",
+                column: "UserId2");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projects_UserId",
+                table: "Projects",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_ProjectId",
                 table: "Tasks",
                 column: "ProjectId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tasks_ReporterId",
+                table: "Tasks",
+                column: "ReporterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_UserId",

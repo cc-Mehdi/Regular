@@ -37,6 +37,8 @@ namespace DataLayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId2");
+
                     b.ToTable("Friends");
                 });
 
@@ -102,6 +104,9 @@ namespace DataLayer.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ReporterId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TaskPriority")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -128,6 +133,8 @@ namespace DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("ReporterId");
 
                     b.HasIndex("UserId");
 
@@ -179,6 +186,17 @@ namespace DataLayer.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("DataLayer.Models.Friends", b =>
+                {
+                    b.HasOne("DataLayer.Models.Users", "User2")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User2");
+                });
+
             modelBuilder.Entity("DataLayer.Models.Projects", b =>
                 {
                     b.HasOne("DataLayer.Models.Users", "User")
@@ -198,6 +216,12 @@ namespace DataLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DataLayer.Models.Users", "Reporter")
+                        .WithMany()
+                        .HasForeignKey("ReporterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DataLayer.Models.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -205,6 +229,8 @@ namespace DataLayer.Migrations
                         .IsRequired();
 
                     b.Navigation("Project");
+
+                    b.Navigation("Reporter");
 
                     b.Navigation("User");
                 });

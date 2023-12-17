@@ -22,7 +22,16 @@ namespace DataLayer.Models
         [Display(Name = "کد مسئول")]
         [ForeignKey("Users")]
         public int UserId { get; set; }
+
+        [Display(Name = "مسئول")]
         public Users User { get; set; }
+
+        [Display(Name = "کد گزارش دهنده")]
+        public int ReporterId { get; set; }
+
+        [ForeignKey("ReporterId")]
+        [Display(Name = "گزارش دهنده")]
+        public Users Reporter { get; set; }
 
         [Display(Name = "نوع وظیفه")]
         [Required(ErrorMessage = "لطفا {0} را صحیح وارد کنید")]
