@@ -1,4 +1,5 @@
-﻿using DataLayer.Repository.IRepository;
+﻿using DataLayer.Models;
+using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Regular.Controllers
@@ -26,6 +27,12 @@ namespace Regular.Controllers
         public IActionResult Delete(int id)
         {
             var objFromDb = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
+
+            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == objFromDb.ProjectId);
+            var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == objFromDb.UserId);
+
+            project.TasksCount += 1;
+            user.TasksCount += 1;
 
             _unitOfWork.TasksRepository.Remove(objFromDb);
             _unitOfWork.Save();

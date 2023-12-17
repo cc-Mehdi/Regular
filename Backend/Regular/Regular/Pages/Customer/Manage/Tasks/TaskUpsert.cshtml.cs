@@ -50,7 +50,13 @@ namespace Regular.Pages.Customer.Manage.Tasks
                 TempData["error"] = "مسئول مورد نظر یافت نشد";
                 return Page();
             }
-            
+
+            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
+            var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == Tasks.UserId);
+
+            project.TasksCount += 1;
+            user.TasksCount += 1;
+
             //Create
             if (Tasks.Id == 0)
             {
