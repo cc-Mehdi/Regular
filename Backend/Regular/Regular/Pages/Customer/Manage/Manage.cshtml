@@ -48,6 +48,9 @@
 
     <!-- Toastr -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
 </head>
 
 
@@ -101,17 +104,19 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                                @try{
-                                    foreach (var item in Model.Projects)
-                                    {
-                                        <li class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
-                                            <div class="col-7">
-                                                <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
-                                            </div>
-                                            <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
-                                        </li>
-                                    }
-                                }catch{}
+                            @try
+                            {
+                                foreach (var item in Model.Projects)
+                                {
+                                    <li onclick="getTasksByFilter('project', '@item.Id')" class="cursor-pointer d-flex align-items-center justify-content-between boxShadowSecondary-hover boxShadow-secondary rounded-2 py-2 px-3 my-3 fs-5">
+                                        <div class="col-7">
+                                            <h5 class="text-white my-0 overflow-hidden">@item.ProjectName</h5>
+                                        </div>
+                                        <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@item.TasksCount</span>
+                                    </li>
+                                }
+                            }
+                            catch { }
 
                         </ul>
                     </div>
@@ -124,19 +129,19 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                            <li onclick="getTasksByFilter('task', 'all')" class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-light border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 همه
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.allTasksCount</span>
                             </li>
-                            <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-warning border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                            <li onclick="getTasksByFilter('task', 'inProgress')" class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-warning border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 درحال انجام
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.inProgressTasksCount</span>
                             </li>
-                            <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-success border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                            <li onclick="getTasksByFilter('task', 'done')" class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-success border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 انجام شده
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.doneTasksCount</span>
                             </li>
-                            <li class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-secondary border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
+                            <li onclick="getTasksByFilter('task', 'review')" class="cursor-pointer d-flex justify-content-between boxShadowSecondary-hover boxShadow-secondary bg-secondary border border-1 border-light rounded-2 py-2 px-3 my-3 fs-5">
                                 برای بررسی
                                 <span class="badge fs-6 text-bg-danger col-2 overflow-hidden">@Model.inPreviewTasksCount</span>
                             </li>
@@ -151,11 +156,11 @@
                     </div>
                     <div class="row w-100">
                         <ul class="list-unstyled">
-                            @if(Model.Users != null)
+                            @if (Model.Users != null)
                             {
                                 @foreach (var item in Model.Users)
                                 {
-                                    <li class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
+                                    <li onclick="getTasksByFilter('user', '@item.Id')" class="cursor-pointer d-flex align-items-center boxShadowSecondary-hover boxShadow-secondary rounded-2 py-1 px-3 my-3 fs-5">
                                         <div class="col-3">
                                             <img src="/FrontEnd/global/media/Customer/Users/01_Person.jpg"
                                                  class="rounded-circle" width="60px" height="60px">
@@ -184,28 +189,14 @@
               style="height: 95vh;">
             <div class="w-100 h-100 d-flex justify-content-center bg-light rounded-4 p-3">
                 <div class="w-100">
-                    <table class="table table-light table-striped">
+                    <table class="table table-light table-striped w-100" id="DT_load">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">کد وظیفه</th>
-                                <th scope="col">عنوان</th>
-                                <th scope="col">مسئول</th>
+                                <th class="text-end" scope="col">کد وظیفه</th>
+                                <th class="text-end" scope="col">عنوان</th>
+                                <th class="text-end" scope="col">کد مسئول</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @try{
-                                foreach (var item in Model.Tasks)
-                                {
-                                    <tr class="boxShadowSecondary-hover cursor-pointer" onclick="ToggleSecondOffcanvasMenu()">
-                                        <th scope="row">1</th>
-                                        <td>@item.UserId</td>
-                                        <td>@item.Title</td>
-                                        <td>@item.User.Email</td>
-                                    </tr>
-                                }
-                            }catch{}
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -283,9 +274,9 @@
 
 
     <!-- Loading page -->
-    <!-- <div id="loader-animation"
-        class="position-fixed top-0 d-flex justify-content-center bc-blur-primary align-items-center w-100 h-100"
-        style="z-index: 1100;">
+    <div id="loader-animation"
+         class="position-fixed top-0 d-flex justify-content-center bc-blur-primary align-items-center w-100 h-100"
+         style="z-index: 1100;">
         <div class="d-flex justify-content-center align-items-center my-3 p-3 position-fixed bc-blur-secondary rounded-5">
             <div class="wrapper bg-transparent">
                 <svg>
@@ -294,11 +285,13 @@
                     </text>
                 </svg>
             </div>
-                        <img src="/FrontEnd/global/media/icons/logo.png" alt="LOGO" width="200rem" height="200rem"
-                class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
-                data-aos-duration="2000">
+            <img src="/FrontEnd/global/media/icons/logo.png" alt="LOGO" width="200rem" height="200rem"
+                 class="loaderAnimation-picture" data-aos="fade-down" data-aos-easing="ease-out-cubic"
+                 data-aos-duration="2000">
         </div>
-    </div> -->
+    </div>
+
+
     <!-- JQuery Script CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
             integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -321,12 +314,52 @@
     <!-- Toastr -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
     <!-- AOS Configuration -->
     <script>
         AOS.init({
             duration: 1500
         });
         ShowLoadingPageAnimation();
+
+        var dataTable;
+
+        $(document).ready(function () {
+        dataTable = $('#DT_load').DataTable({
+        "ajax": {
+            "url": "/api/Manage/1/1",
+            "type": "GET",
+            "datatype": "json"
+        },
+        "columns": [
+            { "data": "id" },
+            { "data": "title" },
+            { "data": "userId"}
+        ],
+        "width": "100%"
+        });
+        });
+
+        function getTasksByFilter(category, parameter){
+                $('#DT_load').dataTable().fnClearTable();
+                $('#DT_load').dataTable().fnDestroy();
+            dataTable = $('#DT_load').DataTable({
+        "ajax": {
+            "url": "/api/Manage/"+category+"/"+parameter,
+            "type": "GET",
+            "datatype": "json"
+        },
+        "columns": [
+            { "data": "id" },
+            { "data": "title" },
+            { "data": "userId"}
+        ],
+        "width": "100%"
+        });
+        }
+
     </script>
 </body>
 
