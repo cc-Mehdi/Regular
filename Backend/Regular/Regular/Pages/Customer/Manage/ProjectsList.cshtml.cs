@@ -1,8 +1,6 @@
 using DataLayer.Models;
 using DataLayer.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Net;
 
 namespace Regular.Pages.Customer.Manage
 {
@@ -18,8 +16,6 @@ namespace Regular.Pages.Customer.Manage
         public void OnGet()
         {
             isUserLogin();
-            if(userId != 0)
-            Projects = _unitOfWork.ProjectsRepository.GetAll().Where(u => u.UserId == userId).ToList();
         }
 
         private void isUserLogin()

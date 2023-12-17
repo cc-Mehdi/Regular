@@ -17,7 +17,8 @@ namespace Regular.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var projectsList = _unitOfWork.ProjectsRepository.GetAll();
+            int userId = int.Parse(Request.Cookies["UserId"]);
+            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u=> u.UserId == userId);
             return Json(new { data = projectsList });
         }
 

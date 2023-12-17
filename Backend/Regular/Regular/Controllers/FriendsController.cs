@@ -18,7 +18,8 @@ namespace Regular.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var friendsList = _unitOfWork.FriendsRepository.GetAll();
+            int userId = int.Parse(Request.Cookies["UserId"]);
+            var friendsList = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
             return Json(new { data = friendsList });
         }
 

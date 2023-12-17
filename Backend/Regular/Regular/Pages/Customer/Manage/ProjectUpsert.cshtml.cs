@@ -36,6 +36,7 @@ namespace Regular.Pages.Customer.Manage
 
         public async Task<IActionResult> OnPost(Projects project)
         {
+            project.UserId = userId;
             //Create
             if (project.Id == 0)
             {
