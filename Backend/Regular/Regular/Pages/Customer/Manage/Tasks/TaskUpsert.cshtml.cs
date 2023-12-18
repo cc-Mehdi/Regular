@@ -23,7 +23,7 @@ namespace Regular.Pages.Customer.Manage.Tasks
             isUserLogin();
             if (userId != 0)
                 if (id != 0)
-                Tasks = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
+                    Tasks = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
         }
 
         private void isUserLogin()
@@ -40,29 +40,26 @@ namespace Regular.Pages.Customer.Manage.Tasks
             int userId = int.Parse(cookie);
 
             var friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
-
             var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == Tasks.UserId);
+            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
+
             bool isUserFriend = false;
             foreach (var friend in friends)
                 if (Tasks.UserId == friend.UserId2 || Tasks.UserId == userId)
                     isUserFriend = true;
-            if(!isUserFriend && Tasks.UserId != userId)
+            if (!isUserFriend && Tasks.UserId != userId)
             {
                 TempData["error"] = "مسئول مورد نظر یافت نشد";
                 return Page();
             }
 
-            user.TasksCount++;
-
-            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
 
             if (project == null)
             {
                 TempData["error"] = "پروژه مورد نظر یافت نشد";
                 return Page();
             }
-            else
-                project.TasksCount++;
+
 
             Tasks.Project = project;
             Tasks.User = user;
@@ -72,6 +69,8 @@ namespace Regular.Pages.Customer.Manage.Tasks
             //Create
             if (Tasks.Id == 0)
             {
+                project.TasksCount++;
+                user.TasksCount++;
                 TempData["success"] = "وظیفه با موفقیت اضافه شد";
                 _unitOfWork.TasksRepository.Add(Tasks);
                 _unitOfWork.Save();
@@ -80,10 +79,20 @@ namespace Regular.Pages.Customer.Manage.Tasks
             {
                 var oldTask = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == Tasks.Id);
                 if (oldTask.ProjectId != Tasks.ProjectId)
-                    project.TasksCount--;
+                {
+                    project.TasksCount++; //increase new project taskscount
+                    var oldProject = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == oldTask.ProjectId);
+                    oldProject.TasksCount--; //reduce old project taskcount
+                }
+
+
 
                 if (oldTask.UserId != Tasks.UserId)
-                    user.TasksCount--;
+                {
+                    user.TasksCount++; //increase new user taskscount
+                    var oldUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == oldTask.UserId);
+                    oldUser.TasksCount--; //reduce old user taskcount
+                }
 
                 TempData["success"] = "وظیفه با موفقیت ویرایش شد";
                 _unitOfWork.TasksRepository.Update(Tasks);
