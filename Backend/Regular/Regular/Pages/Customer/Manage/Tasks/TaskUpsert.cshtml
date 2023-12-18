@@ -44,21 +44,35 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="@Model.Tasks.TaskType" class="form-label mt-4"></label>
-                        <input class="form-control" asp-for="@Model.Tasks.TaskType">
+                        <select asp-for="@Model.Tasks.TaskType" class="form-select" aria-label="Default select example">
+                            <option selected value="رفع باگ">رفع باگ</option>
+                            <option value="بهبود">بهبود</option>
+                            <option value="قابلیت جدید">قابلیت جدید</option>
+                        </select>
                         <span asp-validation-for="@Model.Tasks.TaskType" class="form-text text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="@Model.Tasks.TaskStatus" class="form-label mt-4"></label>
-                        <input class="form-control" asp-for="@Model.Tasks.TaskStatus">
+                        <select asp-for="@Model.Tasks.TaskStatus" class="form-select" aria-label="Default select example">
+                            <option selected value="برای بررسی">برای بررسی</option>
+                            <option value="درحال انجام">درحال انجام</option>
+                            <option value="انجام شده">انجام شده</option>
+                        </select>
                         <span asp-validation-for="@Model.Tasks.TaskStatus" class="form-text text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="@Model.Tasks.TaskPriority" class="form-label mt-4"></label>
-                        <input class="form-control" asp-for="@Model.Tasks.TaskPriority">
+                        <select asp-for="@Model.Tasks.TaskPriority" class="form-select" aria-label="Default select example">
+                            <option selected value="معمولی">معمولی</option>
+                            <option value="فوری">فوری</option>
+                            <option value="با اهمیت">با اهمیت</option>
+                            <option value="بی اهمیت">بی اهمیت</option>
+
+                        </select>
                         <span asp-validation-for="@Model.Tasks.TaskPriority" class="form-text text-danger"></span>
                     </div>
                 </div>

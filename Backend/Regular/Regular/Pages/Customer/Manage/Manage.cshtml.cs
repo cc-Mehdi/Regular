@@ -37,9 +37,9 @@ namespace Regular.Pages.Manage
                 User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId);
                 Friends = _unitOfWork.FriendsRepository.GetAll().Where(u => u.UserId1 == userId).ToList();
                 Projects = _unitOfWork.ProjectsRepository.GetAll().Where(u => u.UserId == userId).ToList();
-                Tasks = _unitOfWork.TasksRepository.GetAll().Where(u => u.UserId == userId).ToList();
+                Tasks = _unitOfWork.TasksRepository.GetAll().Where(u => u.ReporterId == userId).ToList();
 
-                allTasksCount = Tasks.Count();
+                allTasksCount = Tasks.Where(u=>u.ReporterId == userId).Count();
                 inProgressTasksCount = Tasks.Where(u => u.TaskStatus == "درحال انجام").ToList().Count();
                 doneTasksCount = Tasks.Where(u => u.TaskStatus == "انجام شده").ToList().Count();
                 inPreviewTasksCount = Tasks.Where(u => u.TaskStatus == "برای بررسی").ToList().Count();

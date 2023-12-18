@@ -86,7 +86,6 @@ namespace Regular.Pages.Customer.Manage.Tasks
                 }
 
 
-
                 if (oldTask.UserId != Tasks.UserId)
                 {
                     user.TasksCount++; //increase new user taskscount
