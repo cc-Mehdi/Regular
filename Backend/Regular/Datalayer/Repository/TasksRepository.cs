@@ -27,6 +27,9 @@ namespace DataLayer.Repository
             objFromDb.BeforeVersion = task.BeforeVersion;
             objFromDb.AfterVersion = task.AfterVersion;
             objFromDb.Description = task.Description;
+            objFromDb.Reporter = task.Reporter;
+            objFromDb.ReporterId = task.ReporterId;
+            _db.SaveChanges();
         }
     }
 }

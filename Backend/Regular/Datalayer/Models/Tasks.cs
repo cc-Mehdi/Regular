@@ -17,6 +17,8 @@ namespace DataLayer.Models
         [Display(Name = "کد پروژه")]
         [ForeignKey("Projects")]
         public int ProjectId { get; set; }
+
+        [Display(Name = "پروژه")]
         public Projects Project { get; set; }
 
         [Display(Name = "کد مسئول")]
@@ -27,9 +29,9 @@ namespace DataLayer.Models
         public Users User { get; set; }
 
         [Display(Name = "کد گزارش دهنده")]
+        [ForeignKey("Users")]
         public int ReporterId { get; set; }
 
-        [ForeignKey("ReporterId")]
         [Display(Name = "گزارش دهنده")]
         public Users Reporter { get; set; }
 

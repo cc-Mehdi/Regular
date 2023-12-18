@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231217160252_InitialDatabase")]
+    [Migration("20231218074546_InitialDatabase")]
     partial class InitialDatabase
     {
         /// <inheritdoc />
@@ -64,9 +64,12 @@ namespace DataLayer.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Users")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Users");
 
                     b.ToTable("Projects");
                 });
@@ -204,7 +207,7 @@ namespace DataLayer.Migrations
                 {
                     b.HasOne("DataLayer.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Users")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -18,8 +18,10 @@ namespace DataLayer.Models
         public int TasksCount { get; set; }
 
         [Display(Name = "کد مسئول")]
-        [ForeignKey("Users")]
         public int UserId { get; set; }
+
+        [Display(Name = "مسئول")]
+        [ForeignKey("Users")]
         public Users User { get; set; }
     }
 }

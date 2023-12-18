@@ -39,36 +39,38 @@ namespace Regular.Pages.Customer.Manage.Friends
             var cookie = Request.Cookies["UserId"];
             int userId = int.Parse(cookie);
             Friend.UserId1 = userId;
+
+            if (userId == Friend.UserId2)
+            {
+                TempData["error"] = "شما نمیتوانید به خودتان درخواست بدهید";
+                return Page();
+            }
+
+            IEnumerable<DataLayer.Models.Friends> firends = _unitOfWork.FriendsRepository.GetAll();
+            foreach (var item in firends)
+            {
+                if (item.UserId2 == Friend.UserId2)
+                {
+                    TempData["error"] = "برای این کاربر درخواست ثبت شده";
+                    return Page();
+                }
+            }
+
+            var users = _unitOfWork.UsersRepository.GetAll();
+            bool isUserExist = false;
+            foreach (var user in users)
+                if (Friend.UserId2 == user.Id)
+                    isUserExist = true;
+            if (!isUserExist)
+            {
+                TempData["error"] = "کاربر مورد نظر وجود ندارد";
+                return Page();
+            }
+
+
             //Create
             if (Friend.Id == 0)
             {
-                if (userId == Friend.UserId2)
-                {
-                    TempData["error"] = "شما نمیتوانید به خودتان درخواست بدهید";
-                    return Page();
-                }
-
-                IEnumerable<DataLayer.Models.Friends> firends = _unitOfWork.FriendsRepository.GetAll();
-                foreach (var item in firends)
-                {
-                    if (item.UserId2 == Friend.UserId2)
-                    {
-                        TempData["error"] = "برای این کاربر درخواست ثبت شده";
-                        return Page();
-                    }
-                }
-
-                var users = _unitOfWork.UsersRepository.GetAll();
-                bool isUserExist = false;
-                foreach (var user in users)
-                    if (Friend.UserId2 == user.Id)
-                        isUserExist = true;
-                if(!isUserExist)
-                {
-                    TempData["error"] = "کاربر مورد نظر وجود ندارد";
-                    return Page();
-                }
-
                 TempData["success"] = "همکار با موفقیت اضافه شد";
                 _unitOfWork.FriendsRepository.Add(Friend);
                 _unitOfWork.Save();

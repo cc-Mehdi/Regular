@@ -41,21 +41,33 @@ namespace Regular.Pages.Customer.Manage.Tasks
 
             var friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
 
+            var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == Tasks.UserId);
             bool isUserFriend = false;
             foreach (var friend in friends)
                 if (Tasks.UserId == friend.UserId2 || Tasks.UserId == userId)
                     isUserFriend = true;
-            if(!isUserFriend)
+            if(!isUserFriend && Tasks.UserId != userId)
             {
                 TempData["error"] = "مسئول مورد نظر یافت نشد";
                 return Page();
             }
 
-            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
-            var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == Tasks.UserId);
+            user.TasksCount++;
 
-            project.TasksCount += 1;
-            user.TasksCount += 1;
+            var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
+
+            if (project == null)
+            {
+                TempData["error"] = "پروژه مورد نظر یافت نشد";
+                return Page();
+            }
+            else
+                project.TasksCount++;
+
+            Tasks.Project = project;
+            Tasks.User = user;
+            Tasks.ReporterId = userId;
+            Tasks.Reporter = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId);
 
             //Create
             if (Tasks.Id == 0)
@@ -66,6 +78,13 @@ namespace Regular.Pages.Customer.Manage.Tasks
             }
             else //Edit
             {
+                var oldTask = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == Tasks.Id);
+                if (oldTask.ProjectId != Tasks.ProjectId)
+                    project.TasksCount--;
+
+                if (oldTask.UserId != Tasks.UserId)
+                    user.TasksCount--;
+
                 TempData["success"] = "وظیفه با موفقیت ویرایش شد";
                 _unitOfWork.TasksRepository.Update(Tasks);
                 _unitOfWork.Save();

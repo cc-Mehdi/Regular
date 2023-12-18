@@ -36,7 +36,8 @@ namespace Regular.Pages.Customer.Manage
 
         public async Task<IActionResult> OnPost(Projects project)
         {
-            project.UserId = userId;
+            project.UserId = int.Parse(Request.Cookies["UserId"]);
+            project.User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == project.UserId);
             //Create
             if (project.Id == 0)
             {

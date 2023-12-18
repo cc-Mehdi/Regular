@@ -19,7 +19,7 @@ namespace Regular.Controllers
         public IActionResult Get()
         {
             int userId = int.Parse(Request.Cookies["UserId"]);
-            var tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.UserId == userId);
+            var tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == userId);
             return Json(new { data = tasksList });
         }
 
