@@ -27,14 +27,26 @@
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="@Model.Tasks.ProjectId" class="form-label mt-4"></label>
-                        <input class="form-control" asp-for="@Model.Tasks.ProjectId">
+                        <select asp-for="@Model.Tasks.ProjectId" class="form-select" aria-label="Default select example">
+                            <option selected>پروژه مورد نظر را انتخاب کنید</option>
+                            @foreach (var project in Model.Projects)
+                            {
+                                <option value="@project.Id">@project.ProjectName</option>
+                            }
+                        </select>
                         <span asp-validation-for="@Model.Tasks.ProjectId" class="form-text text-danger"></span>
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label asp-for="@Model.Tasks.UserId" class="form-label mt-4"></label>
-                        <input class="form-control" asp-for="@Model.Tasks.UserId">
+                        <select asp-for="@Model.Tasks.UserId" class="form-select" aria-label="Default select example">
+                            <option selected>مسئول مورد نظر را انتخاب کنید</option>
+                            @foreach (var user in Model.Users)
+                            {
+                                <option value="@user.Id">@user.FullName</option>
+                            }
+                        </select>
                         <span asp-validation-for="@Model.Tasks.UserId" class="form-text text-danger"></span>
                     </div>
                 </div>
@@ -71,7 +83,6 @@
                             <option value="فوری">فوری</option>
                             <option value="با اهمیت">با اهمیت</option>
                             <option value="بی اهمیت">بی اهمیت</option>
-
                         </select>
                         <span asp-validation-for="@Model.Tasks.TaskPriority" class="form-text text-danger"></span>
                     </div>

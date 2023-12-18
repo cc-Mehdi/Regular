@@ -71,7 +71,7 @@
         <div id="offcanvasMenu" class="offcanvas offcanvas-end bc-primary show rounded-start-5" data-bs-scroll="true"
              data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-                <a href="/FrontEnd/index.html"
+                <a href="/"
                    class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
                    id="offcanvasExampleLabel">
                     <img src="/FrontEnd/global/media/icons/logo.png" width="40px" height="40px" alt="hyper cloud logo">
@@ -194,7 +194,8 @@
                             <tr>
                                 <th class="text-end" scope="col">کد وظیفه</th>
                                 <th class="text-end" scope="col">عنوان</th>
-                                <th class="text-end" scope="col">کد مسئول</th>
+                                <th class="text-end" scope="col">پروژه</th>
+                                <th class="text-end" scope="col">مسئول</th>
                             </tr>
                         </thead>
                     </table>
@@ -327,37 +328,39 @@
         var dataTable;
 
         $(document).ready(function () {
-        dataTable = $('#DT_load').DataTable({
-        "ajax": {
-            "url": "/api/Manage/1/1",
-            "type": "GET",
-            "datatype": "json"
-        },
-        "columns": [
-            { "data": "id" },
-            { "data": "title" },
-            { "data": "userId"}
-        ],
-        "width": "100%"
-        });
+            dataTable = $('#DT_load').DataTable({
+                "ajax": {
+                    "url": "/api/Manage/1/1",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "title" },
+                    { "data": "project.projectName" },
+                    { "data": "user.fullName" }
+                ],
+                "width": "100%"
+            });
         });
 
-        function getTasksByFilter(category, parameter){
-                $('#DT_load').dataTable().fnClearTable();
-                $('#DT_load').dataTable().fnDestroy();
+        function getTasksByFilter(category, parameter) {
+            $('#DT_load').dataTable().fnClearTable();
+            $('#DT_load').dataTable().fnDestroy();
             dataTable = $('#DT_load').DataTable({
-        "ajax": {
-            "url": "/api/Manage/"+category+"/"+parameter,
-            "type": "GET",
-            "datatype": "json"
-        },
-        "columns": [
-            { "data": "id" },
-            { "data": "title" },
-            { "data": "userId"}
-        ],
-        "width": "100%"
-        });
+                "ajax": {
+                    "url": "/api/Manage/" + category + "/" + parameter,
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "id" },
+                    { "data": "title" },
+                    { "data": "project.projectName" },
+                    { "data": "user.fullName" }
+                ],
+                "width": "100%"
+            });
         }
 
     </script>

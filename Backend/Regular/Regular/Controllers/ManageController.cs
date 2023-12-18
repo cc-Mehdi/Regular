@@ -18,7 +18,14 @@ namespace Regular.Controllers
         public IActionResult Get(string category, string parameter)
         {
             var tasksList = _unitOfWork.TasksRepository.GetAll();
-            if(category == "project")
+
+            foreach(var task in tasksList)
+                task.User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == task.UserId);
+
+            foreach (var task in tasksList)
+                task.Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == task.UserId);
+
+            if (category == "project")
                 tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u=> u.ProjectId == int.Parse(parameter));
             else if(category == "task")
             {

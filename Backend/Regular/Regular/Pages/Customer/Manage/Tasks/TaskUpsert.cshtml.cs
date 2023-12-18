@@ -11,6 +11,9 @@ namespace Regular.Pages.Customer.Manage.Tasks
         int userId = 0;
         private readonly IUnitOfWork _unitOfWork;
         public DataLayer.Models.Tasks Tasks { get; set; }
+        public IEnumerable<Projects> Projects { get; set; }
+        public IEnumerable<Users> Users { get; set; }
+        public IEnumerable<DataLayer.Models.Friends> Friends { get; set; }
 
         public TaskUpsertModel(IUnitOfWork unitOfWork)
         {
@@ -20,6 +23,12 @@ namespace Regular.Pages.Customer.Manage.Tasks
 
         public void OnGet(int? id = 0)
         {
+            userId = int.Parse(Request.Cookies["UserId"]);
+            Projects = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.UserId == userId);
+            Friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
+            foreach (var friend in Friends)
+                Users = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == friend.UserId2 || u.Id == userId);
+
             isUserLogin();
             if (userId != 0)
                 if (id != 0)
@@ -39,7 +48,7 @@ namespace Regular.Pages.Customer.Manage.Tasks
             var cookie = Request.Cookies["UserId"];
             int userId = int.Parse(cookie);
 
-            var friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
+            var friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == Tasks.UserId || u.UserId1 == userId);
             var user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == Tasks.UserId);
             var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == Tasks.ProjectId);
 
