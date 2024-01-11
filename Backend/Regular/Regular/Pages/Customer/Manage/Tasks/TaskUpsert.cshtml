@@ -42,9 +42,12 @@
                         <label asp-for="@Model.Tasks.UserId" class="form-label mt-4"></label>
                         <select asp-for="@Model.Tasks.UserId" class="form-select" aria-label="Default select example">
                             <option selected>مسئول مورد نظر را انتخاب کنید</option>
-                            @foreach (var user in Model.Users)
+                            @if(Model.Users != null)
                             {
-                                <option value="@user.Id">@user.FullName</option>
+                                foreach (var user in Model.Users)
+                                {
+                                    <option value="@user.Id">@user.FullName</option>
+                                }
                             }
                         </select>
                         <span asp-validation-for="@Model.Tasks.UserId" class="form-text text-danger"></span>
