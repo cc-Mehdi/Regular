@@ -27,7 +27,15 @@ namespace Regular.Pages.Customer.Manage.Tasks
             Projects = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.UserId == userId);
             Friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
             foreach (var friend in Friends)
-                Users = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == friend.UserId2 || u.Id == userId);
+                Users = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == friend.UserId2);
+            if (this.Users == null)
+            {
+                this.Users = _unitOfWork.UsersRepository.GetAll();
+                this.Users = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == userId);
+            }
+            else
+            Users.Append(_unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId));
+
 
             isUserLogin();
             if (userId != 0)
