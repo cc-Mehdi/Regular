@@ -1,4 +1,5 @@
-﻿using DataLayer.Repository.IRepository;
+﻿using DataLayer.Models;
+using DataLayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Regular.Controllers
@@ -17,7 +18,8 @@ namespace Regular.Controllers
         [HttpGet("{category}/{parameter}")]
         public IActionResult Get(string category, string parameter)
         {
-            var tasksList = _unitOfWork.TasksRepository.GetAll();
+            int userId = int.Parse(Request.Cookies["UserId"]);
+            var tasksList = _unitOfWork.TasksRepository.GetAll().Where(u => u.ReporterId == userId || u.UserId == userId);
 
             foreach(var task in tasksList)
                 task.User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == task.UserId);
