@@ -92,15 +92,29 @@
                     رایانه
                     ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
                 </p>
-                <div class="row w-100 d-flex justify-content-start" data-aos="fade-up">
-                    <a href="/Customer/Login-Register/Login-Register?isRegister=false"
-                       class="btn bc-primary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">ورود</a>
-                    <a href="/Customer/Login-Register/Login-Register?isRegister=true"
-                       class="btn bc-secondary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">
-                        ثبت
-                        نام
-                    </a>
-                </div>
+                @if (Model.userId == 0)
+                {
+                    <div class="row w-100 d-flex justify-content-start" data-aos="fade-up">
+                        <a href="/Customer/Login-Register/Login-Register?isRegister=false"
+                           class="btn bc-primary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">ورود</a>
+                        <a href="/Customer/Login-Register/Login-Register?isRegister=true"
+                           class="btn bc-secondary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">
+                            ثبت
+                            نام
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="row w-100 d-flex justify-content-start" data-aos="fade-up">
+                        <a href="/Customer/Login-Register/Login-Register?isRegister=false"
+                           class="btn bc-primary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">ورود با حساب دیگر</a>
+                        <a href="/Customer/Manage/Manage"
+                           class="btn bc-secondary col-md-4 m-1 col-sm-5 rounded-4 text-center align-items-center d-flex justify-content-center">
+                            پنل مدیریت
+                        </a>
+                    </div>
+                }
             </div>
             <div class="imgContent col-xxl-6 col-md-7 col-sm-12" data-aos="fade-right">
                 <img src="/FrontEnd/global/media/banner.png" class="rounded-4" width="80%" height="80%" alt="">

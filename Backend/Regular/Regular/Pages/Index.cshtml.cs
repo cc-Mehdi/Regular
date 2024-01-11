@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataLayer.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Regular.Pages
@@ -6,6 +7,7 @@ namespace Regular.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public int userId = 0;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -14,7 +16,7 @@ namespace Regular.Pages
 
         public void OnGet()
         {
-
+            userId = int.Parse(Request.Cookies["UserId"]);
         }
     }
 }
