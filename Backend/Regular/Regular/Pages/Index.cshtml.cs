@@ -16,7 +16,7 @@ namespace Regular.Pages
 
         public void OnGet()
         {
-            userId = int.Parse(Request.Cookies["UserId"]);
+            userId = (Request.Cookies["UserId"] == null) ? 0 : int.Parse(Request.Cookies["UserId"]);
         }
     }
 }
