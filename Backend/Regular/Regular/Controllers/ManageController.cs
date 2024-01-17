@@ -48,7 +48,7 @@ namespace Regular.Controllers
                 }
             }
             else if(category == "user")
-                tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.UserId == int.Parse(parameter));
+                tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == userId && u.UserId == int.Parse(parameter));
 
             return Json(new { data = tasksList });
         }

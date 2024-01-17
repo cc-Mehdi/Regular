@@ -23,6 +23,8 @@ namespace Regular.Pages.Customer.Manage.Tasks
 
         public void OnGet(int? id = 0)
         {
+            List<Users> usersList = new List<Users>();
+
             userId = int.Parse(Request.Cookies["UserId"]);
             Projects = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.UserId == userId);
             Friends = _unitOfWork.FriendsRepository.GetAllByFilter(u => u.UserId1 == userId);
@@ -34,7 +36,12 @@ namespace Regular.Pages.Customer.Manage.Tasks
                 this.Users = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == userId);
             }
             else
-            Users.Append(_unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId));
+            {
+                foreach (var user in Users)
+                    usersList.Add(user);
+                usersList.Add(_unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId));
+                Users = usersList;
+            }
 
 
             isUserLogin();
