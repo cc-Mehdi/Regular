@@ -1,0 +1,11 @@
+/* Persian Font 1 */
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap'); 
+
+/* <weight>: Use a value from 300 to 700  */
+
+.lemonada-persian1 {
+  font-family: "Lemonada", cursive;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
