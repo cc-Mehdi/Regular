@@ -23,14 +23,15 @@
 
     <div class="container">
         <div class="d-flex flex-column">
+            <h2 class="text-center mt-5 bg-primary py-1">Type 1</h2>
             <div class="hc-navbar">
                 <div class="row d-flex align-items-center justify-content-between w-100">
-                    <!-- LOGO -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-start">
-                        <h1 class="fs-4 fw-bold">LOGO</h1>
+                    <!-- Logo -->
+                    <div id="logo" class="col-4 mx-0 px-0 d-flex justify-content-start">
+                        <h1 class="fs-4 fw-bold"><a href="#" class="text-black text-decoration-none">LOGO</a></h1>
                     </div>
                     <!-- Menu -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-center">
+                    <div id="menu" class="col-4 mx-0 px-0 d-flex justify-content-center">
                         <ul class="d-flex list-unstyled m-0">
                             <li class="pe-4 hc-navbar-menuItem">Link1</li>
                             <li class="pe-4 hc-navbar-menuItem">Link2</li>
@@ -39,20 +40,27 @@
                         </ul>
                     </div>
                     <!-- Button -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-end">
+                    <div id="secondMenu" class="col-4 mx-0 px-0 d-flex justify-content-end">
                         <button class="hc-outlineBtn btn border border-1 border-black px-5">Sign Up</button>
+                    </div>
+                    <!-- Hamburger button -->
+                    <div id="btnHamburger" class="col-4 d-none text-end px-2 rounded-2">
+                        <button class="btn text-end px-0 mx-0 shadow-none border-0" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample"><i class="bi bi-list fw-bold fs-1"></i></button>
                     </div>
                 </div>
             </div>
+            <h2 class="text-center mt-5 bg-primary py-1">Type 2</h2>
             <div class="hc-navbar">
                 <div class="row d-flex align-items-center justify-content-between w-100">
-                    <!-- LOGO -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-start">
-                        <h1 class="fs-4 fw-bold">LOGO</h1>
+                    <!-- Logo -->
+                    <div id="logo" class="col-4 mx-0 px-0 d-flex justify-content-start">
+                        <h1 class="fs-4 fw-bold"><a href="#" class="text-black text-decoration-none">LOGO</a></h1>
                     </div>
                     <!-- Menu -->
                     <!-- Button -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-end">
+                    <div id="menu" class="col-4 mx-0 px-0 d-flex justify-content-end">
                         <ul class="d-flex list-unstyled m-0">
                             <li class="pe-4 hc-navbar-menuItem d-flex align-items-center">Link1</li>
                             <li class="pe-4 hc-navbar-menuItem d-flex align-items-center">Link2</li>
@@ -61,37 +69,54 @@
                         </ul>
                         <button class="hc-outlineBtn btn border border-1 border-black px-5 text-nowrap">Sign Up</button>
                     </div>
+                    <!-- Hamburger button -->
+                    <div id="btnHamburger" class="col-4 d-none text-end px-2 rounded-2">
+                        <button class="btn text-end px-0 mx-0 shadow-none border-0" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample"><i class="bi bi-list fw-bold fs-1"></i></button>
+                    </div>
                 </div>
             </div>
+            <h2 class="text-center mt-5 bg-primary py-1">Type 3</h2>
             <div class="hc-navbar">
                 <div class="row d-flex align-items-center justify-content-between w-100">
-                    <!-- LOGO -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-start">
-                        <h1 class="fs-4 fw-bold">LOGO</h1>
-                        <ul class="d-flex list-unstyled m-0">
-                            <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link1</li>
-                            <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link2</li>
-                            <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link3</li>
-                            <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link4</li>
-                        </ul>
+                    <!-- Logo -->
+                    <div id="logo" class="col-2 mx-0 px-0 d-flex justify-content-start">
+                        <h1 class="fs-4 fw-bold"><a href="#" class="text-black text-decoration-none">LOGO</a></h1>
+                        <div id="menu">
+                            <ul class="d-flex list-unstyled m-0">
+                                <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link1</li>
+                                <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link2</li>
+                                <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link3</li>
+                                <li class="hc-navbar-menuItem ps-4 d-flex align-items-center">Link4</li>
+                            </ul>
+                        </div>
                     </div>
                     <!-- Menu -->
                     <!-- Button -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-end">
+                    <div id="secondMenu" class="col-4 mx-0 px-0 d-flex justify-content-end">
                         <ul class="d-flex list-unstyled m-0">
                             <li class="pe-4 hc-navbar-menuItem d-flex align-items-center">API</li>
                             <li class="pe-4 hc-navbar-menuItem d-flex align-items-center">Help</li>
                             <li class="pe-4 hc-navbar-menuItem d-flex align-items-center">Login</li>
                         </ul>
-                        <button class="hc-btn btn border border-1 border-black px-5 text-nowrap bg-black text-white">Sign
+                        <button
+                            class="hc-btn btn border border-1 border-black px-5 text-nowrap bg-black text-white">Sign
                             Up</button>
+                    </div>
+                    <!-- Hamburger button -->
+                    <div id="btnHamburger" class="col-4 d-none text-end px-2 rounded-2">
+                        <button class="btn text-end px-0 mx-0 shadow-none border-0" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample"><i class="bi bi-list fw-bold fs-1"></i></button>
                     </div>
                 </div>
             </div>
+            <h2 class="text-center mt-5 bg-primary py-1">Type 4</h2>
             <div class="hc-navbar">
                 <div class="row d-flex align-items-center justify-content-between w-100">
                     <!-- Menu -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-start">
+                    <div id="menu" class="col-4 mx-0 px-0 d-flex justify-content-start">
                         <ul class="d-flex list-unstyled m-0">
                             <li class="pe-4 hc-navbar-menuItem">Link1</li>
                             <li class="pe-4 hc-navbar-menuItem">Link2</li>
@@ -99,14 +124,21 @@
                             <li class="pe-4 hc-navbar-menuItem">Link4</li>
                         </ul>
                     </div>
-                    <!-- LOGO -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-center">
-                        <h1 class="fs-4 fw-bold">LOGO</h1>
+                    <!-- Logo -->
+                    <div id="logo" class="col-4 mx-0 px-0 d-flex justify-content-center">
+                        <h1 class="fs-4 fw-bold"><a href="#" class="text-black text-decoration-none">LOGO</a></h1>
                     </div>
                     <!-- Button -->
-                    <div class="col-4 mx-0 px-0 d-flex justify-content-end">
-                        <button class="hc-btn btn border border-1 border-black px-5 text-nowrap bg-black text-white">Free
+                    <div id="secondMenu" class="col-4 mx-0 px-0 d-flex justify-content-end">
+                        <button
+                            class="hc-btn btn border border-1 border-black px-5 text-nowrap bg-black text-white">Free
                             Terial</button>
+                    </div>
+                    <!-- Hamburger button -->
+                    <div id="btnHamburger" class="col-4 d-none text-end px-2 rounded-2">
+                        <button class="btn text-end px-0 mx-0 shadow-none border-0" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+                            aria-controls="offcanvasExample"><i class="bi bi-list fw-bold fs-1"></i></button>
                     </div>
                 </div>
             </div>
@@ -114,7 +146,29 @@
     </div>
 
 
-
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
+                lists, etc.
+            </div>
+            <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Script Links -->
