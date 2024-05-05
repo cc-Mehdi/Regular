@@ -20,6 +20,9 @@
     transition: transform .3s;
     cursor: pointer;
     transform: scale(1.1);
+    color: var(--c-lightCyan) !important;
+    text-shadow: 0 0 10px var(--c-primary);
+    border-bottom: 1px solid var(--c-lightCyan);
 }
 
 .hc-menuItem:hover i {
@@ -82,23 +85,41 @@
 /* BUTTON */
 .hc-btn, .hc-btn-lg, .hc-outlineBtn, .hc-outlineBtn-lg {
     padding: 8px 48px;
+    transition: box-shadow .5s;
+}
+
+.hc-btn, .hc-btn-lg {
+    background-color: var(--c-lightBlue) !important;
+    color: var(--c-darkBlue) !important;
+    border: 1px solid var(--c-primary) !important;
+    box-shadow: 0 0 50px var(--c-primary) !important;
 }
 
 .hc-outlineBtn-lg, .hc-btn-lg {
-    height: 60px;
+    height: 3rem;
+    box-shadow: 0 0 10px var(--c-secondary) inset;
+}
+
+.hc-outlineBtn, .hc-outlineBtn-lg {
+    border: 1px solid var(--c-lightCyan) !important;
+    color: var(--c-lightCyan) !important;
 }
 
 .hc-outlineBtn:hover, .hc-outlineBtn-lg:hover {
-    background-color: #e5e5e5 !important;
+    background-color: var(--c-lightBlue) !important;
+    color: var(--c-darkBlue) !important;
+    box-shadow: none;
 }
 
 .hc-btn:hover, .hc-btn-lg:hover {
-    background-color: #1b1b1b !important;
+    background-color: var(--c-darkBlue) !important;
+    color: var(--c-lightCyan) !important;
 }
 
 .hc-outlineBtn:active, .hc-outlineBtn-lg:active {
-    background-color: black !important;
-    color: white !important;
+    background-color: var(--c-darkBlue) !important;
+    color: var(--c-lightCyan) !important;
+    border: 1px solid var(--c-lightCyan) !important;
 }
 
 .hc-btn:active, .hc-btn-lg:active {

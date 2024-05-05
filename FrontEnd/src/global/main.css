@@ -4,6 +4,9 @@
     /* text-colors */
     --c-primary: #0077B6;
     --c-secondary: #00B4D8;
+    --c-darkBlue: #03045E;
+    --c-lightBlue: #90E0EF;
+    --c-lightCyan: #CAF0F8;
 
     /* font-sizes */
     --fs-7: .75rem !important;
@@ -24,12 +27,36 @@
     color: var(--c-secondary) !important;
 }
 
+.tc-darkBlue {
+    color: var(--c-darkBlue) !important;
+}
+
+.tc-lightBlue {
+    color: var(--c-lightBlue) !important;
+}
+
+.tc-lightCyan {
+    color: var(--c-lightCyan) !important;
+}
+
 .bc-primary {
     background-color: var(--c-primary) !important;
 }
 
 .bc-secondary {
     background-color: var(--c-secondary) !important;
+}
+
+.bc-darkBlue {
+    background-color: var(--c-darkBlue) !important;
+}
+
+.bc-lightBlue {
+    background-color: var(--c-lightBlue) !important;
+}
+
+.bc-lightCyan {
+    background-color: var(--c-lightCyan) !important;
 }
 
 /* fonts */
@@ -71,14 +98,12 @@
     font-style: normal;
 }
 
-a {
-    text-decoration: none;
-    color: black;
+h1, h2, h3, h4, h5, h6, span, p, a {
+    color: white !important;
 }
 
-body {
-    background: rgb(29, 108, 255);
-    background: linear-gradient(45deg, rgba(29, 108, 255, 1) 0%, rgba(79, 0, 125, 1) 71%);
+a {
+    text-decoration: none;
 }
 
 .cursor-pointer {
