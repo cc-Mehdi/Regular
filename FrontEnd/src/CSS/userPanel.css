@@ -1,0 +1,50 @@
+.offcanvas {
+    box-shadow: 0 0 50px var(--c-secondary);
+}
+
+.offcanvas-menuButton:hover {
+    color: var(--c-primary) !important;
+}
+
+.offcanvas-hoverButton:hover {
+    transform: scale(1.08);
+}
+
+
+
+.userPanel-menuItem {
+    color: black;
+    transition: background-color .3s;
+}
+
+.userPanel-menuItem:hover {
+    opacity: .8;
+    cursor: pointer;
+    color: var(--c-secondary);
+}
+
+.userPanel-menuItem:focus {
+    background-color: white;
+}
+
+.userPanel-menuItem-active {
+    color: white !important;
+    background-color: var(--c-secondary);
+}
+
+.userPanel-menuItem-active:hover {
+    opacity: .8;
+    cursor: pointer;
+    color: var(--c-secondary);
+}
+
+.userPanel-itemCard {
+    transition: box-shadow .3s, transform .3s;
+    cursor: pointer;
+    height: 300px;
+}
+
+.userPanel-itemCard:hover {
+    box-shadow: 0 5px 8px black;
+    transform: translateY(-10px);
+}
