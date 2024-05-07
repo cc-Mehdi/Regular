@@ -31,213 +31,336 @@
   </head>
 
   <body dir="rtl" class="overflow-x-hidden bc-darkBlue">
-    <header></header>
+    <div class="container-fluid">
+      <header></header>
 
-    <main>
-      <div
-        class="container-fluid p-0 d-flex align-items-center justify-content-center"
-        style="height: 100vh"
-      >
-        <!-- OffCanvas button -->
-        <button
-          id="btnShowMenuToggler"
-          onclick="ShowoffcanvasMenu()"
-          class="offcanvas-hoverButton btn m-2 position-fixed top-0 end-0 z-3 border-0 visually-hidden"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling"
-        >
-          <i
-            class="bi bi-menu-app"
-            data-bs-toggle="tooltip"
-            data-bs-title="منو"
-            data-bs-placement="bottom"
-          ></i>
-        </button>
-
-        <!-- OffCanvas menu -->
+      <main>
         <div
-          id="offcanvasMenu"
-          class="offcanvas offcanvas-end rounded-start-5"
-          data-bs-scroll="true"
-          data-bs-backdrop="false"
-          tabindex="-1"
-          id="offcanvasScrolling"
-          aria-labelledby="offcanvasScrollingLabel"
-          style="background-color: #f2f2f2"
+          class="container-fluid p-0 d-flex align-items-center justify-content-center"
         >
-          <!-- offcanvas header -->
-          <div class="offcanvas-header d-flex justify-content-between">
-            <a
-              href="./index.html"
-              class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
-              id="offcanvasExampleLabel"
-            >
-              <img
-                src="./../src/media/Logo/regular-favicon-color.png"
-                width="50px"
-                height="50px"
-                alt="hyper cloud logo"
-                class="rounded-circle"
-                style="box-shadow: 0 0 10px white"
-              />
-              <span
-                class="app-brand-text demo menu-text text-black fs-4 fw-bold me-2"
-                style="text-shadow: 0 0 1px var(--c-primary)"
-                >Regular</span
-              >
-            </a>
-            <button
-              type="button"
-              onclick="HideoffcanvasMenu()"
-              class="offcanvas-hoverButton btn border-0"
-              data-bs-dismiss="offcanvas"
-            >
-              <i
-                class="bi bi-x-circle fs-2 tc-primary"
-                data-bs-toggle="tooltip"
-                data-bs-title="بستن منو"
-                data-bs-placement="bottom"
-              ></i>
-            </button>
-          </div>
-          <!-- offcanvas body -->
-          <div
-            class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100"
+          <!-- OffCanvas button -->
+          <button
+            id="btnShowMenuToggler"
+            onclick="ShowoffcanvasMenu()"
+            class="offcanvas-hoverButton btn m-2 position-fixed top-0 end-0 z-3 border-0 visually-hidden text-white hc-fs-title2"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"
           >
-            <!-- Menu buttons -->
-            <div
-              class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4"
-            >
+            <i
+              class="bi bi-menu-app"
+              data-bs-toggle="tooltip"
+              data-bs-title="منو"
+              data-bs-placement="bottom"
+            ></i>
+          </button>
+
+          <!-- OffCanvas menu -->
+          <div
+            id="offcanvasMenu"
+            class="offcanvas offcanvas-end rounded-start-5"
+            data-bs-scroll="true"
+            data-bs-backdrop="false"
+            tabindex="-1"
+            id="offcanvasScrolling"
+            aria-labelledby="offcanvasScrollingLabel"
+            style="background-color: #f2f2f2"
+          >
+            <!-- offcanvas header -->
+            <div class="offcanvas-header d-flex justify-content-between">
+              <a
+                href="./index.html"
+                class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
+                id="offcanvasExampleLabel"
+              >
+                <img
+                  src="./../src/media/Logo/regular-favicon-color.png"
+                  width="50px"
+                  height="50px"
+                  alt="hyper cloud logo"
+                  class="rounded-circle"
+                  style="box-shadow: 0 0 10px white"
+                />
+                <span
+                  class="app-brand-text demo menu-text text-black fs-4 fw-bold me-2"
+                  style="text-shadow: 0 0 1px var(--c-primary)"
+                  >Regular</span
+                >
+              </a>
               <button
-                class="btn btn-dark dropdown-toggle rounded-3 bc-darkBlue w-75 border border-0 py-2"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+                type="button"
+                onclick="HideoffcanvasMenu()"
+                class="offcanvas-hoverButton btn border-0"
+                data-bs-dismiss="offcanvas"
               >
-                سازمان ها
+                <i
+                  class="bi bi-x-circle fs-2 tc-primary"
+                  data-bs-toggle="tooltip"
+                  data-bs-title="بستن منو"
+                  data-bs-placement="bottom"
+                ></i>
               </button>
-              <ul class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0">
-                <li>
-                  <a class="dropdown-item text-end text-white py-3" href="#"
-                    >سازمان شماره 1</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item text-end text-white py-3" href="#"
-                    >سازمان شماره 2</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item text-end text-white py-3" href="#"
-                    >سازمان شماره 3</a
-                  >
-                </li>
-              </ul>
             </div>
-
-            <!-- Menu Items List -->
-            <div class="mt-3 w-100">
-              <ul
-                class="list-unstyled w-100 m-0 p-0 d-flex flex-column justify-content-start"
+            <!-- offcanvas body -->
+            <div
+              class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100"
+            >
+              <!-- Menu buttons -->
+              <div
+                class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4"
               >
-                <li
-                  class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
+                <button
+                  class="btn btn-dark dropdown-toggle rounded-3 bc-darkBlue w-75 border border-0 py-2"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
-                  پروژه ها
-                </li>
-                <li
-                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
+                  سازمان ها
+                </button>
+                <ul
+                  class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0"
                 >
-                  همه وظایف
-                </li>
-                <li
-                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
-                >
-                  همکاران
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- End OffCanvas menu -->
-
-        <div
-          id="menuBox-Temp"
-          class="col-lg-4 col-xxl-4"
-          style="height: 100vh"
-        ></div>
-
-        <!-- Main -->
-        <div
-          id="mainBox"
-          class="col-lg-8 col-xxl-6 d-flex justify-content-start align-items-start p-3"
-          style="height: 95vh"
-        >
-          <div class="row w-100">
-            <!-- item card -->
-            <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-              <div class="userPanel-itemCard hc-box bc-primary">
-                <a href="#">
-                  <div
-                    class="d-flex flex-column justify-content-center align-items-center"
-                  >
-                    <!-- item card image -->
-                    <img
-                      src="./../src/media/Logo/regular-favicon-color.png"
-                      alt="item card image"
-                      width="65px"
-                      height="65px"
-                    />
-                    <!-- item card title -->
-                    <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
-                    <!-- item card tags -->
-                    <div
-                      class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3"
+                  <li>
+                    <a class="dropdown-item text-end text-white py-3" href="#"
+                      >سازمان شماره 1</a
                     >
-                      <span
-                        class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
-                      >
-                        انجام شده : 100%
-                      </span>
-                      <span
-                        class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
-                      >
-                        تعداد وظایف : 100
-                      </span>
-                    </div>
-                  </div>
-                </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-end text-white py-3" href="#"
+                      >سازمان شماره 2</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item text-end text-white py-3" href="#"
+                      >سازمان شماره 3</a
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Menu Items List -->
+              <div class="mt-3 w-100">
+                <ul
+                  class="list-unstyled w-100 m-0 p-0 d-flex flex-column justify-content-start"
+                >
+                  <li
+                    class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
+                  >
+                    پروژه ها
+                  </li>
+                  <li
+                    class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
+                  >
+                    همه وظایف
+                  </li>
+                  <li
+                    class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
+                  >
+                    همکاران
+                  </li>
+                </ul>
               </div>
             </div>
-            <!-- end item card -->
+          </div>
+          <!-- End OffCanvas menu -->
 
-            <!-- item card (new button) -->
-            <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
-              <div class="userPanel-itemCard hc-box bc-primary">
-                <div
-                  class="d-flex flex-column justify-content-center align-items-center h-100"
-                >
-                  <!-- item card icon -->
-                  <i
-                    class="fa-solid fa-plus text-white hc-fs-title1"
-                    aria-hidden="true"
-                  ></i>
-                  <!-- item card title -->
-                  <h3 class="hc-fs-paragraph2 my-2 text-center">
-                    افزودن عنوان جدید
-                  </h3>
+          <div
+            id="menuBox-Temp"
+            class="col-lg-4 col-xxl-4"
+            style="height: 100vh"
+          ></div>
+
+          <!-- Main -->
+          <div
+            id="mainBox"
+            class="col-lg-8 col-xxl-6 d-flex justify-content-start align-items-start p-3"
+            style="height: 95vh"
+          >
+            <div class="row w-100 d-flex justify-content-center">
+              <!-- Search Box -->
+              <div class="row">
+                <input
+                  type="search"
+                  class="form-control border-0 tc-lightBlue fs-5 py-2"
+                  placeholder="جستجو"
+                />
+              </div>
+
+              <!-- item card -->
+              <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                <div class="userPanel-itemCard hc-box bc-primary">
+                  <a href="#">
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <!-- item card image -->
+                      <img
+                        src="./../src/media/Logo/regular-favicon-color.png"
+                        alt="item card image"
+                        width="65px"
+                        height="65px"
+                      />
+                      <!-- item card title -->
+                      <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
+                      <!-- item card tags -->
+                      <div
+                        class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3"
+                      >
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          انجام شده : 100%
+                        </span>
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          تعداد وظایف : 100
+                        </span>
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </div>
-            </div>
-            <!-- end item card (new button) -->
-          </div>
-        </div>
-        <!-- End Main -->
-      </div>
-    </main>
+              <!-- end item card -->
 
-    <footer></footer>
+              <!-- item card -->
+              <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                <div class="userPanel-itemCard hc-box bc-primary">
+                  <a href="#">
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <!-- item card image -->
+                      <img
+                        src="./../src/media/Logo/regular-favicon-color.png"
+                        alt="item card image"
+                        width="65px"
+                        height="65px"
+                      />
+                      <!-- item card title -->
+                      <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
+                      <!-- item card tags -->
+                      <div
+                        class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3"
+                      >
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          انجام شده : 100%
+                        </span>
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          تعداد وظایف : 100
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <!-- end item card -->
+
+              <!-- item card -->
+              <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                <div class="userPanel-itemCard hc-box bc-primary">
+                  <a href="#">
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <!-- item card image -->
+                      <img
+                        src="./../src/media/Logo/regular-favicon-color.png"
+                        alt="item card image"
+                        width="65px"
+                        height="65px"
+                      />
+                      <!-- item card title -->
+                      <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
+                      <!-- item card tags -->
+                      <div
+                        class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3"
+                      >
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          انجام شده : 100%
+                        </span>
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          تعداد وظایف : 100
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <!-- end item card -->
+
+              <!-- item card -->
+              <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                <div class="userPanel-itemCard hc-box bc-primary">
+                  <a href="#">
+                    <div
+                      class="d-flex flex-column justify-content-center align-items-center"
+                    >
+                      <!-- item card image -->
+                      <img
+                        src="./../src/media/Logo/regular-favicon-color.png"
+                        alt="item card image"
+                        width="65px"
+                        height="65px"
+                      />
+                      <!-- item card title -->
+                      <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
+                      <!-- item card tags -->
+                      <div
+                        class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3"
+                      >
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          انجام شده : 100%
+                        </span>
+                        <span
+                          class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1"
+                        >
+                          تعداد وظایف : 100
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <!-- end item card -->
+
+              <!-- item card (new button) -->
+              <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
+                <div class="userPanel-itemCard hc-box bc-primary">
+                  <div
+                    class="d-flex flex-column justify-content-center align-items-center h-100"
+                  >
+                    <!-- item card icon -->
+                    <i
+                      class="fa-solid fa-plus text-white hc-fs-title1"
+                      aria-hidden="true"
+                    ></i>
+                    <!-- item card title -->
+                    <h3 class="hc-fs-paragraph2 my-2 text-center">
+                      افزودن عنوان جدید
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <!-- end item card (new button) -->
+            </div>
+          </div>
+          <!-- End Main -->
+        </div>
+      </main>
+
+      <footer></footer>
+    </div>
 
     <!-- Fontawesome Script -->
     <script

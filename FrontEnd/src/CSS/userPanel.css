@@ -45,10 +45,24 @@
 }
 
 .userPanel-itemCard:hover {
-    box-shadow: 0 5px 8px black;
+    box-shadow: 0 5px 8px var(--c-lightCyan);
     transform: translateY(-10px);
 }
 
 .dropdown-item:hover {
     background-color: var(--c-primary);
+}
+
+input {
+    outline: none;
+    background-color: rgba(14, 64, 157, 0.38) !important;
+    transition: box-shadow .5s;
+}
+
+input::placeholder {
+    color: var(--tc-secondary) !important;
+}
+
+input:focus-within {
+    box-shadow: 0 0 10px var(--tc-secondary) !important;
 }
