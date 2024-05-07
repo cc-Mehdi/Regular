@@ -108,48 +108,32 @@
           >
             <!-- Menu buttons -->
             <div
-              class="w-100 d-flex justify-content-center align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4"
+              class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4"
             >
-              <div>
-                <a href="#" class="mx-3"
-                  ><i
-                    class="offcanvas-menuButton fa-solid fa-house text-dark fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-title="خانه"
-                    data-bs-placement="bottom"
-                  ></i
-                ></a>
-              </div>
-              <div>
-                <a href="#" class="mx-3"
-                  ><i
-                    class="offcanvas-menuButton fa-solid fa-handshake-angle text-dark fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-title="مشاوره"
-                    data-bs-placement="bottom"
-                  ></i
-                ></a>
-              </div>
-              <div>
-                <a href="#" class="mx-3"
-                  ><i
-                    class="offcanvas-menuButton fa-solid fa-person-harassing text-dark fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-title="تمرینات"
-                    data-bs-placement="bottom"
-                  ></i
-                ></a>
-              </div>
-              <div>
-                <a href="#" class="mx-3"
-                  ><i
-                    class="offcanvas-menuButton fa-solid fa-circle-info text-dark fs-5"
-                    data-bs-toggle="tooltip"
-                    data-bs-title="درباره ما"
-                    data-bs-placement="bottom"
-                  ></i
-                ></a>
-              </div>
+              <button
+                class="btn btn-dark dropdown-toggle rounded-3 bc-darkBlue w-75 border border-0 py-2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                سازمان ها
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0">
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#"
+                    >سازمان شماره 1</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#"
+                    >سازمان شماره 2</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#"
+                    >سازمان شماره 3</a
+                  >
+                </li>
+              </ul>
             </div>
 
             <!-- Menu Items List -->
@@ -158,17 +142,17 @@
                 class="list-unstyled w-100 m-0 p-0 d-flex flex-column justify-content-start"
               >
                 <li
-                  class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-5"
+                  class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
                 >
                   پروژه ها
                 </li>
                 <li
-                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-5"
+                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
                 >
                   همه وظایف
                 </li>
                 <li
-                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-5"
+                  class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4"
                 >
                   همکاران
                 </li>
@@ -246,116 +230,10 @@
                 </div>
               </div>
             </div>
-
             <!-- end item card (new button) -->
           </div>
         </div>
         <!-- End Main -->
-
-        <!-- Second OffCanvas menu -->
-        <div
-          id="SecondOffcanvasMenu"
-          class="offcanvas offcanvas-start bc-secondary rounded-end-5"
-          data-bs-scroll="true"
-          style="width: 300px"
-          data-bs-backdrop="false"
-          tabindex="-1"
-          aria-labelledby="offcanvasExampleLabel"
-        >
-          <div class="offcanvas-header w-100 text-start">
-            <button
-              type="button"
-              onclick="ToggleSecondOffcanvasMenu()"
-              class="btn border-0"
-              data-bs-dismiss="offcanvas"
-            >
-              <img
-                src="/FrontEnd/global/media/icons/Close_512px.png"
-                class="boxShadow-secondary boxShadowSecondary-hover rounded-circle p-1"
-                width="30px"
-                height="30px"
-              />
-            </button>
-          </div>
-          <div
-            class="offcanvas-body overflow-x-hidden px-3 py-0 m-0 d-flex flex-column align-items-center w-100"
-          >
-            <div class="row w-100 d-flex flex-column">
-              <a href="#" class="btn btn-link w-100 text-end tc-primary fs-5"
-                >T-54</a
-              >
-              <h5 class="text-white text-nowrap text-end">
-                حذف داده های اضافی
-              </h5>
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >پروژه :
-                <span class="text-white fs-6">پروژه آزمایشی 1</span></span
-              >
-              <span
-                >نوع وظیفه : <span class="text-white fs-6">رفع باگ</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span>کد مسئول : <span class="text-white fs-6">U-53</span></span>
-              <span
-                >نام مسئول :
-                <span class="text-white fs-6">رضا احمدی</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >زمان تقریبی : <span class="text-white fs-6">5 ساعت</span></span
-              >
-              <span
-                >زمان ثبت شده :
-                <span class="text-white fs-6">3 ساعت</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >وضعیت وظیفه :
-                <span class="text-warning fs-5">درحال انجام</span></span
-              >
-              <span
-                >سطح اولویت : <span class="text-danger fs-5">بالا</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >مشکل در نسخه : <span class="text-white fs-6">2.1.0</span></span
-              >
-              <span
-                >اصلاح در نسخه :
-                <span class="text-white fs-6">2.2.0</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >تاریخ ایجاد :
-                <span class="text-white fs-6">1402/09/01</span></span
-              >
-              <span
-                >تاریخ آپدیت :
-                <span class="text-white fs-6">1402/09/05</span></span
-              >
-            </div>
-            <div class="row w-100 mt-3 d-flex text-white-50">
-              <span
-                >توضیحات :
-                <span class="text-white fs-6">
-                  <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                    با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه
-                    و مجله در ستون و سطرآنچنان که لازم است
-                  </p>
-                </span></span
-              >
-            </div>
-          </div>
-        </div>
-        <!-- End Second OffCanvas menu -->
       </div>
     </main>
 

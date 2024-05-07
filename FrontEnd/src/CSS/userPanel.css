@@ -48,3 +48,7 @@
     box-shadow: 0 5px 8px black;
     transform: translateY(-10px);
 }
+
+.dropdown-item:hover {
+    background-color: var(--c-primary);
+}
