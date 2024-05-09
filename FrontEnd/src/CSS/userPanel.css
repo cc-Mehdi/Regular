@@ -53,16 +53,16 @@
     background-color: var(--c-primary);
 }
 
-input {
+input, select, textarea {
     outline: none;
     background-color: rgba(14, 64, 157, 0.38) !important;
     transition: box-shadow .5s;
 }
 
-input::placeholder {
+input::placeholder, select::placeholder, textarea::placeholder {
     color: var(--tc-secondary) !important;
 }
 
-input:focus-within {
+input:focus-within, textarea:focus-within {
     box-shadow: 0 0 10px var(--tc-secondary) !important;
 }
