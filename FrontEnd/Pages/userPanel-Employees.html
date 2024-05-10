@@ -276,100 +276,51 @@
     <div class="modal-content">
       <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
         <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
-          افزودن وظیفه
+          افزودن همکار
         </h1>
         <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body bc-darkBlue text-white">
         <!-- Add new project modal body -->
         <div class="mb-3">
-          <label for="formFile" class="form-label">عنوان وظیفه</label>
-          <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" placeholder="طراحی بنر" />
+          <label for="formFile" class="form-label">تصویر</label>
+          <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
         </div>
 
         <div class="mb-3">
-          <label for="formFile" class="form-label">اولویت</label>
-          <select class="form-select text-white">
-            <option selected>این وظیفه چقدر مهم است؟</option>
-            <option value="1" class="bc-darkBlue">کم</option>
-            <option value="2" class="bc-darkBlue">معمولی</option>
-            <option value="3" class="bc-darkBlue">زیاد</option>
-          </select>
-        </div>
-
-        <div class="mb-3">
-          <label for="formFile" class="form-label">اختصاص یافه به</label>
-          <div class="d-flex align-items-center mb-1">
-            <img src="./../src/media/Logo/regular-favicon-color.png" class="ms-2" width="50" height="50" alt="">
-            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" placeholder="آریا شبانه" disabled />
-          </div>
-
-
-          <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
-            role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
-          <div class="row mb-3">
+          <div class="row">
             <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample1">
-                <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-
-                  <div class="form-check form-check-reverse d-flex align-items-center">
-                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label w-100 hc-fs-paragraph3" for="flexRadioDefault1">
-                      رضا احمدی
-                    </label>
-                  </div>
-
-                  <div class="form-check form-check-reverse d-flex align-items-center">
-                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault2">
-                    <label class="form-check-label w-100 hc-fs-paragraph3" for="flexRadioDefault2">
-                      آریا شبانه
-                    </label>
-                  </div>
-
-                  <div class="form-check form-check-reverse d-flex align-items-center">
-                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio"
-                      name="flexRadioDefault" id="flexRadioDefault3">
-                    <label class="form-check-label w-100 hc-fs-paragraph3" for="flexRadioDefault3">
-                      مهدی محمدی
-                    </label>
-                  </div>
-                </div>
-              </div>
+              <label for="formFile" class="form-label hc-fs-paragraph2">نام</label>
+              <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="آریا"
+                aria-label="First name">
             </div>
-          </div>
-
-
-        </div>
-
-        <div class="mb-3">
-          <label for="formFile" class="form-label">گزارش کار</label>
-          <div class="w-100 p-2 border border-light rounded-3">
-            <div class="row">
-              <div class="col">
-                <label for="formFile" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
-                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="3h 30m"
-                  aria-label="First name">
-              </div>
-              <div class="col">
-                <label for="formFile" class="form-label hc-fs-paragraph2">زمان باقی مانده</label>
-                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="1h"
-                  aria-label="Last name">
-              </div>
-              <div class="col">
-                <label for="formFile" class="form-label hc-fs-paragraph2">زمان ثبت شده</label>
-                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="2h 30m"
-                  aria-label="Last name">
-              </div>
+            <div class="col">
+              <label for="formFile" class="form-label hc-fs-paragraph2">نام خانوادگی</label>
+              <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="شبانه"
+                aria-label="Last name">
             </div>
           </div>
         </div>
 
+        <div class="mb-3 d-flex flex-column" dir="ltr">
+          <div class="row text-end">
+            <label for="formFile" class="form-label hc-fs-paragraph2">نام کاربری</label>
+          </div>
+          <div class="input-group">
+            <span class="input-group-text bc-darkBlue rounded-start-3 border-primary" id="basic-addon1">@</span>
+            <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" placeholder="Username"
+              aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+        </div>
+
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">توضیحات</label>
-          <textarea class="form-control form-control border-0 tc-lightBlue fs-6 py-2" id="exampleFormControlTextarea1"
-            rows="3"></textarea>
+          <label for="formFile" class="form-label">سطح</label>
+          <select class="form-select text-white">
+            <option selected>سطح مهارت همکار چیست ؟</option>
+            <option value="1" class="bc-darkBlue">Junior</option>
+            <option value="2" class="bc-darkBlue">Mid-Level</option>
+            <option value="3" class="bc-darkBlue">Senior</option>
+          </select>
         </div>
 
         <div class="modal-footer bc-lightCyan">
@@ -377,7 +328,7 @@
             انصراف
           </button>
           <button type="button" class="btn btn-success">
-            افزودن پروژه جدید
+            افزودن همکار جدید
           </button>
         </div>
       </div>
