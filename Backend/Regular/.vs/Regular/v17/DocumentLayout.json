@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Regular\\Pages\\Index.cshtml",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Regular\\Pages\\Index.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAMAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-13T05:48:17.978Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Regular\\Pages\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Regular\\Pages\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAAAGQAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-13T05:37:05.057Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
