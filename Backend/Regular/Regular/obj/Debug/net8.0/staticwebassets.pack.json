@@ -5,18 +5,6 @@
       "PackagePath": "staticwebassets\\Regular.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\css\\site.css",
-      "PackagePath": "staticwebassets\\css\\site.css"
-    },
-    {
-      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\favicon.ico",
-      "PackagePath": "staticwebassets\\favicon.ico"
-    },
-    {
-      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
-    },
-    {
       "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
@@ -243,6 +231,78 @@
     {
       "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\CSS\\HC-Web-Module\\HC-Styles.css",
+      "PackagePath": "staticwebassets\\src\\CSS\\HC-Web-Module\\HC-Styles.css"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\CSS\\Login-Register.css",
+      "PackagePath": "staticwebassets\\src\\CSS\\Login-Register.css"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\CSS\\index.css",
+      "PackagePath": "staticwebassets\\src\\CSS\\index.css"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\CSS\\userPanel.css",
+      "PackagePath": "staticwebassets\\src\\CSS\\userPanel.css"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\Login-Register.js",
+      "PackagePath": "staticwebassets\\src\\JS\\Login-Register.js"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
+      "PackagePath": "staticwebassets\\src\\JS\\userPanel.js"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\global\\main.css",
+      "PackagePath": "staticwebassets\\src\\global\\main.css"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\Logo\\logo-black.png",
+      "PackagePath": "staticwebassets\\src\\media\\Logo\\logo-black.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\Logo\\logo-color.png",
+      "PackagePath": "staticwebassets\\src\\media\\Logo\\logo-color.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\Logo\\logo-no-background.png",
+      "PackagePath": "staticwebassets\\src\\media\\Logo\\logo-no-background.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\Logo\\logo-white.png",
+      "PackagePath": "staticwebassets\\src\\media\\Logo\\logo-white.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\Logo\\regular-favicon-color.png",
+      "PackagePath": "staticwebassets\\src\\media\\Logo\\regular-favicon-color.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\banners\\01_banner.png",
+      "PackagePath": "staticwebassets\\src\\media\\banners\\01_banner.png"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\banners\\02_loginRegister-Blue.jpg",
+      "PackagePath": "staticwebassets\\src\\media\\banners\\02_loginRegister-Blue.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\banners\\03_loginRegister-Purple.jpg",
+      "PackagePath": "staticwebassets\\src\\media\\banners\\03_loginRegister-Purple.jpg"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\icons\\github.svg",
+      "PackagePath": "staticwebassets\\src\\media\\icons\\github.svg"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\icons\\instagram.svg",
+      "PackagePath": "staticwebassets\\src\\media\\icons\\instagram.svg"
+    },
+    {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\icons\\telegram.svg",
+      "PackagePath": "staticwebassets\\src\\media\\icons\\telegram.svg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Regular.Microsoft.AspNetCore.StaticWebAssets.props",

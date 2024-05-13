@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap');
+
+:root {
+    /* text-colors */
+    --c-primary: #0077B6;
+    --c-secondary: #00B4D8;
+    --c-darkBlue: #03045E;
+    --c-lightBlue: #90E0EF;
+    --c-lightCyan: #CAF0F8;
+
+    /* font-sizes */
+    --fs-7: .75rem !important;
+    --fs-8: .50rem !important;
+    --fs-9: .25rem !important;
+    --fs-l1: 5rem !important;
+    --fs-l2: 4rem !important;
+    --fs-l3: 3rem !important;
+}
+
+/* Configs */
+
+.tc-primary {
+    color: var(--c-primary) !important;
+}
+
+.tc-secondary {
+    color: var(--c-secondary) !important;
+}
+
+.tc-darkBlue {
+    color: var(--c-darkBlue) !important;
+}
+
+.tc-lightBlue {
+    color: var(--c-lightBlue) !important;
+}
+
+.tc-lightCyan {
+    color: var(--c-lightCyan) !important;
+}
+
+.bc-primary {
+    background-color: var(--c-primary) !important;
+}
+
+.bc-secondary {
+    background-color: var(--c-secondary) !important;
+}
+
+.bc-darkBlue {
+    background-color: var(--c-darkBlue) !important;
+}
+
+.bc-lightBlue {
+    background-color: var(--c-lightBlue) !important;
+}
+
+.bc-lightCyan {
+    background-color: var(--c-lightCyan) !important;
+}
+
+/* fonts */
+
+.fs-7 {
+    font-size: var(--fs-7);
+}
+
+.fs-8 {
+    font-size: var(--fs-8);
+}
+
+.fs-9 {
+    font-size: var(--fs-9);
+}
+
+.fs-l1 {
+    font-size: var(--fs-l1);
+}
+
+.fs-l2 {
+    font-size: var(--fs-l2);
+}
+
+.fs-l3 {
+    font-size: var(--fs-l3);
+}
+
+/* end fonts */
+
+/* End Configs */
+
+/* General */
+
+* {
+    font-family: "Vazirmatn", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6, span, p, a {
+    color: white !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* End General */
