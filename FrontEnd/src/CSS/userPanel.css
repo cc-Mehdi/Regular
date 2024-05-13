@@ -66,3 +66,8 @@ input::placeholder, select::placeholder, textarea::placeholder {
 input:focus-within, textarea:focus-within {
     box-shadow: 0 0 10px var(--tc-secondary) !important;
 }
+
+.btnNewOrganization:hover {
+    transition: color .3s;
+    background-color: var(--c-darkBlue) !important;
+}
