@@ -4,11 +4,11 @@ using Datalayer.Repository.IRepository;
 
 namespace Datalayer.Repository
 {
-    public class EmployeeInviteRepository : Repository<EmployeeInvites>, IEmployeeInvitesRepository
+    public class EmployeeInvitesRepository : Repository<EmployeeInvites>, IEmployeeInvitesRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public EmployeeInviteRepository(ApplicationDbContext db) : base(db)
+        public EmployeeInvitesRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
