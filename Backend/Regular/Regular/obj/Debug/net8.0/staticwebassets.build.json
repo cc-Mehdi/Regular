@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3lFuMgLdu9zpkcy9T69B6Tbyn2fYiYyYLtLwn0QiI6Q=",
+  "Hash": "LciuFWGkC80wGJFz6jLE9bOWQsQ3XsfRrEDGMO5j0iI=",
   "Source": "Regular",
   "BasePath": "_content/Regular",
   "Mode": "Default",
@@ -1326,6 +1326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\src\\media\\banners\\03_loginRegister-Purple.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\default-person-profile.png",
+      "SourceId": "Regular",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\",
+      "BasePath": "_content/Regular",
+      "RelativePath": "src/media/default-person-profile.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\src\\media\\default-person-profile.png"
     },
     {
       "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\icons\\github.svg",

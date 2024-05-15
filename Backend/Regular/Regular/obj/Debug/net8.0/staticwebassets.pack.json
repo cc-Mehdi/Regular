@@ -293,6 +293,10 @@
       "PackagePath": "staticwebassets\\src\\media\\banners\\03_loginRegister-Purple.jpg"
     },
     {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\default-person-profile.png",
+      "PackagePath": "staticwebassets\\src\\media\\default-person-profile.png"
+    },
+    {
       "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\media\\icons\\github.svg",
       "PackagePath": "staticwebassets\\src\\media\\icons\\github.svg"
     },

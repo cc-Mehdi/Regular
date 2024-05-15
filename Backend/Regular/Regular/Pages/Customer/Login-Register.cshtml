@@ -89,22 +89,29 @@
                     </h1>
                 </div>
                 <div class="row w-75 my-4 loginBox-inputs">
-                    <form>
+                    <form method="post">
+                        <input asp-for="@Model.User.Id" value="1" hidden />
                         <div class="form-group my-2">
                             <input type="email"
                                    class="form-control border-0 tc-lightBlue fs-5 py-2"
                                    id="exampleInputEmail1"
                                    aria-describedby="emailHelp"
-                                   placeholder="ایمیل" />
+                                   placeholder="ایمیل"
+                                   asp-for="@Model.User.Email" />
+
                         </div>
                         <div class="form-group my-2">
                             <input type="password"
                                    class="form-control border-0 tc-lightBlue fs-5 py-2"
                                    id="exampleInputPassword1"
-                                   placeholder="کلمه عبور" />
+                                   placeholder="کلمه عبور"
+                                   asp-for="@Model.User.Password" />
+
                         </div>
-                        <a href="#"
-                           class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ورود</a>
+                        <button type="submit"
+                                class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">
+                            ورود
+                        </button>
                     </form>
                 </div>
                 <div class="row w-100 loginBox-links">
@@ -187,28 +194,33 @@
                     </h1>
                 </div>
                 <div class="row w-75 my-4 loginBox-inputs">
-                    <form>
+                    <form method="post">
+                        <div class="form-group my-2">
+                            <input type="text"
+                                   class="form-control border-0 tc-lightBlue fs-5 py-2"
+                                   id="exampleInputFullName"
+                                   placeholder="نام و نام خانوادگی"
+                                   asp-for="@Model.User.FullName" />
+                        </div>
                         <div class="form-group my-2">
                             <input type="email"
                                    class="form-control border-0 tc-lightBlue fs-5 py-2"
                                    id="exampleInputEmail1"
                                    aria-describedby="emailHelp"
-                                   placeholder="ایمیل" />
+                                   placeholder="ایمیل"
+                                   asp-for="@Model.User.Email" />
                         </div>
                         <div class="form-group my-2">
                             <input type="password"
                                    class="form-control border-0 tc-lightBlue fs-5 py-2"
                                    id="exampleInputPassword1"
-                                   placeholder="کلمه عبور" />
+                                   placeholder="کلمه عبور"
+                                   asp-for="@Model.User.Password" />
                         </div>
-                        <div class="form-group my-2">
-                            <input type="password"
-                                   class="form-control border-0 tc-lightBlue fs-5 py-2"
-                                   id="exampleInputPassword1"
-                                   placeholder="تکرار کلمه عبور" />
-                        </div>
-                        <a href="./userPanel.html"
-                           class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">ثبت نام</a>
+                        <button type="submit"
+                                class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">
+                            ثبت نام
+                        </button>
                     </form>
                 </div>
                 <div class="row w-100 loginBox-links">
