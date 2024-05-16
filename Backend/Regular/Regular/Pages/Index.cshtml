@@ -99,6 +99,17 @@
     <!-- End OffCanvas menu -->
     <!-- Main Content -->
     <div class="main d-flex flex-column align-items-center px-5">
+        <div class="row w-100 text-start">
+            <div>
+                @{
+                    var cookie = Request.Cookies["UserId"];
+                    if (cookie != null)
+                    {
+                        <a href="/Customer/UserPanel/" class="hc-btn-lg bc-darkBlue rounded-3">پنل مدیریت</a>
+                    }
+                }
+            </div>
+        </div>
         <img src="./../src/media/Logo/logo-no-background.png"
              width="100%"
              height="150px"
