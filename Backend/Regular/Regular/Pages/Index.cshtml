@@ -102,8 +102,8 @@
         <div class="row w-100 text-start">
             <div>
                 @{
-                    var cookie = Request.Cookies["UserId"];
-                    if (cookie != null)
+                    var loginToken = Request.Cookies["loginToken"];
+                    if (loginToken != null)
                     {
                         <a href="/Customer/UserPanel/" class="hc-btn-lg bc-darkBlue rounded-3">پنل مدیریت</a>
                     }

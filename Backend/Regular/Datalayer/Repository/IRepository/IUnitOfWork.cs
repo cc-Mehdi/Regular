@@ -9,6 +9,7 @@
         IOrganization_ProjectRepository Organization_ProjectRepository { get; set; }
         IUser_ProjectRepository User_ProjectRepository { get; set; }
         ITasksRepository TasksRepository { get; set; }
+        ILoginsLogRepository LoginsLogRepository { get; set; }
         void Save();
     }
 }

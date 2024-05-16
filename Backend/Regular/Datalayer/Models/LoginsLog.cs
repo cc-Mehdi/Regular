@@ -10,6 +10,8 @@ namespace Datalayer.Models
         [ForeignKey("Users")]
         public int UserId { get; set; }
         public Users User { get; set; }
+        public string LoginToken { get; set; }
+        public bool IsSignOut { get; set; }
         public DateTime LogTime { get; set; }
     }
 }

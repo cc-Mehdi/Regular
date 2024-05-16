@@ -31,13 +31,24 @@ namespace Regular.Pages.Customer
                     {
                         if (user.Email == currentUser.Email && user.Password == currentUser.Password)
                         {
-                            var cookie = Request.Cookies["UserId"];
+                            var cookie = Request.Cookies["loginToken"];
+
+                            // add login log
+                            string loginToken = Guid.NewGuid().ToString();
+                            _unitOfWork.LoginsLogRepository.Add(new LoginsLog()
+                            {
+                                UserId = currentUser.Id,
+                                User = currentUser,
+                                LoginToken = loginToken,
+                                IsSignOut = false,
+                                LogTime = DateTime.Now
+                            });
 
                             //set cookie
                             var cookieOptions = new CookieOptions();
                             cookieOptions.Expires = DateTime.Now.AddDays(30);
                             cookieOptions.Path = "/";
-                            Response.Cookies.Append("UserId", currentUser.Id.ToString(), cookieOptions);
+                            Response.Cookies.Append("loginToken", loginToken, cookieOptions);
 
                             TempData["success"] = $"{currentUser.FullName} خوش آمدید!";
                             return Redirect("/Customer/UserPanel");
@@ -64,11 +75,22 @@ namespace Regular.Pages.Customer
                             //find user
                             currentUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Email == user.Email);
 
+                            // add login log
+                            string loginToken = Guid.NewGuid().ToString();
+                            _unitOfWork.LoginsLogRepository.Add(new LoginsLog()
+                            {
+                                UserId = currentUser.Id,
+                                User = currentUser,
+                                LoginToken = loginToken,
+                                IsSignOut = false,
+                                LogTime = DateTime.Now
+                            });
+
                             //set cookie
                             var cookieOptions = new CookieOptions();
-                            cookieOptions.Expires = DateTime.Now.AddDays(1);
+                            cookieOptions.Expires = DateTime.Now.AddDays(30);
                             cookieOptions.Path = "/";
-                            Response.Cookies.Append("UserId", currentUser.Id.ToString(), cookieOptions);
+                            Response.Cookies.Append("loginToken", loginToken, cookieOptions);
 
                             TempData["success"] = "ثبت نام با موفقیت انجام شد";
                             return Redirect("/Customer/UserPanel");

@@ -16,6 +16,7 @@ namespace Datalayer.Repository
             Organization_ProjectRepository = new Organization_ProjectRepository(_db);
             User_ProjectRepository = new User_ProjectRepository(_db);
             TasksRepository = new TasksRepository(_db);
+            LoginsLogRepository = new LoginsLogRepository(_db);
         }
 
         public IUsersRepository UsersRepository { get; set; }
@@ -25,6 +26,7 @@ namespace Datalayer.Repository
         public IOrganization_ProjectRepository Organization_ProjectRepository { get; set; }
         public IUser_ProjectRepository User_ProjectRepository { get; set; }
         public ITasksRepository TasksRepository { get; set; }
+        public ILoginsLogRepository LoginsLogRepository { get; set; }
 
 
         public void Dispose()

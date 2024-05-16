@@ -1,10 +1,18 @@
+using Datalayer.Models;
+using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Regular.Pages.Customer
 {
     public class UserPanelModel : PageModel
     {
-        private int userId = 0;
+        private Users logedInUser;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public UserPanelModel(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
 
         public void OnGet()
         {
@@ -13,10 +21,14 @@ namespace Regular.Pages.Customer
 
         private void isUserLogin()
         {
-            if (Request.Cookies["UserId"] == null)
+            if (Request.Cookies["loginToken"] == null)
                 Response.Redirect("/Customer/Login-Register");
             else
-                userId = int.Parse(Request.Cookies["UserId"]);
+            {
+                string loginToken = Request.Cookies["loginToken"];
+                logedInUser = _unitOfWork.LoginsLogRepository.GetFirstOrDefault(u => u.LoginToken == loginToken).User;
+            }
+                
         }   
     }
 }
