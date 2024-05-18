@@ -43,6 +43,7 @@ namespace Regular.Pages.Customer
                                 IsSignOut = false,
                                 LogTime = DateTime.Now
                             });
+                            _unitOfWork.Save();
 
                             //set cookie
                             var cookieOptions = new CookieOptions();
@@ -77,14 +78,17 @@ namespace Regular.Pages.Customer
 
                             // add login log
                             string loginToken = Guid.NewGuid().ToString();
-                            _unitOfWork.LoginsLogRepository.Add(new LoginsLog()
+                            LoginsLog newLog = new LoginsLog()
                             {
                                 UserId = currentUser.Id,
                                 User = currentUser,
                                 LoginToken = loginToken,
                                 IsSignOut = false,
                                 LogTime = DateTime.Now
-                            });
+                            };
+                            _unitOfWork.LoginsLogRepository.Add(newLog);
+
+                            _unitOfWork.Save();
 
                             //set cookie
                             var cookieOptions = new CookieOptions();

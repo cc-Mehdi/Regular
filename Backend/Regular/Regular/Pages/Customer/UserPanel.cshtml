@@ -1,6 +1,7 @@
 ﻿@page
 @model Regular.Pages.Customer.UserPanelModel
 @{
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -14,14 +15,16 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./../src/CSS/userPanel.css" />
-    <link rel="stylesheet" href="./../src/global/main.css" />
+    <link rel="stylesheet" href="/src/CSS/userPanel.css" />
+    <link rel="stylesheet" href="/src/global/main.css" />
     <!-- WebSite Icon -->
-    <link rel="shortcut icon" href="./../src/media/Logo/regular-favicon-color.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/src/media/Logo/regular-favicon-color.png" type="image/x-icon" />
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <!-- HC-Web-Module Styles -->
-    <link rel="stylesheet" href="./../src/CSS/HC-Web-Module/HC-Styles.css" />
+    <link rel="stylesheet" href="/src/CSS/HC-Web-Module/HC-Styles.css" />
+    <!-- Toastr Styles -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body dir="rtl" class="overflow-x-hidden bc-darkBlue">
@@ -44,10 +47,10 @@
                      style="background-color: #f2f2f2">
                     <!-- offcanvas header -->
                     <div class="offcanvas-header d-flex justify-content-between">
-                        <a href="./index.html"
+                        <a href="/"
                            class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
                            id="offcanvasExampleLabel">
-                            <img src="./../src/media/Logo/regular-favicon-color.png" width="50px" height="50px" alt="hyper cloud logo"
+                            <img src="/src/media/Logo/regular-favicon-color.png" width="50px" height="50px" alt="hyper cloud logo"
                                  class="rounded-circle" style="box-shadow: 0 0 10px white" />
                             <span class="app-brand-text demo menu-text text-black fs-4 fw-bold me-2"
                                   style="text-shadow: 0 0 1px var(--c-primary)">Regular</span>
@@ -64,18 +67,26 @@
                         <div class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4">
                             <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                سازمان ها
+                                @{
+                                    if (Model.OrganizationsList.Count > 0)
+                                    {
+                                        <span id="ddlOrganization">@Model.OrganizationsList[0].Title</span>
+                                    }
+                                    else
+                                    {
+                                        <span>سازمان ها</span>
+                                    }
+                                }
                             </button>
-                            <ul class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0">
-                                <li>
-                                    <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 1</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 2</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 3</a>
-                                </li>
+                            <ul class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0" id="organizationsList">
+                                @{
+                                    foreach (var item in Model.OrganizationsList)
+                                    {
+                                        <li>
+                                            <a class="dropdown-item text-end text-white py-3" href="#">@item.Title</a>
+                                        </li>
+                                    }
+                                }
                             </ul>
                             <button class="btnNewOrganization rounded-start-3 py-2 px-3 border-bottom-0 border-top-0 border-start-0 border-end-3 border-white bc-primary text-white">
                                 <i class="bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#newOrganizationModal"></i>
@@ -117,7 +128,7 @@
                                 <a href="#">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img src="./../src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                              height="65px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
@@ -141,7 +152,7 @@
                                 <a href="#">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img src="./../src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                              height="65px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
@@ -165,7 +176,7 @@
                                 <a href="#">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img src="./../src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                              height="65px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
@@ -189,7 +200,7 @@
                                 <a href="#">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img src="./../src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                              height="65px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
@@ -231,162 +242,199 @@
         <footer></footer>
     </div>
 
+    <!-- Add New Project Modal -->
+    <div class="modal fade" id="newProjectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
+                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                        افزودن پروژه
+                    </h1>
+                    <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bc-darkBlue text-white">
+                    <!-- Add new project modal body -->
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">عنوان پروژه</label>
+                        <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3"
+                               placeholder="تکمیل طراحی اولیه" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">همکاران</label>
+
+                        <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
+                           role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                                        <div class="form-check form-check-reverse">
+                                            <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                                                   id="reverseCheck1">
+                                            <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck1">
+                                                رضا احمدی
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-reverse">
+                                            <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                                                   id="reverseCheck2">
+                                            <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck2">
+                                                آریا شبانه
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-reverse">
+                                            <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                                                   id="reverseCheck3">
+                                            <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck3">
+                                                مهدی محمدی
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">لوگو پروژه</label>
+                            <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
+                        </div>
+                    </div>
+                    <div class="modal-footer bc-lightCyan">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            انصراف
+                        </button>
+                        <button type="button" class="btn btn-success">
+                            افزودن پروژه جدید
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add New Organization Modal -->
+    <div class="modal" id="newOrganizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
+                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                        افزودن سازمان
+                    </h1>
+                    <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bc-darkBlue text-white">
+                    <!-- Add new project modal body -->
+                    <form id="organizationForm" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">تصویر</label>
+                            <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" name="ImageName" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formTitle" class="form-label">عنوان سازمان</label>
+                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="formTitle" name="Title" placeholder="تکمیل طراحی اولیه" />
+                            <span class="text-danger" asp-validation-for="@Model.Organization.Title"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formEmployees" class="form-label">همکاران</label>
+                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                                            @foreach (var item in Model.EmployeesList)
+                                            {
+                                                <div class="form-check form-check-reverse">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
+                                                    <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
+                                                        @item.FullName
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer bc-lightCyan">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                انصراف
+                            </button>
+                            <button type="submit" class="btn btn-success" id="bindOrganizations">
+                                افزودن سازمان جدید
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     <!-- Fontawesome Script -->
     <script src="https://kit.fontawesome.com/a904a1b9c2.js" crossorigin="anonymous"></script>
 
+    <!-- Toastr Script -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
+
     <!-- Bootstrap Scripts v5.3 -->
-d
+    @{
+        string popperjsUrl = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js";
+    }
+    <script src="@popperjsUrl"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"></script>
 
     <!-- Custom Script -->
-    <script src="./../src/JS/userPanel.js"></script>
+    <script src="/src/JS/userPanel.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#organizationForm').on('submit', function (e) {
+                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Page("/Customer/UserPanel", "AddOrganization")',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var list = $('#organizationsList');
+                        list.empty();
+                        data.forEach(function (item) {
+                            list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
+                            $('#ddlOrganization').html(item.title);
+                        });
+                        //close modal
+                        $('#newOrganizationModal').toggleClass("show");
+                        document.getElementById("newOrganizationModal").style = "display: none";
+                        $('.modal-backdrop').remove();
+                        // show success message
+                        toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                    },
+                    error: function () {
+                        // show error message
+                        toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-
-<!-- Add New Project Modal -->
-<div class="modal fade" id="newProjectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
-                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
-                    افزودن پروژه
-                </h1>
-                <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body bc-darkBlue text-white">
-                <!-- Add new project modal body -->
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">عنوان پروژه</label>
-                    <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3"
-                           placeholder="تکمیل طراحی اولیه" />
-                </div>
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">همکاران</label>
-
-                    <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
-                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck1">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck1">
-                                            رضا احمدی
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck2">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck2">
-                                            آریا شبانه
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck3">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck3">
-                                            مهدی محمدی
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">لوگو پروژه</label>
-                        <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
-                    </div>
-                </div>
-                <div class="modal-footer bc-lightCyan">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        انصراف
-                    </button>
-                    <button type="button" class="btn btn-success">
-                        افزودن پروژه جدید
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Add New Organization Modal -->
-<div class="modal fade" id="newOrganizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
-                <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
-                    افزودن سازمان
-                </h1>
-                <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body bc-darkBlue text-white">
-                <!-- Add new project modal body -->
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">تصویر</label>
-                    <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
-                </div>
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">عنوان سازمان</label>
-                    <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3"
-                           placeholder="تکمیل طراحی اولیه" />
-                </div>
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">همکاران</label>
-
-                    <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
-                       role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck1">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck1">
-                                            رضا احمدی
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck2">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck2">
-                                            آریا شبانه
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-reverse">
-                                        <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
-                                               id="reverseCheck3">
-                                        <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck3">
-                                            مهدی محمدی
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer bc-lightCyan">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                        انصراف
-                    </button>
-                    <button type="button" class="btn btn-success">
-                        افزودن سازمان جدید
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 </html>
