@@ -72,14 +72,13 @@ namespace Regular.Pages.Customer
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
 
-            // اینجا داده‌ها را به مدل تبدیل کنید و به دیتابیس اضافه کنید
+            // convert data to model for sending to database
             var newItem = new Organizations
             {
                 Title = title,
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName
-                // سایر خصوصیات مانند تصویر و همکاران را تنظیم کنید
             };
 
             _unitOfWork.OrganizationsRepository.Add(newItem);
@@ -88,6 +87,36 @@ namespace Regular.Pages.Customer
             var OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
             return new JsonResult(OrganizationsList);
         }
+
+        // add new project
+        public async Task<JsonResult> OnPostAddProjectAsync()
+        {
+            isUserLogin();
+
+            var title = Request.Form["Title"];
+            var image = Request.Form.Files["ImageName"];
+            var employees = Request.Form["Employees"].ToList();
+
+            // convert data to model for sending to database
+            var newItem = new Projects
+            {
+                Title = title,
+                ImageName = image == null ? "" : image.FileName,
+                OwnerId = loggedInUser.Id,
+                Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName,
+                Organization = "t1",
+                OrganizationId = 83,
+                TasksCount = 0,
+                TasksStatusPercent = 0
+            };
+
+            _unitOfWork.ProjectsRepository.Add(newItem);
+            _unitOfWork.Save();
+
+            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
+            return new JsonResult(projectsList);
+        }
+
 
         public async Task<JsonResult> OnGetBindProjectsAsync(string organizationId)
         {
