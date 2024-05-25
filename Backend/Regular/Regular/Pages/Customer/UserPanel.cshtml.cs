@@ -43,7 +43,8 @@ namespace Regular.Pages.Customer
             isUserLogin();
 
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
-            var allorgs = _unitOfWork.OrganizationsRepository.GetAll();
+            int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList[0].Id;
+            ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
         }
 
         private void isUserLogin()
@@ -56,28 +57,16 @@ namespace Regular.Pages.Customer
                 int userId = _unitOfWork.LoginsLogRepository.GetFirstOrDefault(u => u.LoginToken == loginToken).UserId;
                 loggedInUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId);
             }
-                
+
         }
 
-        public JsonResult OnPostInsertOrganization(Organizations organization)
-        {
-            isUserLogin();
-            // add new organization
-            organization.Owner = loggedInUser.FullName == null? "" : loggedInUser.FullName;
-            organization.OwnerId = loggedInUser.Id;
-            organization.ImageName = "";
-            _unitOfWork.OrganizationsRepository.Add(organization);
-            _unitOfWork.Save();
-
-
-            OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
-            return new JsonResult(OrganizationsList);
-        }
-
+        // add new organization
         public async Task<JsonResult> OnPostAddOrganizationAsync()
         {
             isUserLogin();
 
+            if (!hasAccessToCreateOrganization())
+                return new JsonResult(new { err = "شما به محدودیت ساخت سازمان رسیده اید!" });
 
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
@@ -90,8 +79,8 @@ namespace Regular.Pages.Customer
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName
-            // سایر خصوصیات مانند تصویر و همکاران را تنظیم کنید
-        };
+                // سایر خصوصیات مانند تصویر و همکاران را تنظیم کنید
+            };
 
             _unitOfWork.OrganizationsRepository.Add(newItem);
             _unitOfWork.Save();
@@ -100,15 +89,18 @@ namespace Regular.Pages.Customer
             return new JsonResult(OrganizationsList);
         }
 
-        public JsonResult OnGetBindOrganizations()
+        public async Task<JsonResult> OnGetBindProjectsAsync(string organizationId)
         {
-            var data = new List<Organizations>();
-            OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
+            var ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == int.Parse(organizationId)).ToList();
+            return new JsonResult(ProjectsList);
+        }
 
-            foreach(var org in OrganizationsList)
-                data.Add(org);
-
-            return new JsonResult(data);
+        private bool hasAccessToCreateOrganization()
+        {
+            int organicationsCount = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).Count();
+            if (organicationsCount < 3)
+                return true;
+            return false;
         }
     }
 }

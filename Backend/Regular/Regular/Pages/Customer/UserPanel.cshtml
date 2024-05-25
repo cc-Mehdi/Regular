@@ -70,11 +70,11 @@
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                        <span id="ddlOrganization">@Model.OrganizationsList[0].Title</span>
+                                            <span id="ddlOrganization">@Model.OrganizationsList[0].Title</span>
                                     }
                                     else
                                     {
-                                        <span>سازمان ها</span>
+                                            <span>سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -82,9 +82,9 @@
                                 @{
                                     foreach (var item in Model.OrganizationsList)
                                     {
-                                        <li>
-                                            <a class="dropdown-item text-end text-white py-3" href="#">@item.Title</a>
-                                        </li>
+                                            <li>
+                                                <a class="dropdown-item text-end text-white py-3" onclick="changeOrganization('@item.Title', @item.Id)">@item.Title</a>
+                                            </li>
                                     }
                                 }
                             </ul>
@@ -96,7 +96,7 @@
                         <!-- Menu Items List -->
                         <div class="mt-3 w-100">
                             <ul class="list-unstyled w-100 m-0 p-0 d-flex flex-column justify-content-start">
-                                <li class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
+                                <li id="userPanel-menuItem-active" class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
                                     پروژه ها
                                 </li>
                                 <li class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
@@ -122,102 +122,38 @@
                             <input type="search" class="form-control border-0 tc-lightBlue fs-5 py-2" placeholder="جستجو" />
                         </div>
 
-                        <!-- item card -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                            <div class="userPanel-itemCard hc-box bc-primary">
-                                <a href="#">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <!-- item card image -->
-                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                             height="65px" />
-                                        <!-- item card title -->
-                                        <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
-                                        <!-- item card tags -->
-                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                انجام شده : 100%
-                                            </span>
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                تعداد وظایف : 100
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                        <div id="projectsList">
+
                         </div>
-                        <!-- end item card -->
-                        <!-- item card -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                            <div class="userPanel-itemCard hc-box bc-primary">
-                                <a href="#">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <!-- item card image -->
-                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                             height="65px" />
-                                        <!-- item card title -->
-                                        <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
-                                        <!-- item card tags -->
-                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                انجام شده : 100%
-                                            </span>
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                تعداد وظایف : 100
-                                            </span>
+
+                        @foreach(var project in Model.ProjectsList)
+                        {
+                            <!-- item card -->
+                            <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                                <div class="userPanel-itemCard hc-box bc-primary">
+                                    <a href="#">
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <!-- item card image -->
+                                            <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                 height="65px" />
+                                            <!-- item card title -->
+                                            <h3 class="hc-fs-paragraph2 my-2">@project.Title</h3>
+                                            <!-- item card tags -->
+                                            <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                    انجام شده : @project.TasksStatusPercent%
+                                                </span>
+                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                    تعداد وظایف : @project.TasksCount
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <!-- end item card -->
-                        <!-- item card -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                            <div class="userPanel-itemCard hc-box bc-primary">
-                                <a href="#">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <!-- item card image -->
-                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                             height="65px" />
-                                        <!-- item card title -->
-                                        <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
-                                        <!-- item card tags -->
-                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                انجام شده : 100%
-                                            </span>
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                تعداد وظایف : 100
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- end item card -->
-                        <!-- item card -->
-                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                            <div class="userPanel-itemCard hc-box bc-primary">
-                                <a href="#">
-                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                        <!-- item card image -->
-                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                             height="65px" />
-                                        <!-- item card title -->
-                                        <h3 class="hc-fs-paragraph2 my-2">عنوان آزمایشی</h3>
-                                        <!-- item card tags -->
-                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                انجام شده : 100%
-                                            </span>
-                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                تعداد وظایف : 100
-                                            </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- end item card -->
+                            <!-- end item card -->
+                        }
+
                         <!-- item card (new button) -->
                         <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                             <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -305,7 +241,7 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                             انصراف
                         </button>
-                        <button type="button" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" id="BindProjects">
                             افزودن پروژه جدید
                         </button>
                     </div>
@@ -326,7 +262,7 @@
                     <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bc-darkBlue text-white">
-                    <!-- Add new project modal body -->
+                    <!-- Add new organization modal body -->
                     <form id="organizationForm" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="formFile" class="form-label">تصویر</label>
@@ -401,6 +337,7 @@
     <script src="/src/JS/userPanel.js"></script>
 
     <script>
+        // add new organization
         $(document).ready(function () {
             $('#organizationForm').on('submit', function (e) {
                 e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
@@ -414,18 +351,22 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        var list = $('#organizationsList');
-                        list.empty();
-                        data.forEach(function (item) {
-                            list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
-                            $('#ddlOrganization').html(item.title);
-                        });
-                        //close modal
-                        $('#newOrganizationModal').toggleClass("show");
-                        document.getElementById("newOrganizationModal").style = "display: none";
-                        $('.modal-backdrop').remove();
-                        // show success message
-                        toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                        if (data.err != null)
+                            toastr.error(data.err, 'موفق');
+                        else {
+                            var list = $('#organizationsList');
+                            list.empty();
+                            data.forEach(function (item) {
+                                list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
+                                $('#ddlOrganization').html(item.title);
+                            });
+                            //close modal
+                            $('#newOrganizationModal').toggleClass("show");
+                            document.getElementById("newOrganizationModal").style = "display: none";
+                            $('.modal-backdrop').remove();
+                            // show success message
+                            toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                        }
                     },
                     error: function () {
                         // show error message
@@ -434,6 +375,76 @@
                 });
             });
         });
+
+
+        // change organization with click on one of the organizations in dropdown
+        function changeOrganization(orgName, orgId) {
+            // change text of ddlOrganization
+            $("#ddlOrganization").html(orgName);
+
+            //change selection of menu items and select projects item
+            if ($("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active") == false) {
+                document.getElementsByClassName("userPanel-menuItem")[0].classList.add("userPanel-menuItem-active");
+                document.getElementsByClassName("userPanel-menuItem")[1].classList.remove("userPanel-menuItem-active");
+                document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
+            }
+            debugger;
+
+            //load projects related to selected organization
+            $.ajax({
+                url: '@Url.Page("/Customer/UserPanel", "BindProjects")',
+                method: 'Get',
+                data: orgId,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    var list = $('#projectsList');
+                    list.empty();
+                    data.forEach(function (item) {
+                        var codeBlock = `
+                        <!-- item card -->
+                                    <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                                        <div class="userPanel-itemCard hc-box bc-primary">
+                                            <a href="#">
+                                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                                    <!-- item card image -->
+                                                    <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                         height="65px" />
+                                                    <!-- item card title -->
+                                                    <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
+                                                    <!-- item card tags -->
+                                                    <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                            انجام شده : ${item.tasksStatusPercent}%
+                                                        </span>
+                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                            تعداد وظایف : ${item.tasksCount}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- end item card -->
+                        `;
+
+                        alert(codeBlock);
+                        list.append(codeBlock);
+                        $('#ddlOrganization').html(item.title);
+                    });
+                    //close modal
+                    $('#newOrganizationModal').toggleClass("show");
+                    document.getElementById("newOrganizationModal").style = "display: none";
+                    $('.modal-backdrop').remove();
+                    // show success message
+                    toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                },
+                error: function () {
+                    // show error message
+                    toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+                }
+            });
+        }
     </script>
 </body>
 

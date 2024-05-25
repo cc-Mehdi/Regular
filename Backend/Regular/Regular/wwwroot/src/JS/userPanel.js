@@ -1,4 +1,4 @@
-// Config Bootstrap ToolTip
+﻿// Config Bootstrap ToolTip
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
@@ -70,4 +70,5 @@ function handleListItemClick(event) {
   }
   
   // Call the function to attach click listeners when the page is loaded
-  document.addEventListener('DOMContentLoaded', attachClickListeners);
+document.addEventListener('DOMContentLoaded', attachClickListeners);
+

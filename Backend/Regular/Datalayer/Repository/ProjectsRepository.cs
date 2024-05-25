@@ -24,6 +24,8 @@ namespace Datalayer.Repository
             objFromDb.Title = project.Title;
             objFromDb.Owner = project.Owner;
             objFromDb.OwnerId = project.OwnerId;
+            objFromDb.TasksStatusPercent = project.TasksStatusPercent;
+            objFromDb.TasksCount = project.TasksCount;
             if (objFromDb.ImageName == project.ImageName)
                 objFromDb.ImageName = project.ImageName;
         }
