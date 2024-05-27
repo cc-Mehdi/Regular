@@ -96,6 +96,8 @@ namespace Regular.Pages.Customer
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
+            string orgTitle = Request.Form["orgTitle"];
+            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
 
             // convert data to model for sending to database
             var newItem = new Projects
@@ -104,8 +106,8 @@ namespace Regular.Pages.Customer
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName,
-                Organization = "t1",
-                OrganizationId = 83,
+                Organization = organization.Title,
+                OrganizationId = organization.Id,
                 TasksCount = 0,
                 TasksStatusPercent = 0
             };
@@ -113,15 +115,8 @@ namespace Regular.Pages.Customer
             _unitOfWork.ProjectsRepository.Add(newItem);
             _unitOfWork.Save();
 
-            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
+            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id&&u.OrganizationId==organization.Id).ToList();
             return new JsonResult(projectsList);
-        }
-
-
-        public async Task<JsonResult> OnGetBindProjectsAsync(string organizationId)
-        {
-            var ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == int.Parse(organizationId)).ToList();
-            return new JsonResult(ProjectsList);
         }
 
         private bool hasAccessToCreateOrganization()
@@ -130,6 +125,13 @@ namespace Regular.Pages.Customer
             if (organicationsCount < 3)
                 return true;
             return false;
+        }
+
+        public async Task<JsonResult> OnGetGetProjectsByOrganizationId(int organizationId)
+        {
+            // Load projects based on selected organization
+            ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
+            return new JsonResult(ProjectsList);
         }
     }
 }

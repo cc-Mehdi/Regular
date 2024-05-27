@@ -84,7 +84,7 @@
                                     foreach (var item in Model.OrganizationsList)
                                     {
                                         <li>
-                                            <a class="dropdown-item text-end text-white py-3" onclick="changeOrganization('@item.Title', @item.Id)">@item.Title</a>
+                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">@item.Title</a>
                                         </li>
                                     }
                                 }
@@ -378,6 +378,8 @@
 
                 var formData = new FormData(this);
 
+                formData.append('orgTitle', $("#ddlOrganization").text());
+
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "AddProject")',
                     method: 'POST',
@@ -389,51 +391,51 @@
                         list.empty();
                         data.forEach(function (item) {
                             var codeBlock = `
-                                                <!-- item card -->
-                                                            <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                                                                <div class="userPanel-itemCard hc-box bc-primary">
-                                                                    <a href="#">
-                                                                        <div class="d-flex flex-column justify-content-center align-items-center">
-                                                                            <!-- item card image -->
-                                                                            <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                                                                 height="65px" />
-                                                                            <!-- item card title -->
-                                                                            <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
-                                                                            <!-- item card tags -->
-                                                                            <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                                                    انجام شده : ${item.tasksStatusPercent}%
-                                                                                </span>
-                                                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                                                    تعداد وظایف : ${item.tasksCount}
-                                                                                </span>
-                                                                            </div>
+                                                        <!-- item card -->
+                                                                    <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                                                                        <div class="userPanel-itemCard hc-box bc-primary">
+                                                                            <a href="#">
+                                                                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                                    <!-- item card image -->
+                                                                                    <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                                                         height="65px" />
+                                                                                    <!-- item card title -->
+                                                                                    <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
+                                                                                    <!-- item card tags -->
+                                                                                    <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                                                            انجام شده : ${item.tasksStatusPercent}%
+                                                                                        </span>
+                                                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                                                            تعداد وظایف : ${item.tasksCount}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
                                                                         </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end item card -->
-                                                `;
+                                                                    </div>
+                                                                    <!-- end item card -->
+                                                        `;
 
                             list.append(codeBlock);
                         });
                         var addNewProjectCard_codeBlock = `
-                                                            <!-- item card (new button) -->
-                                                            <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
-                                                                <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
-                                                                     data-bs-target="#newProjectModal">
-                                                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                                                                        <!-- item card icon -->
-                                                                        <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
-                                                                        <!-- item card title -->
-                                                                        <h3 class="hc-fs-paragraph2 my-2 text-center">
-                                                                            افزودن پروژه جدید
-                                                                        </h3>
+                                                                    <!-- item card (new button) -->
+                                                                    <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
+                                                                        <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
+                                                                             data-bs-target="#newProjectModal">
+                                                                            <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                                                                <!-- item card icon -->
+                                                                                <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
+                                                                                <!-- item card title -->
+                                                                                <h3 class="hc-fs-paragraph2 my-2 text-center">
+                                                                                    افزودن پروژه جدید
+                                                                                </h3>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- end item card (new button) -->
-                                                                `;
+                                                                    <!-- end item card (new button) -->
+                                                                        `;
 
 
                         list.append(addNewProjectCard_codeBlock);
@@ -452,91 +454,83 @@
             });
         });
 
-        // change organization with click on one of the organizations in dropdown
-        function changeOrganization(orgName, orgId) {
-            // change text of ddlOrganization
-            $("#ddlOrganization").html(orgName);
+        function UpdateProjectsByOrganizationId(orgId, orgTitle) {
 
-            //change selection of menu items and select projects item
-            if ($("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active") == false) {
+            // Update the dropdown button text
+            $('#ddlOrganization').text(orgTitle);
+
+            // Change selection of menu items
+            if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
                 document.getElementsByClassName("userPanel-menuItem")[0].classList.add("userPanel-menuItem-active");
                 document.getElementsByClassName("userPanel-menuItem")[1].classList.remove("userPanel-menuItem-active");
                 document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
             }
-            debugger;
 
-            //load projects related to selected organization
             $.ajax({
-                url: '@Url.Page("/Customer/UserPanel", "BindProjects")',
-                method: 'Get',
-                data: orgId,
-                contentType: false,
-                processData: false,
+                url: "/Customer/UserPanel?handler=GetProjectsByOrganizationId",
+                method: "GET",
+                data: { organizationId: orgId },
                 success: function (data) {
                     var list = $('#projectsList');
                     list.empty();
                     data.forEach(function (item) {
                         var codeBlock = `
-                            <!-- item card -->
-                                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                                            <div class="userPanel-itemCard hc-box bc-primary">
-                                                <a href="#">
-                                                    <div class="d-flex flex-column justify-content-center align-items-center">
-                                                        <!-- item card image -->
-                                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                                                height="65px" />
-                                                        <!-- item card title -->
-                                                        <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
-                                                        <!-- item card tags -->
-                                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                                انجام شده : ${item.tasksStatusPercent}%
-                                                            </span>
-                                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                                تعداد وظایف : ${item.tasksCount}
-                                                            </span>
+                                        <!-- item card -->
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                                                        <div class="userPanel-itemCard hc-box bc-primary">
+                                                            <a href="#">
+                                                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                                                    <!-- item card image -->
+                                                                    <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                                            height="65px" />
+                                                                    <!-- item card title -->
+                                                                    <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
+                                                                    <!-- item card tags -->
+                                                                    <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                                            انجام شده : ${item.tasksStatusPercent}%
+                                                                        </span>
+                                                                        <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                                            تعداد وظایف : ${item.tasksCount}
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
                                                         </div>
                                                     </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <!-- end item card -->
+                                                    <!-- end item card -->
                                         `;
+
                         list.append(codeBlock);
                     });
                     var addNewProjectCard_codeBlock = `
-                            <!-- item card (new button) -->
-                            <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
-                                <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
-                                        data-bs-target="#newProjectModal">
-                                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                                        <!-- item card icon -->
-                                        <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
-                                        <!-- item card title -->
-                                        <h3 class="hc-fs-paragraph2 my-2 text-center">
-                                            افزودن پروژه جدید
-                                        </h3>
+                                <!-- item card (new button) -->
+                                <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
+                                    <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
+                                            data-bs-target="#newProjectModal">
+                                        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                                            <!-- item card icon -->
+                                            <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
+                                            <!-- item card title -->
+                                            <h3 class="hc-fs-paragraph2 my-2 text-center">
+                                                افزودن پروژه جدید
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- end item card (new button) -->
-                                `;
+                                <!-- end item card (new button) -->
+                                    `;
 
 
                     list.append(addNewProjectCard_codeBlock);
-                    //close modal
-                    $('#newOrganizationModal').toggleClass("show");
-                    document.getElementById("newOrganizationModal").style = "display: none";
-                    $('.modal-backdrop').remove();
-                    // show success message
-                    toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
                 },
                 error: function () {
-                    // show error message
-                    toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+                    alert("error");
                 }
             });
         }
+
+
     </script>
 </body>
 
