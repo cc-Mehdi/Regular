@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,13 +35,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\appsettings.json",
-              "RelativeDocumentMoniker": "Regular\\appsettings.json",
-              "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\appsettings.json",
-              "RelativeToolTip": "Regular\\appsettings.json",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-29T11:58:24.831Z",
+              "Title": "userPanel.js",
+              "DocumentMoniker": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-29T13:31:08.727Z",
               "EditorCaption": ""
             },
             {
@@ -65,8 +65,7 @@
               "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
               "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T18:19:11.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T18:19:11.049Z"
             }
           ]
         }

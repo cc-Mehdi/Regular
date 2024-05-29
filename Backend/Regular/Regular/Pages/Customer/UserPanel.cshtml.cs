@@ -146,5 +146,23 @@ namespace Regular.Pages.Customer
                 ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id && u.Title.Contains(filterParameter)).ToList();
             return new JsonResult(ProjectsList);
         }
+
+        public async Task<JsonResult> OnGetGetTasksByOrganizationId(int organizationId)
+        {
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organizationId).ToList();
+            return new JsonResult(ProjectsList);
+        }
+
+        public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgTitle)
+        {
+            isUserLogin();
+            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
+
+            if (filterParameter == null)
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organization.Id).ToList();
+            else
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organization.Id && u.Title.Contains(filterParameter)).ToList();
+            return new JsonResult(ProjectsList);
+        }
     }
 }
