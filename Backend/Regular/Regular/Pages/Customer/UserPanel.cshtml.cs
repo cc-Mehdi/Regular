@@ -42,6 +42,7 @@ namespace Regular.Pages.Customer
             // check is user logged-in
             isUserLogin();
 
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == loggedInUser.Id || u.AssigntoId == loggedInUser.Id).ToList();
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
             int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList[0].Id;
             ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
@@ -85,6 +86,7 @@ namespace Regular.Pages.Customer
             _unitOfWork.Save();
 
             var OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
+            Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == OrganizationsList[0].Id);
             return new JsonResult(OrganizationsList);
         }
 
@@ -129,8 +131,19 @@ namespace Regular.Pages.Customer
 
         public async Task<JsonResult> OnGetGetProjectsByOrganizationId(int organizationId)
         {
-            // Load projects based on selected organization
             ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
+            return new JsonResult(ProjectsList);
+        }
+
+        public async Task<JsonResult> OnGetGetProjectsByFilter(string filterParameter, string orgTitle)
+        {
+            isUserLogin();
+            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
+
+            if (filterParameter == null)
+                ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id).ToList();
+            else
+                ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id && u.Title.Contains(filterParameter)).ToList();
             return new JsonResult(ProjectsList);
         }
     }

@@ -4127,23 +4127,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cc-mehdi\\.nuget\\packages\\": {},
+    "C:\\Users\\mehdi.gholami\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
+      "projectUniqueName": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
       "projectName": "Regular",
-      "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
-      "packagesPath": "C:\\Users\\cc-mehdi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\obj\\",
+      "projectPath": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
+      "packagesPath": "C:\\Users\\mehdi.gholami\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\cc-mehdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mehdi.gholami\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WinForms.config"
       ],
@@ -4152,14 +4155,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
-              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
+            "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
+              "projectPath": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
             }
           }
         }
@@ -4219,7 +4223,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
