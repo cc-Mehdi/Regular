@@ -149,8 +149,8 @@ namespace Regular.Pages.Customer
 
         public async Task<JsonResult> OnGetGetTasksByOrganizationId(int organizationId)
         {
-            TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organizationId).ToList();
-            return new JsonResult(ProjectsList);
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u=> u.Project.OrganizationId == organizationId).ToList();
+            return new JsonResult(TasksList);
         }
 
         public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgTitle)

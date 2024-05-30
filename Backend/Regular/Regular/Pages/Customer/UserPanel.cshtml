@@ -71,7 +71,7 @@
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                        <span id="ddlOrganization">@Model.OrganizationsList[0].Title</span>
+                                        <span id="ddlOrganization" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
                                     }
                                     else
                                     {
@@ -334,6 +334,7 @@
     <script src="/src/JS/userPanel.js"></script>
 
     <script>
+        // organization section
         // add new organization
         $(document).ready(function () {
             $('#organizationForm').on('submit', function (e) {
@@ -372,7 +373,9 @@
                 });
             });
         });
+        // end organization section
 
+        // project section
         // add new project
         $(document).ready(function () {
             $('#projectForm').on('submit', function (e) {
@@ -421,7 +424,7 @@
 
                             list.append(codeBlock);
                         });
-                        var addNewProjectCard_codeBlock = `
+                        var addNewItemCard_codeBlock = `
                                                                                     <!-- item card (new button) -->
                                                                                     <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                                                                                         <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -440,7 +443,7 @@
                                                                                         `;
 
 
-                        list.append(addNewProjectCard_codeBlock);
+                        list.append(addNewItemCard_codeBlock);
                         //close modal
                         $('#newProjectModal').toggleClass("show");
                         document.getElementById("newProjectModal").style = "display: none";
@@ -455,10 +458,10 @@
                 });
             });
         });
-
         function UpdateProjectsByOrganizationId(orgId, orgTitle) {
             // Update the dropdown button text
             $('#ddlOrganization').text(orgTitle);
+            $('#ddlOrganization').data("id", orgId);
 
             // Change selection of menu items
             if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
@@ -504,7 +507,7 @@
 
                         list.append(codeBlock);
                     });
-                    var addNewProjectCard_codeBlock = `
+                    var addNewItemCard_codeBlock = `
                                                 <!-- item card (new button) -->
                                                 <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                                                     <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -523,14 +526,13 @@
                                                     `;
 
 
-                    list.append(addNewProjectCard_codeBlock);
+                    list.append(addNewItemCard_codeBlock);
                 },
                 error: function () {
                     alert("error");
                 }
             });
         }
-
         function UpdateProjectsByFilter(parameter) {
             $.ajax({
                 url: "/Customer/UserPanel?handler=GetProjectsByFilter",
@@ -569,7 +571,7 @@
 
                         list.append(codeBlock);
                     });
-                    var addNewProjectCard_codeBlock = `
+                    var addNewItemCard_codeBlock = `
                                                         <!-- item card (new button) -->
                                                         <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                                                             <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -588,29 +590,29 @@
                                                             `;
 
 
-                    list.append(addNewProjectCard_codeBlock);
+                    list.append(addNewItemCard_codeBlock);
                 },
                 error: function () {
                     alert("error");
                 }
             });
         }
+        // end project section
 
-        function UpdateTasksByOrganizationId(orgId, orgTitle) {
-            // Update the dropdown button text
-            $('#ddlOrganization').text(orgTitle);
+        // task section
+        function UpdateTasksByOrganizationId() {
 
             // Change selection of menu items
             if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
-                document.getElementsByClassName("userPanel-menuItem")[0].classList.add("userPanel-menuItem-active");
-                document.getElementsByClassName("userPanel-menuItem")[1].classList.remove("userPanel-menuItem-active");
+                document.getElementsByClassName("userPanel-menuItem")[0].classList.remove("userPanel-menuItem-active");
+                document.getElementsByClassName("userPanel-menuItem")[1].classList.add("userPanel-menuItem-active");
                 document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
             }
 
             $.ajax({
                 url: "/Customer/UserPanel?handler=GetTasksByOrganizationId",
                 method: "GET",
-                data: { organizationId: orgId },
+                data: { organizationId: $("#ddlOrganization").data("id") },
                 success: function (data) {
                     var list = $('#itemsList');
                     list.empty();
@@ -628,7 +630,7 @@
                                                     </div>
 
                                                     <!-- item card title -->
-                                                    <h3 class="hc-fs-paragraph3 my-2">عنوان وظیفه مورد نظر</h3>
+                                                    <h3 class="hc-fs-paragraph3 my-2">${item.title}</h3>
                                                     <!-- item card tags -->
                                                     <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
                                                       <span class="itemCard-tag p-1 px-3 bc-darkBlue text-warning rounded-3 hc-fs-span3 my-1">
@@ -647,7 +649,7 @@
 
                         list.append(codeBlock);
                     });
-                    var addNewProjectCard_codeBlock = `
+                    var addNewItemCard_codeBlock = `
                                                         <!-- item card (new button) -->
                                                         <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                                                             <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -657,7 +659,7 @@
                                                                     <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
                                                                     <!-- item card title -->
                                                                     <h3 class="hc-fs-paragraph2 my-2 text-center">
-                                                                        افزودن پروژه جدید
+                                                                        افزودن وظیفه جدید
                                                                     </h3>
                                                                 </div>
                                                             </div>
@@ -666,19 +668,18 @@
                                                             `;
 
 
-                    list.append(addNewProjectCard_codeBlock);
+                    list.append(addNewItemCard_codeBlock);
                 },
                 error: function () {
                     alert("error");
                 }
             });
         }
-
         function UpdateTasksByFilter(parameter) {
             $.ajax({
                 url: "/Customer/UserPanel?handler=GetTasksByFilter",
                 method: "GET",
-                data: { filterParameter: parameter, orgTitle: $('#ddlOrganization').text() },
+                data: { filterParameter: parameter, organizationId: $('#ddlOrganization').data("id") },
                 success: function (data) {
                     var list = $('#itemsList');
                     list.empty();
@@ -715,7 +716,7 @@
 
                         list.append(codeBlock);
                     });
-                    var addNewProjectCard_codeBlock = `
+                    var addNewItemCard_codeBlock = `
                                                                 <!-- item card (new button) -->
                                                                 <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
                                                                     <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
@@ -734,13 +735,14 @@
                                                                     `;
 
 
-                    list.append(addNewProjectCard_codeBlock);
+                    list.append(addNewItemCard_codeBlock);
                 },
                 error: function () {
                     alert("error");
                 }
             });
         }
+        // end task section
     </script>
 </body>
 
