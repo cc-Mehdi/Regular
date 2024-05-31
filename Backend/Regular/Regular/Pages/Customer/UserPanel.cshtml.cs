@@ -98,8 +98,8 @@ namespace Regular.Pages.Customer
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
-            string orgTitle = Request.Form["orgTitle"];
-            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
+            var orgId = Request.Form["orgId"];
+            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
 
             // convert data to model for sending to database
             var newItem = new Projects
@@ -163,6 +163,61 @@ namespace Regular.Pages.Customer
             else
                 TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organization.Id && u.Title.Contains(filterParameter)).ToList();
             return new JsonResult(ProjectsList);
+        }
+
+
+        // add new task
+        public async Task<JsonResult> OnPostAddTaskAsync()
+        {
+            isUserLogin();
+
+            var title = Request.Form["title"].ToString();
+            var priority = Request.Form["priority"].ToString();
+            var assignTo = Request.Form["assignTo"].ToString();
+            var assigneeId = Convert.ToInt32(Request.Form["Employees"].ToString()); // Assuming only one employee is selected
+            var estimateTime = Request.Form["estimateTime"].ToString();
+            var remainingTime = Request.Form["remainingTime"].ToString();
+            var loggedTime = Request.Form["loggedTime"].ToString();
+            var description = Request.Form["description"].ToString();
+            var projectId = Convert.ToInt32(Request.Form["ProjectId"].ToString()); // Assuming projectId is passed as a hidden input
+            var reporterId = loggedInUser.Id;
+            var organizationId = Request.Form["orgId"];
+
+            // Validate the input data (simple validation example)
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
+                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description))
+            {
+                return new JsonResult(new { err = "All fields are required." });
+            }
+
+            try
+            {
+                // Convert data to model for sending to database
+                var newItem = new Tasks
+                {
+                    Title = title,
+                    Priority = priority,
+                    Assignto = assignTo,
+                    AssigntoId = assigneeId,
+                    EstimateTime = estimateTime,
+                    RemainingTime = remainingTime,
+                    LoggedTime = loggedTime,
+                    Description = description,
+                    ProjectId = projectId,
+                    ReporterId = reporterId
+                };
+
+                _unitOfWork.TasksRepository.Add(newItem);
+                _unitOfWork.Save();
+
+                var tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OwnerId == loggedInUser.Id && u.Project.OrganizationId == organizationId).ToList();
+                return new JsonResult(tasksList);
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (log it, return error response, etc.)
+                return new JsonResult(new { err = "An error occurred while adding the task." });
+            }
         }
     }
 }

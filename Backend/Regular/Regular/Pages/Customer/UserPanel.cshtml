@@ -313,8 +313,8 @@
     </div>
 
     <!-- Add New Tasks Modal -->
-    <div class="modal fade" id="newTaskModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <!-- Add New Tasks Modal -->
+    <div class="modal fade" id="newTaskModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
@@ -324,27 +324,43 @@
                     <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bc-darkBlue text-white">
-                    <!-- Add new project modal body -->
-                    <form id="projectForm" method="post" enctype="multipart/form-data">
+                    <!-- Add new task modal body -->
+                    <form id="taskForm" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">عنوان پروژه</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="Title"
-                                   placeholder="تکمیل طراحی اولیه" />
-                            <span class="text-danger" asp-validation-for="@Model.Projects.Title"></span>
+                            <label for="taskTitle" class="form-label">عنوان وظیفه</label>
+                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="title" id="taskTitle" placeholder="طراحی بنر">
+                            <span class="text-danger" asp-validation-for="@Model.Tasks.Title"></span>
                         </div>
 
                         <div class="mb-3">
-                            <label for="formEmployees" class="form-label">همکاران</label>
-                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
+                            <label for="formPriority" class="form-label">اولویت</label>
+                            <select class="form-select text-white" name="priority" id="formPriority">
+                                <option selected>این وظیفه چقدر مهم است؟</option>
+                                <option value="1" class="bc-darkBlue">کم</option>
+                                <option value="2" class="bc-darkBlue">معمولی</option>
+                                <option value="3" class="bc-darkBlue">زیاد</option>
+                            </select>
+                            <span class="text-danger" asp-validation-for="@Model.Tasks.Priority"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formAssignee" class="form-label">اختصاص یافه به</label>
+                            <div class="d-flex align-items-center mb-1">
+                                <img src="/src/media/Logo/regular-favicon-color.png" class="ms-2" width="50" height="50" alt="">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" placeholder="آریا شبانه" disabled>
+                            </div>
+
+                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+
                                             @foreach (var item in Model.EmployeesList)
                                             {
-                                                <div class="form-check form-check-reverse">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
-                                                    <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
+                                                <div class="form-check form-check-reverse d-flex align-items-center">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
                                                         @item.FullName
                                                     </label>
                                                 </div>
@@ -353,22 +369,52 @@
                                     </div>
                                 </div>
                             </div>
+                            <span class="text-danger" asp-validation-for="@Model.Tasks.Assignto"></span>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="workReport" class="form-label">گزارش کار</label>
+                            <div class="w-100 p-2 border border-light rounded-3">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="estimatedTime" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
+                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="estimatedTime" name="estimateTime" placeholder="3h 30m">
+                                        <span class="text-danger" asp-validation-for="@Model.Tasks.EstimateTime"></span>
+                                    </div>
+                                    <div class="col">
+                                        <label for="remainingTime" class="form-label hc-fs-paragraph2">زمان باقی مانده</label>
+                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="remainingTime" name="remainingTime" placeholder="1h">
+                                        <span class="text-danger" asp-validation-for="@Model.Tasks.RemainingTime"></span>
+                                    </div>
+                                    <div class="col">
+                                        <label for="loggedTime" class="form-label hc-fs-paragraph2">زمان ثبت شده</label>
+                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="loggedTime" name="loggedTime" placeholder="2h 30m">
+                                        <span class="text-danger" asp-validation-for="@Model.Tasks.LoggedTime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="taskDescription" class="form-label">توضیحات</label>
+                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskDescription" name="description" rows="3"></textarea>
+                            <span class="text-danger" asp-validation-for="@Model.Tasks.Description"></span>
+                        </div>
 
                         <div class="modal-footer bc-lightCyan">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 انصراف
                             </button>
-                            <button type="submit" class="btn btn-success" id="bindProjects">
-                                افزودن وظیفه جدید جدید
+                            <button type="submit" class="btn btn-success">
+                                افزودن وظیفه جدید
                             </button>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -395,6 +441,126 @@
 
     <!-- Custom Script -->
     <script src="/src/JS/userPanel.js"></script>
+
+    <script>
+        // add new project
+        $(document).ready(function () {
+            $('#projectForm').on('submit', function (e) {
+                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+                var formData = new FormData(this);
+
+                formData.append('orgTitle', $("#ddlOrganization").text());
+
+                $.ajax({
+                    url: '@Url.Page("/Customer/UserPanel", "AddProject")',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var list = $('#itemsList');
+                        list.empty();
+                        data.forEach(function (item) {
+                            var codeBlock = getProjectCard(item);
+                            list.append(codeBlock);
+                        });
+                        var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
+                        list.append(addNewItemCard_codeBlock);
+                        //close modal
+                        $('#newProjectModal').toggleClass("show");
+                        document.getElementById("newProjectModal").style = "display: none";
+                        $('.modal-backdrop').remove();
+                        // show success message
+                        toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
+                    },
+                    error: function () {
+                        // show error message
+                        toastr.error('افزودن پروژه با شکست مواجه شد', 'خطا');
+                    }
+                });
+            });
+        });
+
+        // organization section
+        // add new organization
+        $(document).ready(function () {
+            $('#organizationForm').on('submit', function (e) {
+                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '@Url.Page("/Customer/UserPanel", "AddOrganization")',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.err != null)
+                            toastr.error(data.err, 'خطا');
+                        else {
+                            var list = $('#organizationsList');
+                            list.empty();
+                            data.forEach(function (item) {
+                                list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
+                                $('#ddlOrganization').html(item.title);
+                            });
+                            //close modal
+                            $('#newOrganizationModal').toggleClass("show");
+                            document.getElementById("newOrganizationModal").style = "display: none";
+                            $('.modal-backdrop').remove();
+                            // show success message
+                            toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                        }
+                    },
+                    error: function () {
+                        // show error message
+                        toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+                    }
+                });
+            });
+        });
+        // end organization section
+
+        // add new task
+        $(document).ready(function () {
+            $('#taskForm').on('submit', function (e) {
+                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+                var formData = new FormData(this);
+
+                formData.append('orgId', $("#ddlOrganization").data("id"));
+
+                $.ajax({
+                    url: '@Url.Page("/Customer/UserPanel", "AddTask")',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var list = $('#itemsList');
+                        list.empty();
+                        data.forEach(function (item) {
+                            var codeBlock = getProjectCard(item);
+                            list.append(codeBlock);
+                        });
+                        var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
+                        list.append(addNewItemCard_codeBlock);
+                        //close modal
+                        $('#newTaskModal').toggleClass("show");
+                        document.getElementById("newTaskModal").style = "display: none";
+                        $('.modal-backdrop').remove();
+                        // show success message
+                        toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+                    },
+                    error: function () {
+                        // show error message
+                        toastr.error('افزودن وظیفه با شکست مواجه شد', 'خطا');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
