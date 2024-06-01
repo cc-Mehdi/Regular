@@ -8,7 +8,7 @@ namespace Regular.Pages.Customer
 {
     public class UserPanelModel : PageModel
     {
-        private Users loggedInUser;
+        public Users loggedInUser;
         private readonly IUnitOfWork _unitOfWork;
 
         public List<Organizations> OrganizationsList;
@@ -48,7 +48,7 @@ namespace Regular.Pages.Customer
             ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
         }
 
-        private void isUserLogin()
+        public void isUserLogin()
         {
             if (Request.Cookies["loginToken"] == null)
                 Response.Redirect("/Customer/Login-Register");
@@ -173,13 +173,13 @@ namespace Regular.Pages.Customer
 
             var title = Request.Form["title"].ToString();
             var priority = Request.Form["priority"].ToString();
-            var assignTo = Request.Form["assignTo"].ToString();
-            var assigneeId = Convert.ToInt32(Request.Form["Employees"].ToString()); // Assuming only one employee is selected
+            var assigneeId = Request.Form["Employees"].ToString();
+            var assignTo = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == int.Parse(assigneeId)).FullName.ToString();
             var estimateTime = Request.Form["estimateTime"].ToString();
             var remainingTime = Request.Form["remainingTime"].ToString();
             var loggedTime = Request.Form["loggedTime"].ToString();
             var description = Request.Form["description"].ToString();
-            var projectId = Convert.ToInt32(Request.Form["ProjectId"].ToString()); // Assuming projectId is passed as a hidden input
+            var projectId = Request.Form["ProjectId"].ToString();
             var reporterId = loggedInUser.Id;
             var organizationId = Request.Form["orgId"];
 
@@ -187,7 +187,7 @@ namespace Regular.Pages.Customer
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
                 string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description))
             {
-                return new JsonResult(new { err = "All fields are required." });
+                return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
             }
 
             try
@@ -198,20 +198,22 @@ namespace Regular.Pages.Customer
                     Title = title,
                     Priority = priority,
                     Assignto = assignTo,
-                    AssigntoId = assigneeId,
+                    AssigntoId = int.Parse(assigneeId),
                     EstimateTime = estimateTime,
                     RemainingTime = remainingTime,
                     LoggedTime = loggedTime,
                     Description = description,
-                    ProjectId = projectId,
+                    ProjectId = int.Parse(projectId),
+                    Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == int.Parse(projectId)),
                     ReporterId = reporterId
                 };
 
                 _unitOfWork.TasksRepository.Add(newItem);
                 _unitOfWork.Save();
 
-                var tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OwnerId == loggedInUser.Id && u.Project.OrganizationId == organizationId).ToList();
-                return new JsonResult(tasksList);
+                TasksList = _unitOfWork.TasksRepository.GetAll().ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organizationId).ToList();
+                return new JsonResult(TasksList);
             }
             catch (Exception ex)
             {

@@ -69,7 +69,7 @@ namespace Regular.Pages.Customer
                         {
                             //save to database
                             user.Username = Guid.NewGuid().ToString();
-                            user.ImageName = "/wwwrooot/src/media/default-person-profile.png";
+                            user.ImageName = "/src/media/default-person-profile.png";
                             _unitOfWork.UsersRepository.Add(user);
                             _unitOfWork.Save();
 

@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\",
+  "WorkspaceRootPath": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userpanel.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\mehdi.gholami\\documents\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
@@ -36,37 +36,32 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "userPanel.js",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "DocumentMoniker": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
               "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userPanel.js",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
+              "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
               "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userPanel.js",
-              "ViewState": "AQIAAEUAAAAAAAAAAAAmwE4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-05-31T10:53:59.929Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-31T10:53:59.929Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "UserPanel.cshtml",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "DocumentMoniker": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
               "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
               "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml",
-              "ViewState": "AQIAALIBAAAAAAAAAAAqwOIBAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-05-18T07:45:39.65Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-18T07:45:39.65Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "UserPanel.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
               "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "ToolTip": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
               "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "ViewState": "AQIAAJcAAAAAAAAAAAAEwKgAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-16T18:19:11.049Z",
               "EditorCaption": ""

@@ -1,4 +1,6 @@
 ﻿@page
+@using Datalayer.Models
+@using Datalayer.Repository.IRepository
 @model Regular.Pages.Customer.UserPanelModel
 @{
     Layout = null;
@@ -343,11 +345,15 @@
                             <span class="text-danger" asp-validation-for="@Model.Tasks.Priority"></span>
                         </div>
 
+                        @{
+                            Model.isUserLogin();
+                        }
+
                         <div class="mb-3">
                             <label for="formAssignee" class="form-label">اختصاص یافه به</label>
                             <div class="d-flex align-items-center mb-1">
-                                <img src="/src/media/Logo/regular-favicon-color.png" class="ms-2" width="50" height="50" alt="">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" placeholder="آریا شبانه" disabled>
+                                <img src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
@@ -355,7 +361,14 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-
+                                            @{
+                                                <div class="form-check form-check-reverse d-flex align-items-center">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="checkbox" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@item.Id">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
+                                                        @Model.loggedInUser.FullName
+                                                    </label>
+                                                </div>
+                                            }
                                             @foreach (var item in Model.EmployeesList)
                                             {
                                                 <div class="form-check form-check-reverse d-flex align-items-center">
@@ -370,6 +383,32 @@
                                 </div>
                             </div>
                             <span class="text-danger" asp-validation-for="@Model.Tasks.Assignto"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formAssignee" class="form-label">پروژه</label>
+                            <div class="d-flex align-items-center mb-1">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject" name="project" value="@Model.ProjectsList[0].Title" data-id="@Model.ProjectsList[0].Id" disabled>
+                            </div>
+
+                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                                            @foreach (var item in Model.ProjectsList)
+                                            {
+                                                <div class="form-check form-check-reverse d-flex align-items-center">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3 border py-2" for="employeeCheck@item.Id">
+                                                        @item.Title
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-danger" asp-validation-for="@Model.Tasks.Project"></span>
                         </div>
 
                         <div class="mb-3">
@@ -450,7 +489,7 @@
 
                 var formData = new FormData(this);
 
-                formData.append('orgTitle', $("#ddlOrganization").text());
+                formData.append('orgId', $("#ddlOrganization").data("id"));
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "AddProject")',
@@ -459,20 +498,24 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        var list = $('#itemsList');
-                        list.empty();
-                        data.forEach(function (item) {
-                            var codeBlock = getProjectCard(item);
-                            list.append(codeBlock);
-                        });
-                        var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
-                        list.append(addNewItemCard_codeBlock);
-                        //close modal
-                        $('#newProjectModal').toggleClass("show");
-                        document.getElementById("newProjectModal").style = "display: none";
-                        $('.modal-backdrop').remove();
-                        // show success message
-                        toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
+                        if (data.err != null)
+                            toastr.error(data.err, 'خطا');
+                        else {
+                            var list = $('#itemsList');
+                            list.empty();
+                            data.forEach(function (item) {
+                                var codeBlock = getProjectCard(item);
+                                list.append(codeBlock);
+                            });
+                            var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
+                            list.append(addNewItemCard_codeBlock);
+                            //close modal
+                            $('#newProjectModal').toggleClass("show");
+                            document.getElementById("newProjectModal").style = "display: none";
+                            $('.modal-backdrop').remove();
+                            // show success message
+                            toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
+                        }
                     },
                     error: function () {
                         // show error message
@@ -530,6 +573,7 @@
                 var formData = new FormData(this);
 
                 formData.append('orgId', $("#ddlOrganization").data("id"));
+                formData.append('projectId', $("#txtProject").data("id"));
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "AddTask")',
@@ -538,20 +582,24 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        var list = $('#itemsList');
-                        list.empty();
-                        data.forEach(function (item) {
-                            var codeBlock = getProjectCard(item);
-                            list.append(codeBlock);
-                        });
-                        var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
-                        list.append(addNewItemCard_codeBlock);
-                        //close modal
-                        $('#newTaskModal').toggleClass("show");
-                        document.getElementById("newTaskModal").style = "display: none";
-                        $('.modal-backdrop').remove();
-                        // show success message
-                        toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+                        if (data.err != null)
+                            toastr.error(data.err, 'خطا');
+                        else {
+                            var list = $('#itemsList');
+                            list.empty();
+                            data.forEach(function (item) {
+                                var codeBlock = getProjectCard(item);
+                                list.append(codeBlock);
+                            });
+                            var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
+                            list.append(addNewItemCard_codeBlock);
+                            //close modal
+                            $('#newTaskModal').toggleClass("show");
+                            document.getElementById("newTaskModal").style = "display: none";
+                            $('.modal-backdrop').remove();
+                            // show success message
+                            toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+                        }
                     },
                     error: function () {
                         // show error message

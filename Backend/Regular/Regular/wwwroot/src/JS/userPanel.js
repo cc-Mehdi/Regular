@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', attachClickListeners);
 
 
 // project section
-
 function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
 
     if (orgId != null && orgTitle != null) {
@@ -140,7 +139,6 @@ function UpdateProjectsByFilter(parameter) {
 
 
 // task section
-
 function UpdateTasksByOrganizationId() {
     // Change selection of menu items
     if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
