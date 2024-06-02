@@ -211,8 +211,7 @@ namespace Regular.Pages.Customer
                 _unitOfWork.TasksRepository.Add(newItem);
                 _unitOfWork.Save();
 
-                TasksList = _unitOfWork.TasksRepository.GetAll().ToList();
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organizationId).ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(organizationId)).ToList();
                 return new JsonResult(TasksList);
             }
             catch (Exception ex)
