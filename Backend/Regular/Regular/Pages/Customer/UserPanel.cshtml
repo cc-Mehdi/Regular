@@ -109,9 +109,11 @@
                                     همه وظایف
                                 </li>
                                 </a>
+                                <a onclick="UpdateEmployeesByOrganizationId()">
                                 <li class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
                                     همکاران
                                 </li>
+                                </a>
                             </ul>
                         </div>
                     </div>
@@ -207,7 +209,7 @@
                             <label for="formFile" class="form-label">عنوان پروژه</label>
                             <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="Title"
                                    placeholder="تکمیل طراحی اولیه" />
-                            <span class="text-danger" asp-validation-for="@Model.Projects.Title"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Project.Title"></span>
                         </div>
 
                         <div class="mb-3">
@@ -217,7 +219,7 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            @foreach (var item in Model.EmployeesList)
+                                            @foreach (var item in Model.UsersList)
                                             {
                                                 <div class="form-check form-check-reverse">
                                                     <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
@@ -284,7 +286,7 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            @foreach (var item in Model.EmployeesList)
+                                            @foreach (var item in Model.UsersList)
                                             {
                                                 <div class="form-check form-check-reverse">
                                                     <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
@@ -315,7 +317,6 @@
     </div>
 
     <!-- Add New Tasks Modal -->
-    <!-- Add New Tasks Modal -->
     <div class="modal fade" id="newTaskModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -331,7 +332,7 @@
                         <div class="mb-3">
                             <label for="taskTitle" class="form-label">عنوان وظیفه</label>
                             <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="title" id="taskTitle" placeholder="طراحی بنر">
-                            <span class="text-danger" asp-validation-for="@Model.Tasks.Title"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Title"></span>
                         </div>
 
                         <div class="mb-3">
@@ -342,7 +343,7 @@
                                 <option value="2" class="bc-darkBlue">معمولی</option>
                                 <option value="3" class="bc-darkBlue">زیاد</option>
                             </select>
-                            <span class="text-danger" asp-validation-for="@Model.Tasks.Priority"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Priority"></span>
                         </div>
 
                         @{
@@ -369,7 +370,7 @@
                                                     </label>
                                                 </div>
                                             }
-                                            @foreach (var item in Model.EmployeesList)
+                                            @foreach (var item in Model.UsersList)
                                             {
                                                 <div class="form-check form-check-reverse d-flex align-items-center">
                                                     <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
@@ -382,7 +383,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="text-danger" asp-validation-for="@Model.Tasks.Assignto"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Assignto"></span>
                         </div>
 
                         <div class="mb-3">
@@ -408,7 +409,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span class="text-danger" asp-validation-for="@Model.Tasks.Project"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Project"></span>
                         </div>
 
                         <div class="mb-3">
@@ -418,17 +419,17 @@
                                     <div class="col">
                                         <label for="estimatedTime" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
                                         <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="estimatedTime" name="estimateTime" placeholder="3h 30m">
-                                        <span class="text-danger" asp-validation-for="@Model.Tasks.EstimateTime"></span>
+                                        <span class="text-danger" asp-validation-for="@Model.Task.EstimateTime"></span>
                                     </div>
                                     <div class="col">
                                         <label for="remainingTime" class="form-label hc-fs-paragraph2">زمان باقی مانده</label>
                                         <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="remainingTime" name="remainingTime" placeholder="1h">
-                                        <span class="text-danger" asp-validation-for="@Model.Tasks.RemainingTime"></span>
+                                        <span class="text-danger" asp-validation-for="@Model.Task.RemainingTime"></span>
                                     </div>
                                     <div class="col">
                                         <label for="loggedTime" class="form-label hc-fs-paragraph2">زمان ثبت شده</label>
                                         <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="loggedTime" name="loggedTime" placeholder="2h 30m">
-                                        <span class="text-danger" asp-validation-for="@Model.Tasks.LoggedTime"></span>
+                                        <span class="text-danger" asp-validation-for="@Model.Task.LoggedTime"></span>
                                     </div>
                                 </div>
                             </div>
@@ -437,7 +438,7 @@
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">توضیحات</label>
                             <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskDescription" name="description" rows="3"></textarea>
-                            <span class="text-danger" asp-validation-for="@Model.Tasks.Description"></span>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Description"></span>
                         </div>
 
                         <div class="modal-footer bc-lightCyan">
@@ -586,7 +587,7 @@
                             var list = $('#itemsList');
                             list.empty();
                             data.forEach(function (item) {
-                                var codeBlock = getProjectCard(item);
+                                var codeBlock = getTaskCard(item);
                                 list.append(codeBlock);
                             });
                             var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");

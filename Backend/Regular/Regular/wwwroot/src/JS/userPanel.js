@@ -137,10 +137,6 @@ function UpdateProjectsByFilter(parameter) {
 
 // task section
 function UpdateTasksByOrganizationId() {
-    // Change selection of menu items
-        document.getElementsByClassName("userPanel-menuItem")[0].classList.remove("userPanel-menuItem-active");
-        document.getElementsByClassName("userPanel-menuItem")[1].classList.add("userPanel-menuItem-active");
-        document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
 
     $.ajax({
         url: "/Customer/UserPanel?handler=GetTasksByOrganizationId",
@@ -182,6 +178,30 @@ function UpdateTasksByFilter(parameter) {
     });
 }
 // end task section
+
+// employee section
+function UpdateEmployeesByOrganizationId() {
+
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetEmployeesByOrganizationId",
+        method: "GET",
+        data: { organizationId: $("#ddlOrganization").data("id") },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            data.forEach(function (item) {
+                var codeBlock = getEmployeeCard(item);
+                list.append(codeBlock);
+            });
+            var addNewItemCard_codeBlock = getNewItemCard("#newEmployeeModal", "همکار");
+            list.append(addNewItemCard_codeBlock);
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+// end employee section
 
 function getProjectCard(item) {
     var codeBlock = `
@@ -244,7 +264,41 @@ function getTaskCard(item) {
      `;
     return codeBlock;
 }
+function getEmployeeCard(item) {
+    var codeBlock = `
+           <!-- item card -->
+        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                      <div class="userPanel-itemCard hc-box bc-primary">
+                        <a href="#">
+                          <div class="d-flex flex-column justify-content-center align-items-center">
+                            <!-- item card Image -->
+                            <div class="d-flex justify-content-center align-items-center w-100">
+                              <img src="${item.imageName}" width="100" height="100" alt="">
+                            </div>
 
+                            <!-- item card FullName -->
+                            <h3 class="hc-fs-paragraph1 my-2">${item.fullName}</h3>
+
+                            <!-- item card UserName -->
+                            <h3 class="hc-fs-span1 my-2" dir="ltr">@${item.username}</h3>
+
+                            <!-- item card tags -->
+                            <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                              <span class="itemCard-tag p-1 px-3 bc-darkBlue text-warning rounded-3 hc-fs-span3 my-1">
+                                ${item.rank}
+                              </span>
+                              <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                ${item.status}
+                              </span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+               <!-- end item card -->
+     `;
+    return codeBlock;
+}
 function getNewItemCard(targetModal, categoryName) {
     var codeBlock = `
                     <!-- item card (new button) -->
@@ -265,7 +319,6 @@ function getNewItemCard(targetModal, categoryName) {
                         `;
     return codeBlock;
 }
-
 function filterItems(parameter) {
     if (document.getElementsByClassName("userPanel-menuItem")[0].classList.contains("userPanel-menuItem-active"))  // projects tab selected
         UpdateProjectsByFilter(parameter);

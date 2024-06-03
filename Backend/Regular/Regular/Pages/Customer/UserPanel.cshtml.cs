@@ -14,12 +14,12 @@ namespace Regular.Pages.Customer
         public List<Organizations> OrganizationsList;
         public List<Projects> ProjectsList;
         public List<Tasks> TasksList;
-        public List<Users> EmployeesList;
+        public List<Users> UsersList;
 
         public Organizations Organization;
-        public Projects Projects;
-        public Tasks Tasks;
-        public Users Employee;
+        public Projects Project;
+        public Tasks Task;
+        public Users User;
 
         public UserPanelModel(IUnitOfWork unitOfWork)
         {
@@ -29,12 +29,12 @@ namespace Regular.Pages.Customer
             OrganizationsList = new();
             ProjectsList = new();
             TasksList = new();
-            EmployeesList = new();
+            UsersList = new();
 
             Organization = new();
-            Projects = new();
-            Tasks = new();
-            Employee = new();
+            Project = new();
+            Task = new();
+            User = new();
         }
 
         public void OnGet()
@@ -219,6 +219,12 @@ namespace Regular.Pages.Customer
                 // Handle the exception (log it, return error response, etc.)
                 return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد" });
             }
+        }
+
+        public async Task<JsonResult> OnGetGetEmployeesByOrganizationId(int organizationId)
+        {
+            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilter(u => u.OrganizationId == organizationId && u.InviteStatus == "accepted").Select(u=> u.User).ToList();
+            return new JsonResult(UsersList);
         }
     }
 }
