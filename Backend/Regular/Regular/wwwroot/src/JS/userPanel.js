@@ -139,6 +139,49 @@ function UpdateProjectsByFilter(parameter) {
 
 
 // task section
+// add new task
+$(document).ready(function () {
+    $('#taskForm').on('submit', function (e) {
+        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+        var formData = new FormData(this);
+
+        formData.append('orgId', $("#ddlOrganization").data("id"));
+        formData.append('projectId', $("#txtProject").data("id"));
+
+        $.ajax({
+            url: '@Url.Page("/Customer/UserPanel", "AddTask")',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.err != null)
+                    toastr.error(data.err, 'خطا');
+                else {
+                    var list = $('#itemsList');
+                    list.empty();
+                    data.forEach(function (item) {
+                        var codeBlock = getProjectCard(item);
+                        list.append(codeBlock);
+                    });
+                    var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
+                    list.append(addNewItemCard_codeBlock);
+                    //close modal
+                    $('#newTaskModal').toggleClass("show");
+                    document.getElementById("newTaskModal").style = "display: none";
+                    $('.modal-backdrop').remove();
+                    // show success message
+                    toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+                }
+            },
+            error: function () {
+                // show error message
+                toastr.error('افزودن وظیفه با شکست مواجه شد', 'خطا');
+            }
+        });
+    });
+});
 function UpdateTasksByOrganizationId() {
     // Change selection of menu items
     if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
@@ -272,3 +315,86 @@ function getNewItemCard(targetModal, categoryName) {
                         `;
     return codeBlock;
 }
+
+// add new project
+$(document).ready(function () {
+    $('#projectForm').on('submit', function (e) {
+        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+        var formData = new FormData(this);
+
+        formData.append('orgId', $("#ddlOrganization").data("id"));
+
+        $.ajax({
+            url: '@Url.Page("/Customer/UserPanel", "AddProject")',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.err != null)
+                    toastr.error(data.err, 'خطا');
+                else {
+                    var list = $('#itemsList');
+                    list.empty();
+                    data.forEach(function (item) {
+                        var codeBlock = getProjectCard(item);
+                        list.append(codeBlock);
+                    });
+                    var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
+                    list.append(addNewItemCard_codeBlock);
+                    //close modal
+                    $('#newProjectModal').toggleClass("show");
+                    document.getElementById("newProjectModal").style = "display: none";
+                    $('.modal-backdrop').remove();
+                    // show success message
+                    toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
+                }
+            },
+            error: function () {
+                // show error message
+                toastr.error('افزودن پروژه با شکست مواجه شد', 'خطا');
+            }
+        });
+    });
+});
+
+// organization section
+// add new organization
+$(document).ready(function () {
+    $('#organizationForm').on('submit', function (e) {
+        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+        var formData = new FormData(this);
+
+        $.ajax({
+            url: '@Url.Page("/Customer/UserPanel", "AddOrganization")',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.err != null)
+                    toastr.error(data.err, 'خطا');
+                else {
+                    var list = $('#organizationsList');
+                    list.empty();
+                    data.forEach(function (item) {
+                        list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
+                        $('#ddlOrganization').html(item.title);
+                    });
+                    //close modal
+                    $('#newOrganizationModal').toggleClass("show");
+                    document.getElementById("newOrganizationModal").style = "display: none";
+                    $('.modal-backdrop').remove();
+                    // show success message
+                    toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                }
+            },
+            error: function () {
+                // show error message
+                toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+            }
+        });
+    });
+});
+// end organization section
