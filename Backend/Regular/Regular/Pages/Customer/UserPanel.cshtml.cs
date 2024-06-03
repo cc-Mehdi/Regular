@@ -135,10 +135,10 @@ namespace Regular.Pages.Customer
             return new JsonResult(ProjectsList);
         }
 
-        public async Task<JsonResult> OnGetGetProjectsByFilter(string filterParameter, string orgTitle)
+        public async Task<JsonResult> OnGetGetProjectsByFilter(string filterParameter, string orgId)
         {
             isUserLogin();
-            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
+            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
 
             if (filterParameter == null)
                 ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id).ToList();
@@ -153,16 +153,15 @@ namespace Regular.Pages.Customer
             return new JsonResult(TasksList);
         }
 
-        public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgTitle)
+        public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgId)
         {
             isUserLogin();
-            var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.OwnerId == loggedInUser.Id && u.Title == orgTitle);
 
             if (filterParameter == null)
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organization.Id).ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(orgId)).ToList();
             else
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == organization.Id && u.Title.Contains(filterParameter)).ToList();
-            return new JsonResult(ProjectsList);
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(orgId) && u.Title.Contains(filterParameter)).ToList();
+            return new JsonResult(TasksList);
         }
 
 
@@ -192,6 +191,7 @@ namespace Regular.Pages.Customer
 
             try
             {
+                var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == int.Parse(projectId));
                 // Convert data to model for sending to database
                 var newItem = new Tasks
                 {
@@ -204,7 +204,7 @@ namespace Regular.Pages.Customer
                     LoggedTime = loggedTime,
                     Description = description,
                     ProjectId = int.Parse(projectId),
-                    Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == int.Parse(projectId)),
+                    Project = project,
                     ReporterId = reporterId
                 };
 
@@ -217,7 +217,7 @@ namespace Regular.Pages.Customer
             catch (Exception ex)
             {
                 // Handle the exception (log it, return error response, etc.)
-                return new JsonResult(new { err = "An error occurred while adding the task." });
+                return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد" });
             }
         }
     }

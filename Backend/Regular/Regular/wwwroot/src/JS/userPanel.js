@@ -117,7 +117,7 @@ function UpdateProjectsByFilter(parameter) {
     $.ajax({
         url: "/Customer/UserPanel?handler=GetProjectsByFilter",
         method: "GET",
-        data: { filterParameter: parameter, orgTitle: $('#ddlOrganization').text() },
+        data: { filterParameter: parameter, orgId: $('#ddlOrganization').data("id") },
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -135,60 +135,12 @@ function UpdateProjectsByFilter(parameter) {
 }
 // end project section
 
-
-
-
 // task section
-// add new task
-$(document).ready(function () {
-    $('#taskForm').on('submit', function (e) {
-        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
-
-        var formData = new FormData(this);
-
-        formData.append('orgId', $("#ddlOrganization").data("id"));
-        formData.append('projectId', $("#txtProject").data("id"));
-
-        $.ajax({
-            url: '@Url.Page("/Customer/UserPanel", "AddTask")',
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data.err != null)
-                    toastr.error(data.err, 'خطا');
-                else {
-                    var list = $('#itemsList');
-                    list.empty();
-                    data.forEach(function (item) {
-                        var codeBlock = getProjectCard(item);
-                        list.append(codeBlock);
-                    });
-                    var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
-                    list.append(addNewItemCard_codeBlock);
-                    //close modal
-                    $('#newTaskModal').toggleClass("show");
-                    document.getElementById("newTaskModal").style = "display: none";
-                    $('.modal-backdrop').remove();
-                    // show success message
-                    toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
-                }
-            },
-            error: function () {
-                // show error message
-                toastr.error('افزودن وظیفه با شکست مواجه شد', 'خطا');
-            }
-        });
-    });
-});
 function UpdateTasksByOrganizationId() {
     // Change selection of menu items
-    if (!$("#userPanel-menuItem-active").hasClass("userPanel-menuItem-active")) {
         document.getElementsByClassName("userPanel-menuItem")[0].classList.remove("userPanel-menuItem-active");
         document.getElementsByClassName("userPanel-menuItem")[1].classList.add("userPanel-menuItem-active");
         document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
-    }
 
     $.ajax({
         url: "/Customer/UserPanel?handler=GetTasksByOrganizationId",
@@ -213,7 +165,7 @@ function UpdateTasksByFilter(parameter) {
     $.ajax({
         url: "/Customer/UserPanel?handler=GetTasksByFilter",
         method: "GET",
-        data: { filterParameter: parameter, organizationId: $('#ddlOrganization').data("id") },
+        data: { filterParameter: parameter, orgId: $('#ddlOrganization').data("id") },
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -230,7 +182,6 @@ function UpdateTasksByFilter(parameter) {
     });
 }
 // end task section
-
 
 function getProjectCard(item) {
     var codeBlock = `
@@ -294,7 +245,6 @@ function getTaskCard(item) {
     return codeBlock;
 }
 
-
 function getNewItemCard(targetModal, categoryName) {
     var codeBlock = `
                     <!-- item card (new button) -->
@@ -316,85 +266,11 @@ function getNewItemCard(targetModal, categoryName) {
     return codeBlock;
 }
 
-// add new project
-$(document).ready(function () {
-    $('#projectForm').on('submit', function (e) {
-        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
-
-        var formData = new FormData(this);
-
-        formData.append('orgId', $("#ddlOrganization").data("id"));
-
-        $.ajax({
-            url: '@Url.Page("/Customer/UserPanel", "AddProject")',
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data.err != null)
-                    toastr.error(data.err, 'خطا');
-                else {
-                    var list = $('#itemsList');
-                    list.empty();
-                    data.forEach(function (item) {
-                        var codeBlock = getProjectCard(item);
-                        list.append(codeBlock);
-                    });
-                    var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
-                    list.append(addNewItemCard_codeBlock);
-                    //close modal
-                    $('#newProjectModal').toggleClass("show");
-                    document.getElementById("newProjectModal").style = "display: none";
-                    $('.modal-backdrop').remove();
-                    // show success message
-                    toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
-                }
-            },
-            error: function () {
-                // show error message
-                toastr.error('افزودن پروژه با شکست مواجه شد', 'خطا');
-            }
-        });
-    });
-});
-
-// organization section
-// add new organization
-$(document).ready(function () {
-    $('#organizationForm').on('submit', function (e) {
-        e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
-        var formData = new FormData(this);
-
-        $.ajax({
-            url: '@Url.Page("/Customer/UserPanel", "AddOrganization")',
-            method: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if (data.err != null)
-                    toastr.error(data.err, 'خطا');
-                else {
-                    var list = $('#organizationsList');
-                    list.empty();
-                    data.forEach(function (item) {
-                        list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
-                        $('#ddlOrganization').html(item.title);
-                    });
-                    //close modal
-                    $('#newOrganizationModal').toggleClass("show");
-                    document.getElementById("newOrganizationModal").style = "display: none";
-                    $('.modal-backdrop').remove();
-                    // show success message
-                    toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
-                }
-            },
-            error: function () {
-                // show error message
-                toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
-            }
-        });
-    });
-});
-// end organization section
+function filterItems(parameter) {
+    if (document.getElementsByClassName("userPanel-menuItem")[0].classList.contains("userPanel-menuItem-active"))  // projects tab selected
+        UpdateProjectsByFilter(parameter);
+    else if (document.getElementsByClassName("userPanel-menuItem")[1].classList.contains("userPanel-menuItem-active")) // tasks tab selected
+        UpdateTasksByFilter(parameter);
+    else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // employees tab selected
+        UpdateProjectsByFilter(parameter);
+}
