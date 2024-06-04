@@ -19,6 +19,8 @@ namespace Datalayer.Repository
             objFromDb.Username = user.Username;
             objFromDb.Password = user.Password;
             objFromDb.Email = user.Email;
+            objFromDb.Rank = user.Rank;
+            objFromDb.Status = user.Status;
             if (user.ImageName != "")
                 objFromDb.ImageName = user.ImageName;
         }

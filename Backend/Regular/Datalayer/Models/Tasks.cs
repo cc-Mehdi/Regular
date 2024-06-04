@@ -59,5 +59,17 @@ namespace Datalayer.Models
         [MaxLength(750, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        [Display(Name = "وضعیت وظیفه")]
+        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
+        [MaxLength(100, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [DataType(DataType.Text)]
+        public string TaskStatus { get; set; }
+
+        [Display(Name = "نوع وظیفه")]
+        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
+        [MaxLength(100, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [DataType(DataType.Text)]
+        public string TaskType { get; set; }
     }
 }

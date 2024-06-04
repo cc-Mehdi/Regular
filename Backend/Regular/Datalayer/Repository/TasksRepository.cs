@@ -26,6 +26,8 @@ namespace Datalayer.Repository
             objFromDb.RemainingTime = task.RemainingTime;
             objFromDb.LoggedTime = task.LoggedTime;
             objFromDb.Description = task.Description;
+            objFromDb.TaskStatus = task.TaskStatus;
+            objFromDb.TaskType = task.TaskType;
         }
     }
 }

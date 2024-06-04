@@ -36,5 +36,17 @@ namespace Datalayer.Models
         [Display(Name = "تصویر پروفایل")]
         [DataType(DataType.Text)]
         public string ImageName { get; set; }
+
+        [Display(Name = "سطح مهارت")]
+        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
+        [MaxLength(100, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [DataType(DataType.Text)]
+        public string Rank { get; set; }
+
+        [Display(Name = "وضعیت")]
+        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
+        [MaxLength(100, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [DataType(DataType.Text)]
+        public string Status { get; set; }
     }
 }
