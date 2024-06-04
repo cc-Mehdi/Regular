@@ -146,12 +146,14 @@ namespace Regular.Pages.Customer
             return new JsonResult(ProjectsList);
         }
 
+        //get tasks by organization id
         public async Task<JsonResult> OnGetGetTasksByOrganizationId(int organizationId)
         {
             TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u=> u.Project.OrganizationId == organizationId).ToList();
             return new JsonResult(TasksList);
         }
 
+        // get tasks by filter
         public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgId)
         {
             isUserLogin();
@@ -220,12 +222,15 @@ namespace Regular.Pages.Customer
             }
         }
 
+
+        // get employees by organization id
         public async Task<JsonResult> OnGetGetEmployeesByOrganizationId(int organizationId)
         {
             UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
             return new JsonResult(UsersList);
         }
 
+        // add new employee
         public async Task<JsonResult> OnPostAddEmployeeAsync()
         {
             isUserLogin();
@@ -262,6 +267,19 @@ namespace Regular.Pages.Customer
                 return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد" });
             }
         }
+
+        // get employees by filter
+        public async Task<JsonResult> OnGetGetEmployeesByFilter(string filterParameter, string orgId)
+        {
+            isUserLogin();
+
+            if (filterParameter == null)
+                UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u=> u.User).ToList();
+            else
+                UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u => u.User).Where(u=> u.FullName.Contains(filterParameter) || u.Username.Contains(filterParameter)).ToList();
+            return new JsonResult(UsersList);
+        }
+
 
     }
 }

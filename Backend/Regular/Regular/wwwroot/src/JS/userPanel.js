@@ -201,6 +201,27 @@ function UpdateEmployeesByOrganizationId() {
         }
     });
 }
+function UpdateEmployeesByFilter(parameter) {
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetEmployeesByFilter",
+        method: "GET",
+        data: { filterParameter: parameter, orgId: $('#ddlOrganization').data("id") },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            data.forEach(function (item) {
+                var codeBlock = getEmployeeCard(item);
+                list.append(codeBlock);
+            });
+            var addNewItemCard_codeBlock = getNewItemCard("#newEmployeeModal", "همکار");
+            list.append(addNewItemCard_codeBlock);
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
 // end employee section
 
 function getProjectCard(item) {
@@ -325,5 +346,5 @@ function filterItems(parameter) {
     else if (document.getElementsByClassName("userPanel-menuItem")[1].classList.contains("userPanel-menuItem-active")) // tasks tab selected
         UpdateTasksByFilter(parameter);
     else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // employees tab selected
-        UpdateProjectsByFilter(parameter);
+        UpdateEmployeesByFilter(parameter);
 }
