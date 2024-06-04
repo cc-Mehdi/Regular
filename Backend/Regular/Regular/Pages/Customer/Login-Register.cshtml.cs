@@ -68,8 +68,8 @@ namespace Regular.Pages.Customer
                         if(currentUser == null)
                         {
                             //save to database
-                            user.Username = Guid.NewGuid().ToString();
                             user.ImageName = "/src/media/default-person-profile.png";
+                            user.Username = user.FullName.Replace(" ", "") + "_" + Utilities.Help_Numbers.GenerateUniqueNumber();
                             _unitOfWork.UsersRepository.Add(user);
                             _unitOfWork.Save();
 
@@ -84,7 +84,7 @@ namespace Regular.Pages.Customer
                                 User = currentUser,
                                 LoginToken = loginToken,
                                 IsSignOut = false,
-                                LogTime = DateTime.Now
+                                LogTime = DateTime.Now,
                             };
                             _unitOfWork.LoginsLogRepository.Add(newLog);
 

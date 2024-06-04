@@ -277,7 +277,7 @@ function getEmployeeCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph1 my-2">${item.fullName}</h3>
+                            <h3 class="hc-fs-paragraph3 my-2">${item.fullName}</h3>
 
                             <!-- item card UserName -->
                             <h3 class="hc-fs-span1 my-2" dir="ltr">@${item.username}</h3>

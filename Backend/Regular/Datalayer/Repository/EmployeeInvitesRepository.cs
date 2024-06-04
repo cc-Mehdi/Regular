@@ -1,6 +1,9 @@
 ﻿using Datalayer.Data;
 using Datalayer.Models;
 using Datalayer.Repository.IRepository;
+using System.Linq.Expressions;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Datalayer.Repository
 {
@@ -21,6 +24,11 @@ namespace Datalayer.Repository
             objFromDb.OrganizationId = employeeInvites.OrganizationId;
             objFromDb.User = employeeInvites.User;
             objFromDb.UserId = employeeInvites.UserId;
+        }
+
+        public IEnumerable<EmployeeInvites> GetAllByFilterIncludeUsers(Expression<Func<EmployeeInvites, bool>>? filter = null)
+        {
+            return _db.EmployeeInvites.Include(u => u.User).Where(filter).ToList();
         }
     }
 }

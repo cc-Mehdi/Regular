@@ -2,7 +2,6 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 
 namespace Regular.Pages.Customer
 {
@@ -223,8 +222,46 @@ namespace Regular.Pages.Customer
 
         public async Task<JsonResult> OnGetGetEmployeesByOrganizationId(int organizationId)
         {
-            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilter(u => u.OrganizationId == organizationId && u.InviteStatus == "accepted").Select(u=> u.User).ToList();
+            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
             return new JsonResult(UsersList);
         }
+
+        public async Task<JsonResult> OnPostAddEmployeeAsync()
+        {
+            isUserLogin();
+
+            var username = Request.Form["username"].ToString();
+            var orgId = Request.Form["orgId"].ToString();
+
+            User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Username == username);
+
+            if (string.IsNullOrEmpty(username))
+                return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
+
+            if (orgId == "undefined")
+                return new JsonResult(new { err = "لطفا ابتدا یک سازمان ایجاد کنید" });
+
+            try
+            {
+                var newItem = new EmployeeInvites
+                {
+                    InviteStatus = "در انتظار پاسخ",
+                    OrganizationId = int.Parse(orgId),
+                    User = User,
+                    UserId = User.Id
+                };
+
+                _unitOfWork.EmployeeInvitesRepository.Add(newItem);
+                _unitOfWork.Save();
+
+                return await OnGetGetEmployeesByOrganizationId(int.Parse(orgId));
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception (log it, return error response, etc.)
+                return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد" });
+            }
+        }
+
     }
 }

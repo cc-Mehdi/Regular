@@ -1516,6 +1516,16 @@
         "runtime": {
           "bin/placeholder/Datalayer.dll": {}
         }
+      },
+      "Utilities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Utilities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utilities.dll": {}
+        }
       }
     }
   },
@@ -4115,6 +4125,11 @@
       "type": "project",
       "path": "../Datalayer/Datalayer.csproj",
       "msbuildProject": "../Datalayer/Datalayer.csproj"
+    },
+    "Utilities/1.0.0": {
+      "type": "project",
+      "path": "../Utilities/Utilities.csproj",
+      "msbuildProject": "../Utilities/Utilities.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4123,7 +4138,8 @@
       "Microsoft.EntityFrameworkCore >= 8.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.4",
-      "Microsoft.EntityFrameworkCore.Tools >= 8.0.4"
+      "Microsoft.EntityFrameworkCore.Tools >= 8.0.4",
+      "Utilities >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4160,6 +4176,9 @@
           "projectReferences": {
             "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
               "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
+            },
+            "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {
+              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj"
             }
           }
         }

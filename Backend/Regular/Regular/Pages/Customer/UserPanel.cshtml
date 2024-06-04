@@ -389,7 +389,12 @@
                         <div class="mb-3">
                             <label for="formAssignee" class="form-label">پروژه</label>
                             <div class="d-flex align-items-center mb-1">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject" name="project" value="@Model.ProjectsList[0].Title" data-id="@Model.ProjectsList[0].Id" disabled>
+                                @{
+                                    var projectTitle = Model?.ProjectsList?.FirstOrDefault()?.Title ?? "";
+                                    var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
+                                }
+
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject" name="project" value="@projectTitle" data-id="@projectId" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
@@ -455,6 +460,48 @@
         </div>
     </div>
 
+    <!-- Add New Employee Modal -->
+    <div class="modal fade" id="newEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
+                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                        افزودن همکار
+                    </h1>
+                    <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bc-darkBlue text-white">
+                    <!-- Add new project modal body -->
+                    <form id="employeeForm" method="post" enctype="multipart/form-data">
+                        <div class="mb-3 d-flex flex-column" dir="ltr">
+                            <div class="row text-end">
+                                <label for="formFile" class="form-label hc-fs-paragraph2">نام کاربری</label>
+                            </div>
+                            <div class="input-group">
+                                @{
+                                    string atsine = "@";
+                                }
+                                <span class="input-group-text bc-darkBlue rounded-start-3 border-primary" id="basic-addon1">@atsine</span>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" name="username" id="employeeUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                <span class="text-danger" asp-validation-for="@Model.User.Username"></span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer bc-lightCyan">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                انصراف
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa-solid fa-paper-plane ms-2"></i>
+                                ارسال درخواست همکاری
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 
 
@@ -548,6 +595,7 @@
                                 list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
                                 $('#ddlOrganization').html(item.title);
                             });
+                            $('#ddlOrganization').text(data[0].title);
                             //close modal
                             $('#newOrganizationModal').toggleClass("show");
                             document.getElementById("newOrganizationModal").style = "display: none";
@@ -603,6 +651,49 @@
                     error: function () {
                         // show error message
                         toastr.error('افزودن وظیفه با شکست مواجه شد', 'خطا');
+                    }
+                });
+            });
+        });
+
+        // add new employee
+        $(document).ready(function () {
+            $('#employeeForm').on('submit', function (e) {
+                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+                var formData = new FormData(this);
+
+                formData.append('orgId', $("#ddlOrganization").data("id"));
+
+                $.ajax({
+                    url: '@Url.Page("/Customer/UserPanel", "AddEmployee")',
+                    method: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        if (data.err != null)
+                            toastr.error(data.err, 'خطا');
+                        else {
+                            var list = $('#itemsList');
+                            list.empty();
+                            data.forEach(function (item) {
+                                var codeBlock = getEmployeeCard(item);
+                                list.append(codeBlock);
+                            });
+                            var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
+                            list.append(addNewItemCard_codeBlock);
+                            //close modal
+                            $('#newEmployeeModal').toggleClass("show");
+                            document.getElementById("newEmployeeModal").style = "display: none";
+                            $('.modal-backdrop').remove();
+                            // show success message
+                            toastr.success('درخواست همکاری با موفقیت ارسال شد', 'موفق');
+                        }
+                    },
+                    error: function () {
+                        // show error message
+                        toastr.error('ارسال درخواست همکاری با شکست مواجه شد', 'خطا');
                     }
                 });
             });
