@@ -133,6 +133,37 @@ function UpdateProjectsByFilter(parameter) {
         }
     });
 }
+function updateProject(name, id) {
+    // Update project input
+    document.getElementById('txtProject_newTaskModal').value = name;
+    document.getElementById('txtProject_newTaskModal').setAttribute('data-id', id);
+
+    // Update users list
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetUsersByProjectId",
+        method: "GET",
+        data: { projectId: id },
+        success: function (data) {
+            var list = $('#usersList_newTaskModal');
+            list.empty();
+            data.forEach(function (item) {
+                debugger;
+                var codeBlock = `
+                    <div class="form-check form-check-reverse d-flex align-items-center">
+                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio" value="${item.id}" name="Employees" id="employeeCheck${item.id}" onchange="updateAssignee('${item.fullName}', '${item.imageName}', '${item.id}')">
+                        <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck${item.id}">
+                            ${item.fullName}
+                        </label>
+                    </div>
+                `;
+                list.append(codeBlock);
+            });
+        },
+        error: function () {
+            alert("Error loading users.");
+        }
+    });
+}
 // end project section
 
 // task section
@@ -176,6 +207,11 @@ function UpdateTasksByFilter(parameter) {
             alert("error");
         }
     });
+}
+function updateAssignee(name, image, id) {
+    document.getElementById('assigneeName').value = name;
+    document.getElementById('assigneeImage').src = image;
+    document.getElementById('assigneeName').setAttribute('data-id', id);
 }
 // end task section
 

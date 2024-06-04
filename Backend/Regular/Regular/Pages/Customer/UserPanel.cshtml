@@ -206,7 +206,7 @@
                     <!-- Add new project modal body -->
                     <form id="projectForm" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">عنوان پروژه</label>
+                            <label class="form-label">عنوان پروژه</label>
                             <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="Title"
                                    placeholder="تکمیل طراحی اولیه" />
                             <span class="text-danger" asp-validation-for="@Model.Project.Title"></span>
@@ -268,10 +268,6 @@
                 <div class="modal-body bc-darkBlue text-white">
                     <!-- Add new organization modal body -->
                     <form id="organizationForm" method="post" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">تصویر</label>
-                            <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" name="ImageName" />
-                        </div>
 
                         <div class="mb-3">
                             <label for="formTitle" class="form-label">عنوان سازمان</label>
@@ -351,42 +347,6 @@
                         }
 
                         <div class="mb-3">
-                            <label for="formAssignee" class="form-label">اختصاص یافه به</label>
-                            <div class="d-flex align-items-center mb-1">
-                                <img src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled>
-                            </div>
-
-                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            @{
-                                                <div class="form-check form-check-reverse d-flex align-items-center">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="checkbox" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@item.Id">
-                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
-                                                        @Model.loggedInUser.FullName
-                                                    </label>
-                                                </div>
-                                            }
-                                            @foreach (var item in Model.UsersList)
-                                            {
-                                                <div class="form-check form-check-reverse d-flex align-items-center">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
-                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
-                                                        @item.FullName
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="text-danger" asp-validation-for="@Model.Task.Assignto"></span>
-                        </div>
-
-                        <div class="mb-3">
                             <label for="formAssignee" class="form-label">پروژه</label>
                             <div class="d-flex align-items-center mb-1">
                                 @{
@@ -394,7 +354,7 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject" name="project" value="@projectTitle" data-id="@projectId" disabled>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject_newTaskModal" name="project" value="@projectTitle" data-id="@projectId" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
@@ -402,10 +362,28 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample2">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            @foreach (var item in Model.ProjectsList)
+                                            <div class="form-check form-check-reverse d-flex align-items-center">
+                                                <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
+                                                       type="radio"
+                                                       value="@Model.ProjectsList[0].Id"
+                                                       name="project"
+                                                       id="projectCheck@item.Id"
+                                                       onchange="updateProject('@Model.ProjectsList[0].Title', '@Model.ProjectsList[0].Id')" checked>
+                                                <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
+                                                    @Model.ProjectsList[0].Title
+                                                </label>
+                                            </div>
+                                            @for (int i = 1; i < Model.ProjectsList.Count; i++)
                                             {
+                                                var item = Model.ProjectsList[i];
                                                 <div class="form-check form-check-reverse d-flex align-items-center">
-                                                    <label class="form-check-label w-100 hc-fs-paragraph3 border py-2" for="employeeCheck@item.Id">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
+                                                           type="radio"
+                                                           value="@item.Id"
+                                                           name="project"
+                                                           id="projectCheck@item.Id"
+                                                           onchange="updateProject('@item.Title', '@item.Id')">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
                                                         @item.Title
                                                     </label>
                                                 </div>
@@ -416,6 +394,47 @@
                             </div>
                             <span class="text-danger" asp-validation-for="@Model.Task.Project"></span>
                         </div>
+
+
+                        <div class="mb-3">
+                            <label for="formAssignee" class="form-label">اختصاص یافه به</label>
+                            <div class="d-flex align-items-center mb-1">
+                                <img src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="assigneeName">
+                            </div>
+
+                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                                            @{
+                                                <div class="form-check form-check-reverse d-flex align-items-center">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="radio" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@Model.loggedInUser.Id" onchange="updateAssignee('@Model.loggedInUser.FullName', '@Model.loggedInUser.ImageName', '@Model.loggedInUser.Id')">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
+                                                        خودم
+                                                    </label>
+                                                </div>
+                                            }
+                                            <div id="usersList_newTaskModal">
+                                                @{Model.GetUsersByProjectId(projectId);}
+                                                @foreach (var item in Model.UsersList)
+                                                {
+                                                    <div class="form-check form-check-reverse d-flex align-items-center">
+                                                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio" value="@item.Id" name="Employees" id="employeeCheck@item.Id" onchange="updateAssignee('@item.FullName', '@item.ImageName', '@item.Id')">
+                                                        <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
+                                                            @item.FullName
+                                                        </label>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="text-danger" asp-validation-for="@Model.Task.Assignto"></span>
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="workReport" class="form-label">گزارش کار</label>
@@ -475,7 +494,7 @@
                     <form id="employeeForm" method="post" enctype="multipart/form-data">
                         <div class="mb-3 d-flex flex-column" dir="ltr">
                             <div class="row text-end">
-                                <label for="formFile" class="form-label hc-fs-paragraph2">نام کاربری</label>
+                                <label class="form-label hc-fs-paragraph2">نام کاربری</label>
                             </div>
                             <div class="input-group">
                                 @{

@@ -301,6 +301,22 @@ namespace Regular.Pages.Customer
             return new JsonResult(UsersList);
         }
 
+        // get users with project id (json)
+        public async Task<JsonResult> OnGetGetUsersByProjectId(int projectId)
+        {
+            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilterIncludeRelations(u => u.ProjectId == projectId).Select(u=> u.User).ToList();
+            return new JsonResult(UsersList);
+        }
 
+        // get users with project id (data)
+        public void GetUsersByProjectId(int projectId)
+        {
+            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilter(u => u.ProjectId == projectId).Select(u => u.User).ToList();
+            // Remove duplicates based on Id
+            UsersList = UsersList
+                .GroupBy(user => user.Id)
+                .Select(group => group.First())
+                .ToList();
+        }
     }
 }
