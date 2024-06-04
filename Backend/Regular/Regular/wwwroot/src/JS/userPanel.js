@@ -270,6 +270,10 @@ function getTaskCard(item) {
                                 <h3 class="hc-fs-paragraph3 my-2">${item.title}</h3>
                                 <!-- item card tags -->
                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                    <span class="itemCard-tag p-1 px-3 bc-darkBlue tc-lightBlue rounded-3 hc-fs-span3 my-1">
+                                    پروژه : 
+                                    ${item.project.title}
+                                    </span>
                                     <span class="itemCard-tag p-1 px-3 bc-darkBlue text-warning rounded-3 hc-fs-span3 my-1">
                                     ${item.taskStatus}
                                     </span>

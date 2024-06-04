@@ -28,7 +28,7 @@ namespace Datalayer.Repository
 
         public IEnumerable<EmployeeInvites> GetAllByFilterIncludeUsers(Expression<Func<EmployeeInvites, bool>>? filter = null)
         {
-            return _db.EmployeeInvites.Include(u => u.User).Where(filter).ToList();
+            return _db.EmployeeInvites.Where(filter).Include(u => u.User).ToList();
         }
     }
 }

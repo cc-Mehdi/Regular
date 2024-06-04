@@ -149,7 +149,7 @@ namespace Regular.Pages.Customer
         //get tasks by organization id
         public async Task<JsonResult> OnGetGetTasksByOrganizationId(int organizationId)
         {
-            TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u=> u.Project.OrganizationId == organizationId).ToList();
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u=> u.Project.OrganizationId == organizationId).ToList();
             return new JsonResult(TasksList);
         }
 
@@ -185,10 +185,13 @@ namespace Regular.Pages.Customer
 
             // Validate the input data (simple validation example)
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
-                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description))
+                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description)) 
             {
                 return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
             }
+
+            if(projectId == "0")
+                return new JsonResult(new { err = "پروژه مورد نظر خود را انتخاب کنید" });
 
             try
             {
@@ -206,7 +209,9 @@ namespace Regular.Pages.Customer
                     Description = description,
                     ProjectId = int.Parse(projectId),
                     Project = project,
-                    ReporterId = reporterId
+                    ReporterId = reporterId,
+                    TaskStatus = "برای انجام",
+                    TaskType = "نوع وظیفه"
                 };
 
                 _unitOfWork.TasksRepository.Add(newItem);

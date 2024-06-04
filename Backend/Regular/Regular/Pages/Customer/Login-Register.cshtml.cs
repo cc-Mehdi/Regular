@@ -70,6 +70,8 @@ namespace Regular.Pages.Customer
                             //save to database
                             user.ImageName = "/src/media/default-person-profile.png";
                             user.Username = user.FullName.Replace(" ", "") + "_" + Utilities.Help_Numbers.GenerateUniqueNumber();
+                            user.Status = "وضعیت : نامشخص";
+                            user.Rank = "سطح : نامشخص";
                             _unitOfWork.UsersRepository.Add(user);
                             _unitOfWork.Save();
 

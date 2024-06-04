@@ -1,6 +1,8 @@
 ﻿using Datalayer.Data;
 using Datalayer.Models;
 using Datalayer.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Datalayer.Repository
 {
@@ -28,6 +30,11 @@ namespace Datalayer.Repository
             objFromDb.Description = task.Description;
             objFromDb.TaskStatus = task.TaskStatus;
             objFromDb.TaskType = task.TaskType;
+        }
+
+        public IEnumerable<Tasks> GetAllByFilterIncludeRelations(Expression<Func<Tasks, bool>>? filter = null)
+        {
+            return _db.Tasks.Where(filter).Include(u => u.Project).ToList();
         }
     }
 }
