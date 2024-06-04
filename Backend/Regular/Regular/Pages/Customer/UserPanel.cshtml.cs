@@ -2,6 +2,7 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Cryptography;
 
 namespace Regular.Pages.Customer
 {
@@ -45,6 +46,7 @@ namespace Regular.Pages.Customer
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
             int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList[0].Id;
             ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
+            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == OrganizationsList[0].Id && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
         }
 
         public void isUserLogin()
@@ -96,7 +98,7 @@ namespace Regular.Pages.Customer
 
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
-            var employees = Request.Form["Employees"].ToList();
+            var employeesId = Request.Form["Employees"].ToList();
             var orgId = Request.Form["orgId"];
             var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
 
@@ -115,6 +117,20 @@ namespace Regular.Pages.Customer
 
             _unitOfWork.ProjectsRepository.Add(newItem);
             _unitOfWork.Save();
+
+            // add relations between users and projects
+            foreach (var empId in employeesId)
+            {
+                Project = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id && u.OwnerId == loggedInUser.Id).LastOrDefault(); // get project id
+                _unitOfWork.User_ProjectRepository.Add(new User_Project() // add new relation to database
+                {
+                    ProjectId = Project.Id,
+                    UserId = int.Parse(empId)
+                });
+            }
+
+            _unitOfWork.Save();
+
 
             var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id&&u.OrganizationId==organization.Id).ToList();
             return new JsonResult(projectsList);

@@ -219,6 +219,12 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                                            <div class="form-check form-check-reverse">
+                                                <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@item.Id" checked>
+                                                <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
+                                                    خودم
+                                                </label>
+                                            </div>
                                             @foreach (var item in Model.UsersList)
                                             {
                                                 <div class="form-check form-check-reverse">
@@ -232,12 +238,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">لوگو پروژه</label>
-                            <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
                         </div>
 
                         <div class="modal-footer bc-lightCyan">
@@ -564,6 +564,7 @@
                             // show success message
                             toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
                         }
+                        $("#projectForm")[0].reset();
                     },
                     error: function () {
                         // show error message
