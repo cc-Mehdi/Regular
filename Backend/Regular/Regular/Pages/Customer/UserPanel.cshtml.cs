@@ -311,12 +311,19 @@ namespace Regular.Pages.Customer
         // get users with project id (data)
         public void GetUsersByProjectId(int projectId)
         {
-            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilter(u => u.ProjectId == projectId).Select(u => u.User).ToList();
+            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilterIncludeRelations(u => u.ProjectId == projectId).Select(u => u.User).ToList();
             // Remove duplicates based on Id
             UsersList = UsersList
                 .GroupBy(user => user.Id)
                 .Select(group => group.First())
                 .ToList();
+        }
+
+        // get sent employee invites by organization id
+        public async Task<JsonResult> OnGetGetSentEmployeeInvitesByOrganizationId(int organizationId)
+        {
+            var list = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == organizationId && u.UserId != loggedInUser.Id).Select(u => new {u.User.Id, u.User.FullName, u.User.Username, u.User.ImageName, u.InviteStatus}).ToList();
+            return new JsonResult(list);
         }
     }
 }

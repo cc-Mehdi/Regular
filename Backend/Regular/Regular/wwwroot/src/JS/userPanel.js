@@ -257,6 +257,24 @@ function UpdateEmployeesByFilter(parameter) {
         }
     });
 }
+function UpdateSentEmployeeInvitesByOrganizationId() {
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetSentEmployeeInvitesByOrganizationId",
+        method: "GET",
+        data: { organizationId: $("#ddlOrganization").data("id") },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            data.forEach(function (item) {
+                var codeBlock = getSentEmployeeInviteCard(item);
+                list.append(codeBlock);
+            });
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
 
 // end employee section
 
@@ -351,6 +369,39 @@ function getEmployeeCard(item) {
                               <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
                                 ${item.status}
                               </span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+               <!-- end item card -->
+     `;
+    return codeBlock;
+}
+function getSentEmployeeInviteCard(item) {
+    let textColor = item.inviteStatus == 'پذیرفته شد' ? "text-success" : item.inviteStatus == 'پذیرفته نشد' ? "text-danger" : "text-warning";
+    var codeBlock = `
+           <!-- item card -->
+        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                      <div class="userPanel-itemCard hc-box bc-primary">
+                        <a href="#">
+                          <div class="d-flex flex-column justify-content-center align-items-center">
+                            <!-- item card Image -->
+                            <div class="d-flex justify-content-center align-items-center w-100">
+                              <img src="${item.imageName}" width="100" height="100" alt="">
+                            </div>
+
+                            <!-- item card FullName -->
+                            <h3 class="hc-fs-paragraph3 my-2">${item.fullName}</h3>
+
+                            <!-- item card UserName -->
+                            <h3 class="hc-fs-span1 my-2" dir="ltr">@${item.username}</h3>
+
+                            <!-- item card tags -->
+                           <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                            <span class="itemCard-tag p-1 px-3 bc-darkBlue ${textColor} rounded-3 hc-fs-paragraph2 fw-bold my-1">
+                            ${item.inviteStatus}
+                            </span>
                             </div>
                           </div>
                         </a>
