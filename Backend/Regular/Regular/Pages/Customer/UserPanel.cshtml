@@ -280,28 +280,6 @@
                             <span class="text-danger" asp-validation-for="@Model.Organization.Title"></span>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="formEmployees" class="form-label">همکاران</label>
-                            <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            @foreach (var item in Model.UsersList)
-                                            {
-                                                <div class="form-check form-check-reverse">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
-                                                    <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
-                                                        @item.FullName
-                                                    </label>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="modal-footer bc-lightCyan">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 انصراف
@@ -367,18 +345,8 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample2">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            <div class="form-check form-check-reverse d-flex align-items-center">
-                                                <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
-                                                       type="radio"
-                                                       value="@Model.ProjectsList[0].Id"
-                                                       name="project"
-                                                       id="projectCheck@item.Id"
-                                                       onchange="updateProject('@Model.ProjectsList[0].Title', '@Model.ProjectsList[0].Id')" checked>
-                                                <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
-                                                    @Model.ProjectsList[0].Title
-                                                </label>
-                                            </div>
-                                            @for (int i = 1; i < Model.ProjectsList.Count; i++)
+
+                                            @for (int i = 0; i < Model.ProjectsList.Count; i++)
                                             {
                                                 var item = Model.ProjectsList[i];
                                                 <div class="form-check form-check-reverse d-flex align-items-center">
@@ -644,8 +612,17 @@
 
                 var formData = new FormData(this);
 
-                formData.append('orgId', $("#ddlOrganization").data("id"));
-                formData.append('projectId', $("#txtProject").data("id"));
+                var orgId = $("#ddlOrganization").data("id");
+                var projectId = $("#txtProject_newTaskModal").data("id");
+
+                // بررسی مقدار orgId و projectId
+                if (!orgId || !projectId) {
+                    toastr.error('لطفا سازمان و پروژه را به درستی انتخاب کنید', 'خطا');
+                    return;
+                }
+
+                formData.append('orgId', orgId);
+                formData.append('projectId', projectId);
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "AddTask")',
@@ -671,6 +648,9 @@
                             $('.modal-backdrop').remove();
                             // show success message
                             toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+
+                            // Reset form
+                            $('#taskForm')[0].reset();
                         }
                     },
                     error: function () {
@@ -680,6 +660,7 @@
                 });
             });
         });
+
 
         // add new employee
         $(document).ready(function () {

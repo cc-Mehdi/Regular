@@ -44,9 +44,9 @@ namespace Regular.Pages.Customer
 
             TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == loggedInUser.Id || u.AssigntoId == loggedInUser.Id).ToList();
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
-            int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList[0].Id;
+            int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList.FirstOrDefault().Id;
             ProjectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organizationId).ToList();
-            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == OrganizationsList[0].Id && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
+            UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
         }
 
         public void isUserLogin()
@@ -80,7 +80,7 @@ namespace Regular.Pages.Customer
                 Title = title,
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
-                Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName
+                Owner = loggedInUser
             };
 
             _unitOfWork.OrganizationsRepository.Add(newItem);
@@ -108,7 +108,7 @@ namespace Regular.Pages.Customer
                 Title = title,
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
-                Owner = loggedInUser.FullName == null ? "" : loggedInUser.FullName,
+                Owner = loggedInUser,
                 Organization = organization.Title,
                 OrganizationId = organization.Id,
                 TasksCount = 0,
@@ -132,7 +132,7 @@ namespace Regular.Pages.Customer
             _unitOfWork.Save();
 
 
-            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id&&u.OrganizationId==organization.Id).ToList();
+            var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id && u.OrganizationId == organization.Id).ToList();
             return new JsonResult(projectsList);
         }
 
@@ -165,7 +165,7 @@ namespace Regular.Pages.Customer
         //get tasks by organization id
         public async Task<JsonResult> OnGetGetTasksByOrganizationId(int organizationId)
         {
-            TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u=> u.Project.OrganizationId == organizationId).ToList();
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == organizationId).ToList();
             return new JsonResult(TasksList);
         }
 
@@ -190,23 +190,23 @@ namespace Regular.Pages.Customer
             var title = Request.Form["title"].ToString();
             var priority = Request.Form["priority"].ToString();
             var assigneeId = Request.Form["Employees"].ToString();
-            var assignTo = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == int.Parse(assigneeId)).FullName.ToString();
+            var assignTo = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == int.Parse(assigneeId))?.FullName.ToString();
             var estimateTime = Request.Form["estimateTime"].ToString();
             var remainingTime = Request.Form["remainingTime"].ToString();
             var loggedTime = Request.Form["loggedTime"].ToString();
             var description = Request.Form["description"].ToString();
-            var projectId = Request.Form["ProjectId"].ToString();
+            var projectId = Request.Form["projectId"].ToString();
             var reporterId = loggedInUser.Id;
             var organizationId = Request.Form["orgId"];
 
             // Validate the input data (simple validation example)
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
-                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description)) 
+                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description))
             {
                 return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
             }
 
-            if(projectId == "0")
+            if (projectId == "0" || string.IsNullOrEmpty(projectId))
                 return new JsonResult(new { err = "پروژه مورد نظر خود را انتخاب کنید" });
 
             try
@@ -233,7 +233,7 @@ namespace Regular.Pages.Customer
                 _unitOfWork.TasksRepository.Add(newItem);
                 _unitOfWork.Save();
 
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(organizationId)).ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == int.Parse(organizationId)).ToList();
                 return new JsonResult(TasksList);
             }
             catch (Exception ex)
@@ -247,7 +247,7 @@ namespace Regular.Pages.Customer
         // get employees by organization id
         public async Task<JsonResult> OnGetGetEmployeesByOrganizationId(int organizationId)
         {
-            UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
+            UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
             return new JsonResult(UsersList);
         }
 
@@ -269,7 +269,7 @@ namespace Regular.Pages.Customer
 
             try
             {
-                var newItem = new EmployeeInvites
+                var newItem = new Organizations_Users
                 {
                     InviteStatus = "در انتظار پاسخ",
                     OrganizationId = int.Parse(orgId),
@@ -277,7 +277,7 @@ namespace Regular.Pages.Customer
                     UserId = User.Id
                 };
 
-                _unitOfWork.EmployeeInvitesRepository.Add(newItem);
+                _unitOfWork.Organizations_UsersRepository.Add(newItem);
                 _unitOfWork.Save();
 
                 return await OnGetGetEmployeesByOrganizationId(int.Parse(orgId));
@@ -295,16 +295,16 @@ namespace Regular.Pages.Customer
             isUserLogin();
 
             if (filterParameter == null)
-                UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u=> u.User).ToList();
+                UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
             else
-                UsersList = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u => u.User).Where(u=> u.FullName.Contains(filterParameter) || u.Username.Contains(filterParameter)).ToList();
+                UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u => u.User).Where(u => u.FullName.Contains(filterParameter) || u.Username.Contains(filterParameter)).ToList();
             return new JsonResult(UsersList);
         }
 
         // get users with project id (json)
         public async Task<JsonResult> OnGetGetUsersByProjectId(int projectId)
         {
-            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilterIncludeRelations(u => u.ProjectId == projectId).Select(u=> u.User).ToList();
+            UsersList = _unitOfWork.User_ProjectRepository.GetAllByFilterIncludeRelations(u => u.ProjectId == projectId).Select(u => u.User).ToList();
             return new JsonResult(UsersList);
         }
 
@@ -322,7 +322,7 @@ namespace Regular.Pages.Customer
         // get sent employee invites by organization id
         public async Task<JsonResult> OnGetGetSentEmployeeInvitesByOrganizationId(int organizationId)
         {
-            var list = _unitOfWork.EmployeeInvitesRepository.GetAllByFilterIncludeUsers(u => u.OrganizationId == organizationId && u.UserId != loggedInUser.Id).Select(u => new {u.User.Id, u.User.FullName, u.User.Username, u.User.ImageName, u.InviteStatus}).ToList();
+            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.UserId != loggedInUser.Id).Select(u => new { u.User.Id, u.User.FullName, u.User.Username, u.User.ImageName, u.InviteStatus }).ToList();
             return new JsonResult(list);
         }
     }

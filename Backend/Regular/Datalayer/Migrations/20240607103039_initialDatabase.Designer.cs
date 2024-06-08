@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Datalayer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240519224517_changeProjectsRepository")]
-    partial class changeProjectsRepository
+    [Migration("20240607103039_initialDatabase")]
+    partial class initialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,33 +24,6 @@ namespace Datalayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Datalayer.Models.EmployeeInvites", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("InviteStatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrganizationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("EmployeeInvites");
-                });
 
             modelBuilder.Entity("Datalayer.Models.LoginsLog", b =>
                 {
@@ -80,29 +53,6 @@ namespace Datalayer.Migrations
                     b.ToTable("LoginsLog");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Organization_Project", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("OrganizationId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("Organization_Project");
-                });
-
             modelBuilder.Entity("Datalayer.Models.Organizations", b =>
                 {
                     b.Property<int>("Id")
@@ -115,11 +65,6 @@ namespace Datalayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Owner")
-                        .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
-
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
@@ -130,7 +75,42 @@ namespace Datalayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("Datalayer.Models.Organizations_Users", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AcceptInviteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreateInviteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InviteStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Organizations_Users");
                 });
 
             modelBuilder.Entity("Datalayer.Models.Projects", b =>
@@ -145,10 +125,13 @@ namespace Datalayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Owner")
+                    b.Property<string>("Organization")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<int>("OrganizationId")
+                        .HasColumnType("int");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("int");
@@ -165,6 +148,8 @@ namespace Datalayer.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Projects");
                 });
@@ -215,6 +200,16 @@ namespace Datalayer.Migrations
 
                     b.Property<int>("ReporterId")
                         .HasColumnType("int");
+
+                    b.Property<string>("TaskStatus")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("TaskType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -278,6 +273,16 @@ namespace Datalayer.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("Rank")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -288,23 +293,33 @@ namespace Datalayer.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.EmployeeInvites", b =>
+            modelBuilder.Entity("Datalayer.Models.Users_Users", b =>
                 {
-                    b.HasOne("Datalayer.Models.Organizations", "Organization")
-                        .WithMany()
-                        .HasForeignKey("OrganizationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("Datalayer.Models.Users", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Navigation("Organization");
+                    b.Property<DateTime>("AcceptInviteDate")
+                        .HasColumnType("datetime2");
 
-                    b.Navigation("User");
+                    b.Property<DateTime>("CreateInviteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ReceiverUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SenderUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverUserId");
+
+                    b.HasIndex("SenderUserId");
+
+                    b.ToTable("Users_Users");
                 });
 
             modelBuilder.Entity("Datalayer.Models.LoginsLog", b =>
@@ -318,7 +333,18 @@ namespace Datalayer.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Datalayer.Models.Organization_Project", b =>
+            modelBuilder.Entity("Datalayer.Models.Organizations", b =>
+                {
+                    b.HasOne("Datalayer.Models.Users", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("Datalayer.Models.Organizations_Users", b =>
                 {
                     b.HasOne("Datalayer.Models.Organizations", "Organization")
                         .WithMany()
@@ -326,15 +352,26 @@ namespace Datalayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Datalayer.Models.Projects", "Project")
+                    b.HasOne("Datalayer.Models.Users", "User")
                         .WithMany()
-                        .HasForeignKey("ProjectId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Organization");
 
-                    b.Navigation("Project");
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Datalayer.Models.Projects", b =>
+                {
+                    b.HasOne("Datalayer.Models.Users", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Datalayer.Models.Tasks", b =>
@@ -365,6 +402,25 @@ namespace Datalayer.Migrations
                     b.Navigation("Project");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Datalayer.Models.Users_Users", b =>
+                {
+                    b.HasOne("Datalayer.Models.Users", "ReceiverUser")
+                        .WithMany()
+                        .HasForeignKey("ReceiverUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Datalayer.Models.Users", "SenderUser")
+                        .WithMany()
+                        .HasForeignKey("SenderUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ReceiverUser");
+
+                    b.Navigation("SenderUser");
                 });
 #pragma warning restore 612, 618
         }

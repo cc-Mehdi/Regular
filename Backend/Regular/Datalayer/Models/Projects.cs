@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Datalayer.Models
 {
@@ -14,11 +15,10 @@ namespace Datalayer.Models
         public string Title { get; set; }
 
         [Display(Name = "موسس")]
-        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
-        [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
-        [DataType(DataType.Text)]
-        public string Owner { get; set; }
+        public Users Owner { get; set; }
 
+        [Display(Name = "موسس")]
+        [ForeignKey("Users")]
         public int OwnerId { get; set; }
 
         [Display(Name = "سازمان")]
