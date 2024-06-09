@@ -1,7 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\mehdi.gholami\\Documents\\Regular\\Backend\\Regular\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserPanel.cshtml",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAUwGYAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-09T14:23:11.819Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
