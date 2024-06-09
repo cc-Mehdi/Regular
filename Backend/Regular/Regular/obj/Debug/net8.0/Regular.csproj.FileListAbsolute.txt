@@ -417,3 +417,5 @@ C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\refin
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\Regular.pdb
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\Regular.genruntimeconfig.cache
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\ref\Regular.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Utilities.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Utilities.pdb

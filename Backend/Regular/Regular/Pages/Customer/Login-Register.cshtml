@@ -56,9 +56,28 @@
 
     <!-- Hc-Web-Module Styles -->
     <link rel="stylesheet" href="./../src/CSS/HC-Web-Module/HC-Styles.css" />
+
+    <!-- Toastr Styles -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 </head>
 
 <body dir="rtl" class="overflow-x-hidden">
+    ﻿@if (TempData["success"] != null)
+    {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            toastr.success('@TempData["success"]');
+        </script>
+    }
+    @if (TempData["error"] != null)
+    {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script type="text/javascript">
+            toastr.error('@TempData["error"]');
+        </script>
+    }
     <div class="container-fluid p-0 m-0 row">
         <!-- Login Side -->
         <div id="login"
@@ -297,5 +316,8 @@
         isRegister();
         ShowLoadingPageAnimation();
     </script>
+
+    <!-- Toastr Script -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
 </body>
 </html>

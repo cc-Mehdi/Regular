@@ -10,3 +10,15 @@ C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Uti
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\refint\Utilities.dll
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.pdb
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\ref\Utilities.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\bin\Debug\net8.0\Utilities.deps.json
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\bin\Debug\net8.0\Utilities.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\bin\Debug\net8.0\Utilities.pdb
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.AssemblyInfoInputs.cache
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.AssemblyInfo.cs
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.csproj.CoreCompileInputs.cache
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.sourcelink.json
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\refint\Utilities.dll
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.pdb
+C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\ref\Utilities.dll
