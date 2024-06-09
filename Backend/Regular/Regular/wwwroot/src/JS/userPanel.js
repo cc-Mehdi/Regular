@@ -308,6 +308,7 @@ function getProjectCard(item) {
     return codeBlock;
 }
 function getTaskCard(item) {
+    let priority = item.priority == '1' ? "bi-star" : item.priority == '2' ? "bi-star-half" : "bi-star-fill";
     var codeBlock = `
            <!-- item card -->
             <div class="col-lg-4 col-md-4 col-sm-6 p-3">
@@ -317,7 +318,7 @@ function getTaskCard(item) {
                                 <!-- item card code -->
                                 <div class="d-flex justify-content-between align-items-center w-100">
                                     <h3 class="hc-fs-paragraph1 my-2">${item.id}</h3>
-                                    <i class="bi bi-star"></i>
+                                    <i class="bi ${priority}"></i>
                                 </div>
 
                                 <!-- item card title -->
