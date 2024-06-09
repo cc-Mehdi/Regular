@@ -66,6 +66,13 @@
                     </div>
                     <!-- offcanvas body -->
                     <div class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100">
+
+                        <!-- Logged In User Info -->
+                        <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex  align-items-center">
+                            <img src="@Model.loggedInUser.ImageName" alt="" class="rounded-circle ms-5" width="45" height="45">
+                            <span class="text-black hc-fs-paragraph2">@Model.loggedInUser.FullName</span>
+                        </div>
+
                         <!-- Menu buttons -->
                         <div class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4">
                             <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2"
