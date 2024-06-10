@@ -92,6 +92,7 @@ function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
         document.getElementsByClassName("userPanel-menuItem")[0].classList.add("userPanel-menuItem-active");
         document.getElementsByClassName("userPanel-menuItem")[1].classList.remove("userPanel-menuItem-active");
         document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
+        document.getElementsByClassName("userPanel-menuItem")[3].classList.remove("userPanel-menuItem-active");
     }
 
     $.ajax({
@@ -213,6 +214,33 @@ function updateAssignee(name, image, id) {
     document.getElementById('assigneeImage').src = image;
     document.getElementById('assigneeName').setAttribute('data-id', id);
 }
+function UpdateTasksByProjectId(projectId) {
+    // Change selection of menu items
+    document.getElementsByClassName("userPanel-menuItem")[0].classList.remove("userPanel-menuItem-active");
+    document.getElementsByClassName("userPanel-menuItem")[1].classList.add("userPanel-menuItem-active");
+    document.getElementsByClassName("userPanel-menuItem")[2].classList.remove("userPanel-menuItem-active");
+    document.getElementsByClassName("userPanel-menuItem")[3].classList.remove("userPanel-menuItem-active");
+
+    // Update tasks list
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetTasksByProjectId",
+        method: "GET",
+        data: { projectId: projectId },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            data.forEach(function (item) {
+                var codeBlock = getTaskCard(item);
+                list.append(codeBlock);
+            });
+            var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
+            list.append(addNewItemCard_codeBlock);
+        },
+        error: function () {
+            alert("مشکل در نمایش وظایف");
+        }
+    });
+}
 // end task section
 
 // employee section
@@ -275,7 +303,6 @@ function UpdateSentEmployeeInvitesByOrganizationId() {
         }
     });
 }
-
 // end employee section
 
 function getProjectCard(item) {
@@ -283,7 +310,7 @@ function getProjectCard(item) {
                     <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                        <a href="#">
+                                        <a onclick="UpdateTasksByProjectId(${item.id})">
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <!-- item card image -->
                                                 <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"

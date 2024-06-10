@@ -169,6 +169,12 @@ namespace Regular.Pages.Customer
             return new JsonResult(TasksList);
         }
 
+        public async Task<JsonResult> OnGetGetTasksByProjectId(int projectId)
+        {
+            TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.ProjectId == projectId).ToList();
+            return new JsonResult(TasksList);
+        }
+
         // get tasks by filter
         public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgId)
         {
