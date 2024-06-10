@@ -241,6 +241,23 @@ function UpdateTasksByProjectId(projectId) {
         }
     });
 }
+function ShowTaskDetails(taskId) {
+    // Update tasks list
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetTaskById",
+        method: "GET",
+        data: { taskId: taskId },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            var codeBlock = getTaskDetailsCard(data);
+            list.append(codeBlock);
+        },
+        error: function () {
+            alert("مشکل در نمایش وظایف");
+        }
+    });
+}
 // end task section
 
 // employee section
@@ -340,7 +357,7 @@ function getTaskCard(item) {
            <!-- item card -->
             <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                             <div class="userPanel-itemCard hc-box bc-primary">
-                            <a href="#">
+                            <a onclick="ShowTaskDetails(${item.id})">
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                 <!-- item card code -->
                                 <div class="d-flex justify-content-between align-items-center w-100">
@@ -368,6 +385,73 @@ function getTaskCard(item) {
                             </div>
                         </div>
                <!-- end item card -->
+     `;
+    return codeBlock;
+}
+function getTaskDetailsCard(item) {
+    let priorityIcon = item.priority == '1' ? "bi-star" : item.priority == '2' ? "bi-star-half" : "bi-star-fill";
+    let priorityValue = item.priority == '1' ? "کم" : item.priority == '2' ? "متوسط" : "زیاد";
+    var codeBlock = `
+            <!-- Task details card -->
+            <div class="w-100 h-100 d-flex justify-content-center align-items-center mt-3">
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+                <div class="w-100 d-flex justify-content-between">
+                  <h5 class="hc-fs-paragraph3">${item.id}</h5>
+                  <h5 class="hc-fs-paragraph3">${item.project.title}</h5>
+                </div>
+                <div class="w-100">
+                  <h5 class="hc-fs-title2">${item.title}</h5>
+                </div>
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">مرتبط با : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.assignto}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">اولویت : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        <i class="bi ${priorityIcon} hc-fs-span1"></i>
+                        ${priorityValue}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">وضعیت : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.taskStatus}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">نوع : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.taskType}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">زمان تخمینی : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.estimateTime}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">زمان ثبت شده : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.loggedTime}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">توضیحات : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.description}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Task details card -->
      `;
     return codeBlock;
 }

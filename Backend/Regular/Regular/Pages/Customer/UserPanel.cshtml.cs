@@ -175,6 +175,12 @@ namespace Regular.Pages.Customer
             return new JsonResult(TasksList);
         }
 
+        public async Task<JsonResult> OnGetGetTaskById(int taskId)
+        {
+            Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == taskId).FirstOrDefault();
+            return new JsonResult(Task);
+        }
+
         // get tasks by filter
         public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgId)
         {
@@ -198,8 +204,6 @@ namespace Regular.Pages.Customer
             var assigneeId = Request.Form["Employees"].ToString();
             var assignTo = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == int.Parse(assigneeId))?.FullName.ToString();
             var estimateTime = Request.Form["estimateTime"].ToString();
-            var remainingTime = Request.Form["remainingTime"].ToString();
-            var loggedTime = Request.Form["loggedTime"].ToString();
             var description = Request.Form["description"].ToString();
             var projectId = Request.Form["projectId"].ToString();
             var reporterId = loggedInUser.Id;
@@ -207,7 +211,7 @@ namespace Regular.Pages.Customer
 
             // Validate the input data (simple validation example)
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
-                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(remainingTime) || string.IsNullOrEmpty(loggedTime) || string.IsNullOrEmpty(description))
+                string.IsNullOrEmpty(estimateTime) || string.IsNullOrEmpty(description))
             {
                 return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
             }
@@ -226,14 +230,14 @@ namespace Regular.Pages.Customer
                     Assignto = assignTo,
                     AssigntoId = int.Parse(assigneeId),
                     EstimateTime = estimateTime,
-                    RemainingTime = remainingTime,
-                    LoggedTime = loggedTime,
+                    LoggedTime = "زمانی ثبت نشده",
+                    RemainingTime = estimateTime,
                     Description = description,
                     ProjectId = int.Parse(projectId),
                     Project = project,
                     ReporterId = reporterId,
-                    TaskStatus = "برای انجام",
-                    TaskType = "نوع وظیفه"
+                    TaskStatus = "نامشخص",
+                    TaskType = "نامشخص"
                 };
 
                 _unitOfWork.TasksRepository.Add(newItem);
