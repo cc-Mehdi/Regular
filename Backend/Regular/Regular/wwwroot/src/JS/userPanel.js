@@ -113,6 +113,8 @@ function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
             alert("error");
         }
     });
+
+    updateProjectsList_newTaskModal(orgId);
 }
 function UpdateProjectsByFilter(parameter) {
     $.ajax({
@@ -148,7 +150,6 @@ function updateProject(name, id) {
             var list = $('#usersList_newTaskModal');
             list.empty();
             data.forEach(function (item) {
-                debugger;
                 var codeBlock = `
                     <div class="form-check form-check-reverse d-flex align-items-center">
                         <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio" value="${item.id}" name="Employees" id="employeeCheck${item.id}" onchange="updateAssignee('${item.fullName}', '${item.imageName}', '${item.id}')">
@@ -162,6 +163,36 @@ function updateProject(name, id) {
         },
         error: function () {
             alert("Error loading users.");
+        }
+    });
+}
+function updateProjectsList_newTaskModal(orgId) {
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetProjectsByOrganizationId",
+        method: "GET",
+        data: { organizationId: orgId },
+        success: function (data) {
+            var newTaskModal_projectsList = $('#newTaskModal_projectsList');
+            newTaskModal_projectsList.empty();
+            data.forEach(function (item) {
+                var codeBlock = `
+                <div class="form-check form-check-reverse d-flex align-items-center">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
+                            type="radio"
+                            value="${item.id}"
+                            name="project"
+                            id="projectCheck@item.Id"
+                            onchange="updateProject('${item.title}', '${item.id}')">
+                    <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
+                        ${item.title}
+                    </label>
+                </div>
+                `;
+                newTaskModal_projectsList.append(codeBlock);
+            });
+        },
+        error: function () {
+            alert("error");
         }
     });
 }

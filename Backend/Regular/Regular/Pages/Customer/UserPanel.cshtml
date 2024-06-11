@@ -352,15 +352,14 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject_newTaskModal" name="project" value="@projectTitle" data-id="@projectId" disabled>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject_newTaskModal" name="project" value="" data-id="@projectId" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample2">
-                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-
+                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newTaskModal_projectsList">
                                             @for (int i = 0; i < Model.ProjectsList.Count; i++)
                                             {
                                                 var item = Model.ProjectsList[i];
@@ -570,6 +569,7 @@
                         toastr.error('افزودن پروژه با شکست مواجه شد', 'خطا');
                     }
                 });
+                updateProjectsList_newTaskModal($("#ddlOrganization").data("id"));
             });
         });
 
