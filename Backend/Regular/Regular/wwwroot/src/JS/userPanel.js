@@ -273,7 +273,7 @@ function UpdateTasksByProjectId(projectId) {
     });
 }
 function ShowTaskDetails(taskId) {
-    // Update tasks list
+    // get task
     $.ajax({
         url: "/Customer/UserPanel?handler=GetTaskById",
         method: "GET",
@@ -348,6 +348,23 @@ function UpdateSentEmployeeInvitesByOrganizationId() {
         },
         error: function () {
             alert("error");
+        }
+    });
+}
+function showUserInformationByUserId(userId) {
+    // Update tasks list
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetUserById",
+        method: "GET",
+        data: { userId: userId },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            var codeBlock = getUserInformationCard(data);
+            list.append(codeBlock);
+        },
+        error: function () {
+            alert("مشکل در نمایش مشخصات کاربر انتخاب شده");
         }
     });
 }
@@ -497,7 +514,7 @@ function getEmployeeCard(item) {
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                       <div class="userPanel-itemCard hc-box bc-primary">
-                        <a href="#">
+                        <a onclick="showUserInformationByUserId(${item.id})">
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
@@ -533,7 +550,7 @@ function getSentEmployeeInviteCard(item) {
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                       <div class="userPanel-itemCard hc-box bc-primary">
-                        <a href="#">
+                        <a onclick="showUserInformationByUserId(${item.id})">
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
@@ -557,6 +574,38 @@ function getSentEmployeeInviteCard(item) {
                       </div>
                     </div>
                <!-- end item card -->
+     `;
+    return codeBlock;
+}
+function getUserInformationCard(item) {
+    var codeBlock = `
+<!-- User Profile card -->
+<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center mt-3">
+    <!-- back button -->
+    <div class="row w-100 d-flex flex-row-reverse">
+        <button onclick="UpdateEmployeesByOrganizationId()" class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+            <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+            <span class="hc-fs-paragraph2">بازگشت</span>
+        </button>
+    </div>
+    <div class="bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+        <!-- image and main info -->
+        <div class="w-100 d-flex justify-content-end align-items-center row">
+            <div class="col-md-4 col-sm-12  text-center">
+                <img src="${item.imageName}"
+                     style="max-width: 200px; min-width: 100px; width: 100%;" alt="user profile image">
+            </div>
+            <div class="col-md-8 col-sm-12 d-flex flex-column py-3 px-1 text-center">
+                <h5 class="hc-fs-title3">${item.fullName}</h5>
+                <h5 class="hc-fs-title3">@${item.username}</h5>
+                <h5 class="hc-fs-title3">${item.rank}</h5>
+                <h5 class="hc-fs-title3">${item.status}</h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- End User Profile card -->
      `;
     return codeBlock;
 }

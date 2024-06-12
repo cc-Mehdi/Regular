@@ -2,6 +2,7 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Cryptography;
 
 namespace Regular.Pages.Customer
@@ -334,6 +335,12 @@ namespace Regular.Pages.Customer
         {
             var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.UserId != loggedInUser.Id).Select(u => new { u.User.Id, u.User.FullName, u.User.Username, u.User.ImageName, u.InviteStatus }).ToList();
             return new JsonResult(list);
+        }
+
+        public async Task<JsonResult> OnGetGetUserById(int userId)
+        {
+            User = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == userId).FirstOrDefault();
+            return new JsonResult(User);
         }
     }
 }
