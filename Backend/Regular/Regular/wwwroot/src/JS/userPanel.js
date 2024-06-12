@@ -425,6 +425,12 @@ function getTaskDetailsCard(item) {
     var codeBlock = `
             <!-- Task details card -->
             <div class="w-100 h-100 d-flex justify-content-center align-items-center mt-3">
+            <!-- back button -->
+              <div class="row w-100 d-flex flex-row-reverse">
+                <button onclick="UpdateTasksByOrganizationId()" class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                  <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                  <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
               <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
                 <div class="w-100 d-flex justify-content-between">
                   <h5 class="hc-fs-paragraph3">${item.id}</h5>

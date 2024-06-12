@@ -187,9 +187,9 @@ namespace Regular.Pages.Customer
             isUserLogin();
 
             if (filterParameter == null)
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(orgId)).ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == int.Parse(orgId)).ToList();
             else
-                TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == int.Parse(orgId) && u.Title.Contains(filterParameter)).ToList();
+                TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == int.Parse(orgId) && u.Title.Contains(filterParameter)).ToList();
             return new JsonResult(TasksList);
         }
 
