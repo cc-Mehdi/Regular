@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
   <!-- HC-Web-Module Styles -->
   <link rel="stylesheet" href="./../src/CSS/HC-Web-Module/HC-Styles.css" />
+  <!-- DataTables Styles -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css">
 </head>
 
 <body dir="rtl" class="overflow-x-hidden bc-darkBlue">
@@ -120,42 +122,217 @@
             <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
               <!-- back button -->
               <div class="row w-100 d-flex flex-row-reverse">
-                <button class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                <button
+                  class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                   <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
                   <span class="hc-fs-paragraph2">بازگشت</span>
                 </button>
               </div>
-              <div class="bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
-                <!-- image and main info -->
-                <div class="w-100 d-flex justify-content-end align-items-center row">
-                  <div class="col-md-4 col-sm-12  text-center">
-                    <img src="./../src/media/Logo/regular-favicon-color.png"
-                      style="max-width: 200px; min-width: 100px; width: 100%;" alt="user profile image">
-                  </div>
-                  <div class="col-md-8 col-sm-12 d-flex flex-column py-3 px-1 text-center">
-                    <h5 class="hc-fs-title3">نام و نام خانوادگی</h5>
-                    <h5 class="hc-fs-title3">@username</h5>
-                    <h5 class="hc-fs-title3">سطح</h5>
-                    <h5 class="hc-fs-title3">وضعیت</h5>
-                  </div>
-                </div>
+              <div class="bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3 text-white">
 
-                <!-- security group box -->
-                <div class="w-100 border rounded-3  mt-3">
-                  <span class="hc-fs-paragraph1 px-1">امنیت</span>
-                  <div class="p-3">
-                    <form class="row g-3">
-                      <div class="col-md-6 text-white">
-                        <label for="inputEmail4" class="form-label">ایمیل</label>
-                        <input type="email" class="form-control text-white" id="inputEmail4">
-                      </div>
-                      <div class="col-md-6 text-white">
-                        <label for="inputPassword4" class="form-label">کلمه عبور</label>
-                        <input type="password" class="form-control text-white" id="inputPassword4">
-                      </div>
-                      <button type="submit" class="btn btn-warning">ویرایش</button>
-                  </div>
-                </div>
+                <table dir="rtl" id="mainTable" class="table table-striped table-hover table-dark w-100">
+                  <thead>
+                    <tr>
+                      <th class="text-end">کد</th>
+                      <th class="text-end">عنوان</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-end">234</td>
+                      <td class="text-end">عنوان آزمایشی پروژه</td>
+                      <td>
+                        <a href="#" class="btn btn-warning">
+                          <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger">
+                          <i class="bi bi-trash"></i>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
             <!-- End Task details card -->
@@ -170,6 +347,11 @@
     <footer></footer>
   </div>
 
+  <!-- JQuery Script CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Fontawesome Script -->
   <script src="https://kit.fontawesome.com/a904a1b9c2.js" crossorigin="anonymous"></script>
 
@@ -183,6 +365,9 @@
 
   <!-- Custom Script -->
   <script src="./../src/JS/userPanel.js"></script>
+
+  <!-- DataTables Script -->
+  <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
 </body>
 
 <!-- Add New Project Modal -->
@@ -331,3 +516,37 @@
 </div>
 
 </html>
+
+<script>
+
+  new DataTable('#mainTable', {
+    fixedColumns: true,
+    scrollCollapse: true,
+    scrollX: true,
+    scrollY: 300,
+    "language": {
+                    "decimal": "",
+                    "emptyTable": "هیچ داده‌ای در جدول موجود نیست",
+                    "info": "نمایش _START_ تا _END_ از _TOTAL_ ورودی",
+                    "infoEmpty": "نمایش 0 تا 0 از 0 ورودی",
+                    "infoFiltered": "(فیلتر شده از _MAX_ ورودی)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "نمایش _MENU_ ورودی",
+                    "loadingRecords": "در حال بارگذاری...",
+                    "processing": "در حال پردازش...",
+                    "search": "جستجو:",
+                    "zeroRecords": "هیچ رکوردی پیدا نشد",
+                    "paginate": {
+                        "first": "اول",
+                        "last": "آخر",
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    },
+                    "aria": {
+                        "sortAscending": ": فعال سازی برای مرتب سازی صعودی",
+                        "sortDescending": ": فعال سازی برای مرتب سازی نزولی"
+                    }
+                }
+  });
+</script>
