@@ -100,7 +100,7 @@
                                             </a>
                                             <div class="row w-100">
                                                 <div class="col-sm-12 col-md-6 px-1">
-                                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                    <button onclick="EditItem('سازمان', @item.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                         <i class="bi bi-pencil-square ms-1"></i>
                                                         <span>ویرایش</span>
                                                     </button>
@@ -116,7 +116,7 @@
                                     }
                                 }
                             </ul>
-                            <button data-bs-toggle="modal" data-bs-target="#newOrganizationModal" class="btnNewOrganization rounded-start-3 py-2 px-3 border-bottom-0 border-top-0 border-start-0 border-end-3 border-white bc-primary text-white">
+                            <button onclick="ResetModals()" data-bs-toggle="modal" data-bs-target="#newOrganizationModal" class="btnNewOrganization rounded-start-3 py-2 px-3 border-bottom-0 border-top-0 border-start-0 border-end-3 border-white bc-primary text-white">
                                 <i class="bi bi-plus-circle"></i>
                             </button>
                         </div>
@@ -197,7 +197,7 @@
                                                 <!-- item card buttons -->
                                                 <div class="row w-100">
                                                     <div class="col-sm-12 col-md-6 px-1">
-                                                        <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <button onclick="EditItem('پروژه', @project.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                             <i class="bi bi-pencil-square ms-1"></i>
                                                             <span>ویرایش</span>
                                                         </button>
@@ -218,7 +218,7 @@
                             }
 
                             <!-- item card (new button) -->
-                            <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
+                            <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3" onclick="ResetModals()">
                                 <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
                                      data-bs-target="#newProjectModal">
                                     <div class="d-flex flex-column justify-content-center align-items-center h-100">
@@ -254,7 +254,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
-                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                    <h1 class="modal-title fs-5 text-black" id="newProjectModalTitle">
                         افزودن پروژه
                     </h1>
                     <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -262,10 +262,11 @@
                 <div class="modal-body bc-darkBlue text-white">
                     <!-- Add new project modal body -->
                     <form id="projectForm" method="post" enctype="multipart/form-data">
+                        <input name="Id" id="projectForm_id" hidden />
                         <div class="mb-3">
                             <label class="form-label">عنوان پروژه</label>
                             <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="Title"
-                                   placeholder="تکمیل طراحی اولیه" />
+                                   placeholder="تکمیل طراحی اولیه" id="projectForm_title" />
                             <span class="text-danger" asp-validation-for="@Model.Project.Title"></span>
                         </div>
 
@@ -301,7 +302,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 انصراف
                             </button>
-                            <button type="submit" class="btn btn-success" id="bindProjects">
+                            <button type="submit" class="btn btn-success" id="btnAddNewProject">
                                 افزودن پروژه جدید
                             </button>
                     </form>
@@ -317,7 +318,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
-                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                    <h1 class="modal-title fs-5 text-black" id="newOrganizationModalTitle">
                         افزودن سازمان
                     </h1>
                     <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -325,10 +326,11 @@
                 <div class="modal-body bc-darkBlue text-white">
                     <!-- Add new organization modal body -->
                     <form id="organizationForm" method="post" enctype="multipart/form-data">
+                        <input type="text" name="Id" id="organizationForm_id" value="0" hidden />
 
                         <div class="mb-3">
                             <label for="formTitle" class="form-label">عنوان سازمان</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="formTitle" name="Title" placeholder="تکمیل طراحی اولیه" />
+                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="organizationForm_title" name="Title" placeholder="تکمیل طراحی اولیه" />
                             <span class="text-danger" asp-validation-for="@Model.Organization.Title"></span>
                         </div>
 
@@ -336,7 +338,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 انصراف
                             </button>
-                            <button type="submit" class="btn btn-success" id="bindOrganizations">
+                            <button type="submit" class="btn btn-success" id="btnAddNewOrganization">
                                 افزودن سازمان جدید
                             </button>
                         </div>
@@ -352,7 +354,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
-                    <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+                    <h1 class="modal-title fs-5 text-black" id="newTaskModalTitle">
                         افزودن وظیفه
                     </h1>
                     <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -360,15 +362,17 @@
                 <div class="modal-body bc-darkBlue text-white">
                     <!-- Add new task modal body -->
                     <form id="taskForm" method="post" enctype="multipart/form-data">
+                        <input name="Id" id="taskForm_id" hidden />
+
                         <div class="mb-3">
                             <label for="taskTitle" class="form-label">عنوان وظیفه</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="title" id="taskTitle" placeholder="طراحی بنر">
+                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="title" id="taskForm_title" placeholder="طراحی بنر">
                             <span class="text-danger" asp-validation-for="@Model.Task.Title"></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="formPriority" class="form-label">اولویت</label>
-                            <select class="form-select text-white" name="priority" id="formPriority">
+                            <select class="form-select text-white" name="priority" id="taskForm_priority">
                                 <option selected>این وظیفه چقدر مهم است؟</option>
                                 <option value="1" class="bc-darkBlue">کم</option>
                                 <option value="2" class="bc-darkBlue">معمولی</option>
@@ -389,7 +393,7 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="txtProject_newTaskModal" name="project" value="" data-id="@projectId" disabled>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" name="project" value="" data-id="@projectId" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
@@ -424,7 +428,7 @@
                             <label for="formAssignee" class="form-label">اختصاص یافه به</label>
                             <div class="d-flex align-items-center mb-1">
                                 <img src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="assigneeName">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
@@ -468,7 +472,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="estimatedTime" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
-                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="estimatedTime" name="estimateTime" placeholder="3h 30m">
+                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_estimateTime" name="estimateTime" placeholder="3h 30m">
                                         <span class="text-danger" asp-validation-for="@Model.Task.EstimateTime"></span>
                                     </div>
                                 </div>
@@ -477,7 +481,7 @@
 
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">توضیحات</label>
-                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskDescription" name="description" rows="3"></textarea>
+                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_description" name="description" rows="3"></textarea>
                             <span class="text-danger" asp-validation-for="@Model.Task.Description"></span>
                         </div>
 
@@ -485,7 +489,7 @@
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                 انصراف
                             </button>
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-success" id="btnAddNewTask">
                                 افزودن وظیفه جدید
                             </button>
                         </div>
@@ -508,6 +512,8 @@
                 <div class="modal-body bc-darkBlue text-white">
                     <!-- Add new project modal body -->
                     <form id="employeeForm" method="post" enctype="multipart/form-data">
+                        <input name="Id" id="newEmployeeModal_employeeIdInput" hidden />
+
                         <div class="mb-3 d-flex flex-column" dir="ltr">
                             <div class="row text-end">
                                 <label class="form-label hc-fs-paragraph2">نام کاربری</label>
@@ -575,7 +581,7 @@
                 formData.append('orgId', $("#ddlOrganization").data("id"));
 
                 $.ajax({
-                    url: '@Url.Page("/Customer/UserPanel", "AddProject")',
+                    url: '@Url.Page("/Customer/UserPanel", "UpsertProject")',
                     method: 'POST',
                     data: formData,
                     contentType: false,
@@ -593,17 +599,16 @@
                             var addNewItemCard_codeBlock = getNewItemCard("#newProjectModal", "پروژه");
                             list.append(addNewItemCard_codeBlock);
                             //close modal
-                            $('#newProjectModal').toggleClass("show");
-                            document.getElementById("newProjectModal").style = "display: none";
-                            $('.modal-backdrop').remove();
+                            $('#newProjectModal').modal("hide");
                             // show success message
-                            toastr.success('پروژه با موفقیت افزوده شد', 'موفق');
+                            toastr.success('عملیات با موفقیت انجام شد', 'موفق');
                         }
+                        //reset modal
                         $("#projectForm")[0].reset();
                     },
                     error: function () {
                         // show error message
-                        toastr.error('افزودن پروژه با شکست مواجه شد', 'خطا');
+                        toastr.error('عملیات با شکست مواجه شد', 'خطا');
                     }
                 });
                 updateProjectsList_newTaskModal($("#ddlOrganization").data("id"));
@@ -615,9 +620,8 @@
             $('#organizationForm').on('submit', function (e) {
                 e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
                 var formData = new FormData(this);
-
                 $.ajax({
-                    url: '@Url.Page("/Customer/UserPanel", "AddOrganization")',
+                    url: '@Url.Page("/Customer/UserPanel", "UpsertOrganization")',
                     method: 'POST',
                     data: formData,
                     contentType: false,
@@ -635,17 +639,16 @@
                             });
                             $('#ddlOrganization').text(data[0].title);
                             //close modal
-                            $('#newOrganizationModal').toggleClass("show");
-                            document.getElementById("newOrganizationModal").style = "display: none";
-                            $('.modal-backdrop').remove();
+                            $('#newOrganizationModal').modal("hide");
                             // show success message
-                            toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
+                            toastr.success('عملیات با موفقیت انجام شد', 'موفق');
                         }
+                        // reset modal
                         $("#organizationForm")[0].reset();
                     },
                     error: function () {
                         // show error message
-                        toastr.error('افزودن سازمان با شکست مواجه شد', 'خطا');
+                        toastr.error('عملیات با شکست مواجه شد', 'خطا');
                     }
                 });
             });
@@ -659,7 +662,7 @@
                 var formData = new FormData(this);
 
                 var orgId = $("#ddlOrganization").data("id");
-                var projectId = $("#txtProject_newTaskModal").data("id");
+                var projectId = $("#taskForm_project").data("id");
 
                 // بررسی مقدار orgId و projectId
                 if (!orgId || !projectId) {
@@ -671,7 +674,7 @@
                 formData.append('projectId', projectId);
 
                 $.ajax({
-                    url: '@Url.Page("/Customer/UserPanel", "AddTask")',
+                    url: '@Url.Page("/Customer/UserPanel", "UpsertTask")',
                     method: 'POST',
                     data: formData,
                     contentType: false,
@@ -693,7 +696,7 @@
                             document.getElementById("newTaskModal").style = "display: none";
                             $('.modal-backdrop').remove();
                             // show success message
-                            toastr.success('وظیفه با موفقیت افزوده شد', 'موفق');
+                            toastr.success('عملیات با موفقیت انجام شد', 'موفق');
 
                             // Reset form
                             $('#taskForm')[0].reset();
@@ -701,7 +704,7 @@
                     },
                     error: function () {
                         // show error message
-                        toastr.error('افزودن وظیفه با شکست مواجه شد', 'خطا');
+                        toastr.error('عملیات با شکست مواجه شد', 'خطا');
                     }
                 });
             });

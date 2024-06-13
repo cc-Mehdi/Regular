@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -40,22 +40,9 @@
               "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userPanel.js",
               "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
               "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userPanel.js",
-              "ViewState": "AQIAAG4AAAAAAAAAAAAUwIMAAAAAAAAA",
+              "ViewState": "AQIAADMDAAAAAAAAAAAIwGkDAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-06-13T14:42:41.068Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserPanel.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
-              "ViewState": "AQIAAFoBAAAAAAAAAAAqwGIBAABFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-10T16:27:51.22Z",
+              "WhenOpened": "2024-06-13T23:21:47.697Z",
               "EditorCaption": ""
             },
             {
@@ -66,9 +53,22 @@
               "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml",
               "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml",
               "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml",
-              "ViewState": "AQIAAEMAAAAAAAAAAAAAAFEAAAAlAAAA",
+              "ViewState": "AQIAACwBAAAAAAAAAAAUwGQBAABRAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-06-10T16:09:50.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserPanel.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "RelativeToolTip": "Regular\\Pages\\Customer\\UserPanel.cshtml.cs",
+              "ViewState": "AQIAAMoAAAAAAAAAAIA5wNYAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T16:27:51.22Z",
               "EditorCaption": ""
             }
           ]

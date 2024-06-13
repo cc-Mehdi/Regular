@@ -104,7 +104,6 @@ function UpdateOrganizationsByLoggedInUserId() {
 
 // project section
 function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
-    debugger;
     if (orgId != null && orgTitle != null) {
         // Update the dropdown button text
         $('#ddlOrganization').text(orgTitle);
@@ -165,8 +164,8 @@ function UpdateProjectsByFilter(parameter) {
 }
 function updateProject(name, id) {
     // Update project input
-    document.getElementById('txtProject_newTaskModal').value = name;
-    document.getElementById('txtProject_newTaskModal').setAttribute('data-id', id);
+    document.getElementById('taskForm_project').value = name;
+    document.getElementById('taskForm_project').setAttribute('data-id', id);
 
     // Update users list
     $.ajax({
@@ -268,9 +267,9 @@ function UpdateTasksByFilter(parameter) {
     });
 }
 function updateAssignee(name, image, id) {
-    document.getElementById('assigneeName').value = name;
+    document.getElementById('taskForm_assignName').value = name;
     document.getElementById('assigneeImage').src = image;
-    document.getElementById('assigneeName').setAttribute('data-id', id);
+    document.getElementById('taskForm_assignName').setAttribute('data-id', id);
 }
 function UpdateTasksByProjectId(projectId) {
     // Change selection of menu items
@@ -304,7 +303,7 @@ function ShowTaskDetails(taskId) {
     $.ajax({
         url: "/Customer/UserPanel?handler=GetTaskById",
         method: "GET",
-        data: { taskId: taskId },
+        data: { id: taskId },
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -423,7 +422,7 @@ function getProjectCard(item) {
                                                 <!-- item card buttons -->
                                                 <div class="row w-100">
                                                   <div class="col-sm-12 col-md-6 px-1">
-                                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                    <button onclick="EditItem('پروژه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                       <i class="bi bi-pencil-square ms-1"></i>
                                                       <span>ویرایش</span>
                                                     </button>
@@ -453,7 +452,7 @@ function getOrganizationItems(item) {
                 </a>
                 <div class="row w-100">
                     <div class="col-sm-12 col-md-6 px-1">
-                        <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                        <button onclick="EditItem('سازمان', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                             <i class="bi bi-pencil-square ms-1"></i>
                             <span>ویرایش</span>
                         </button>
@@ -475,7 +474,7 @@ function getTaskCard(item) {
            <!-- item card -->
             <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                             <div class="userPanel-itemCard hc-box bc-primary">
-                            <a onclick="ShowTaskDetails(${item.id})">
+                            <a>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                 <!-- item card code -->
                                 <div class="d-flex justify-content-between align-items-center w-100">
@@ -484,7 +483,7 @@ function getTaskCard(item) {
                                 </div>
 
                                 <!-- item card title -->
-                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
+                                <h3 class="hc-fs-paragraph2 my-2" onclick="ShowTaskDetails(${item.id})">
                                     <span class="itemCard-title">${item.title}</span>
                                 </h3>
                                 <!-- item card tags -->
@@ -504,7 +503,7 @@ function getTaskCard(item) {
                                 <!-- item card buttons -->
                                 <div class="row w-100">
                                   <div class="col-sm-12 col-md-6 px-1">
-                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                    <button onclick="EditItem('وظیفه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-pencil-square ms-1"></i>
                                       <span>ویرایش</span>
                                     </button>
@@ -631,12 +630,6 @@ function getEmployeeCard(item) {
                             <!-- item card buttons -->
                                 <div class="row w-100">
                                   <div class="col-sm-12 col-md-6 px-1">
-                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                      <i class="bi bi-pencil-square ms-1"></i>
-                                      <span>ویرایش</span>
-                                    </button>
-                                  </div>
-                                  <div class="col-sm-12 col-md-6 px-1">
                                     <button onclick="DeleteItem('Employee', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-trash ms-1"></i>
                                       <span class="text-nowrap">لغو همکاری</span>
@@ -721,22 +714,22 @@ function getUserInformationCard(item) {
 }
 function getNewItemCard(targetModal, categoryName) {
     var codeBlock = `
-                    <!-- item card (new button) -->
-                    <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3">
-                        <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
-                                data-bs-target="${targetModal}">
-                            <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                                <!-- item card icon -->
-                                <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
-                                <!-- item card title -->
-                                <h3 class="hc-fs-paragraph2 my-2 text-center">
-                                    افزودن ${categoryName} جدید
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end item card (new button) -->
-                        `;
+        <!-- item card (new button) -->
+        <div class="col-lg-4 col-md-4 col-md-4 col-sm-6 p-3" onclick="ResetModals()">
+            <div class="userPanel-itemCard hc-box bc-primary" data-bs-toggle="modal"
+                    data-bs-target="${targetModal}">
+                <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                    <!-- item card icon -->
+                    <i class="fa-solid fa-plus text-white hc-fs-title1" aria-hidden="true"></i>
+                    <!-- item card title -->
+                    <h3 class="hc-fs-paragraph2 my-2 text-center">
+                        افزودن ${categoryName} جدید
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <!-- end item card (new button) -->
+            `;
     return codeBlock;
 }
 function filterItems(parameter) {
@@ -748,6 +741,25 @@ function filterItems(parameter) {
         UpdateEmployeesByFilter(parameter);
 }
 
+function ResetModals() {
+    // Organization
+    $("#organizationForm")[0].reset();
+    $('#newOrganizationModalTitle').text("افزودن سازمان");
+    $('#btnAddNewOrganization').text("افزودن سازمان");
+    $('#btnAddNewOrganization').removeClass("btn-warning");
+
+    // Project
+    $("#projectForm")[0].reset();
+    $('#newProjectModalTitle').text("افزودن پروژه");
+    $('#btnAddNewProject').text("افزودن پروژه");
+    $('#btnAddNewProject').removeClass("btn-warning");
+
+    // Task
+    $("#taskForm")[0].reset();
+    $('#newTaskModalTitle').text("افزودن وظیفه");
+    $('#btnAddNewTask').text("افزودن وظیفه");
+    $('#btnAddNewTask').removeClass("btn-warning");
+}
 function DeleteItem(sectionName, itemId) {
     let customUrl = "";
     switch (sectionName) {
@@ -764,6 +776,7 @@ function DeleteItem(sectionName, itemId) {
             customUrl = "/Customer/UserPanel?handler=DeleteEmployee";
             break;
         default:
+            break;
     }
 
     // Update list
@@ -794,6 +807,89 @@ function DeleteItem(sectionName, itemId) {
                     toastr.success("لغو همکاری با موفقیت انجام شد", 'موفق');
                     break;
                 default:
+                    break;
+            }
+        },
+        error: function () {
+            toastr.error("انجام عملیات با شکست مواجه شد", 'خطا');
+        }
+    });
+}
+function EditItem(sectionName, itemId) {
+    let customUrl = "";
+    switch (sectionName) {
+        case "سازمان":
+            customUrl = "/Customer/UserPanel?handler=GetOrganizationById";
+            break;
+        case "پروژه":
+            customUrl = "/Customer/UserPanel?handler=GetProjectById";
+            break;
+        case "وظیفه":
+            customUrl = "/Customer/UserPanel?handler=GetTaskById";
+            break;
+        default:
+            break;
+    }
+
+    // Update form
+    $.ajax({
+        url: customUrl,
+        method: "GET",
+        data: { id: itemId },
+        success: function (data) {
+            switch (sectionName) {
+                case "سازمان":
+
+                    // change styles in modal to edit style
+                    $('#newOrganizationModalTitle').text("ویرایش سازمان");
+                    $('#btnAddNewOrganization').text("ویرایش سازمان");
+                    $('#btnAddNewOrganization').addClass("btn-warning");
+
+                    // send data to modal inputs
+                    $('#organizationForm_id').val(data.id);
+                    $('#organizationForm_title').val(data.title);
+
+                    // Show the modal
+                    $('#newOrganizationModal').modal('show');
+
+                    break;
+                case "پروژه":
+
+                    // change styles in modal to edit style
+                    $('#newProjectModalTitle').text("ویرایش پروژه");
+                    $('#btnAddNewProject').text("ویرایش پروژه");
+                    $('#btnAddNewProject').addClass("btn-warning");
+
+                    // send data to modal inputs
+                    $('#projectForm_id').val(data.id);
+                    $('#projectForm_title').val(data.title);
+
+                    // Show the modal
+                    $('#newProjectModal').modal('show');
+
+                    break;
+                case "وظیفه":
+
+                    // change styles in modal to edit style
+                    $('#newTaskModalTitle').text("ویرایش وظیفه");
+                    $('#btnAddNewTask').text("ویرایش وظیفه");
+                    $('#btnAddNewTask').addClass("btn-warning");
+
+                    // send data to modal inputs
+                    $('#taskForm_id').val(data.id);
+                    $('#taskForm_title').val(data.title);
+                    $('#taskForm_priority').val(data.priority);
+                    $('#taskForm_project').val(data.project.title);
+                    $('#taskForm_assignName').val(data.assignto);
+                    $('#taskForm_estimateTime').val(data.estimateTime);
+                    $('#taskForm_description').val(data.description);
+
+                    // Show the modal
+                    $('#newTaskModal').modal('show');
+
+                    break;
+                default:
+                    break;
             }
         },
         error: function () {

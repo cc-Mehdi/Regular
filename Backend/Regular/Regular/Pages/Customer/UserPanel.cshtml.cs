@@ -63,6 +63,13 @@ namespace Regular.Pages.Customer
 
         }
 
+        public async Task<JsonResult> OnGetGetOrganizationById(int id)
+        {
+            Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == id);
+            return new JsonResult(Organization);
+        }
+
+
         // get organizations by logged in user id
         public async Task<JsonResult> OnGetGetOrganizationsByLoggedInUserId()
         {
@@ -71,8 +78,8 @@ namespace Regular.Pages.Customer
             return new JsonResult(OrganizationsList);
         }
 
-        // add new organization
-        public async Task<JsonResult> OnPostAddOrganizationAsync()
+        // upsert organization
+        public async Task<JsonResult> OnPostUpsertOrganizationAsync()
         {
             isUserLogin();
 
@@ -82,6 +89,7 @@ namespace Regular.Pages.Customer
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
+            var id = Request.Form["Id"];
 
             // convert data to model for sending to database
             var newItem = new Organizations
@@ -92,7 +100,14 @@ namespace Regular.Pages.Customer
                 Owner = loggedInUser
             };
 
-            _unitOfWork.OrganizationsRepository.Add(newItem);
+            if (String.IsNullOrEmpty(id))
+                _unitOfWork.OrganizationsRepository.Add(newItem);
+            else
+            {
+                newItem.Id = int.Parse(id);
+                _unitOfWork.OrganizationsRepository.Update(newItem);
+            }
+
             _unitOfWork.Save();
 
             var OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
@@ -100,8 +115,14 @@ namespace Regular.Pages.Customer
             return new JsonResult(OrganizationsList);
         }
 
-        // add new project
-        public async Task<JsonResult> OnPostAddProjectAsync()
+        public async Task<JsonResult> OnGetGetProjectById(int id)
+        {
+            Project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == id);
+            return new JsonResult(Project);
+        }
+
+        // upsert project
+        public async Task<JsonResult> OnPostUpsertProjectAsync()
         {
             isUserLogin();
 
@@ -110,6 +131,7 @@ namespace Regular.Pages.Customer
             var employeesId = Request.Form["Employees"].ToList();
             var orgId = Request.Form["orgId"];
             var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
+            var id = Request.Form["Id"];
 
             var newItem = new Projects
             {
@@ -123,7 +145,14 @@ namespace Regular.Pages.Customer
                 TasksStatusPercent = 0
             };
 
-            _unitOfWork.ProjectsRepository.Add(newItem);
+            if (String.IsNullOrEmpty(id))
+                _unitOfWork.ProjectsRepository.Add(newItem);
+            else
+            {
+                newItem.Id = int.Parse(id);
+                _unitOfWork.ProjectsRepository.Update(newItem);
+            }
+
             _unitOfWork.Save();
 
             // add relations between users and projects
@@ -183,9 +212,9 @@ namespace Regular.Pages.Customer
             return new JsonResult(TasksList);
         }
 
-        public async Task<JsonResult> OnGetGetTaskById(int taskId)
+        public async Task<JsonResult> OnGetGetTaskById(int id)
         {
-            Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == taskId).FirstOrDefault();
+            Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == id).FirstOrDefault();
             return new JsonResult(Task);
         }
 
@@ -203,7 +232,7 @@ namespace Regular.Pages.Customer
 
 
         // add new task
-        public async Task<JsonResult> OnPostAddTaskAsync()
+        public async Task<JsonResult> OnPostUpsertTaskAsync()
         {
             isUserLogin();
 
@@ -216,6 +245,7 @@ namespace Regular.Pages.Customer
             var projectId = Request.Form["projectId"].ToString();
             var reporterId = loggedInUser.Id;
             var organizationId = Request.Form["orgId"];
+            var id = Request.Form["Id"];
 
             // Validate the input data (simple validation example)
             if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(priority) || string.IsNullOrEmpty(assignTo) ||
@@ -248,7 +278,14 @@ namespace Regular.Pages.Customer
                     TaskType = "نامشخص"
                 };
 
-                _unitOfWork.TasksRepository.Add(newItem);
+                if (String.IsNullOrEmpty(id))
+                    _unitOfWork.TasksRepository.Add(newItem);
+                else
+                {
+                    newItem.Id = int.Parse(id);
+                    _unitOfWork.TasksRepository.Update(newItem);
+                }
+
                 _unitOfWork.Save();
 
                 TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == int.Parse(organizationId)).ToList();
