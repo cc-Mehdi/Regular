@@ -391,6 +391,21 @@ function getProjectCard(item) {
                                                         تعداد وظایف : ${item.tasksCount}
                                                     </span>
                                                 </div>
+                                                <!-- item card buttons -->
+                                                <div class="row w-100">
+                                                  <div class="col-sm-12 col-md-6 px-1">
+                                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                      <i class="bi bi-pencil-square ms-1"></i>
+                                                      <span>ویرایش</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="col-sm-12 col-md-6 px-1">
+                                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                      <i class="bi bi-trash ms-1"></i>
+                                                      <span>حذف</span>
+                                                    </button>
+                                                  </div>
+                                                </div>
                                             </div>
                                         </a>
                                     </div>
@@ -428,6 +443,23 @@ function getTaskCard(item) {
                                     ${item.taskType}
                                     </span>
                                 </div>
+
+                                <!-- item card buttons -->
+                                <div class="row w-100">
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-pencil-square ms-1"></i>
+                                      <span>ویرایش</span>
+                                    </button>
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-trash ms-1"></i>
+                                      <span>حذف</span>
+                                    </button>
+                                  </div>
+                                </div>
+
                                 </div>
                             </a>
                             </div>
@@ -536,6 +568,23 @@ function getEmployeeCard(item) {
                                 ${item.status}
                               </span>
                             </div>
+
+                            <!-- item card buttons -->
+                                <div class="row w-100">
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-pencil-square ms-1"></i>
+                                      <span>ویرایش</span>
+                                    </button>
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-trash ms-1"></i>
+                                      <span>حذف</span>
+                                    </button>
+                                  </div>
+                                </div>
+
                           </div>
                         </a>
                       </div>
