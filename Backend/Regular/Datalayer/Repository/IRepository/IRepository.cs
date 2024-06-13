@@ -9,5 +9,6 @@ namespace Datalayer.Repository.IRepository
         T GetFirstOrDefault(Expression<Func<T, bool>>? filter = null);
         void Add(T entity);
         void Remove(T entity);
+        void RemoveRange(IEnumerable<T> entities);
     }
 }

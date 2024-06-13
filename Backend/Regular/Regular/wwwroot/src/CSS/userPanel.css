@@ -71,3 +71,10 @@ input:focus-within, textarea:focus-within {
     transition: color .3s;
     background-color: var(--c-darkBlue) !important;
 }
+
+.itemCard-title:hover {
+    color: var(--c-secondary) !important;
+    transition: font-size .3s;
+    font-size: 18px;
+    font-weight: bold;
+}

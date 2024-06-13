@@ -63,6 +63,14 @@ namespace Regular.Pages.Customer
 
         }
 
+        // get organizations by logged in user id
+        public async Task<JsonResult> OnGetGetOrganizationsByLoggedInUserId()
+        {
+            isUserLogin();
+            OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
+            return new JsonResult(OrganizationsList);
+        }
+
         // add new organization
         public async Task<JsonResult> OnPostAddOrganizationAsync()
         {
@@ -103,7 +111,6 @@ namespace Regular.Pages.Customer
             var orgId = Request.Form["orgId"];
             var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
 
-            // convert data to model for sending to database
             var newItem = new Projects
             {
                 Title = title,
@@ -342,5 +349,82 @@ namespace Regular.Pages.Customer
             User = _unitOfWork.UsersRepository.GetAllByFilter(u => u.Id == userId).FirstOrDefault();
             return new JsonResult(User);
         }
+
+        // DELETE SECTION
+        //Delete Organization
+        public async Task<JsonResult> OnGetDeleteOrganization(int id)
+        {
+            try
+            {   
+                Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == id);
+                _unitOfWork.OrganizationsRepository.Remove(Organization);
+                _unitOfWork.Save();
+                return new JsonResult(new { errorMessage = ""});
+            }
+            catch
+            {
+                return new JsonResult(new { errorMessage = "حذف سازمان با شکست مواجه شد" });
+            }
+        }
+
+        //Delete Project
+        public async Task<JsonResult> OnGetDeleteProject(int id)
+        {
+            try
+            {
+                // Delete related User_Project records
+                var userProjects = _unitOfWork.User_ProjectRepository.GetAllByFilter(up => up.ProjectId == id).ToList();
+                _unitOfWork.User_ProjectRepository.RemoveRange(userProjects);
+
+                // Delete related Task records
+                var tasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ProjectId == id).ToList();
+                _unitOfWork.TasksRepository.RemoveRange(tasksList);
+
+                // Delete the Project
+                var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == id);
+                _unitOfWork.ProjectsRepository.Remove(project);
+
+                _unitOfWork.Save();
+                return new JsonResult(new { errorMessage = "" });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { errorMessage = "حذف پروژه با شکست مواجه شد" });
+            }
+        }
+
+        //Delete Task
+        public async Task<JsonResult> OnGetDeleteTask(int id)
+        {
+            try
+            {
+                Task = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
+                _unitOfWork.TasksRepository.Remove(Task);
+                _unitOfWork.Save();
+                return new JsonResult(new { errorMessage = "" });
+            }
+            catch
+            {
+                return new JsonResult(new { errorMessage = "حذف وظیفه با شکست مواجه شد" });
+            }
+        }
+
+        //Delete Employee
+        public async Task<JsonResult> OnGetDeleteEmployee(int id)
+        {
+            try
+            {
+                var employeeRelation = _unitOfWork.Organizations_UsersRepository.GetFirstOrDefault(u => u.UserId == id);
+                _unitOfWork.Organizations_UsersRepository.Remove(employeeRelation);
+                _unitOfWork.Save();
+                return new JsonResult(new { errorMessage = "" });
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(new { errorMessage = "لغو همکاری با شکست مواجه شد" });
+            }
+        }
+
+
     }
 }

@@ -73,11 +73,38 @@ function attachClickListeners() {
 document.addEventListener('DOMContentLoaded', attachClickListeners);
 
 
+// organization section
+function UpdateOrganizationsByLoggedInUserId() {
 
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetOrganizationsByLoggedInUserId",
+        method: "GET",
+        data: { organizationId: $("#ddlOrganization").data("id") },
+        success: function (data) {
+            var list = $('#organizationsList');
+            list.empty();
+            data.forEach(function (item) {
+                var codeBlock = getOrganizationItems(item);
+                list.append(codeBlock);
+            });
+            if (data.length > 0)
+                UpdateProjectsByOrganizationId(data[0].id, data[0].title);
+            else {
+                UpdateProjectsByOrganizationId(0);
+                $('#ddlOrganization').text("سازمان ها");
+            }
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
+// end organization section
 
 // project section
 function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
-
+    debugger;
     if (orgId != null && orgTitle != null) {
         // Update the dropdown button text
         $('#ddlOrganization').text(orgTitle);
@@ -375,13 +402,15 @@ function getProjectCard(item) {
                     <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                        <a onclick="UpdateTasksByProjectId(${item.id})">
+                                        <a>
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <!-- item card image -->
                                                 <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                         height="65px" />
                                                 <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2">${item.title}</h3>
+                                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
+                                                    <span class="itemCard-title">${item.title}</span>
+                                                </h3>
                                                 <!-- item card tags -->
                                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
                                                     <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
@@ -400,7 +429,7 @@ function getProjectCard(item) {
                                                     </button>
                                                   </div>
                                                   <div class="col-sm-12 col-md-6 px-1">
-                                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                    <button onclick="DeleteItem('Project', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                       <i class="bi bi-trash ms-1"></i>
                                                       <span>حذف</span>
                                                     </button>
@@ -412,6 +441,32 @@ function getProjectCard(item) {
                                 </div>
                                 <!-- end item card -->
                     `;
+    return codeBlock;
+}
+function getOrganizationItems(item) {
+    var codeBlock = `
+           <li class="d-flex flex-column align-items-center">
+                <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('${item.id}', '${item.title}')">
+                    <span>
+                        ${item.title}
+                    </span>
+                </a>
+                <div class="row w-100">
+                    <div class="col-sm-12 col-md-6 px-1">
+                        <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                            <i class="bi bi-pencil-square ms-1"></i>
+                            <span>ویرایش</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-12 col-md-6 px-1">
+                        <button onclick="DeleteItem('Organization', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                            <i class="bi bi-trash ms-1"></i>
+                            <span>حذف</span>
+                        </button>
+                    </div>
+                </div>
+            </li>
+     `;
     return codeBlock;
 }
 function getTaskCard(item) {
@@ -429,7 +484,9 @@ function getTaskCard(item) {
                                 </div>
 
                                 <!-- item card title -->
-                                <h3 class="hc-fs-paragraph3 my-2">${item.title}</h3>
+                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
+                                    <span class="itemCard-title">${item.title}</span>
+                                </h3>
                                 <!-- item card tags -->
                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
                                     <span class="itemCard-tag p-1 px-3 bc-darkBlue tc-lightBlue rounded-3 hc-fs-span3 my-1">
@@ -453,7 +510,7 @@ function getTaskCard(item) {
                                     </button>
                                   </div>
                                   <div class="col-sm-12 col-md-6 px-1">
-                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                    <button onclick="DeleteItem('Task', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-trash ms-1"></i>
                                       <span>حذف</span>
                                     </button>
@@ -545,8 +602,8 @@ function getEmployeeCard(item) {
     var codeBlock = `
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                      <div class="userPanel-itemCard hc-box bc-primary">
-                        <a onclick="showUserInformationByUserId(${item.id})">
+                      <div class="userPanel-itemCard hc-box bc-primary" style="height: 350px;">
+                        <a>
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
@@ -554,7 +611,9 @@ function getEmployeeCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph3 my-2">${item.fullName}</h3>
+                            <h3 class="hc-fs-paragraph2 my-2" onclick="showUserInformationByUserId(${item.id})">
+                                <span class="itemCard-title">${item.fullName}</span>
+                            </h3>
 
                             <!-- item card UserName -->
                             <h3 class="hc-fs-span1 my-2" dir="ltr">@${item.username}</h3>
@@ -578,9 +637,9 @@ function getEmployeeCard(item) {
                                     </button>
                                   </div>
                                   <div class="col-sm-12 col-md-6 px-1">
-                                    <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                    <button onclick="DeleteItem('Employee', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-trash ms-1"></i>
-                                      <span>حذف</span>
+                                      <span class="text-nowrap">لغو همکاری</span>
                                     </button>
                                   </div>
                                 </div>
@@ -607,7 +666,9 @@ function getSentEmployeeInviteCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph3 my-2">${item.fullName}</h3>
+                            <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
+                                <span class="itemCard-title">${item.fullName}</span>
+                            </h3>
 
                             <!-- item card UserName -->
                             <h3 class="hc-fs-span1 my-2" dir="ltr">@${item.username}</h3>
@@ -685,4 +746,58 @@ function filterItems(parameter) {
         UpdateTasksByFilter(parameter);
     else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // employees tab selected
         UpdateEmployeesByFilter(parameter);
+}
+
+function DeleteItem(sectionName, itemId) {
+    let customUrl = "";
+    switch (sectionName) {
+        case "Organization":
+            customUrl = "/Customer/UserPanel?handler=DeleteOrganization";
+            break;
+        case "Project":
+            customUrl = "/Customer/UserPanel?handler=DeleteProject";
+            break;
+        case "Task":
+            customUrl = "/Customer/UserPanel?handler=DeleteTask";
+            break;
+        case "Employee":
+            customUrl = "/Customer/UserPanel?handler=DeleteEmployee";
+            break;
+        default:
+    }
+
+    // Update list
+    $.ajax({
+        url: customUrl,
+        method: "GET",
+        data: { id: itemId },
+        success: function (data) {
+            if (data.errorMessage != "") {
+                toastr.error(data.errorMessage, 'خطا');
+                return;
+            }
+            switch (sectionName) {
+                case "Organization":
+                    UpdateOrganizationsByLoggedInUserId();
+                    toastr.success("حذف سازمان با موفقیت انجام شد", 'موفق');
+                    break;
+                case "Project":
+                    UpdateProjectsByOrganizationId();
+                    toastr.success("حذف پروژه با موفقیت انجام شد", 'موفق');
+                    break;
+                case "Task":
+                    UpdateTasksByOrganizationId();
+                    toastr.success("حذف وظیفه با موفقیت انجام شد", 'موفق');
+                    break;
+                case "Employee":
+                    UpdateEmployeesByOrganizationId();
+                    toastr.success("لغو همکاری با موفقیت انجام شد", 'موفق');
+                    break;
+                default:
+            }
+        },
+        error: function () {
+            toastr.error("انجام عملیات با شکست مواجه شد", 'خطا');
+        }
+    });
 }

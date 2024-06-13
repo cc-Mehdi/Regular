@@ -84,7 +84,7 @@
                                     }
                                     else
                                     {
-                                        <span>سازمان ها</span>
+                                        <span id="ddlOrganization">سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -92,8 +92,26 @@
                                 @{
                                     foreach (var item in Model.OrganizationsList)
                                     {
-                                        <li>
-                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">@item.Title</a>
+                                        <li class="d-flex flex-column align-items-center">
+                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
+                                                <span>
+                                                    @item.Title
+                                                </span>
+                                            </a>
+                                            <div class="row w-100">
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-pencil-square ms-1"></i>
+                                                        <span>ویرایش</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button onclick="DeleteItem('Organization', @item.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-trash ms-1"></i>
+                                                        <span>حذف</span>
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </li>
                                     }
                                 }
@@ -157,13 +175,15 @@
                                 <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                        <a onclick="UpdateTasksByProjectId(@project.Id)">
+                                        <a>
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <!-- item card image -->
                                                 <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                      height="65px" />
                                                 <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2">@project.Title</h3>
+                                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(@project.Id)">
+                                                    <span class="itemCard-title">@project.Title</span>
+                                                </h3>
                                                 <!-- item card tags -->
                                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
                                                     <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
@@ -183,7 +203,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 px-1">
-                                                        <button class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <button onclick="DeleteItem('Project', @project.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                             <i class="bi bi-trash ms-1"></i>
                                                             <span>حذف</span>
                                                         </button>
@@ -609,8 +629,9 @@
                             var list = $('#organizationsList');
                             list.empty();
                             data.forEach(function (item) {
-                                list.append('<li> <a class="dropdown-item text-end text-white py-3" href = "#" >' + item.title + '</a></li>');
-                                $('#ddlOrganization').html(item.title);
+                                var codeBlock = getOrganizationItems(item);
+                                list.append(codeBlock);
+                                // $('#ddlOrganization').html(item.title);
                             });
                             $('#ddlOrganization').text(data[0].title);
                             //close modal
@@ -620,6 +641,7 @@
                             // show success message
                             toastr.success('سازمان با موفقیت افزوده شد', 'موفق');
                         }
+                        $("#organizationForm")[0].reset();
                     },
                     error: function () {
                         // show error message
@@ -684,7 +706,6 @@
                 });
             });
         });
-
 
         // add new employee
         $(document).ready(function () {
