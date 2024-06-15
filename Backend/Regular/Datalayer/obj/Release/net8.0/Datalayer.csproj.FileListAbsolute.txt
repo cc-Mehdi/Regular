@@ -1,0 +1,15 @@
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Release\net8.0\Datalayer.deps.json
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Release\net8.0\Datalayer.runtimeconfig.json
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Release\net8.0\Datalayer.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\bin\Release\net8.0\Datalayer.pdb
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.csproj.AssemblyReference.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.AssemblyInfoInputs.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.AssemblyInfo.cs
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.csproj.CoreCompileInputs.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.sourcelink.json
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\refint\Datalayer.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.pdb
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\Datalayer.genruntimeconfig.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Release\net8.0\ref\Datalayer.dll

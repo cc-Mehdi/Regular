@@ -100,7 +100,7 @@ namespace Regular.Pages.Customer
                 Owner = loggedInUser
             };
 
-            if (String.IsNullOrEmpty(id))
+            if (String.IsNullOrEmpty(id) || id == "0")
                 _unitOfWork.OrganizationsRepository.Add(newItem);
             else
             {
@@ -145,7 +145,7 @@ namespace Regular.Pages.Customer
                 TasksStatusPercent = 0
             };
 
-            if (String.IsNullOrEmpty(id))
+            if (String.IsNullOrEmpty(id) || id == "0")
                 _unitOfWork.ProjectsRepository.Add(newItem);
             else
             {
@@ -278,7 +278,7 @@ namespace Regular.Pages.Customer
                     TaskType = "نامشخص"
                 };
 
-                if (String.IsNullOrEmpty(id))
+                if (String.IsNullOrEmpty(id) || id == "0")
                     _unitOfWork.TasksRepository.Add(newItem);
                 else
                 {

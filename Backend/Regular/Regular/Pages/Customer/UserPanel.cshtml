@@ -84,7 +84,7 @@
                                     }
                                     else
                                     {
-                                        <span id="ddlOrganization">سازمان ها</span>
+                                        <span id="ddlOrganization" data-id="0">سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -638,6 +638,7 @@
                                 // $('#ddlOrganization').html(item.title);
                             });
                             $('#ddlOrganization').text(data[0].title);
+                            $('#ddlOrganization').data("id", data[0].id);
                             //close modal
                             $('#newOrganizationModal').modal("hide");
                             // show success message

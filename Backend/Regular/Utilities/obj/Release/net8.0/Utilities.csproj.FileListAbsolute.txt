@@ -1,0 +1,12 @@
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Release\net8.0\Utilities.deps.json
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Release\net8.0\Utilities.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\bin\Release\net8.0\Utilities.pdb
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.AssemblyInfoInputs.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.AssemblyInfo.cs
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.csproj.CoreCompileInputs.cache
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.sourcelink.json
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\refint\Utilities.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\Utilities.pdb
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Release\net8.0\ref\Utilities.dll

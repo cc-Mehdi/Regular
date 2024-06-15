@@ -1,0 +1,80 @@
+.offcanvas {
+    box-shadow: 0 0 50px var(--c-secondary);
+}
+
+.offcanvas-menuButton:hover {
+    color: var(--c-primary) !important;
+}
+
+.offcanvas-hoverButton:hover {
+    transform: scale(1.08);
+}
+
+
+
+.userPanel-menuItem {
+    color: black;
+    transition: background-color .3s;
+}
+
+.userPanel-menuItem:hover {
+    opacity: .8;
+    cursor: pointer;
+    color: var(--c-secondary);
+}
+
+.userPanel-menuItem:focus {
+    background-color: white;
+}
+
+.userPanel-menuItem-active {
+    color: white !important;
+    background-color: var(--c-secondary);
+}
+
+.userPanel-menuItem-active:hover {
+    opacity: .8;
+    cursor: pointer;
+    color: var(--c-secondary);
+}
+
+.userPanel-itemCard {
+    transition: box-shadow .3s, transform .3s;
+    cursor: pointer;
+    height: 300px;
+}
+
+.userPanel-itemCard:hover {
+    box-shadow: 0 5px 8px var(--c-lightCyan);
+    transform: translateY(-10px);
+}
+
+.dropdown-item:hover {
+    background-color: var(--c-primary);
+}
+
+input, select, textarea {
+    outline: none;
+    background-color: rgba(14, 64, 157, 0.38) !important;
+    transition: box-shadow .5s;
+}
+
+input::placeholder, select::placeholder, textarea::placeholder {
+    color: var(--tc-secondary) !important;
+}
+
+input:focus-within, textarea:focus-within {
+    box-shadow: 0 0 10px var(--tc-secondary) !important;
+}
+
+.btnNewOrganization:hover {
+    transition: color .3s;
+    background-color: var(--c-darkBlue) !important;
+}
+
+.itemCard-title:hover {
+    color: var(--c-secondary) !important;
+    transition: font-size .3s;
+    font-size: 18px;
+    font-weight: bold;
+}
