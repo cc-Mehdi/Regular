@@ -1,6 +1,7 @@
 ﻿using Datalayer.Data;
 using Datalayer.Models;
 using Datalayer.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,11 @@ namespace Datalayer.Repository
             objFromDb.TasksCount = project.TasksCount;
             if (objFromDb.ImageName == project.ImageName)
                 objFromDb.ImageName = project.ImageName;
+        }
+        public IEnumerable<Projects> GetAllByFilterIncludeRelations(Expression<Func<Projects, bool>>? filter = null)
+        {
+            //return _db.Projects.Where(filter).Include(u => u.Tasks).ToList();
+            return null;
         }
     }
 }

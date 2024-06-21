@@ -90,12 +90,14 @@ function UpdateOrganizationsByLoggedInUserId() {
             if (data.length > 0)
                 UpdateProjectsByOrganizationId(data[0].id, data[0].title);
             else {
-                UpdateProjectsByOrganizationId(0);
                 $('#ddlOrganization').text("سازمان ها");
+                $('#ddlOrganization').data('id', '');
+                UpdateProjectsByOrganizationId(0);
+
             }
         },
         error: function () {
-            alert("error");
+            alert("در لود سازمان ها خطا وجود دارد");
         }
     });
 }
@@ -136,7 +138,7 @@ function UpdateProjectsByOrganizationId(orgId = null, orgTitle = null) {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود پروژه ها خطا وجود دارد");
         }
     });
 
@@ -158,7 +160,7 @@ function UpdateProjectsByFilter(parameter) {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود پروژه ها خطا وجود دارد");
         }
     });
 }
@@ -193,6 +195,9 @@ function updateProject(name, id) {
     });
 }
 function updateProjectsList_newTaskModal(orgId) {
+    if (orgId == "0" || orgId == "" || orgId == null)
+        orgId = $('#ddlOrganization').data('id');
+
     $.ajax({
         url: "/Customer/UserPanel?handler=GetProjectsByOrganizationId",
         method: "GET",
@@ -218,7 +223,7 @@ function updateProjectsList_newTaskModal(orgId) {
             });
         },
         error: function () {
-            alert("error");
+            alert("در لود پروژه ها خطا وجود دارد");
         }
     });
 }
@@ -242,7 +247,7 @@ function UpdateTasksByOrganizationId() {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود وظایف خطا وجود دارد");
         }
     });
 }
@@ -262,7 +267,7 @@ function UpdateTasksByFilter(parameter) {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود وظایف خطا وجود دارد");
         }
     });
 }
@@ -335,7 +340,7 @@ function UpdateEmployeesByOrganizationId() {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود همکاران خطا وجود دارد");
         }
     });
 }
@@ -355,7 +360,7 @@ function UpdateEmployeesByFilter(parameter) {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("error");
+            alert("در لود همکاران خطا وجود دارد");
         }
     });
 }
@@ -373,7 +378,7 @@ function UpdateSentEmployeeInvitesByOrganizationId() {
             });
         },
         error: function () {
-            alert("error");
+            alert("در لود درخواست ها خطا وجود دارد");
         }
     });
 }
@@ -394,6 +399,40 @@ function showUserInformationByUserId(userId) {
         }
     });
 }
+function updateEmployees_newProjectModal(orgId) {
+    if (orgId == "0" || orgId == "" || orgId == null)
+        orgId = $('#ddlOrganization').data('id');
+
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetEmployeesByOrganizationId",
+        method: "GET",
+        data: { organizationId: orgId },
+        success: function (data) {
+            var newTaskModal_projectsList = $('#newProjectModal_employeesList');
+            newTaskModal_projectsList.empty();
+            data.forEach(function (item) {
+                var codeBlock = `
+                <div class="form-check form-check-reverse d-flex align-items-center">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
+                            type="radio"
+                            value="${item.id}"
+                            name="project"
+                            id="projectCheck@item.Id"
+                            onchange="updateProject('${item.title}', '${item.id}')">
+                    <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
+                        ${item.title}
+                    </label>
+                </div>
+                `;
+                newTaskModal_projectsList.append(codeBlock);
+            });
+        },
+        error: function () {
+            alert("در لود همکاران خطا وجود دارد");
+        }
+    });
+}
+
 // end employee section
 
 function getProjectCard(item) {
@@ -401,14 +440,13 @@ function getProjectCard(item) {
                     <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                        <a>
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <!-- item card image -->
                                                 <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                         height="65px" />
                                                 <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
-                                                    <span class="itemCard-title">${item.title}</span>
+                                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
+                                                    <span class="itemCard-title truncate">${item.title}</span>
                                                 </h3>
                                                 <!-- item card tags -->
                                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
@@ -435,7 +473,6 @@ function getProjectCard(item) {
                                                   </div>
                                                 </div>
                                             </div>
-                                        </a>
                                     </div>
                                 </div>
                                 <!-- end item card -->
@@ -445,8 +482,8 @@ function getProjectCard(item) {
 function getOrganizationItems(item) {
     var codeBlock = `
            <li class="d-flex flex-column align-items-center">
-                <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('${item.id}', '${item.title}')">
-                    <span>
+                <a class="dropdown-item text-end text-white py-3 truncate" onclick="UpdateProjectsByOrganizationId('${item.id}', '${item.title}')">
+                    <span class="truncate-text truncate">
                         ${item.title}
                     </span>
                 </a>
@@ -483,8 +520,8 @@ function getTaskCard(item) {
                                 </div>
 
                                 <!-- item card title -->
-                                <h3 class="hc-fs-paragraph2 my-2" onclick="ShowTaskDetails(${item.id})">
-                                    <span class="itemCard-title">${item.title}</span>
+                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="ShowTaskDetails(${item.id})">
+                                    <span class="itemCard-title truncate">${item.title}</span>
                                 </h3>
                                 <!-- item card tags -->
                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
@@ -537,9 +574,9 @@ function getTaskDetailsCard(item) {
                   <span class="hc-fs-paragraph2">بازگشت</span>
                 </button>
               <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
-                <div class="w-100 d-flex justify-content-between">
-                  <h5 class="hc-fs-paragraph3">${item.id}</h5>
-                  <h5 class="hc-fs-paragraph3">${item.project.title}</h5>
+                <div class="w-100 d-flex justify-content-between row">
+                  <h5 class="hc-fs-paragraph3 col">کد : ${item.id}</h5>
+                  <h5 class="hc-fs-paragraph3 col">پروژه : ${item.project.title}</h5>
                 </div>
                 <div class="w-100">
                   <h5 class="hc-fs-title2">${item.title}</h5>
@@ -602,7 +639,6 @@ function getEmployeeCard(item) {
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                       <div class="userPanel-itemCard hc-box bc-primary" style="height: 350px;">
-                        <a>
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
@@ -610,8 +646,8 @@ function getEmployeeCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph2 my-2" onclick="showUserInformationByUserId(${item.id})">
-                                <span class="itemCard-title">${item.fullName}</span>
+                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="showUserInformationByUserId(${item.id})">
+                                <span class="itemCard-title truncate">${item.fullName}</span>
                             </h3>
 
                             <!-- item card UserName -->
@@ -638,7 +674,6 @@ function getEmployeeCard(item) {
                                 </div>
 
                           </div>
-                        </a>
                       </div>
                     </div>
                <!-- end item card -->
@@ -659,8 +694,8 @@ function getSentEmployeeInviteCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(${item.id})">
-                                <span class="itemCard-title">${item.fullName}</span>
+                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
+                                <span class="itemCard-title truncate">${item.fullName}</span>
                             </h3>
 
                             <!-- item card UserName -->
@@ -732,14 +767,6 @@ function getNewItemCard(targetModal, categoryName) {
             `;
     return codeBlock;
 }
-function filterItems(parameter) {
-    if (document.getElementsByClassName("userPanel-menuItem")[0].classList.contains("userPanel-menuItem-active"))  // projects tab selected
-        UpdateProjectsByFilter(parameter);
-    else if (document.getElementsByClassName("userPanel-menuItem")[1].classList.contains("userPanel-menuItem-active")) // tasks tab selected
-        UpdateTasksByFilter(parameter);
-    else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // employees tab selected
-        UpdateEmployeesByFilter(parameter);
-}
 
 function ResetModals() {
     // Organization
@@ -753,12 +780,23 @@ function ResetModals() {
     $('#newProjectModalTitle').text("افزودن پروژه");
     $('#btnAddNewProject').text("افزودن پروژه");
     $('#btnAddNewProject').removeClass("btn-warning");
+    updateEmployees_newProjectModal();
 
     // Task
     $("#taskForm")[0].reset();
     $('#newTaskModalTitle').text("افزودن وظیفه");
     $('#btnAddNewTask').text("افزودن وظیفه");
     $('#btnAddNewTask').removeClass("btn-warning");
+    updateEmployees_newProjectModal();
+    updateProjectsList_newTaskModal();
+}
+function filterItems(parameter) {
+    if (document.getElementsByClassName("userPanel-menuItem")[0].classList.contains("userPanel-menuItem-active"))  // projects tab selected
+        UpdateProjectsByFilter(parameter);
+    else if (document.getElementsByClassName("userPanel-menuItem")[1].classList.contains("userPanel-menuItem-active")) // tasks tab selected
+        UpdateTasksByFilter(parameter);
+    else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // employees tab selected
+        UpdateEmployeesByFilter(parameter);
 }
 function DeleteItem(sectionName, itemId) {
     let customUrl = "";
@@ -778,6 +816,8 @@ function DeleteItem(sectionName, itemId) {
         default:
             break;
     }
+
+
 
     // Update list
     $.ajax({
@@ -880,6 +920,7 @@ function EditItem(sectionName, itemId) {
                     $('#taskForm_title').val(data.title);
                     $('#taskForm_priority').val(data.priority);
                     $('#taskForm_project').val(data.project.title);
+                    $('#taskForm_project').data('id', data.projectId);
                     $('#taskForm_assignName').val(data.assignto);
                     $('#taskForm_estimateTime').val(data.estimateTime);
                     $('#taskForm_description').val(data.description);

@@ -115,7 +115,7 @@
          tabindex="-1"
          id="offcanvasExample"
          aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
+        <div class="offcanvas-header d-flex justify-content-between">
             <a class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
                id="offcanvasExampleLabel" href="/">
                 <img src="./../src/media/Logo/regular-favicon-color.png"
@@ -124,6 +124,11 @@
                      alt="Regular logo" />
                 <span class="app-brand-text demo menu-text fs-4 fw-bold me-2">Regular</span>
             </a>
+            <button type="button" class="offcanvas-hoverButton btn border-0"
+                    data-bs-dismiss="offcanvas">
+                <i class="bi bi-x-circle fs-2 tc-primary" data-bs-toggle="tooltip" data-bs-title="بستن منو"
+                   data-bs-placement="bottom"></i>
+            </button>
         </div>
         <div class="offcanvas-body mx-0 px-0">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 mx-0 px-0">
@@ -190,16 +195,12 @@
     }
     <script src="@popperjsUrl" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
-    <!-- Custom Scripts -->
-    <script src="/FrontEnd/global/public.js"></script>
-    <script src="script.js"></script>
 
     <!-- AOS Configuration -->
     <script>
         AOS.init({
             duration: 1500,
         });
-        ShowLoadingPageAnimation();
     </script>
 
     @RenderSection("Scripts", false)

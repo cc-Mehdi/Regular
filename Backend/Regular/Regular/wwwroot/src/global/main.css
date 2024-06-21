@@ -110,4 +110,13 @@ a {
     cursor: pointer;
 }
 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+}
+
+
 /* End General */

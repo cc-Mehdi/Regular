@@ -2,8 +2,6 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.Security.Cryptography;
 
 namespace Regular.Pages.Customer
 {
@@ -259,7 +257,14 @@ namespace Regular.Pages.Customer
 
             try
             {
+                if (!(String.IsNullOrEmpty(id) || id == "0"))
+                {
+                    Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == int.Parse(id)).FirstOrDefault();
+                    Task.Project.TasksCount--;
+                }
+
                 var project = _unitOfWork.ProjectsRepository.GetFirstOrDefault(u => u.Id == int.Parse(projectId));
+
                 // Convert data to model for sending to database
                 var newItem = new Tasks
                 {
@@ -278,6 +283,8 @@ namespace Regular.Pages.Customer
                     TaskType = "نامشخص"
                 };
 
+                
+
                 if (String.IsNullOrEmpty(id) || id == "0")
                     _unitOfWork.TasksRepository.Add(newItem);
                 else
@@ -285,6 +292,8 @@ namespace Regular.Pages.Customer
                     newItem.Id = int.Parse(id);
                     _unitOfWork.TasksRepository.Update(newItem);
                 }
+
+                newItem.Project.TasksCount++;
 
                 _unitOfWork.Save();
 
@@ -435,7 +444,8 @@ namespace Regular.Pages.Customer
         {
             try
             {
-                Task = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == id);
+                Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == id).FirstOrDefault();
+                Task.Project.TasksCount--;
                 _unitOfWork.TasksRepository.Remove(Task);
                 _unitOfWork.Save();
                 return new JsonResult(new { errorMessage = "" });

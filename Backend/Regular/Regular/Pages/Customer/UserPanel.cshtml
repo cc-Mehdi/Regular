@@ -75,16 +75,16 @@
 
                         <!-- Menu buttons -->
                         <div class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4">
-                            <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2"
+                            <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2 d-flex justify-content-center align-items-center"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                        <span id="ddlOrganization" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
+                                        <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
                                     }
                                     else
                                     {
-                                        <span id="ddlOrganization" data-id="0">سازمان ها</span>
+                                        <span id="ddlOrganization" class="px-1" data-id="0">سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -175,14 +175,13 @@
                                 <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                        <a>
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <!-- item card image -->
                                                 <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                      height="65px" />
                                                 <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2" onclick="UpdateTasksByProjectId(@project.Id)">
-                                                    <span class="itemCard-title">@project.Title</span>
+                                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(@project.Id)">
+                                                    <span class="itemCard-title truncate">@project.Title</span>
                                                 </h3>
                                                 <!-- item card tags -->
                                                 <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
@@ -211,7 +210,6 @@
                                                 </div>
 
                                             </div>
-                                        </a>
                                     </div>
                                 </div>
                                 <!-- end item card -->
@@ -276,13 +274,13 @@
                             <div class="row mb-3">
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
-                                            <div class="form-check form-check-reverse">
+                                        <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newProjectModal_employeesList">
+                                            @* <div class="form-check form-check-reverse">
                                                 <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@item.Id" checked>
                                                 <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
                                                     خودم
                                                 </label>
-                                            </div>
+                                            </div> *@
                                             @foreach (var item in Model.UsersList)
                                             {
                                                 <div class="form-check form-check-reverse">
@@ -393,7 +391,7 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" name="project" value="" data-id="@projectId" disabled>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" name="project" value="" data-id="" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
@@ -638,7 +636,7 @@
                                 // $('#ddlOrganization').html(item.title);
                             });
                             $('#ddlOrganization').text(data[0].title);
-                            $('#ddlOrganization').data("id", data[0].id);
+                            $('#ddlOrganization').data("id", data[0].id+'');
                             //close modal
                             $('#newOrganizationModal').modal("hide");
                             // show success message
@@ -671,8 +669,10 @@
                     return;
                 }
 
+
                 formData.append('orgId', orgId);
                 formData.append('projectId', projectId);
+
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "UpsertTask")',
@@ -693,9 +693,7 @@
                             var addNewItemCard_codeBlock = getNewItemCard("#newTaskModal", "وظیفه");
                             list.append(addNewItemCard_codeBlock);
                             //close modal
-                            $('#newTaskModal').toggleClass("show");
-                            document.getElementById("newTaskModal").style = "display: none";
-                            $('.modal-backdrop').remove();
+                            $('#newTaskModal').modal("hide");
                             // show success message
                             toastr.success('عملیات با موفقیت انجام شد', 'موفق');
 

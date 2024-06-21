@@ -78,3 +78,11 @@ input:focus-within, textarea:focus-within {
     font-size: 18px;
     font-weight: bold;
 }
+
+h1, h2, h3, h4, h5, h6, span, p, a {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+    max-width: 100% !important;
+}
