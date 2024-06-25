@@ -1,0 +1,21 @@
+.userInfo-imageOverlay {
+    background: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+.userInfo-image:hover .userInfo-imageOverlay {
+    opacity: 1 !important;
+}
+
+.userInfo-lblFullname:hover {
+    border: 1px solid var(--c-secondary);
+}
+
+
+/* Responsive Options */
+@media screen and (max-width: 580px) {
+    #mainBox {
+        width: 100%;
+        justify-content: center !important;
+    }
+}
