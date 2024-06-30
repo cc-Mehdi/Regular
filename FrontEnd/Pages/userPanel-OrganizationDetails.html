@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regular - مدیریت</title>
+  <!-- Bootstrap Styles v5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./../src/CSS/userPanel.css" />
+  <link rel="stylesheet" href="./../src/global/main.css" />
+  <!-- WebSite Icon -->
+  <link rel="shortcut icon" href="./../src/media/Logo/regular-favicon-color.png" type="image/x-icon" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+  <!-- HC-Web-Module Styles -->
+  <link rel="stylesheet" href="./../src/CSS/HC-Web-Module/HC-Styles.css" />
+</head>
+
+<body dir="rtl" class="overflow-x-hidden bc-darkBlue">
+  <div class="container-fluid">
+    <header></header>
+
+    <main>
+      <div class="container-fluid p-0 d-flex align-items-center justify-content-center">
+        <!-- OffCanvas button -->
+        <button id="btnShowMenuToggler" onclick="ShowoffcanvasMenu()"
+          class="offcanvas-hoverButton btn m-2 position-fixed top-0 end-0 z-3 border-0 visually-hidden text-white hc-fs-title2"
+          type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+          aria-controls="offcanvasScrolling">
+          <i class="bi bi-menu-app" data-bs-toggle="tooltip" data-bs-title="منو" data-bs-placement="bottom"></i>
+        </button>
+
+        <!-- OffCanvas menu -->
+        <div id="offcanvasMenu" class="offcanvas offcanvas-end rounded-start-5" data-bs-scroll="true"
+          data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel"
+          style="background-color: #f2f2f2">
+          <!-- offcanvas header -->
+          <div class="offcanvas-header d-flex justify-content-between">
+            <a href="./index.html"
+              class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
+              id="offcanvasExampleLabel">
+              <img src="./../src/media/Logo/regular-favicon-color.png" width="50px" height="50px" alt="hyper cloud logo"
+                class="rounded-circle" style="box-shadow: 0 0 10px white" />
+              <span class="app-brand-text demo menu-text text-black fs-4 fw-bold me-2"
+                style="text-shadow: 0 0 1px var(--c-primary)">Regular</span>
+            </a>
+            <button type="button" onclick="HideoffcanvasMenu()" class="offcanvas-hoverButton btn border-0"
+              data-bs-dismiss="offcanvas">
+              <i class="bi bi-x-circle fs-2 tc-primary" data-bs-toggle="tooltip" data-bs-title="بستن منو"
+                data-bs-placement="bottom"></i>
+            </button>
+          </div>
+          <!-- offcanvas body -->
+          <div
+            class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100">
+            <!-- Logged In User Info -->
+            <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex  align-items-center">
+              <img src="/" alt="" class="rounded-circle ms-3" width="45" height="45">
+              <span class="text-black hc-fs-paragraph2">Mehdi Gholami</span>
+            </div>
+            <!-- Menu buttons -->
+            <div
+              class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4">
+              <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                سازمان ها
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end bc-darkBlue w-75 py-0">
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 1</a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 2</a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-end text-white py-3" href="#">سازمان شماره 3</a>
+                </li>
+              </ul>
+              <button
+                class="btnNewOrganization rounded-start-3 py-2 px-3 border-bottom-0 border-top-0 border-start-0 border-end-3 border-white bc-primary text-white"><i
+                  class="bi bi-plus-circle" data-bs-toggle="modal" data-bs-target="#newOrganizationModal"></i></button>
+            </div>
+
+            <!-- Menu Items List -->
+            <div class="mt-3 w-100">
+              <ul class="list-unstyled w-100 m-0 p-0 d-flex flex-column justify-content-start">
+                <li class="userPanel-menuItem-active userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
+                  پروژه ها
+                </li>
+                <li class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
+                  همه وظایف
+                </li>
+                <li class="userPanel-menuItem py-3 px-5 fs-5 fw-bold w-100 rounded-start-4">
+                  همکاران
+                </li>
+              </ul>
+            </div>
+
+            <!-- pro user panel button -->
+            <a href=""
+              class="btn hc-btn-lg rounded-4 text-center align-items-center d-flex justify-content-center mt-5">پنل
+              مدیریت
+              حرفه‌ای</a>
+          </div>
+        </div>
+        <!-- End OffCanvas menu -->
+
+        <div id="menuBox-Temp" class="col-lg-4 col-xxl-4" style="height: 100vh"></div>
+
+        <!-- Main -->
+        <div id="mainBox" class="col-lg-8 col-xxl-6 d-flex justify-content-start align-items-start p-3"
+          style="height: 95vh">
+          <div class="row w-100 h-100 d-flex justify-content-center">
+
+            <!-- Task details card -->
+            <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+              <div class="row w-100 d-flex flex-row-reverse">
+                <button
+                  class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                  <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                  <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
+              </div>
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+                <!-- head -->
+                <div class="w-100 d-flex align-items-center">
+                  <!-- image -->
+                  <div class="ms-3">
+                    <img src="./../src/media/Logo/regular-favicon-color.png" width="85px" height="85px"
+                      alt="hyper cloud logo" class="rounded-circle bg-white p-1"
+                      style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;"
+                      data-darkreader-inline-boxshadow="">
+                  </div>
+                  <!-- title & id -->
+                  <div>
+                    <h5 class="hc-fs-paragraph3">Test_524</h5>
+                    <h5 class="hc-fs-title2">عنوان وظیفه</h5>
+                  </div>
+                </div>
+                <!-- body -->
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">مسئول : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">مهدی غلامی</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد پروژه ها : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        23
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد وظایف : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">36</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد همکاران : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        5
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="row">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">همکاران : </span>
+                    </div>
+                    <div class="row p-1 border rounded-3 mt-2 d-flex justify-content-center align-items-center">
+                      <div class="rounded-3 p-2 bc-lightCyan col-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Task details card -->
+
+
+          </div>
+        </div>
+        <!-- End Main -->
+      </div>
+    </main>
+
+    <footer></footer>
+  </div>
+
+  <!-- Fontawesome Script -->
+  <script src="https://kit.fontawesome.com/a904a1b9c2.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Scripts v5.3 -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"></script>
+
+  <!-- Custom Script -->
+  <script src="./../src/JS/userPanel.js"></script>
+</body>
+
+<!-- Add New Project Modal -->
+<div class="modal fade" id="newProjectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
+        <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+          افزودن پروژه
+        </h1>
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bc-darkBlue text-white">
+        <!-- Add new project modal body -->
+        <div class="mb-3">
+          <label for="formFile" class="form-label">عنوان پروژه</label>
+          <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3"
+            placeholder="تکمیل طراحی اولیه" />
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">همکاران</label>
+
+          <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
+            role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck1">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck1">
+                      رضا احمدی
+                    </label>
+                  </div>
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck2">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck2">
+                      آریا شبانه
+                    </label>
+                  </div>
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck3">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck3">
+                      مهدی محمدی
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">لوگو پروژه</label>
+            <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
+          </div>
+        </div>
+        <div class="modal-footer bc-lightCyan">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            انصراف
+          </button>
+          <button type="button" class="btn btn-success">
+            افزودن پروژه جدید
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add New Organization Modal -->
+<div class="modal fade" id="newOrganizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header w-100 d-flex justify-content-between bc-lightCyan">
+        <h1 class="modal-title fs-5 text-black" id="staticBackdropLabel">
+          افزودن سازمان
+        </h1>
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body bc-darkBlue text-white">
+        <!-- Add new project modal body -->
+        <div class="mb-3">
+          <label for="formFile" class="form-label">تصویر</label>
+          <input class="form-control border-0 tc-lightBlue fs-5 py-2" type="file" id="formFile" />
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">عنوان سازمان</label>
+          <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3"
+            placeholder="تکمیل طراحی اولیه" />
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" class="form-label">همکاران</label>
+
+          <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1"
+            role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample1">
+                <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck1">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck1">
+                      رضا احمدی
+                    </label>
+                  </div>
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck2">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck2">
+                      آریا شبانه
+                    </label>
+                  </div>
+                  <div class="form-check form-check-reverse">
+                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value=""
+                      id="reverseCheck3">
+                    <label class="form-check-label w-100 hc-fs-span1" for="reverseCheck3">
+                      مهدی محمدی
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer bc-lightCyan">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+            انصراف
+          </button>
+          <button type="button" class="btn btn-success">
+            افزودن سازمان جدید
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
