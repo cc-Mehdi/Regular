@@ -18,14 +18,14 @@ namespace Datalayer.Models
         public Users Owner { get; set; }
 
         [Display(Name = "موسس")]
-        [ForeignKey("Users")]
+        [ForeignKey("Owner")]
         public int OwnerId { get; set; }
 
         [Display(Name = "سازمان")]
         public Organizations Organization { get; set; }
 
         [Display(Name = "سازمان")]
-        [ForeignKey("Organizations")]
+        [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
         [Display(Name = "لوگو پروژه")]
