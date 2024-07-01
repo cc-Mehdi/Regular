@@ -22,11 +22,10 @@ namespace Datalayer.Models
         public int OwnerId { get; set; }
 
         [Display(Name = "سازمان")]
-        [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
-        [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
-        [DataType(DataType.Text)]
-        public string Organization { get; set; }
+        public Organizations Organization { get; set; }
 
+        [Display(Name = "سازمان")]
+        [ForeignKey("Organizations")]
         public int OrganizationId { get; set; }
 
         [Display(Name = "لوگو پروژه")]

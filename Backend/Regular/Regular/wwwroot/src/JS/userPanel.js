@@ -2,20 +2,19 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
+// responsive offcanvas
 window.addEventListener("resize", function () {
     if (this.window.innerWidth <= 1200)
         HideoffcanvasMenu();
     else
         ShowoffcanvasMenu();
 });
-
 window.addEventListener("load", function () {
     if (this.window.innerWidth <= 1200)
         HideoffcanvasMenu();
     else
         ShowoffcanvasMenu();
 });
-
 function HideoffcanvasMenu() {
     document.getElementById("btnShowMenuToggler").classList.remove("visually-hidden");
     document.getElementById("offcanvasMenu").classList.remove("show");
@@ -28,7 +27,6 @@ function HideoffcanvasMenu() {
     document.getElementById("mainBox").classList.remove("col-lg-11");
     document.getElementById("mainBox").classList.add("col-lg-11");
 }
-
 function ShowoffcanvasMenu() {
     document.getElementById("btnShowMenuToggler").classList.add("visually-hidden");
     document.getElementById("offcanvasMenu").classList.add("show");
@@ -41,10 +39,7 @@ function ShowoffcanvasMenu() {
     document.getElementById("mainBox").classList.add("col-lg-7");
     document.getElementById("mainBox").classList.remove("col-lg-11");
 }
-
-function ToggleSecondOffcanvasMenu() {
-    document.getElementById("SecondOffcanvasMenu").classList.toggle("show");
-}
+// end responsive offcanvas
 
 // Function to handle click events on list items
 function handleListItemClick(event) {
@@ -432,9 +427,9 @@ function updateEmployees_newProjectModal(orgId) {
         }
     });
 }
-
 // end employee section
 
+// module cards
 function getProjectCard(item) {
     var codeBlock = `
                     <!-- item card -->
@@ -634,6 +629,162 @@ function getTaskDetailsCard(item) {
      `;
     return codeBlock;
 }
+function getOrganizationDetailsCard(item) {
+    var codeBlock = `
+            <!-- Task Organization card -->
+<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+              <div class="row w-100 d-flex flex-row-reverse">
+                <button class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                  <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                  <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
+              </div>
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+                <!-- head -->
+                <div class="w-100 d-flex align-items-center">
+                  <!-- image -->
+                  <div class="ms-3">
+                    <img src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
+                  </div>
+                  <!-- title & id -->
+                  <div>
+                    <h5 class="hc-fs-paragraph3">${item.id}</h5>
+                    <h5 class="hc-fs-title2">${item.title}</h5>
+                  </div>
+                </div>
+                <!-- body -->
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">مسئول : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.owner.fullName}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد پروژه ها : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.projectsCount}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد وظایف : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.tasksCount}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد همکاران : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.employeesCount}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="row">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">همکاران : </span>
+                    </div>
+                    <div class="row p-1 border rounded-3 mt-2 d-flex justify-content-center align-items-center">
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Organization details card -->
+     `;
+    return codeBlock;
+}
+function getOrganizationDetailsCard(item) {
+    var codeBlock = `
+            <!-- Task Project card -->
+<div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+              <div class="row w-100 d-flex flex-row-reverse">
+                <button class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                  <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                  <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
+              </div>
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+                <!-- head -->
+                <div class="w-100 d-flex align-items-center">
+                  <!-- image -->
+                  <div class="ms-3">
+                    <img src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
+                  </div>
+                  <!-- title & id -->
+                  <div>
+                    <h5 class="hc-fs-paragraph3">${item.id}</h5>
+                    <h5 class="hc-fs-title2">${item.title}</h5>
+                  </div>
+                </div>
+                <!-- body -->
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">مسئول : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.fullName}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">سازمان : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.organization.title}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد وظایف : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.tasksCount}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">تعداد همکاران : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.employeesCount}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="row">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">همکاران : </span>
+                    </div>
+                    <div class="row p-1 border rounded-3 mt-2 d-flex justify-content-center align-items-center">
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                      <div class="rounded-3 p-2 bc-lightCyan col-11 col-sm-5 col-md-3 m-1 text-center">
+                        <span class="tc-darkBlue hc-fs-span2">نام و نام خانوادگی</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Project details card -->
+     `;
+    return codeBlock;
+}
 function getEmployeeCard(item) {
     var codeBlock = `
            <!-- item card -->
@@ -767,7 +918,9 @@ function getNewItemCard(targetModal, categoryName) {
             `;
     return codeBlock;
 }
+// end module cards
 
+// base methods
 function ResetModals() {
     // Organization
     $("#organizationForm")[0].reset();
@@ -938,3 +1091,4 @@ function EditItem(sectionName, itemId) {
         }
     });
 }
+// end base methods

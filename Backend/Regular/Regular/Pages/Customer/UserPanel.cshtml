@@ -5,6 +5,7 @@
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,9 +69,14 @@
                     <div class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100">
 
                         <!-- Logged In User Info -->
-                        <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex  align-items-center">
-                            <img src="@Model.loggedInUser.ImageName" alt="" class="rounded-circle ms-5" width="45" height="45">
-                            <span class="text-black hc-fs-paragraph2">@Model.loggedInUser.FullName</span>
+                        <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex justify-content-between align-items-center">
+                            <div>
+                                <img src="/" alt="" class="rounded-circle ms-3" width="45" height="45">
+                                <span class="text-black hc-fs-paragraph2">Mehdi Gholami</span>
+                            </div>
+                            <div>
+                                <button class="bc-lightBlue rounded-3 border-0 hc-fs-paragraph1 p-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="تعویض حساب کاربری"><i class="bi bi-arrow-clockwise  d-flex justify-content-center align-items-center"></i></button>
+                            </div>
                         </div>
 
                         <!-- Menu buttons -->

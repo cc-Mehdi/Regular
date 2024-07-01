@@ -137,7 +137,7 @@ namespace Regular.Pages.Customer
                 ImageName = image == null ? "" : image.FileName,
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser,
-                Organization = organization.Title,
+                Organization = organization,
                 OrganizationId = organization.Id,
                 TasksCount = 0,
                 TasksStatusPercent = 0
