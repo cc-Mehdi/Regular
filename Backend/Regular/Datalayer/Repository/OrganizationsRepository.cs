@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,14 @@ namespace Datalayer.Repository
         public OrganizationsRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<Organizations> GetAllByFilterIncludeRelations(Expression<Func<Organizations, bool>>? filter = null)
+        {
+            IQueryable<Organizations> query = _db.Organizations.Include(u => u.Owner);
+            if (filter != null)
+                query = query.Where(filter);
+            return query.ToList();
         }
 
         public void Update(Organizations organization)

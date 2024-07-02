@@ -65,7 +65,6 @@ function toggleSections(sectionOneId, sectionTwoId) {
 
     sectionOne = document.getElementById(sectionOneId);
     sectionTwo = document.getElementById(sectionTwoId);
-
     if (sectionTwo.classList.contains('d-none')) {
         sectionOne.classList.add('d-none');
         sectionTwo.classList.remove('d-none');
@@ -73,12 +72,14 @@ function toggleSections(sectionOneId, sectionTwoId) {
     } else {
         sectionOne.classList.remove('d-none');
         sectionTwo.classList.add('d-none');
+        sectionOne.innerHTML = sectionTwo.children[0].value;
     }
 }
 document.addEventListener('click', function (event) {
     if (!sectionTwo.contains(event.target) && !sectionOne.contains(event.target)) {
         sectionOne.classList.remove('d-none');
         sectionTwo.classList.add('d-none');
+        sectionOne.innerHTML = sectionTwo.children[0].value;
     }
 });
 // end account inputs control
@@ -87,9 +88,8 @@ document.addEventListener('click', function (event) {
 function ShowAccountTab() {
 
     $.ajax({
-        url: "/",
+        url: "/Customer/UserDashboard?handler=GetLoggedInUser",
         method: "GET",
-        data: {},
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -104,9 +104,8 @@ function ShowAccountTab() {
 function ShowRelationTab() {
 
     $.ajax({
-        url: "/",
+        url: "/Customer/UserDashboard?handler=GetRelationOrganizations",
         method: "GET",
-        data: {},
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -127,12 +126,11 @@ function ShowRelationTab() {
                 </div>
                 <!-- end item card -->
             `;
-            list.append(head);
+            var codeBlock = '';
             data.forEach(function (item) {
-                var codeBlock = getRelationCard(item);
-                list.append(codeBlock);
+                codeBlock += getRelationCard(item);
             });
-            list.append(foot);
+            list.append(head + codeBlock + foot);
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -142,9 +140,8 @@ function ShowRelationTab() {
 function ShowRequestTab() {
 
     $.ajax({
-        url: "/",
+        url: "/Customer/UserDashboard?handler=GetSentEmployeeInvites",
         method: "GET",
-        data: {},
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
@@ -165,12 +162,11 @@ function ShowRequestTab() {
                 </div>
                 <!-- end item card -->
             `;
-            list.append(head);
+            var codeBlock = '';
             data.forEach(function (item) {
-                var codeBlock = getRequestCard(item);
-                list.append(codeBlock);
+                 codeBlock += getRequestCard(item);
             });
-            list.append(foot);
+            list.append(head + codeBlock + foot);
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -197,10 +193,8 @@ function ShowReportsTab() {
                 </div>
                 <!-- end item card -->
             `;
-            list.append(head);
-            var codeBlock = getReportsCard(data);
+            var codeBlock = head + getReportsCard(data) + foot;
             list.append(codeBlock);
-            list.append(foot);
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -218,73 +212,78 @@ function getAccountCard(item) {
               <span class="app-brand-text demo menu-text text-white fs-4 fw-bold me-2" style="text-shadow: 0 0 1px var(--c-primary)">حساب کاربری</span>
               <hr class="text-white">
 
-              <form action="">
-                <!-- user informations -->
-                <div class="d-flex flex-column align-items-center">
+              <form id="accountForm" method="post" enctype="multipart/form-data">
+  <!-- user informations -->
+  <div class="d-flex flex-column align-items-center">
 
-                  <!-- user image -->
-                  <div class="position-relative d-inline-block my-3 userInfo-image" onclick="onEdit(1)">
-                    <img src="${item.imageName}" class="rounded-circle p-2 bg-white d-block w-100" style="box-shadow: 0 0 20px 5px white;" alt="user profile image">
-                    <div class="userInfo-imageOverlay position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center rounded-circle opacity-0 cursor-pointer" style="width: 115px; height: 115px;">
-                      <input type="file" name="" value="null" id="userinfo-selectImage" hidden="">
-                      <i class="bi bi-pencil-square text-white hc-fs-paragraph1"></i>
-                    </div>
-                  </div>
+    <!-- user image -->
+    <div class="position-relative d-inline-block my-3 userInfo-image" onclick="onEdit(1)">
+      <img src="${item.imageName}" class="rounded-circle d-block w-100" style="box-shadow: 0 0 10px 5px white;" alt="user profile image">
+      <div class="userInfo-imageOverlay position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center rounded-circle opacity-0 cursor-pointer" style="width: 115px; height: 115px;">
+        <input type="file" name="ImageName" value="null" id="ImageName" hidden="">
+        <i class="bi bi-pencil-square text-white hc-fs-paragraph1"></i>
+      </div>
+    </div>
 
-                  <!-- user fullname -->
-                  <!-- section one -->
-                  <h3 class="hc-fs-paragraph1 text-center userInfo-lblFullname p-2 rounded-3 cursor-pointer" id="userInfo-lblFullname" onclick="toggleSections('userInfo-lblFullname', 'userInfo-txtFullname')">${item.fullName}</h3>
-                  <!-- section two -->
-                  <div id="userInfo-txtFullname" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
-                    <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="" onclick="">
-                  </div>
+    <!-- user fullname -->
+    <!-- section one -->
+    <h3 class="hc-fs-paragraph1 text-center userInfo-lblFullname p-2 rounded-3 cursor-pointer" id="userInfo-lblFullname" onclick="toggleSections('userInfo-lblFullname', 'userInfo-txtFullname')">${item.fullName}</h3>
+    <!-- section two -->
+    <div id="userInfo-txtFullname" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
+      <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="FullName" onclick="" id="FullName">
+    </div>
 
-                  <!-- user username -->
-                  <h5 class="hc-fs-paragraph2 cursor-pointer mb-3" dir="ltr">@<span class="tc-lightBlue text-decoration-underline" onclick="SaveToClipboard(this)">${item.userName}</span>
-                  </h5>
+    <!-- user username -->
+    <h5 class="hc-fs-paragraph2 cursor-pointer mb-3 d-flex align-items-center" dir="ltr">@<span class="tc-lightBlue text-decoration-underline" onclick="SaveToClipboard(this)">${item.username}</span>
+    </h5>
 
-                  <!-- user rank && user status -->
-                  <div class="row d-flex justify-content-center align-items-center w-100 mb-3">
-                    <div class="col">
-                      <!-- section one -->
-                      <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblRank p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblRank" onclick="toggleSections('userInfo-lblRank', 'userInfo-txtRank')">${item.status}</h3>
-                      <!-- section two -->
-                      <div id="userInfo-txtRank" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
-                        <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="" onclick="">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- section one -->
-                      <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblStatus p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblStatus" onclick="toggleSections('userInfo-lblStatus', 'userInfo-txtStatus')">${item.rank}</h3>
-                      <!-- section two -->
-                      <div id="userInfo-txtStatus" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
-                        <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="" onclick="">
-                      </div>
-                    </div>
-                  </div>
+    <!-- user rank && user status -->
+    <div class="row d-flex justify-content-center align-items-center w-100 mb-3">
+      <div class="col">
+        <!-- section one -->
+        <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblRank p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblRank" onclick="toggleSections('userInfo-lblRank', 'userInfo-txtRank')">${item.status}</h3>
+        <!-- section two -->
+        <div id="userInfo-txtRank" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
+          <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="Rank" onclick="" id="Rank">
+        </div>
+      </div>
+      <div class="col">
+        <!-- section one -->
+        <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblStatus p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblStatus" onclick="toggleSections('userInfo-lblStatus', 'userInfo-txtStatus')">${item.rank}</h3>
+        <!-- section two -->
+        <div id="userInfo-txtStatus" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
+          <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="Status" onclick="" id="Status">
+        </div>
+      </div>
+    </div>
 
-                  <!-- user email && user pass -->
-                  <div class="row d-flex justify-content-center align-items-center w-100 mb-3">
-                    <div class="col">
-                      <!-- section one -->
-                      <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblEmail p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblEmail" onclick="toggleSections('userInfo-lblEmail', 'userInfo-txtEmail')">${item.email}</h3>
-                      <!-- section two -->
-                      <div id="userInfo-txtEmail" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
-                        <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="" onclick="">
-                      </div>
-                    </div>
-                    <div class="col">
-                      <!-- section one -->
-                      <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblPass p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblPass" onclick="toggleSections('userInfo-lblPass', 'userInfo-txtPass')">${item.password}</h3>
-                      <!-- section two -->
-                      <div id="userInfo-txtPass" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
-                        <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="" onclick="">
-                      </div>
-                    </div>
-                  </div>
+    <!-- user email && user pass -->
+    <div class="row d-flex justify-content-center align-items-center w-100 mb-3">
+      <div class="col">
+        <!-- section one -->
+        <h3 class="w-100 hc-fs-paragraph1 text-center userInfo-lblEmail p-2 rounded-3 cursor-pointer bc-secondary" id="userInfo-lblEmail" onclick="toggleSections('userInfo-lblEmail', 'userInfo-txtEmail')" hidden>${item.email}</h3>
+        <!-- section two -->
+        <div id="userInfo-txtEmail" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
+          <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="Email" onclick="" id="Email">
+        </div>
+      </div>
+      <div class="col">
+        <!-- section one -->
+        <input type="password" class="w-100 hc-fs-paragraph1 text-center userInfo-lblPass p-2 rounded-3 cursor-pointer bc-secondary border border-0 text-white hc-fs-paragraph2 mb-2" id="userInfo-lblPass" onclick="toggleSections('userInfo-lblPass', 'userInfo-txtPass')" hidden value="${item.password}"/>
+        <!-- section two -->
+        <div id="userInfo-txtPass" class="d-none justify-content-center align-items-center my-2 p-2 rounded-3 bc-darkBlue">
+          <input type="text" class="hc-fs-paragraph1 border-0 text-white bg-transparent" value="" name="Password" onclick="" id="Password">
+        </div>
+      </div>
+    </div>
 
-                </div>
-              </form>
+    <!-- submit button -->
+  <div class="row w-100">
+      <button type="submit" class="col btn btn-outline-warning">ویرایش</button>
+  </div>
+
+  </div>
+</form>
 
             </div>
            <!-- end item card -->
@@ -295,8 +294,8 @@ function getRelationCard(item) {
     var codeBlock = `
                 <!-- item card -->
                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                  <div class="userPanel-itemCard hc-box bc-secondary">
-                    <a href="#">
+                <a href="#" class="w-100">
+                  <div class="userPanel-itemCard hc-box bc-secondary mt-2">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <!-- item card image -->
                         <img src="${item.imageName}" alt="item card image" width="100px" height="100px" class="bg-white rounded-circle p-1">
@@ -305,8 +304,8 @@ function getRelationCard(item) {
                         <!-- item card paragraph -->
                         <h3 class="hc-fs-paragraph3 my-2">${item.owner.fullName}</h3>
                       </div>
-                    </a>
                   </div>
+                </a>
                 </div>
                 <!-- end item card -->
                     `;
@@ -320,15 +319,16 @@ function getRequestCard(item) {
                 <a href="#">
                   </a><div class="d-flex flex-column justify-content-center align-items-center"><a href="#">
                     <!-- item card Image -->
-                    <div class="d-flex justify-content-center align-items-center w-100">
+                    <div class="d-flex flex-column justify-content-center align-items-center w-100">
                       <img src="${item.imageName}" width="100" height="100" alt="" class="rounded-circle p-1 bg-white">
+
+                        <!-- item card FullName -->
+                        <h3 class="hc-fs-paragraph1 my-2">${item.title}</h3>
+
+                        <!-- item card UserName -->
+                        <h3 class="hc-fs-span1 my-2" dir="ltr">@ ${item.ownerName}</h3>
+
                     </div>
-
-                    <!-- item card FullName -->
-                    <h3 class="hc-fs-paragraph1 my-2">${item.fullName}</h3>
-
-                    <!-- item card UserName -->
-                    <h3 class="hc-fs-span1 my-2" dir="ltr">@ ${item.userName}</h3>
 
                     <!-- item card tags -->
                     </a><div class="itemCard-tagBox d-flex justify-content-center align-items-center py-3"><a href="#">

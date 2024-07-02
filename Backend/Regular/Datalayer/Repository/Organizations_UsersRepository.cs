@@ -17,22 +17,22 @@ namespace Datalayer.Repository
 
         public IEnumerable<Organizations_Users> GetAllByFilterIncludeRelations(Expression<Func<Organizations_Users, bool>>? filter = null)
         {
-            IQueryable<Organizations_Users> query = _db.Organizations_Users.Include(u => u.Organization).Include(u => u.User);
+            IQueryable<Organizations_Users> query = _db.Organizations_Users.Include(u => u.Organization).Include(u => u.User).Include(u=>u.Organization.Owner);
             if (filter != null)
                 query = query.Where(filter);
             return query.ToList();
         }
 
-        public void Update(Users_Users users_Users)
-        {
-            var objFromDb = _db.Users_Users.FirstOrDefault(u => u.Id == users_Users.Id);
-            objFromDb.SenderUser = users_Users.SenderUser;
-            objFromDb.SenderUserId = users_Users.SenderUserId ;
-            objFromDb.ReceiverUser = users_Users.ReceiverUser ;
-            objFromDb.ReceiverUserId = users_Users.ReceiverUserId ;
-            objFromDb.CreateInviteDate = users_Users.CreateInviteDate ;
-            objFromDb.AcceptInviteDate = users_Users.AcceptInviteDate;
-        }
+        //public void Update(Users_Users users_Users)
+        //{
+        //    var objFromDb = _db.Users_Users.FirstOrDefault(u => u.Id == users_Users.Id);
+        //    objFromDb.SenderUser = users_Users.SenderUser;
+        //    objFromDb.SenderUserId = users_Users.SenderUserId ;
+        //    objFromDb.ReceiverUser = users_Users.ReceiverUser ;
+        //    objFromDb.ReceiverUserId = users_Users.ReceiverUserId ;
+        //    objFromDb.CreateInviteDate = users_Users.CreateInviteDate ;
+        //    objFromDb.AcceptInviteDate = users_Users.AcceptInviteDate;
+        //}
 
         public void Update(Organizations_Users organizations_Users)
         {

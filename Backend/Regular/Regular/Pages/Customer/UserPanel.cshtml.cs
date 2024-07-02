@@ -58,7 +58,6 @@ namespace Regular.Pages.Customer
                 int userId = _unitOfWork.LoginsLogRepository.GetFirstOrDefault(u => u.LoginToken == loginToken).UserId;
                 loggedInUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId);
             }
-
         }
 
         public async Task<JsonResult> OnGetGetOrganizationById(int id)
