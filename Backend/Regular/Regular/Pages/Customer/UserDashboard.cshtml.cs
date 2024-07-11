@@ -49,35 +49,6 @@ namespace Regular.Pages.Customer
             UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
         }
 
-        // edit user account
-        public async Task<JsonResult> OnPostEditUserAccountAsync()
-        {
-            isUserLogin();
-
-            var id = Request.Form["Id"];
-            var image = Request.Form.Files["ImageName"];
-            var fullName = Request.Form["FullName"];
-            var rank = Request.Form["Rank"];
-            var status = Request.Form["Status"];
-            var email = Request.Form["Email"];
-            var password = Request.Form["Password"];
-
-            if (id == 0)
-                return new JsonResult(new { err = "خطا در ارسال شناسه کاربری" });
-
-            var user = new Users();
-            user = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == id);
-            user.ImageName = image.FileName;
-            user.FullName = fullName;
-            user.Rank = rank;
-            user.Status = status;
-
-            _unitOfWork.UsersRepository.Update(user);
-            _unitOfWork.Save();
-
-            return new JsonResult(user);
-        }
-
 
         public void isUserLogin()
         {

@@ -9,59 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Regular
 build_property.RootNamespace = Regular
-build_property.ProjectDir = C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular\
+build_property.ProjectDir = C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular
+build_property.MSBuildProjectDirectory = C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Customer/About-Us.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/About-Us.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQWJvdXQtVXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Customer/Contact-Us.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Contact-Us.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQ29udGFjdC1Vcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Customer/Login-Register.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/Login-Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcTG9naW4tUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Customer/UserDashboard.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/UserDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVXNlckRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Customer/UserPanel.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/UserPanel.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcVXNlclBhbmVsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Error.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Index.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Shared/_Notifications.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Shared/_Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Ob3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/_ViewImports.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/_ViewStart.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/mehdi.gholami/Documents/Regular/Backend/Regular/Regular/Pages/Shared/_Layout.cshtml]
+[C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-hujh1mel7g
