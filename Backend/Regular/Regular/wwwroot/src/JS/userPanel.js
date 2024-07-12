@@ -816,7 +816,7 @@ function getEmployeeCard(item) {
 
                             <!-- item card buttons -->
                                 <div class="row w-100">
-                                  <div class="col-sm-12 col-md-6 px-1">
+                                  <div class="col-sm-12 col-md-12 px-1">
                                     <button onclick="DeleteItem('Employee', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-trash ms-1"></i>
                                       <span class="text-nowrap">لغو همکاری</span>

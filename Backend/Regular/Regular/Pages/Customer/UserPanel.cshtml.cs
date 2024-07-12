@@ -327,7 +327,7 @@ namespace Regular.Pages.Customer
             if (string.IsNullOrEmpty(username))
                 return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
 
-            if (orgId == "undefined")
+            if (orgId == "0")
                 return new JsonResult(new { err = "لطفا ابتدا یک سازمان ایجاد کنید" });
 
             try
@@ -348,7 +348,7 @@ namespace Regular.Pages.Customer
             catch (Exception ex)
             {
                 // Handle the exception (log it, return error response, etc.)
-                return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد" });
+                return new JsonResult(new { err = "خطایی در انجام عملیات وجود دارد/n" + ex.InnerException.Message.ToString() });
             }
         }
 

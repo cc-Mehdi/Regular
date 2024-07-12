@@ -300,11 +300,11 @@ function getRelationCard(item) {
                   <div class="userPanel-itemCard hc-box bc-secondary mt-2">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <!-- item card image -->
-                        <img src="${item.imageName}" alt="item card image" width="100px" height="100px" class="bg-white rounded-circle p-1">
+                        <img src="${item.organization.imageName}" alt="item card image" width="100px" height="100px" class="bg-white rounded-circle p-1">
                         <!-- item card title -->
-                        <h3 class="hc-fs-title2 my-2">${item.title}</h3>
+                        <h3 class="hc-fs-title3 my-2">${item.organization.title}</h3>
                         <!-- item card paragraph -->
-                        <h3 class="hc-fs-paragraph3 my-2">${item.owner.fullName}</h3>
+                        <h3 class="hc-fs-paragraph3 my-2">${item.organization.owner.fullName}</h3>
                       </div>
                   </div>
                 </a>
@@ -333,13 +333,13 @@ function getRequestCard(item) {
                     </div>
 
                     <!-- item card tags -->
-                    </a><div class="itemCard-tagBox d-flex justify-content-center align-items-center py-3"><a href="#">
-                      </a><a class="btn btn-success mx-1" href="#">
+                    </a><div class="itemCard-tagBox d-flex justify-content-center align-items-center py-3">
+                    <button class="btn btn-success mx-1 text-nowrap" onclick="SetInviteAnswer(${item.id}, ${true})">
                         پذیرفتن
-                      </a>
-                      <a class="btn btn-danger mx-1" href="#">
+                      </button>
+                      <button class="btn btn-danger mx-1 text-nowrap" onclick="SetInviteAnswer(${item.id}, ${false})">
                         رد کردن
-                      </a>
+                      </button>
                     </div>
                   </div>
 
@@ -397,6 +397,26 @@ function EditUser() {
             console.error("Error: " + error);
             console.error("Status: " + status);
             console.error("Response: ", xhr.responseText);
+        }
+    });
+}
+function SetInviteAnswer(intviteId, inviteStatus) {
+    var inviteData = {
+        Id: intviteId,
+        IsAccepted: inviteStatus
+    };
+
+    $.ajax({
+        url: "/api/Invites/SetInviteStatus",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(inviteData),
+        success: function (data) {
+            if (data.isSuccess == true) { toastr.success(data.message); ShowRequestTab(); }
+            else { toastr.error(data.message); }
+        },
+        error: function (xhr) {
+            toastr.error(xhr.responseTextss);
         }
     });
 }

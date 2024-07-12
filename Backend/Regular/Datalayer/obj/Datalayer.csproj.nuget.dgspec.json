@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {}
+    "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
+    "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj",
+        "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj",
         "projectName": "Datalayer",
-        "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj",
+        "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj",
         "packagesPath": "C:\\Users\\cc-mehdi\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\obj\\",
         "projectStyle": "PackageReference",
