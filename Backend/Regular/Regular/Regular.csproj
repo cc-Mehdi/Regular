@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\CustomerResources\UserProfileImages\" />
+  </ItemGroup>
+
 </Project>

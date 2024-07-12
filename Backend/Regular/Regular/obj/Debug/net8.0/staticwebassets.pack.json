@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Regular.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\CustomerResources\\UserProfileImages\\5a50c1fc-f587-496e-b711-1e5f85f4e85d.png",
+      "PackagePath": "staticwebassets\\CustomerResources\\UserProfileImages\\5a50c1fc-f587-496e-b711-1e5f85f4e85d.png"
+    },
+    {
       "Id": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },

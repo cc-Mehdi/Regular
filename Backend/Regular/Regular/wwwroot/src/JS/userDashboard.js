@@ -1,3 +1,6 @@
+let accountUserImageInput = document.createElement('input');
+var accountUserImage = null;
+
 ShowAccountTab();
 
 // save username to clipboard
@@ -24,9 +27,8 @@ function SaveToClipboard(tag) {
 function onEdit(inputIndex) {
     switch (inputIndex) {
         case 1: // edit image
-            let input = document.createElement('input');
-            input.type = 'file';
-            input.click();
+            accountUserImageInput.type = 'file';
+            accountUserImageInput.click();
             break;
         case 2: // edit fullname
 
@@ -41,6 +43,17 @@ function onEdit(inputIndex) {
             break;
     }
 }
+
+accountUserImageInput.addEventListener('change', function (e) {
+    if (e.target.files[0]) {
+        accountUserImage = accountUserImageInput.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#imgAccountUserImage').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+});
 
 // account inputs control
 var sectionOne;
@@ -76,10 +89,12 @@ function toggleSections(sectionOneId, sectionTwoId) {
     }
 }
 document.addEventListener('click', function (event) {
-    if (!sectionTwo.contains(event.target) && !sectionOne.contains(event.target)) {
-        sectionOne.classList.remove('d-none');
-        sectionTwo.classList.add('d-none');
-        sectionOne.innerHTML = sectionTwo.children[0].value;
+    if (sectionTwo != undefined && sectionOne != undefined) {
+        if (!sectionTwo.contains(event.target) && !sectionOne.contains(event.target)) {
+            sectionOne.classList.remove('d-none');
+            sectionTwo.classList.add('d-none');
+            sectionOne.innerHTML = sectionTwo.children[0].value;
+        }
     }
 });
 // end account inputs control
@@ -218,9 +233,9 @@ function getAccountCard(item) {
 
                 <!-- user image -->
                 <div class="position-relative d-inline-block my-3 userInfo-image" onclick="onEdit(1)">
-                    <img src="${item.imageName}" class="rounded-circle d-block w-100" style="box-shadow: 0 0 10px 5px white;" alt="user profile image">
+                    <img id="imgAccountUserImage" src="${item.imageName}" class="rounded-circle d-block" width="225px" height="225px" style="box-shadow: 0 0 10px 5px white;" alt="user profile image">
                     <div class="userInfo-imageOverlay position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center rounded-circle opacity-0 cursor-pointer" style="width: 115px; height: 115px;">
-                        <input type="file" name="ImageName" value="null" id="txtAccountUserImage" hidden="">
+                        <input type="file" name="txtAccountUserImage" id="txtAccountUserImage" hidden>
                         <i class="bi bi-pencil-square text-white hc-fs-paragraph1"></i>
                     </div>
                 </div>
@@ -348,30 +363,27 @@ function getReportsCard(item) {
 
 // processes
 function EditUser() {
+    var userId = $("#txtAccountUserId").val();
+    var userImage = accountUserImage;
+    var userFullName = $("#txtAccountUserFullName").val();
+    var userRank = $("#txtAccountUserRank").val();
+    var userStatus = $("#txtAccountUserStatus").val();
 
-    var userId = $("#txtAccountUserId").val(); 
-    var userImage = $("#txtAccountUserImage").val(); 
-    var userFullName = $("#txtAccountUserFullName").val(); 
-    var userRank = $("#txtAccountUserRank").val(); 
-    var userStatus = $("#txtAccountUserStatus").val(); 
-
-    const userData = {
-        Id: userId,
-        ImageName: userImage,   // Make sure the key matches the property name in the model
-        FullName: userFullName,
-        Username: "",  // New field
-        Password: "",  // New field
-        Email: "",        // New field
-        Rank: userRank,
-        Status: userStatus,
-    };
-
+    var formData = new FormData();
+    formData.append("Id", userId);
+    formData.append("FullName", userFullName);
+    formData.append("Rank", userRank);
+    formData.append("Status", userStatus);
+    if (userImage) {
+        formData.append("Image", userImage);  // Append the file if it's selected
+    }
 
     $.ajax({
         url: "/api/Users/",
         type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(userData),
+        contentType: false, // Important for file uploads
+        processData: false, // Important for file uploads
+        data: formData,
         success: function (data) {
             if (data.isSuccess == true) {
                 toastr.success(data.message);
@@ -379,8 +391,14 @@ function EditUser() {
             } else {
                 toastr.error(data.message);
             }
+        },
+        error: function (xhr, status, error) {
+            toastr.error("خطا در انجام عملیات: " + xhr.responseText);
+            console.error("Error: " + error);
+            console.error("Status: " + status);
+            console.error("Response: ", xhr.responseText);
         }
     });
-
 }
+
 //end processes

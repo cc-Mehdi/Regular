@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VO62LooWDCLi7Kr0Ujf8rE7/HDPyY96MvqnNv7nbOH4=",
+  "Hash": "A8zd0GccEjxElO5dDbD+nJlYSq+lAhJhAdXwjcpgtFY=",
   "Source": "Regular",
   "BasePath": "_content/Regular",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Regular.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\CustomerResources\\UserProfileImages\\5a50c1fc-f587-496e-b711-1e5f85f4e85d.png",
+      "SourceId": "Regular",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\",
+      "BasePath": "_content/Regular",
+      "RelativePath": "CustomerResources/UserProfileImages/5a50c1fc-f587-496e-b711-1e5f85f4e85d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\CustomerResources\\UserProfileImages\\5a50c1fc-f587-496e-b711-1e5f85f4e85d.png"
     },
     {
       "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
