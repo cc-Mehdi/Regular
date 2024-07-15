@@ -2,6 +2,9 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
+// config variables for saving required values from session
+var currentTaskId = 0;
+
 // responsive offcanvas
 window.addEventListener("resize", function () {
     if (this.window.innerWidth <= 1200)
@@ -225,6 +228,35 @@ function updateProjectsList_newTaskModal(orgId) {
 // end project section
 
 // task section
+function ChangeTaskStatus(element) {
+    let id = Number($("#currentTaskId").val()),
+        status = element.innerHTML;
+
+    let taskData = {
+        Id: id,
+        Status: status
+    };
+
+    $.ajax({
+        url: "/api/Tasks/ChangeStatus",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(taskData),
+        success: function (data) {
+            if (data.isSuccess == true) {
+                ShowTaskDetails(id);
+                toastr.success(data.message);
+            } else {
+                toastr.error(data.message);
+            }
+        },
+        error: function () {
+            toastr.error("خطا در نمایش اطلاعات");
+        }
+    });
+}
+
+
 function UpdateTasksByOrganizationId() {
 
     $.ajax({
@@ -242,7 +274,7 @@ function UpdateTasksByOrganizationId() {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("در لود وظایف خطا وجود دارد");
+            toastr.error("خطا در نمایش اطلاعات");
         }
     });
 }
@@ -262,7 +294,7 @@ function UpdateTasksByFilter(parameter) {
             list.append(addNewItemCard_codeBlock);
         },
         error: function () {
-            alert("در لود وظایف خطا وجود دارد");
+            toastr.error("خطا در نمایش اطلاعات");
         }
     });
 }
@@ -309,6 +341,7 @@ function ShowTaskDetails(taskId) {
             list.empty();
             var codeBlock = getTaskDetailsCard(data);
             list.append(codeBlock);
+            $("#currentTaskId").val(data.id);
         },
         error: function () {
             alert("مشکل در نمایش وظایف");
@@ -562,21 +595,21 @@ function getTaskDetailsCard(item) {
             <div class="w-100 h-100 d-flex justify-content-center align-items-center mt-3">
             <!-- back button -->
               <div class="row w-100 d-flex flex-row-reverse">
-                <button onclick="UpdateTasksByOrganizationId()" class="btn btn-outline-primary w-25 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                <button onclick="UpdateTasksByOrganizationId()" class="btn btn-outline-primary col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                   <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
                   <span class="hc-fs-paragraph2">بازگشت</span>
                 </button>
-              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-3 px-2">
               <!-- Task Control Buttons -->
-              <div class="row w-100 mb-3 d-flex justify-content-end">
-                <div class="dropdown-center col-8 col-sm-6 col-md-4 col-xl-3">
-                  <button class="btn bc-darkBlue px-3 text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    تغییر وضعیت
+              <div class="row w-100 mb-3">
+                <div class="dropdown-center d-flex justify-content-end w-100 col-8 col-sm-6 col-md-4 col-xl-3">
+                  <button class="btn bc-darkBlue px-3 text-white dropdown-toggle hc-fs-paragraph2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    وضعیت : ${item.taskStatus}
                   </button>
-                  <ul class="dropdown-menu bc-darkBlue">
-                    <li><a class="dropdown-item text-end" href="#">انجام شده</a></li>
-                    <li><a class="dropdown-item text-end" href="#">درحال بررسی</a></li>
-                    <li><a class="dropdown-item text-end" href="#">درحال انجام</a></li>
+                  <ul id="ddlTaskStatus" class="dropdown-menu bc-darkBlue">
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">انجام شده</a></li>
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">درحال انجام</a></li>
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">درحال بررسی</a></li>
                   </ul>
                 </div>
               </div>

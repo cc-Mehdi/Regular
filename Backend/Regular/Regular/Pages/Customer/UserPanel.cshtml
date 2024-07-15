@@ -548,6 +548,10 @@
             </div>
         </div>
 
+
+        @* send session values to html *@
+        <input hidden type="text" value="@HttpContext.Session.GetInt32("TaskId")" id="currentTaskId" />
+
     </div>
 
 
@@ -577,6 +581,13 @@
     <script src="/src/JS/userPanel.js"></script>
 
     <script>
+        // config models id in sessions
+        @{
+            int taskId = HttpContext.Session.GetInt32("TaskId") ?? 0;}
+        currentTaskId = @taskId;
+
+
+
         // add new project
         $(document).ready(function () {
             $('#projectForm').on('submit', function (e) {

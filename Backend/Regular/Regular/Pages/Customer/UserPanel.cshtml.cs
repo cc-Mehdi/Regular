@@ -214,6 +214,7 @@ namespace Regular.Pages.Customer
 
         public async Task<JsonResult> OnGetGetTaskById(int id)
         {
+            HttpContext.Session.SetInt32("TaskId", id);
             Task = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Id == id).FirstOrDefault();
             return new JsonResult(Task);
         }
