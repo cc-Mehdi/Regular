@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {}
+    "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {
+    "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj",
+        "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj",
         "projectName": "Utilities",
-        "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj",
+        "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj",
         "packagesPath": "C:\\Users\\cc-mehdi\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\obj\\",
         "projectStyle": "PackageReference",

@@ -5,22 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\wwwroot\\src\\js\\userpanel.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userdashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\wwwroot\\src\\js\\userdashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\userdashboard.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userdashboard.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\controllers\\invitescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\controllers\\invitescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\userdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\userdashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,16 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -48,61 +24,18 @@
               "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userPanel.js",
               "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userPanel.js",
               "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userPanel.js",
-              "ViewState": "AQIAACIDAAAAAAAAAAD4vzUDAABRAAAA",
+              "ViewState": "AQIAACoCAAAAAAAAAADwv0ACAABVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-12T20:56:41.43Z",
+              "WhenOpened": "2024-07-15T06:29:16.537Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InvitesController.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Controllers\\InvitesController.cs",
-              "RelativeDocumentMoniker": "Regular\\Controllers\\InvitesController.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Controllers\\InvitesController.cs",
-              "RelativeToolTip": "Regular\\Controllers\\InvitesController.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAowBgAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-12T18:15:53.001Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "userDashboard.js",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "ViewState": "AQIAAGMAAAAAAAAAAAAYwC4BAAA1AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-11T22:38:35.489Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserDashboard.cshtml.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserDashboard.cshtml.cs",
-              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserDashboard.cshtml.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserDashboard.cshtml.cs",
-              "RelativeToolTip": "Regular\\Pages\\Customer\\UserDashboard.cshtml.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAAAFIAAABAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T08:08:33.258Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserDashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserDashboard.cshtml",
-              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\UserDashboard.cshtml",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Pages\\Customer\\UserDashboard.cshtml",
-              "RelativeToolTip": "Regular\\Pages\\Customer\\UserDashboard.cshtml",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAAE8AAABeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-07-02T09:06:12.177Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }

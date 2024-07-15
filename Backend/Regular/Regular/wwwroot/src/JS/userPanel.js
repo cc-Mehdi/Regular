@@ -506,12 +506,11 @@ function getTaskCard(item) {
            <!-- item card -->
             <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                             <div class="userPanel-itemCard hc-box bc-primary">
-                            <a>
                                 <div class="d-flex flex-column justify-content-center align-items-center">
                                 <!-- item card code -->
                                 <div class="d-flex justify-content-between align-items-center w-100">
                                     <h3 class="hc-fs-paragraph1 my-2">${item.id}</h3>
-                                    <i class="bi ${priority}"></i>
+                                    <i class="bi ${priority} text-white"></i>
                                 </div>
 
                                 <!-- item card title -->
@@ -549,7 +548,6 @@ function getTaskCard(item) {
                                 </div>
 
                                 </div>
-                            </a>
                             </div>
                         </div>
                <!-- end item card -->
@@ -569,6 +567,19 @@ function getTaskDetailsCard(item) {
                   <span class="hc-fs-paragraph2">بازگشت</span>
                 </button>
               <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-5 px-3">
+              <!-- Task Control Buttons -->
+              <div class="row w-100 mb-3 d-flex justify-content-end">
+                <div class="dropdown-center col-8 col-sm-6 col-md-4 col-xl-3">
+                  <button class="btn bc-darkBlue px-3 text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    تغییر وضعیت
+                  </button>
+                  <ul class="dropdown-menu bc-darkBlue">
+                    <li><a class="dropdown-item text-end" href="#">انجام شده</a></li>
+                    <li><a class="dropdown-item text-end" href="#">درحال بررسی</a></li>
+                    <li><a class="dropdown-item text-end" href="#">درحال انجام</a></li>
+                  </ul>
+                </div>
+              </div>
                 <div class="w-100 d-flex justify-content-between row">
                   <h5 class="hc-fs-paragraph3 col">کد : ${item.id}</h5>
                   <h5 class="hc-fs-paragraph3 col">پروژه : ${item.project.title}</h5>

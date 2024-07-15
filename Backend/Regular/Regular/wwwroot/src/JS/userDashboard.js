@@ -420,5 +420,10 @@ function SetInviteAnswer(intviteId, inviteStatus) {
         }
     });
 }
-
+function filterItems(parameter) {
+    if (document.getElementsByClassName("userPanel-menuItem")[1].classList.contains("userPanel-menuItem-active"))  // projects tab selected
+        UpdateRelationsByFilter(parameter);
+    else if (document.getElementsByClassName("userPanel-menuItem")[2].classList.contains("userPanel-menuItem-active")) // tasks tab selected
+        UpdateRequestsByFilter(parameter);
+}
 //end processes

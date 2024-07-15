@@ -4149,11 +4149,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Regular.csproj",
+      "projectUniqueName": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
       "projectName": "Regular",
-      "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\Regular.csproj",
+      "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Regular.csproj",
       "packagesPath": "C:\\Users\\cc-mehdi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Regular\\obj\\",
+      "outputPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
@@ -4174,11 +4174,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
-              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
+            "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj": {
+              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Datalayer\\Datalayer.csproj"
             },
-            "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {
-              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\regular\\Backend\\Regular\\Utilities\\Utilities.csproj"
+            "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj": {
+              "projectPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Utilities\\Utilities.csproj"
             }
           }
         }

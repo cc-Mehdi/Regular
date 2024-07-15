@@ -130,6 +130,9 @@ namespace Regular.Pages.Customer
             var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
             var id = Request.Form["Id"];
 
+            if (orgId == "0")
+                return new JsonResult(new { err = "لطفا ابتدا یک سازمان ایجاد کنید" });
+
             var newItem = new Projects
             {
                 Title = title,
@@ -272,14 +275,14 @@ namespace Regular.Pages.Customer
                     Assignto = assignTo,
                     AssigntoId = int.Parse(assigneeId),
                     EstimateTime = estimateTime,
-                    LoggedTime = "زمانی ثبت نشده",
+                    LoggedTime = "-",
                     RemainingTime = estimateTime,
                     Description = description,
                     ProjectId = int.Parse(projectId),
                     Project = project,
                     ReporterId = reporterId,
-                    TaskStatus = "نامشخص",
-                    TaskType = "نامشخص"
+                    TaskStatus = "برای انجام",
+                    TaskType = "بهبود"
                 };
 
                 
