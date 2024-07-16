@@ -442,11 +442,11 @@ function updateEmployees_newProjectModal(orgId) {
                 var codeBlock = `
                 <div class="form-check form-check-reverse d-flex align-items-center">
                     <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
-                            type="radio"
+                            type="checkbox"
                             value="${item.id}"
-                            name="project"
+                            name="newProjectEmployee"
                             id="projectCheck${item.id}"
-                            onchange="updateProject('${item.title}', '${item.id}')">
+                            onchange="updateProject('${item.fullName}', '${item.id}')">
                     <label class="form-check-label pt-2 w-100 hc-fs-paragraph3" for="projectCheck${item.id}">
                         ${item.fullName}
                     </label>

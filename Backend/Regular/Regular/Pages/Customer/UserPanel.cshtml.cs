@@ -136,7 +136,7 @@ namespace Regular.Pages.Customer
             if (orgId == "0")
                 return new JsonResult(new { err = "لطفا ابتدا یک سازمان ایجاد کنید" });
 
-            var newItem = new Projects
+            var newProject = new Projects
             {
                 Title = title,
                 ImageName = image == null ? "" : image.FileName,
@@ -149,28 +149,28 @@ namespace Regular.Pages.Customer
             };
 
             if (String.IsNullOrEmpty(id) || id == "0")
-                _unitOfWork.ProjectsRepository.Add(newItem);
+                _unitOfWork.ProjectsRepository.Add(newProject);
             else
             {
-                newItem.Id = int.Parse(id);
-                _unitOfWork.ProjectsRepository.Update(newItem);
+                newProject.Id = int.Parse(id);
+                _unitOfWork.ProjectsRepository.Update(newProject);
             }
 
             _unitOfWork.Save();
 
-            // add relations between users and projects
+            _unitOfWork.User_ProjectRepository.RemoveRange(_unitOfWork.User_ProjectRepository.GetAllByFilter(u => u.ProjectId == newProject.Id).ToList());
+
+            // Add relations between users and projects
             foreach (var empId in employeesId)
             {
-                Project = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == organization.Id && u.OwnerId == loggedInUser.Id).LastOrDefault(); // get project id
                 _unitOfWork.User_ProjectRepository.Add(new User_Project() // add new relation to database
                 {
-                    ProjectId = Project.Id,
+                    ProjectId = newProject.Id,
                     UserId = int.Parse(empId)
                 });
             }
 
             _unitOfWork.Save();
-
 
             var projectsList = _unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id && u.OrganizationId == organization.Id).ToList();
             return new JsonResult(projectsList);
@@ -317,8 +317,8 @@ namespace Regular.Pages.Customer
         // get employees by organization id
         public async Task<JsonResult> OnGetGetEmployeesByOrganizationId(int organizationId)
         {
-            UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
-            return new JsonResult(UsersList);
+            var usersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
+            return new JsonResult(usersList);
         }
 
         // add new employee
@@ -413,14 +413,15 @@ namespace Regular.Pages.Customer
                 if(Organization == null)
                     return new JsonResult(new { errorMessage = "سازمان مورد نظر یافت نشد" });
 
-                var organizationRelations = _unitOfWork.Organizations_UsersRepository.GetAllByFilter(u => u.OrganizationId == Organization.Id);
-                _unitOfWork.Organizations_UsersRepository.RemoveRange(organizationRelations);
+                _unitOfWork.Organizations_UsersRepository.RemoveRange(_unitOfWork.Organizations_UsersRepository.GetAllByFilter(u => u.OrganizationId == Organization.Id));
+                _unitOfWork.ProjectsRepository.RemoveRange(_unitOfWork.ProjectsRepository.GetAllByFilter(u => u.OrganizationId == Organization.Id));
+                _unitOfWork.TasksRepository.RemoveRange(_unitOfWork.TasksRepository.GetAllByFilter(u => u.Project.OrganizationId == Organization.Id));
                 _unitOfWork.OrganizationsRepository.Remove(Organization);
                 _unitOfWork.Save();
 
                 return new JsonResult(new { errorMessage = ""});
             }
-            catch
+            catch (Exception ex)
             {
                 return new JsonResult(new { errorMessage = "حذف سازمان با شکست مواجه شد" });
             }

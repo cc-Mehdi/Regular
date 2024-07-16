@@ -283,12 +283,7 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newProjectModal_employeesList">
-                                            @* <div class="form-check form-check-reverse">
-                                                <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@item.Id" checked>
-                                                <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
-                                                    خودم
-                                                </label>
-                                            </div> *@
+
                                         </div>
                                     </div>
                                 </div>
@@ -308,6 +303,7 @@
         </div>
     </div>
     </div>
+
 
     <!-- Add New Organization Modal -->
     <div class="modal fade" id="newOrganizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -582,11 +578,17 @@
         // add new project
         $(document).ready(function () {
             $('#projectForm').on('submit', function (e) {
-                e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+                e.preventDefault(); // Prevent normal form submission
 
                 var formData = new FormData(this);
 
                 formData.append('orgId', $("#ddlOrganization").data("id"));
+
+                // Collect selected employee IDs
+                $('input[name="newProjectEmployee"]:checked').each(function () {
+                    debugger;
+                    formData.append('Employees', $(this).val());
+                });
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "UpsertProject")',
@@ -622,7 +624,6 @@
                 updateProjectsList_newTaskModal($("#ddlOrganization").data("id"));
             });
         });
-
         // add new organization
         $(document).ready(function () {
             $('#organizationForm').on('submit', function (e) {
