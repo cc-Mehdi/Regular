@@ -68,10 +68,10 @@ namespace Regular.Pages.Customer
                         if(currentUser == null)
                         {
                             //save to database
-                            user.ImageName = "/src/media/default-person-profile.png";
+                            user.ImageName = "/CustomerResources/DefaultSources/UserImage.jpg";
                             user.Username = user.FullName.Replace(" ", "") + "_" + Utilities.Help_Numbers.GenerateUniqueNumber();
-                            user.Status = "وضعیت : نامشخص";
-                            user.Rank = "سطح : نامشخص";
+                            user.Status = "وضعیت : آزاد";
+                            user.Rank = "سطح : متوسط";
                             _unitOfWork.UsersRepository.Add(user);
                             _unitOfWork.Save();
 
