@@ -2,6 +2,7 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Regular.Pages.Customer
 {
@@ -88,11 +89,13 @@ namespace Regular.Pages.Customer
             var employees = Request.Form["Employees"].ToList();
             var id = Request.Form["Id"];
 
+            // Generate a unique file name
+
             // convert data to model for sending to database
             var newItem = new Organizations
             {
                 Title = title,
-                ImageName = image == null ? "" : image.FileName,
+                ImageName = "/CustomerResources/DefaultSources/OrgImage.png",
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser
             };
@@ -406,8 +409,15 @@ namespace Regular.Pages.Customer
             try
             {   
                 Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == id);
+                
+                if(Organization == null)
+                    return new JsonResult(new { errorMessage = "سازمان مورد نظر یافت نشد" });
+
+                var organizationRelations = _unitOfWork.Organizations_UsersRepository.GetAllByFilter(u => u.OrganizationId == Organization.Id);
+                _unitOfWork.Organizations_UsersRepository.RemoveRange(organizationRelations);
                 _unitOfWork.OrganizationsRepository.Remove(Organization);
                 _unitOfWork.Save();
+
                 return new JsonResult(new { errorMessage = ""});
             }
             catch
