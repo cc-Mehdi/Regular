@@ -124,28 +124,12 @@ function ShowRelationTab() {
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
-            var head = `
-                <!-- item card -->
-                <div class="w-100 bc-primary rounded-3 p-3 d-flex flex-column">
-                <!-- label -->
-                <span class="app-brand-text demo menu-text text-white fs-4 fw-bold me-2" style="text-shadow: 0 0 1px var(--c-primary)">همکاری ها</span>
-                <hr class="text-white">
-
-                <!-- Search Box -->
-                <input type="search" class="form-control border-0 tc-lightBlue fs-5 py-2 w-100" placeholder="جستجو">
-
-                <div id="itemsList" class="row w-100 d-flex justify-content-center">
-              `;
-            var foot = `
-                </div>
-                </div>
-                <!-- end item card -->
-            `;
             var codeBlock = '';
             data.forEach(function (item) {
                 codeBlock += getRelationCard(item);
             });
-            list.append(head + codeBlock + foot);
+            list.append(GetCardHead(`ShowAccountTab()`, "همکاری ها") + codeBlock + GetCardFoot());
+
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -160,28 +144,12 @@ function ShowRequestTab() {
         success: function (data) {
             var list = $('#itemsList');
             list.empty();
-            var head = `
-                <!-- item card -->
-                <div class="w-100 bc-primary rounded-3 p-3 d-flex flex-column">
-                <!-- label -->
-                <span class="app-brand-text demo menu-text text-white fs-4 fw-bold me-2" style="text-shadow: 0 0 1px var(--c-primary)">درخواست ها</span>
-                <hr class="text-white">
-
-                <!-- Search Box -->
-                <input type="search" class="form-control border-0 tc-lightBlue fs-5 py-2 w-100" placeholder="جستجو">
-
-                <div id="itemsList" class="row w-100 d-flex justify-content-center">
-              `;
-            var foot = `
-                </div>
-                </div>
-                <!-- end item card -->
-            `;
             var codeBlock = '';
             data.forEach(function (item) {
-                 codeBlock += getRequestCard(item);
+                codeBlock += getRequestCard(item);
             });
-            list.append(head + codeBlock + foot);
+            list.append(GetCardHead(`ShowAccountTab()`, "درخواست ها") + codeBlock + GetCardFoot());
+
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -216,9 +184,76 @@ function ShowReportsTab() {
         }
     });
 }
+function ShowProjectsByOrgId(orgId) {
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetProjectsByOrganizationId",
+        method: "GET",
+        data: { organizationId: orgId },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            var codeBlock = '';
+            data.forEach(function (item) {
+                codeBlock += getProjectCard(item);
+            });
+            list.append(GetCardHead(`ShowRelationTab()`, "پروژه ها") + codeBlock + GetCardFoot());
+        },
+        error: function () {
+            toastr.error("در لود صفحه خطا وجود دارد", "خطا");
+        }
+    });
+}
+function ShowTasksByProjectId(projectId) {
+    $.ajax({
+        url: "/Customer/UserPanel?handler=GetTasksByProjectId",
+        method: "GET",
+        data: { projectId: projectId },
+        success: function (data) {
+            var list = $('#itemsList');
+            list.empty();
+            var codeBlock = '';
+            data.forEach(function (item) {
+                codeBlock += getTaskCard(item);
+            });
+            list.append(GetCardHead(`ShowProjectsByOrgId(${projectId})`, "وظایف") + codeBlock + GetCardFoot());
+        },
+        error: function () {
+            toastr.error("در لود صفحه خطا وجود دارد", "خطا");
+        }
+    });
+}
 // end tab controls
 
 // module cards
+function GetCardHead(backFunction, title) {
+    return `
+                <!-- back button -->
+                <div class="row w-100 d-flex flex-row-reverse">
+                <button onclick="{${backFunction}}" class="btn btn-outline-primary col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                    <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                    <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
+                </div>
+                <!-- item card -->
+                <div class="w-100 bc-primary rounded-3 p-3 d-flex flex-column">
+                <!-- label -->
+                <span class="app-brand-text demo menu-text text-white fs-4 fw-bold me-2" style="text-shadow: 0 0 1px var(--c-primary)">${title} </span>
+                <hr class="text-white">
+
+                <!-- Search Box -->
+                <input type="search" class="form-control border-0 tc-lightBlue fs-5 py-2 w-100" placeholder="جستجو">
+
+                <div id="itemsList" class="row w-100 d-flex justify-content-center mt-3">
+              `;
+}
+function GetCardFoot() {
+    return `
+        </div>
+        </div>
+        <!-- end item card -->
+    `;
+}
+
 function getAccountCard(item) {
     var codeBlock = `
     <!-- item card -->
@@ -296,7 +331,7 @@ function getRelationCard(item) {
     var codeBlock = `
                 <!-- item card -->
                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                <a href="#" class="w-100">
+                <a onclick="ShowProjectsByOrgId(${item.organization.id})" class="w-100">
                   <div class="userPanel-itemCard hc-box bc-secondary mt-2">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <!-- item card image -->
@@ -359,6 +394,195 @@ function getReportsCard(item) {
                     `;
     return codeBlock;
 }
+function getProjectCard(item) {
+    var codeBlock = `
+            <!-- item card -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                            <div class="userPanel-itemCard hc-box bc-darkBlue">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <!-- item card image -->
+                                        <img class="bg-white rounded-circle p-3" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="85px"
+                                                height="85px" />
+                                        <!-- item card title -->
+                                        <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="ShowTasksByProjectId(${item.id})">
+                                            <span class="itemCard-title truncate">${item.title}</span>
+                                        </h3>
+                                        <!-- item card tags -->
+                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                            <span class="itemCard-tag p-1 px-3 bc-secondary rounded-3 text-white hc-fs-span3 my-1">
+                                                انجام شده : ${item.tasksStatusPercent}%
+                                            </span>
+                                            <span class="itemCard-tag p-1 px-3 bc-secondary rounded-3 text-white hc-fs-span3 my-1">
+                                                تعداد وظایف : ${item.tasksCount}
+                                            </span>
+                                        </div>
+                                        <!-- item card buttons 
+                                        <div class="row w-100">
+                                            <div class="col-sm-12 col-md-6 px-1">
+                                            <button onclick="EditItem('پروژه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                <i class="bi bi-pencil-square ms-1"></i>
+                                                <span>ویرایش</span>
+                                            </button>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 px-1">
+                                            <button onclick="DeleteItem('Project', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                <i class="bi bi-trash ms-1"></i>
+                                                <span>حذف</span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                        -->
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- end item card -->
+                    `;
+    return codeBlock;
+}
+function getTaskCard(item) {
+    let priority = item.priority == '1' ? "bi-star" : item.priority == '2' ? "bi-star-half" : "bi-star-fill";
+    var codeBlock = `
+           <!-- item card -->
+            <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                            <div class="userPanel-itemCard hc-box bc-darkBlue">
+                                <div class="d-flex flex-column justify-content-center align-items-center">
+                                <!-- item card code -->
+                                <div class="d-flex justify-content-between align-items-center w-100">
+                                    <h3 class="hc-fs-paragraph1 my-2">${item.id}</h3>
+                                    <i class="bi ${priority} text-white"></i>
+                                </div>
+
+                                <!-- item card title -->
+                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="ShowTaskDetails(${item.id})">
+                                    <span class="itemCard-title truncate">${item.title}</span>
+                                </h3>
+                                <!-- item card tags -->
+                                <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                    <span class="itemCard-tag p-1 px-3 bc-primary tc-lightBlue rounded-3 hc-fs-span3 my-1">
+                                    پروژه : 
+                                    ${item.project.title}
+                                    </span>
+                                    <span class="itemCard-tag p-1 px-3 bc-primary text-warning rounded-3 hc-fs-span3 my-1">
+                                    ${item.taskStatus}
+                                    </span>
+                                    <span class="itemCard-tag p-1 px-3 bc-primary rounded-3 text-white hc-fs-span3 my-1">
+                                    ${item.taskType}
+                                    </span>
+                                </div>
+
+                                <!-- item card buttons 
+                                <div class="row w-100">
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button onclick="EditItem('وظیفه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-pencil-square ms-1"></i>
+                                      <span>ویرایش</span>
+                                    </button>
+                                  </div>
+                                  <div class="col-sm-12 col-md-6 px-1">
+                                    <button onclick="DeleteItem('Task', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                      <i class="bi bi-trash ms-1"></i>
+                                      <span>حذف</span>
+                                    </button>
+                                  </div>
+                                </div>
+                                -->
+
+                                </div>
+                            </div>
+                        </div>
+               <!-- end item card -->
+     `;
+    return codeBlock;
+}
+function getTaskDetailsCard(item) {
+    let priorityIcon = item.priority == '1' ? "bi-star" : item.priority == '2' ? "bi-star-half" : "bi-star-fill";
+    let priorityValue = item.priority == '1' ? "کم" : item.priority == '2' ? "متوسط" : "زیاد";
+    var codeBlock = `
+            <!-- Task details card -->
+            <div class="w-100 h-100 d-flex justify-content-center align-items-center mt-3">
+            <!-- back button -->
+              <div class="row w-100 d-flex flex-row-reverse">
+                <button onclick="ShowTasksByProjectId(${item.projectId})" class="btn btn-outline-primary col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                  <i class="bi bi-arrow-left-square-fill tc-lightCyan hc-fs-paragraph1 ms-2"></i>
+                  <span class="hc-fs-paragraph2">بازگشت</span>
+                </button>
+              <div class="taskDetailBox bc-primary w-100 rounded-3 d-flex flex-column p-3" style="box-shadow: 0 0 10px var(--c-primary);">
+              <!-- Task Control Buttons -->
+              <div class="row w-100 mb-3">
+                <div class="dropdown-center d-flex justify-content-end w-100 col-8 col-sm-6 col-md-4 col-xl-3">
+                  <button class="btn bc-darkBlue px-3 text-white dropdown-toggle hc-fs-paragraph2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    وضعیت : ${item.taskStatus}
+                  </button>
+                  <ul id="ddlTaskStatus" class="dropdown-menu bc-darkBlue">
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">انجام شده</a></li>
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">درحال انجام</a></li>
+                    <li><a onClick="ChangeTaskStatus(this)" class="dropdown-item text-end" href="#">درحال بررسی</a></li>
+                  </ul>
+                </div>
+              </div>
+                <div class="w-100 d-flex justify-content-between row">
+                  <h5 class="hc-fs-paragraph3 col">کد : ${item.id}</h5>
+                  <h5 class="hc-fs-paragraph3 col">پروژه : ${item.project.title}</h5>
+                </div>
+                <div class="w-100">
+                  <h5 class="hc-fs-title2">${item.title}</h5>
+                </div>
+                <div class="w-100 d-flex flex-column justify-content-center align-items-center mt-5">
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">مرتبط با : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.assignto}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">اولویت : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        <i class="bi ${priorityIcon} hc-fs-span1"></i>
+                        ${priorityValue}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">وضعیت : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.taskStatus}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">نوع : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.taskType}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">زمان تخمینی : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">${item.estimateTime}</span>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">زمان ثبت شده : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.loggedTime}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row w-100 my-2">
+                    <div class="col">
+                      <span class="hc-fs-paragraph3 tc-lightCyan">توضیحات : </span>
+                      <span class="hc-fs-paragraph2 fw-bold text-white">
+                        ${item.description}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Task details card -->
+     `;
+    return codeBlock;
+}
+
+
+
 // end module cards
 
 // processes

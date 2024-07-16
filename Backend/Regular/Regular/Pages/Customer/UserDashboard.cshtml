@@ -119,6 +119,10 @@
         </main>
 
         <footer></footer>
+
+
+        @* send session values to html *@
+        <input hidden type="text" value="@HttpContext.Session.GetInt32("TaskId")" id="currentTaskId" />
     </div>
 
     <!-- JQuery Script -->

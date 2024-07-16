@@ -465,45 +465,45 @@ function updateEmployees_newProjectModal(orgId) {
 // module cards
 function getProjectCard(item) {
     var codeBlock = `
-                    <!-- item card -->
-                                <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                                    <div class="userPanel-itemCard hc-box bc-primary">
-                                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <!-- item card image -->
-                                                <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                                        height="65px" />
-                                                <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
-                                                    <span class="itemCard-title truncate">${item.title}</span>
-                                                </h3>
-                                                <!-- item card tags -->
-                                                <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                                    <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                        انجام شده : ${item.tasksStatusPercent}%
-                                                    </span>
-                                                    <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                        تعداد وظایف : ${item.tasksCount}
-                                                    </span>
-                                                </div>
-                                                <!-- item card buttons -->
-                                                <div class="row w-100">
-                                                  <div class="col-sm-12 col-md-6 px-1">
-                                                    <button onclick="EditItem('پروژه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                      <i class="bi bi-pencil-square ms-1"></i>
-                                                      <span>ویرایش</span>
-                                                    </button>
-                                                  </div>
-                                                  <div class="col-sm-12 col-md-6 px-1">
-                                                    <button onclick="DeleteItem('Project', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                      <i class="bi bi-trash ms-1"></i>
-                                                      <span>حذف</span>
-                                                    </button>
-                                                  </div>
-                                                </div>
+            <!-- item card -->
+                        <div class="col-lg-4 col-md-4 col-sm-6 p-3">
+                            <div class="userPanel-itemCard hc-box bc-primary">
+                                    <div class="d-flex flex-column justify-content-center align-items-center">
+                                        <!-- item card image -->
+                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                height="65px" />
+                                        <!-- item card title -->
+                                        <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
+                                            <span class="itemCard-title truncate">${item.title}</span>
+                                        </h3>
+                                        <!-- item card tags -->
+                                        <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                انجام شده : ${item.tasksStatusPercent}%
+                                            </span>
+                                            <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                تعداد وظایف : ${item.tasksCount}
+                                            </span>
+                                        </div>
+                                        <!-- item card buttons -->
+                                        <div class="row w-100">
+                                            <div class="col-sm-12 col-md-6 px-1">
+                                            <button onclick="EditItem('پروژه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                <i class="bi bi-pencil-square ms-1"></i>
+                                                <span>ویرایش</span>
+                                            </button>
                                             </div>
+                                            <div class="col-sm-12 col-md-6 px-1">
+                                            <button onclick="DeleteItem('Project', ${item.id})" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                <i class="bi bi-trash ms-1"></i>
+                                                <span>حذف</span>
+                                            </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- end item card -->
+                            </div>
+                        </div>
+                        <!-- end item card -->
                     `;
     return codeBlock;
 }
@@ -881,7 +881,7 @@ function getSentEmployeeInviteCard(item) {
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                       <div class="userPanel-itemCard hc-box bc-primary">
-                        <a onclick="showUserInformationByUserId(${item.id})">
+                        <a class="w-100" onclick="showUserInformationByUserId(${item.id})">
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">

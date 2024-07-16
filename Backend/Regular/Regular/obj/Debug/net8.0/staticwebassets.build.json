@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nz8JlPevu1Shl0Ssg70rKYoMLseKOyoWGLyGY9O5e0U=",
+  "Hash": "8pbXdGCpgNMS3bNd4oAEBwGiYvYiYhl9V615eCOE+Is=",
   "Source": "Regular",
   "BasePath": "_content/Regular",
   "Mode": "Default",
@@ -55,12 +55,12 @@
       "OriginalItemSpec": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Regular.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\CustomerResources\\UserProfileImages\\83487e1a-8098-4d79-b41c-efed143594a4.png",
+      "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\CustomerResources\\UserProfileImages\\65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg",
       "SourceId": "Regular",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\",
       "BasePath": "_content/Regular",
-      "RelativePath": "CustomerResources/UserProfileImages/83487e1a-8098-4d79-b41c-efed143594a4.png",
+      "RelativePath": "CustomerResources/UserProfileImages/65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -71,7 +71,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\CustomerResources\\UserProfileImages\\83487e1a-8098-4d79-b41c-efed143594a4.png"
+      "OriginalItemSpec": "wwwroot\\CustomerResources\\UserProfileImages\\65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg"
     },
     {
       "Identity": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\CustomerResources\\UserProfileImages\\8757f304-6388-4eac-9e99-e1fb7150f9fd.png",

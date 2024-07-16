@@ -1,11 +1,11 @@
 ﻿<Project>
   <ItemGroup>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CustomerResources\UserProfileImages\83487e1a-8098-4d79-b41c-efed143594a4.png))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CustomerResources\UserProfileImages\65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>Regular</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/Regular</BasePath>
-      <RelativePath>CustomerResources/UserProfileImages/83487e1a-8098-4d79-b41c-efed143594a4.png</RelativePath>
+      <RelativePath>CustomerResources/UserProfileImages/65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -14,7 +14,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CustomerResources\UserProfileImages\83487e1a-8098-4d79-b41c-efed143594a4.png))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CustomerResources\UserProfileImages\65d94b68-ff98-4ffa-8ed2-9879d913a961.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\CustomerResources\UserProfileImages\8757f304-6388-4eac-9e99-e1fb7150f9fd.png))">
       <SourceType>Package</SourceType>
