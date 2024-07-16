@@ -289,15 +289,6 @@
                                                     خودم
                                                 </label>
                                             </div> *@
-                                            @foreach (var item in Model.UsersList)
-                                            {
-                                                <div class="form-check form-check-reverse">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2" type="checkbox" value="@item.Id" name="Employees" id="employeeCheck@item.Id">
-                                                    <label class="form-check-label w-100 hc-fs-span1" for="employeeCheck@item.Id">
-                                                        @item.FullName
-                                                    </label>
-                                                </div>
-                                            }
                                         </div>
                                     </div>
                                 </div>

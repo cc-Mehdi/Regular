@@ -445,10 +445,10 @@ function updateEmployees_newProjectModal(orgId) {
                             type="radio"
                             value="${item.id}"
                             name="project"
-                            id="projectCheck@item.Id"
+                            id="projectCheck${item.id}"
                             onchange="updateProject('${item.title}', '${item.id}')">
-                    <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
-                        ${item.title}
+                    <label class="form-check-label pt-2 w-100 hc-fs-paragraph3" for="projectCheck${item.id}">
+                        ${item.fullName}
                     </label>
                 </div>
                 `;

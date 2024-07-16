@@ -23,17 +23,6 @@ namespace Datalayer.Repository
             return query.ToList();
         }
 
-        //public void Update(Users_Users users_Users)
-        //{
-        //    var objFromDb = _db.Users_Users.FirstOrDefault(u => u.Id == users_Users.Id);
-        //    objFromDb.SenderUser = users_Users.SenderUser;
-        //    objFromDb.SenderUserId = users_Users.SenderUserId ;
-        //    objFromDb.ReceiverUser = users_Users.ReceiverUser ;
-        //    objFromDb.ReceiverUserId = users_Users.ReceiverUserId ;
-        //    objFromDb.CreateInviteDate = users_Users.CreateInviteDate ;
-        //    objFromDb.AcceptInviteDate = users_Users.AcceptInviteDate;
-        //}
-
         public void Update(Organizations_Users organizations_Users)
         {
             var objFromDb = _db.Organizations_Users.FirstOrDefault(u => u.Id == organizations_Users.Id);
