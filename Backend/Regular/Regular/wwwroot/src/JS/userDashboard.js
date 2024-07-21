@@ -46,14 +46,27 @@ function onEdit(inputIndex) {
 
 accountUserImageInput.addEventListener('change', function (e) {
     if (e.target.files[0]) {
-        accountUserImage = accountUserImageInput.files[0];
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#imgAccountUserImage').attr('src', e.target.result);
+        var file = e.target.files[0];
+        var fileType = file.type;
+        var fileSize = file.size;
+        var allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
+        var maxSizeInBytes = 25 * 1024 * 1024; // 25 MB in bytes
+
+        if (!allowedTypes.includes(fileType)) {
+            toastr.warning("لطفا فایل انتخابی تصویر یا گیف باشد (.png | .jpg | .gif)");
+        } else if (fileSize > maxSizeInBytes) {
+            toastr.warning("حجم فایل بیش از حد مجاز (25MB)");
+        } else {
+            accountUserImage = file;
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#imgAccountUserImage').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
         }
-        reader.readAsDataURL(e.target.files[0]);
     }
 });
+
 
 // account inputs control
 var sectionOne;
@@ -98,6 +111,7 @@ document.addEventListener('click', function (event) {
     }
 });
 // end account inputs control
+
 
 // tab controls
 function ShowAccountTab() {

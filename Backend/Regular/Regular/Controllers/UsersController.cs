@@ -47,6 +47,10 @@ namespace Regular.Controllers
                     var imageName = Guid.NewGuid().ToString() + imageExtension;
                     var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CustomerResources", "UserProfileImages", imageName);
 
+                    // Check if file is valid image
+                    if (imageExtension != ".png" && imageExtension != ".jpg" && imageExtension != ".gif")
+                        return new JsonResult(new { isSuccess = false, message = "فایل معتبر نیست" });
+
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await Image.CopyToAsync(stream);
