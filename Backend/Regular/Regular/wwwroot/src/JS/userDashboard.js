@@ -124,6 +124,9 @@ function ShowAccountTab() {
             list.empty();
             var codeBlock = getAccountCard(data);
             list.append(codeBlock);
+
+            // show request count to badge
+            ShowRequestsCount();
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -164,6 +167,8 @@ function ShowRequestTab() {
             });
             list.append(GetCardHead(`ShowAccountTab()`, "درخواست ها") + codeBlock + GetCardFoot());
 
+            // show request count to badge
+            ShowRequestsCount();
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");
@@ -230,6 +235,24 @@ function ShowTasksByProjectId(projectId) {
                 codeBlock += getTaskCard(item);
             });
             list.append(GetCardHead(`ShowProjectsByOrgId(${projectId})`, "وظایف") + codeBlock + GetCardFoot());
+        },
+        error: function () {
+            toastr.error("در لود صفحه خطا وجود دارد", "خطا");
+        }
+    });
+}
+function ShowRequestsCount() {
+    $.ajax({
+        url: "/Customer/UserDashboard?handler=GetSentEmployeeInvitesCount",
+        method: "GET",
+        success: function (data) {
+            if (data.count > 0) {
+                // show request count to badge
+                $("#lblRequestCountBadge").html(data.count);
+                $("#lblRequestCountBadge").removeAttr("hidden");
+            }
+            else
+                $("#lblRequestCountBadge").attr("hidden", "true");
         },
         error: function () {
             toastr.error("در لود صفحه خطا وجود دارد", "خطا");

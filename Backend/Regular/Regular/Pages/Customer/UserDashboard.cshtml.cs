@@ -76,6 +76,14 @@ namespace Regular.Pages.Customer
             return new JsonResult(list);
         }
 
+        // get recived employee invites COUNT by logged in user id
+        public async Task<JsonResult> OnGetGetSentEmployeeInvitesCount()
+        {
+            isUserLogin();
+            var requestsCount = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus != "پذیرفته شد").Select(u => new { u.Id, u.Organization.ImageName, u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList().Count;
+            return new JsonResult(new {count= requestsCount});
+        }
+
         // get all organizations that logged in user work with them
         public async Task<JsonResult> OnGetGetRelationOrganizations()
         {
