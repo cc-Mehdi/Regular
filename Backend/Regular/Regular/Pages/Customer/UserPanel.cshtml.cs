@@ -331,6 +331,9 @@ namespace Regular.Pages.Customer
 
             User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Username == username);
 
+            if(User == null)
+                return new JsonResult(new { err = "کاربر مورد نظر یافت نشد" });
+
             if (string.IsNullOrEmpty(username))
                 return new JsonResult(new { err = "لطفا فیلدها را با دقت پر کنید" });
 
@@ -339,6 +342,11 @@ namespace Regular.Pages.Customer
 
             try
             {
+                var oldRequest = _unitOfWork.Organizations_UsersRepository.GetFirstOrDefault(u => u.UserId == User.Id && u.OrganizationId == int.Parse(orgId));
+                if(oldRequest != null)
+                    if(oldRequest.InviteStatus != "رد شده")
+                        return new JsonResult(new { err = "قبلا به این کاربر درخواست داده اید" });
+
                 var newItem = new Organizations_Users
                 {
                     InviteStatus = "در انتظار پاسخ",
