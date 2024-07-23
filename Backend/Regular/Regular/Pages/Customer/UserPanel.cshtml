@@ -88,11 +88,11 @@
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                        <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
+                                            <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
                                     }
                                     else
                                     {
-                                        <span id="ddlOrganization" class="px-1" data-id="0">سازمان ها</span>
+                                            <span id="ddlOrganization" class="px-1" data-id="0">سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -100,27 +100,27 @@
                                 @{
                                     foreach (var item in Model.OrganizationsList)
                                     {
-                                        <li class="d-flex flex-column align-items-center">
-                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
-                                                <span>
-                                                    @item.Title
-                                                </span>
-                                            </a>
-                                            <div class="row w-100">
-                                                <div class="col-sm-12 col-md-6 px-1">
-                                                    <button onclick="EditItem('سازمان', @item.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                        <i class="bi bi-pencil-square ms-1"></i>
-                                                        <span>ویرایش</span>
-                                                    </button>
+                                            <li class="d-flex flex-column align-items-center">
+                                                <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
+                                                    <span>
+                                                        @item.Title
+                                                    </span>
+                                                </a>
+                                                <div class="row w-100">
+                                                    <div class="col-sm-12 col-md-6 px-1">
+                                                        <button onclick="EditItem('سازمان', @item.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                            <i class="bi bi-pencil-square ms-1"></i>
+                                                            <span>ویرایش</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 px-1">
+                                                        <button onclick="DeleteItem('Organization', @item.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                            <i class="bi bi-trash ms-1"></i>
+                                                            <span>حذف</span>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-sm-12 col-md-6 px-1">
-                                                    <button onclick="DeleteItem('Organization', @item.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                        <i class="bi bi-trash ms-1"></i>
-                                                        <span>حذف</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
                                     }
                                 }
                             </ul>
@@ -430,12 +430,12 @@
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
                                             @{
-                                                <div class="form-check form-check-reverse d-flex align-items-center">
-                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="radio" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@Model.loggedInUser.Id" onchange="updateAssignee('@Model.loggedInUser.FullName', '@Model.loggedInUser.ImageName', '@Model.loggedInUser.Id')">
-                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
-                                                        خودم
-                                                    </label>
-                                                </div>
+                                                    <div class="form-check form-check-reverse d-flex align-items-center">
+                                                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="radio" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@Model.loggedInUser.Id" onchange="updateAssignee('@Model.loggedInUser.FullName', '@Model.loggedInUser.ImageName', '@Model.loggedInUser.Id')">
+                                                        <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
+                                                            خودم
+                                                        </label>
+                                                    </div>
                                             }
                                             <div id="usersList_newTaskModal">
                                                 @{
@@ -628,6 +628,12 @@
         $(document).ready(function () {
             $('#organizationForm').on('submit', function (e) {
                 e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
+
+                if ($("#organizationForm_title").val() == "") { 
+                    toastr.error("لطفا یک عنوان برای سازمان انتخاب کنید");
+                    return;
+                }
+
                 var formData = new FormData(this);
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "UpsertOrganization")',
@@ -636,8 +642,8 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        if (data.err != null)
-                            toastr.error(data.err, 'خطا');
+                        if (data.errorMessage != null)
+                            toastr.error(data.errorMessage, 'خطا');
                         else {
                             var list = $('#organizationsList');
                             list.empty();

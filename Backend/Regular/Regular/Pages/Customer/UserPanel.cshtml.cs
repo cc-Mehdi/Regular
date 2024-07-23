@@ -89,7 +89,8 @@ namespace Regular.Pages.Customer
             var employees = Request.Form["Employees"].ToList();
             var id = Request.Form["Id"];
 
-            // Generate a unique file name
+            if(title == "")
+                return new JsonResult(new { errorMessage = "لطفا یک عنوان برای سازمان انتخاب کنید" });
 
             // convert data to model for sending to database
             var newItem = new Organizations
