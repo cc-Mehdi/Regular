@@ -876,7 +876,7 @@ function getEmployeeCard(item) {
     return codeBlock;
 }
 function getSentEmployeeInviteCard(item) {
-    let textColor = item.inviteStatus == 'پذیرفته شد' ? "text-success" : item.inviteStatus == 'پذیرفته نشد' ? "text-danger" : "text-warning";
+    let textColor = item.inviteStatus == 'پذیرفته شد' ? "text-success" : item.inviteStatus == 'رد شد' ? "text-danger" : "text-warning";
     var codeBlock = `
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">

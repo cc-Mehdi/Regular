@@ -322,7 +322,11 @@ function getAccountCard(item) {
                 </div>
 
                 <!-- user username -->
-                <h5 class="hc-fs-paragraph2 cursor-pointer mb-3 d-flex align-items-center" dir="ltr">@<span class="tc-lightBlue text-decoration-underline" onclick="SaveToClipboard(this)">${item.username}</span></h5>
+                <h5 class="hc-fs-paragraph2 cursor-pointer mb-3 d-flex align-items-center" dir="ltr">
+                @
+                <span class="tc-lightBlue text-decoration-underline" onclick="SaveToClipboard(this)" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="کپی نام کاربری">${item.username}
+                </span>
+                </h5>
 
                 <!-- user rank && user status -->
                 <div class="row d-flex justify-content-center align-items-center w-100 mb-3">
