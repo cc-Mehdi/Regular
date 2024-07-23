@@ -36,7 +36,7 @@ namespace Regular.Controllers
                 }
 
                 _unitOfWork.Save();
-                return new JsonResult(new { isSuccess = true, message = "عملیات با موفقیت انجام شد" });
+                return new JsonResult(new { isSuccess = true, message = $"عملیات با موفقیت {invite.InviteStatus}" });
             }
             catch (Exception ex)
             {
