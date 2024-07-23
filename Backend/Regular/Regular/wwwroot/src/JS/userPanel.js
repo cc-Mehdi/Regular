@@ -499,6 +499,11 @@ function getProjectCard(item) {
                                                 <span>حذف</span>
                                             </button>
                                             </div>
+                                            <div class="col-12 w-100">
+                                            <button onclick="UpdateTasksByProjectId(${item.id})" type="button" class="btn btn-info btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                            <i class="bi bi-info-square ms-1 text-black"></i>
+                                            اطلاعات بیشتر</button>
+                                            </div>
                                         </div>
                                     </div>
                             </div>
@@ -578,6 +583,12 @@ function getTaskCard(item) {
                                       <span>حذف</span>
                                     </button>
                                   </div>
+                                 <div class="col-12 w-100">
+                                    <button onclick="ShowTaskDetails(${item.id})" type="button" class="btn btn-info btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                        <i class="bi bi-info-square ms-1 text-black"></i>
+                                        اطلاعات بیشتر
+                                    </button>
+                                </div>
                                 </div>
 
                                 </div>
@@ -833,7 +844,7 @@ function getEmployeeCard(item) {
     var codeBlock = `
            <!-- item card -->
         <div class="col-lg-4 col-md-4 col-sm-6 p-3">
-                      <div class="userPanel-itemCard hc-box bc-primary" style="height: 350px;">
+                      <div class="userPanel-itemCard hc-box bc-primary" style="height: 390px;">
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
@@ -866,8 +877,13 @@ function getEmployeeCard(item) {
                                       <span class="text-nowrap">لغو همکاری</span>
                                     </button>
                                   </div>
+                                  <div class="col-12 w-100">
+                                    <button onclick="showUserInformationByUserId(${item.id})" type="button" class="btn btn-info btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                        <i class="bi bi-info-square ms-1 text-black"></i>
+                                        اطلاعات بیشتر
+                                    </button>
                                 </div>
-
+                                </div>
                           </div>
                       </div>
                     </div>
@@ -889,7 +905,7 @@ function getSentEmployeeInviteCard(item) {
                             </div>
 
                             <!-- item card FullName -->
-                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
+                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="showUserInformationByUserId(${item.id})">
                                 <span class="itemCard-title truncate">${item.fullName}</span>
                             </h3>
 
@@ -902,6 +918,17 @@ function getSentEmployeeInviteCard(item) {
                             ${item.inviteStatus}
                             </span>
                             </div>
+
+                                <!-- item card buttons -->
+                                <div class="row w-100">
+                                  <div class="col-12 w-100">
+                                    <button onclick="showUserInformationByUserId(${item.id})" type="button" class="btn btn-info btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                        <i class="bi bi-info-square ms-1 text-black"></i>
+                                        اطلاعات بیشتر
+                                    </button>
+                                </div>
+                                </div>
+
                           </div>
                         </a>
                       </div>

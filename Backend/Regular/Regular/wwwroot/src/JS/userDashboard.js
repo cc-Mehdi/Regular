@@ -385,6 +385,7 @@ function getRelationCard(item) {
                         <!-- item card paragraph -->
                         <h3 class="hc-fs-paragraph3 my-2">${item.organization.owner.fullName}</h3>
                       </div>
+                       
                   </div>
                 </a>
                 </div>
@@ -460,8 +461,9 @@ function getProjectCard(item) {
                                                 تعداد وظایف : ${item.tasksCount}
                                             </span>
                                         </div>
-                                        <!-- item card buttons 
+                                        <!-- item card buttons -->
                                         <div class="row w-100">
+                                        <!--
                                             <div class="col-sm-12 col-md-6 px-1">
                                             <button onclick="EditItem('پروژه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                                 <i class="bi bi-pencil-square ms-1"></i>
@@ -473,9 +475,16 @@ function getProjectCard(item) {
                                                 <i class="bi bi-trash ms-1"></i>
                                                 <span>حذف</span>
                                             </button>
-                                            </div>
+                                            </div> 
+                                            -->
+                                            <div class="col-12 w-100">
+                                             <button onclick="ShowTasksByProjectId(${item.id})" type="button" class=" bc-primary btn btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                                 <i class="bi bi-info-square ms-1 text-white"></i>
+                                                 اطلاعات بیشتر
+                                             </button>
+                                         </div>
                                         </div>
-                                        -->
+                                        
                                     </div>
                             </div>
                         </div>
@@ -514,8 +523,9 @@ function getTaskCard(item) {
                                     </span>
                                 </div>
 
-                                <!-- item card buttons 
+                                <!-- item card buttons -->
                                 <div class="row w-100">
+                                <!-- 
                                   <div class="col-sm-12 col-md-6 px-1">
                                     <button onclick="EditItem('وظیفه', ${item.id})" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
                                       <i class="bi bi-pencil-square ms-1"></i>
@@ -528,8 +538,15 @@ function getTaskCard(item) {
                                       <span>حذف</span>
                                     </button>
                                   </div>
+                                  -->
+                                    <div class="col-12 w-100">
+                                        <button" onclick="ShowTaskDetails(${item.id})" type="button" class=" bc-primary btn btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                            <i class="bi bi-info-square ms-1 text-white"></i>
+                                            اطلاعات بیشتر
+                                        </button>
+                                    </div>
                                 </div>
-                                -->
+                                
 
                                 </div>
                             </div>

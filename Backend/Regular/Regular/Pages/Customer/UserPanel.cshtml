@@ -92,11 +92,11 @@
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                            <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
+                                        <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
                                     }
                                     else
                                     {
-                                            <span id="ddlOrganization" class="px-1" data-id="0">سازمان ها</span>
+                                        <span id="ddlOrganization" class="px-1" data-id="0">سازمان ها</span>
                                     }
                                 }
                             </button>
@@ -104,27 +104,27 @@
                                 @{
                                     foreach (var item in Model.OrganizationsList)
                                     {
-                                            <li class="d-flex flex-column align-items-center">
-                                                <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
-                                                    <span>
-                                                        @item.Title
-                                                    </span>
-                                                </a>
-                                                <div class="row w-100">
-                                                    <div class="col-sm-12 col-md-6 px-1">
-                                                        <button onclick="EditItem('سازمان', @item.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                            <i class="bi bi-pencil-square ms-1"></i>
-                                                            <span>ویرایش</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 px-1">
-                                                        <button onclick="DeleteItem('Organization', @item.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                            <i class="bi bi-trash ms-1"></i>
-                                                            <span>حذف</span>
-                                                        </button>
-                                                    </div>
+                                        <li class="d-flex flex-column align-items-center">
+                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
+                                                <span>
+                                                    @item.Title
+                                                </span>
+                                            </a>
+                                            <div class="row w-100">
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button onclick="EditItem('سازمان', @item.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-pencil-square ms-1"></i>
+                                                        <span>ویرایش</span>
+                                                    </button>
                                                 </div>
-                                            </li>
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button onclick="DeleteItem('Organization', @item.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-trash ms-1"></i>
+                                                        <span>حذف</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </li>
                                     }
                                 }
                             </ul>
@@ -188,41 +188,47 @@
                                 <!-- item card -->
                                 <div class="col-lg-4 col-md-4 col-sm-6 p-3">
                                     <div class="userPanel-itemCard hc-box bc-primary">
-                                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <!-- item card image -->
-                                                <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
-                                                     height="65px" />
-                                                <!-- item card title -->
-                                                <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(@project.Id)">
-                                                    <span class="itemCard-title truncate">@project.Title</span>
-                                                </h3>
-                                                <!-- item card tags -->
-                                                <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
-                                                    <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                        انجام شده : @project.TasksStatusPercent%
-                                                    </span>
-                                                    <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
-                                                        تعداد وظایف : @project.TasksCount
-                                                    </span>
-                                                </div>
-
-                                                <!-- item card buttons -->
-                                                <div class="row w-100">
-                                                    <div class="col-sm-12 col-md-6 px-1">
-                                                        <button onclick="EditItem('پروژه', @project.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                            <i class="bi bi-pencil-square ms-1"></i>
-                                                            <span>ویرایش</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 px-1">
-                                                        <button onclick="DeleteItem('Project', @project.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
-                                                            <i class="bi bi-trash ms-1"></i>
-                                                            <span>حذف</span>
-                                                        </button>
-                                                    </div>
-                                                </div>
-
+                                        <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <!-- item card image -->
+                                            <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                                 height="65px" />
+                                            <!-- item card title -->
+                                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(@project.Id)">
+                                                <span class="itemCard-title truncate">@project.Title</span>
+                                            </h3>
+                                            <!-- item card tags -->
+                                            <div class="itemCard-tagBox d-flex flex-column justify-content-center align-items-center py-3">
+                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                    انجام شده : @project.TasksStatusPercent%
+                                                </span>
+                                                <span class="itemCard-tag p-1 px-3 bc-darkBlue rounded-3 text-white hc-fs-span3 my-1">
+                                                    تعداد وظایف : @project.TasksCount
+                                                </span>
                                             </div>
+
+                                            <!-- item card buttons -->
+                                            <div class="row w-100">
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button onclick="EditItem('پروژه', @project.Id)" class="btn bg-warning w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-pencil-square ms-1"></i>
+                                                        <span>ویرایش</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6 px-1">
+                                                    <button onclick="DeleteItem('Project', @project.Id)" class="btn bg-danger w-100 d-flex justify-content-center align-items-center hc-fs-span3 my-1">
+                                                        <i class="bi bi-trash ms-1"></i>
+                                                        <span>حذف</span>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12 w-100">
+                                                    <button onclick="UpdateTasksByProjectId(@project.Id)" type="button" class="btn btn-info btn-sm col-12 w-100 text-white d-flex justify-content-center align-items-center">
+                                                        <i class="bi bi-info-square ms-1 text-black"></i>
+                                                        اطلاعات بیشتر
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- end item card -->
@@ -288,7 +294,6 @@
                                 <div class="col">
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newProjectModal_employeesList">
-
                                         </div>
                                     </div>
                                 </div>
@@ -435,12 +440,12 @@
                                     <div class="collapse multi-collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
                                             @{
-                                                    <div class="form-check form-check-reverse d-flex align-items-center">
-                                                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="radio" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@Model.loggedInUser.Id" onchange="updateAssignee('@Model.loggedInUser.FullName', '@Model.loggedInUser.ImageName', '@Model.loggedInUser.Id')">
-                                                        <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
-                                                            خودم
-                                                        </label>
-                                                    </div>
+                                                <div class="form-check form-check-reverse d-flex align-items-center">
+                                                    <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" checked type="radio" value="@Model.loggedInUser.Id" name="Employees" id="employeeCheck@Model.loggedInUser.Id" onchange="updateAssignee('@Model.loggedInUser.FullName', '@Model.loggedInUser.ImageName', '@Model.loggedInUser.Id')">
+                                                    <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
+                                                        خودم
+                                                    </label>
+                                                </div>
                                             }
                                             <div id="usersList_newTaskModal">
                                                 @{
@@ -575,8 +580,9 @@
     <script>
         // config models id in sessions
         @{
-            int taskId = HttpContext.Session.GetInt32("TaskId") ?? 0;}
-        currentTaskId = @taskId;
+            int taskId = HttpContext.Session.GetInt32("TaskId") ?? 0;
+        }
+            currentTaskId = @taskId;
 
 
 
@@ -634,7 +640,7 @@
             $('#organizationForm').on('submit', function (e) {
                 e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
 
-                if ($("#organizationForm_title").val() == "") { 
+                if ($("#organizationForm_title").val() == "") {
                     toastr.error("لطفا یک عنوان برای سازمان انتخاب کنید");
                     return;
                 }
@@ -658,7 +664,7 @@
                                 // $('#ddlOrganization').html(item.title);
                             });
                             $('#ddlOrganization').text(data[0].title);
-                            $('#ddlOrganization').data("id", data[0].id+'');
+                            $('#ddlOrganization').data("id", data[0].id + '');
                             //close modal
                             $('#newOrganizationModal').modal("hide");
                             // show success message

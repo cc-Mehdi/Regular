@@ -41,7 +41,7 @@
 .userPanel-itemCard {
     transition: box-shadow .3s, transform .3s;
     cursor: pointer;
-    height: 300px;
+    height: 340px;
 }
 
 .userPanel-itemCard:hover {
