@@ -36,7 +36,7 @@ namespace Regular.Pages.Customer
             Task = new();
             User = new();
         }
-
+        
         public void OnGet()
         {
             // check is user logged-in
@@ -72,7 +72,7 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetGetSentEmployeeInvites()
         {
             isUserLogin();
-            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus != "پذیرفته شد").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList();
+            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList();
             return new JsonResult(list);
         }
 
@@ -80,7 +80,7 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetGetSentEmployeeInvitesCount()
         {
             isUserLogin();
-            var requestsCount = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus != "پذیرفته شد").Select(u => new { u.Id, u.Organization.ImageName, u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList().Count;
+            var requestsCount = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName, u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList().Count;
             return new JsonResult(new {count= requestsCount});
         }
 

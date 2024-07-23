@@ -344,13 +344,15 @@ namespace Regular.Pages.Customer
             {
                 var oldRequest = _unitOfWork.Organizations_UsersRepository.GetFirstOrDefault(u => u.UserId == User.Id && u.OrganizationId == int.Parse(orgId));
                 if(oldRequest != null)
-                    if(oldRequest.InviteStatus != "رد شده")
+                    if(oldRequest.InviteStatus != "رد شد")
                         return new JsonResult(new { err = "قبلا به این کاربر درخواست داده اید" });
 
                 var newItem = new Organizations_Users
                 {
                     InviteStatus = "در انتظار پاسخ",
                     OrganizationId = int.Parse(orgId),
+                    CreateInviteDate = DateTime.Now,
+                    AcceptInviteDate = DateTime.Now,
                     User = User,
                     UserId = User.Id
                 };

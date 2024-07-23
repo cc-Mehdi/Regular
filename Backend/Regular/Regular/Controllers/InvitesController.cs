@@ -33,6 +33,8 @@ namespace Regular.Controllers
                         invite.InviteStatus = "پذیرفته شد";
                     else
                         invite.InviteStatus = "رد شد";
+
+                    invite.AcceptInviteDate = DateTime.Now;
                 }
 
                 _unitOfWork.Save();
