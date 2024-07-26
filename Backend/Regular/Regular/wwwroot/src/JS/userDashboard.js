@@ -2,7 +2,7 @@ let accountUserImageInput = document.createElement('input');
 var accountUserImage = null;
 
 // Update requests list in every 30 seconds
-setInterval(ShowRequestTab, 30000);
+setInterval(ShowRequestsCount, 60000);
 
 ShowAccountTab();
 
