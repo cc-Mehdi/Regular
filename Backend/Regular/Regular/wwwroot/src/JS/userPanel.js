@@ -1083,7 +1083,7 @@ function EditItem(sectionName, itemId) {
     let customUrl = "";
     switch (sectionName) {
         case "سازمان":
-            customUrl = "/Customer/UserPanel?handler=GetOrganizationById";
+            customUrl = "/api/v1/Organization/Organization";
             break;
         case "پروژه":
             customUrl = "/Customer/UserPanel?handler=GetProjectById";

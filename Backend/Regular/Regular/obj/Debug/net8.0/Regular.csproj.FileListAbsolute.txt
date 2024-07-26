@@ -419,3 +419,9 @@ C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\Regul
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\obj\Debug\net8.0\ref\Regular.dll
 C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Utilities.dll
 C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Utilities.pdb
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

@@ -1,6 +1,9 @@
 ﻿using Datalayer.Data;
 using Datalayer.Models;
 using Datalayer.Repository.IRepository;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Datalayer.Repository
 {
@@ -10,6 +13,14 @@ namespace Datalayer.Repository
         public LoginsLogRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public IEnumerable<LoginsLog> GetAllByFilterIncludeRelations(Expression<Func<LoginsLog, bool>>? filter = null)
+        {
+            IQueryable<LoginsLog> query = _db.LoginsLog.Include(u => u.User);
+            if (filter != null)
+                query = query.Where(filter);
+            return query.ToList();
         }
 
         public void Update(LoginsLog loginsLog)

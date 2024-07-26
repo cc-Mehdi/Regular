@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Regular.Controllers
+namespace Regular.Controllers.v1
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,21 +25,21 @@ namespace Regular.Controllers
             {
                 var task = _unitOfWork.TasksRepository.GetFirstOrDefault(u => u.Id == taskStatusTemp.Id);
 
-                if(task == null)
+                if (task == null)
                     return new JsonResult(new { isSuccess = false, message = "وظیفه مورد نظر یافت نشد" });
 
                 // اگر به کاربر به صورت دستی محتوای html را تغییر دهد در این قسمت کنترل میشود که موارد غیر واقعی در دیتابیس درج نشود
                 switch (taskStatusTemp.Status)
-                    {
-                        case "انجام شده":
-                        case "درحال انجام":
-                        case "درحال بررسی":
-                            task.TaskStatus = taskStatusTemp.Status;
-                            break;
-                        default:
-                            return new JsonResult(new { isSuccess = false, message = "وضعیت ثبت شده نامعتبر است" });
-                            break;
-                    }
+                {
+                    case "انجام شده":
+                    case "درحال انجام":
+                    case "درحال بررسی":
+                        task.TaskStatus = taskStatusTemp.Status;
+                        break;
+                    default:
+                        return new JsonResult(new { isSuccess = false, message = "وضعیت ثبت شده نامعتبر است" });
+                        break;
+                }
 
                 _unitOfWork.Save();
                 return new JsonResult(new { isSuccess = true, message = $"وضعیت وظیفه به {taskStatusTemp.Status} تغییر کرد" });

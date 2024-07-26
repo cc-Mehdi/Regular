@@ -21,7 +21,7 @@ builder.WebHost.UseUrls("http://0.0.0.0:5000"); // یا URL و پورت دلخو
 // Add session services
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(20); // Set session timeout
     options.Cookie.HttpOnly = true; // Make the session cookie HTTP-only
     options.Cookie.IsEssential = true; // Make the session cookie essential
 });

@@ -8,6 +8,8 @@ namespace Datalayer.Models
         [Key]
         public int Id { get; set; }
 
+        public string PublicId { get; set; }
+
         [Display(Name = "نام کامل")]
         [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]

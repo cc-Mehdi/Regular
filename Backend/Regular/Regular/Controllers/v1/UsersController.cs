@@ -1,27 +1,25 @@
 ﻿using Datalayer.Models;
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
+using Utilities;
 
-namespace Regular.Controllers
+namespace Regular.Controllers.v1
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]/[action]")]
     [ApiController]
     public class UsersController
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public UsersController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
+        public UsersController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment = null)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
         }
 
-
         [HttpPost]
-        public async Task<JsonResult> EditUser([FromForm] UserTemp userTemp, [FromForm] IFormFile? Image) // Use nullable type
+        public async Task<JsonResult> EditUser([FromForm] UserTemp userTemp, [FromForm] IFormFile? Image)
         {
             try
             {
@@ -38,8 +36,8 @@ namespace Regular.Controllers
                     if (!string.IsNullOrEmpty(user.ImageName))
                     {
                         var oldImagePath = _webHostEnvironment.WebRootPath + "/" + Path.Combine("wwwroot", "CustomerResources", "UserProfileImages", user.ImageName);
-                        if (System.IO.File.Exists(oldImagePath))
-                            System.IO.File.Delete(oldImagePath);
+                        if (File.Exists(oldImagePath))
+                            File.Delete(oldImagePath);
                     }
 
                     // Generate a unique file name
@@ -76,7 +74,23 @@ namespace Regular.Controllers
             }
         }
 
+        [HttpGet("isUserLogin")]
+        public bool isUserLogin(HttpContext httpContext)
+        {
+            if (Helper.GetCookie(httpContext, "loginToken") == null)
+                return false;
+            return true;
+        }
 
+        [HttpGet("LoggedInUser")]
+        public Users LoggedInUser(HttpContext httpContext)
+        {
+            string loginToken = Helper.GetCookie(httpContext, "loginToken").ToString();
+            Users user = new Users();
+            if(isUserLogin(httpContext))
+                 user = _unitOfWork.LoginsLogRepository.GetAllByFilterIncludeRelations(u => u.LoginToken == loginToken).FirstOrDefault().User;
+            return user;
+        }
     }
 
     public class UserTemp
@@ -86,5 +100,4 @@ namespace Regular.Controllers
         public string Rank { get; set; }
         public string Status { get; set; }
     }
-
 }

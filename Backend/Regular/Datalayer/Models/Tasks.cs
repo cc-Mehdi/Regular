@@ -8,6 +8,8 @@ namespace Datalayer.Models
         [Key]
         public int Id { get; set; }
 
+        public string PublicId { get; set; }
+
         [Display(Name = "پروژه")]
         [ForeignKey("Projects")]
         public int ProjectId { get; set; }

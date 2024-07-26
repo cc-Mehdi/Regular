@@ -1,7 +1,9 @@
 ﻿using Datalayer.Models;
 using Datalayer.Repository.IRepository;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Regular.Controllers.v1;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace Regular.Pages.Customer
@@ -10,6 +12,7 @@ namespace Regular.Pages.Customer
     {
         public Users loggedInUser;
         private readonly IUnitOfWork _unitOfWork;
+        public readonly UsersController Helper_Models_User;
 
         public List<Organizations> OrganizationsList;
         public List<Projects> ProjectsList;
@@ -21,7 +24,7 @@ namespace Regular.Pages.Customer
         public Tasks Task;
         public Users User;
 
-        public UserPanelModel(IUnitOfWork unitOfWork)
+        public UserPanelModel(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             loggedInUser = new();
@@ -35,12 +38,14 @@ namespace Regular.Pages.Customer
             Project = new();
             Task = new();
             User = new();
+
+            Helper_Models_User = new UsersController(_unitOfWork, webHostEnvironment);
         }
 
         public void OnGet()
         {
-            // check is user logged-in
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == loggedInUser.Id || u.AssigntoId == loggedInUser.Id).ToList();
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
@@ -49,29 +54,12 @@ namespace Regular.Pages.Customer
             UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == organizationId && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
         }
 
-        public void isUserLogin()
-        {
-            if (Request.Cookies["loginToken"] == null)
-                Response.Redirect("/Customer/Login-Register");
-            else
-            {
-                string loginToken = Request.Cookies["loginToken"];
-                int userId = _unitOfWork.LoginsLogRepository.GetFirstOrDefault(u => u.LoginToken == loginToken).UserId;
-                loggedInUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Id == userId);
-            }
-        }
-
-        public async Task<JsonResult> OnGetGetOrganizationById(int id)
-        {
-            Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == id);
-            return new JsonResult(Organization);
-        }
-
 
         // get organizations by logged in user id
         public async Task<JsonResult> OnGetGetOrganizationsByLoggedInUserId()
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
             return new JsonResult(OrganizationsList);
         }
@@ -79,7 +67,8 @@ namespace Regular.Pages.Customer
         // upsert organization
         public async Task<JsonResult> OnPostUpsertOrganizationAsync()
         {
-            isUserLogin();
+            // Get logged-in user
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             if (!hasAccessToCreateOrganization())
                 return new JsonResult(new { err = "شما به محدودیت ساخت سازمان رسیده اید!" });
@@ -89,7 +78,7 @@ namespace Regular.Pages.Customer
             var employees = Request.Form["Employees"].ToList();
             var id = Request.Form["Id"];
 
-            if(title == "")
+            if (title == "")
                 return new JsonResult(new { errorMessage = "لطفا یک عنوان برای سازمان انتخاب کنید" });
 
             // convert data to model for sending to database
@@ -98,7 +87,8 @@ namespace Regular.Pages.Customer
                 Title = title,
                 ImageName = "/CustomerResources/DefaultSources/OrgImage.png",
                 OwnerId = loggedInUser.Id,
-                Owner = loggedInUser
+                Owner = loggedInUser,
+                PublicId = Guid.NewGuid().ToString()
             };
 
             if (String.IsNullOrEmpty(id) || id == "0")
@@ -125,7 +115,8 @@ namespace Regular.Pages.Customer
         // upsert project
         public async Task<JsonResult> OnPostUpsertProjectAsync()
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             var title = Request.Form["Title"];
             var image = Request.Form.Files["ImageName"];
@@ -146,7 +137,8 @@ namespace Regular.Pages.Customer
                 Organization = organization,
                 OrganizationId = organization.Id,
                 TasksCount = 0,
-                TasksStatusPercent = 0
+                TasksStatusPercent = 0,
+                PublicId = Guid.NewGuid().ToString()
             };
 
             if (String.IsNullOrEmpty(id) || id == "0")
@@ -193,7 +185,9 @@ namespace Regular.Pages.Customer
 
         public async Task<JsonResult> OnGetGetProjectsByFilter(string filterParameter, string orgId)
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
+
             var organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == int.Parse(orgId));
 
             if (filterParameter == null)
@@ -226,7 +220,8 @@ namespace Regular.Pages.Customer
         // get tasks by filter
         public async Task<JsonResult> OnGetGetTasksByFilter(string filterParameter, string orgId)
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             if (filterParameter == null)
                 TasksList = _unitOfWork.TasksRepository.GetAllByFilterIncludeRelations(u => u.Project.OrganizationId == int.Parse(orgId)).ToList();
@@ -239,7 +234,8 @@ namespace Regular.Pages.Customer
         // add new task
         public async Task<JsonResult> OnPostUpsertTaskAsync()
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             var title = Request.Form["title"].ToString();
             var priority = Request.Form["priority"].ToString();
@@ -287,10 +283,11 @@ namespace Regular.Pages.Customer
                     Project = project,
                     ReporterId = reporterId,
                     TaskStatus = "برای انجام",
-                    TaskType = "بهبود"
+                    TaskType = "بهبود",
+                    PublicId = Guid.NewGuid().ToString()
                 };
 
-                
+
 
                 if (String.IsNullOrEmpty(id) || id == "0")
                     _unitOfWork.TasksRepository.Add(newItem);
@@ -325,14 +322,15 @@ namespace Regular.Pages.Customer
         // add new employee
         public async Task<JsonResult> OnPostAddEmployeeAsync()
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             var username = Request.Form["username"].ToString();
             var orgId = Request.Form["orgId"].ToString();
 
             User = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Username == username);
 
-            if(User == null)
+            if (User == null)
                 return new JsonResult(new { err = "کاربر مورد نظر یافت نشد" });
 
             if (string.IsNullOrEmpty(username))
@@ -344,8 +342,8 @@ namespace Regular.Pages.Customer
             try
             {
                 var oldRequest = _unitOfWork.Organizations_UsersRepository.GetFirstOrDefault(u => u.UserId == User.Id && u.OrganizationId == int.Parse(orgId));
-                if(oldRequest != null)
-                    if(oldRequest.InviteStatus != "رد شد")
+                if (oldRequest != null)
+                    if (oldRequest.InviteStatus != "رد شد")
                         return new JsonResult(new { err = "قبلا به این کاربر درخواست داده اید" });
 
                 var newItem = new Organizations_Users
@@ -373,7 +371,8 @@ namespace Regular.Pages.Customer
         // get employees by filter
         public async Task<JsonResult> OnGetGetEmployeesByFilter(string filterParameter, string orgId)
         {
-            isUserLogin();
+            // Get logged-in user 
+            loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
             if (filterParameter == null)
                 UsersList = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.OrganizationId == int.Parse(orgId) && u.InviteStatus == "پذیرفته شد").Select(u => u.User).ToList();
@@ -418,10 +417,10 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetDeleteOrganization(int id)
         {
             try
-            {   
+            {
                 Organization = _unitOfWork.OrganizationsRepository.GetFirstOrDefault(u => u.Id == id);
-                
-                if(Organization == null)
+
+                if (Organization == null)
                     return new JsonResult(new { errorMessage = "سازمان مورد نظر یافت نشد" });
 
                 _unitOfWork.Organizations_UsersRepository.RemoveRange(_unitOfWork.Organizations_UsersRepository.GetAllByFilter(u => u.OrganizationId == Organization.Id));
@@ -430,7 +429,7 @@ namespace Regular.Pages.Customer
                 _unitOfWork.OrganizationsRepository.Remove(Organization);
                 _unitOfWork.Save();
 
-                return new JsonResult(new { errorMessage = ""});
+                return new JsonResult(new { errorMessage = "" });
             }
             catch (Exception ex)
             {

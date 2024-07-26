@@ -385,7 +385,7 @@
                         </div>
 
                         @{
-                            Model.isUserLogin();
+                            Model.loggedInUser = Model.Helper_Models_User.LoggedInUser(HttpContext);
                         }
 
                         <div class="mb-3">

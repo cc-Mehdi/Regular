@@ -2,6 +2,7 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Utilities;
 
 namespace Regular.Pages.Customer
 {
@@ -24,17 +25,17 @@ namespace Regular.Pages.Customer
         {
             if(user.Email != null && user.Password != null)
             {
-                if(user.Id == 1) //login
+                // Generate login log
+                string loginToken = Guid.NewGuid().ToString();
+
+                if (user.Id == 1) //login
                 {
                     var currentUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Email == user.Email);
                     if (currentUser != null)
                     {
                         if (user.Email == currentUser.Email && user.Password == currentUser.Password)
                         {
-                            var cookie = Request.Cookies["loginToken"];
 
-                            // add login log
-                            string loginToken = Guid.NewGuid().ToString();
                             _unitOfWork.LoginsLogRepository.Add(new LoginsLog()
                             {
                                 UserId = currentUser.Id,
@@ -45,11 +46,8 @@ namespace Regular.Pages.Customer
                             });
                             _unitOfWork.Save();
 
-                            //set cookie
-                            var cookieOptions = new CookieOptions();
-                            cookieOptions.Expires = DateTime.Now.AddDays(30);
-                            cookieOptions.Path = "/";
-                            Response.Cookies.Append("loginToken", loginToken, cookieOptions);
+                            //Set cookie
+                            Helper.SetCookie(HttpContext, "loginToken", loginToken);
 
                             TempData["success"] = $"{currentUser.FullName} خوش آمدید!";
                             return Redirect("/Customer/UserPanel");
@@ -69,17 +67,16 @@ namespace Regular.Pages.Customer
                         {
                             //save to database
                             user.ImageName = "/CustomerResources/DefaultSources/UserImage.jpg";
-                            user.Username = user.FullName.Replace(" ", "") + "_" + Utilities.Help_Numbers.GenerateUniqueNumber();
+                            user.Username = user.FullName.Replace(" ", "") + "_" + Utilities.Helper.GenerateUniqueNumber();
                             user.Status = "وضعیت : آزاد";
                             user.Rank = "سطح : متوسط";
+                            user.PublicId = Guid.NewGuid().ToString();
                             _unitOfWork.UsersRepository.Add(user);
                             _unitOfWork.Save();
 
                             //find user
                             currentUser = _unitOfWork.UsersRepository.GetFirstOrDefault(u => u.Email == user.Email);
 
-                            // add login log
-                            string loginToken = Guid.NewGuid().ToString();
                             LoginsLog newLog = new LoginsLog()
                             {
                                 UserId = currentUser.Id,
@@ -92,11 +89,8 @@ namespace Regular.Pages.Customer
 
                             _unitOfWork.Save();
 
-                            //set cookie
-                            var cookieOptions = new CookieOptions();
-                            cookieOptions.Expires = DateTime.Now.AddDays(30);
-                            cookieOptions.Path = "/";
-                            Response.Cookies.Append("loginToken", loginToken, cookieOptions);
+                            //Set cookie
+                            Helper.SetCookie(HttpContext, "loginToken", loginToken);
 
                             TempData["success"] = "ثبت نام با موفقیت انجام شد";
                             return Redirect("/Customer/UserPanel");
@@ -107,6 +101,7 @@ namespace Regular.Pages.Customer
                     else
                         TempData["error"] = "فیلدها را با دقت پر کنید!";
                 }
+
             }
             else
                 TempData["error"] = "فیلدها را با دقت پر کنید!";

@@ -22,3 +22,4 @@ C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net
 C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\refint\Utilities.dll
 C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.pdb
 C:\Users\mehdi.gholami\Documents\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\ref\Utilities.dll
+C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Utilities\obj\Debug\net8.0\Utilities.csproj.AssemblyReference.cache
