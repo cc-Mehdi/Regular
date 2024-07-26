@@ -54,7 +54,7 @@
                         <a href="/"
                            class="offcanvas-title text-decoration-none text-black d-flex justify-content-center align-items-center"
                            id="offcanvasExampleLabel">
-                            <img src="/src/media/Logo/regular-favicon-color.png" width="50px" height="50px" alt="hyper cloud logo"
+                            <img  loading="lazy" src="/src/media/Logo/regular-favicon-color.png" width="50px" height="50px" alt="hyper cloud logo"
                                  class="rounded-circle" style="box-shadow: 0 0 10px white" />
                             <span class="app-brand-text demo menu-text text-black fs-4 fw-bold me-2"
                                   style="text-shadow: 0 0 1px var(--c-primary)">Regular</span>
@@ -73,7 +73,7 @@
                         <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="داشبورد">
                                 <a href="/customer/userdashboard" class="d-flex align-items-center">
-                                    <img src="@Model.loggedInUser.ImageName" alt="" class="rounded-circle ms-3" width="45" height="45">
+                                    <img  loading="lazy" loading="lazy" src="@Model.loggedInUser.ImageName" alt="" class="rounded-circle ms-3" width="45" height="45">
                                     <span class="text-black hc-fs-paragraph2 text-decoration-underline tc-primary">@Model.loggedInUser.FullName</span>
                                 </a>
                             </div>
@@ -190,7 +190,7 @@
                                     <div class="userPanel-itemCard hc-box bc-primary">
                                         <div class="d-flex flex-column justify-content-center align-items-center">
                                             <!-- item card image -->
-                                            <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                            <img  loading="lazy" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                  height="65px" />
                                             <!-- item card title -->
                                             <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(@project.Id)">
@@ -430,7 +430,7 @@
                         <div class="mb-3">
                             <label for="formAssignee" class="form-label">اختصاص یافه به</label>
                             <div class="d-flex align-items-center mb-1">
-                                <img src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
+                                <img  loading="lazy" src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
                                 <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
                             </div>
 
