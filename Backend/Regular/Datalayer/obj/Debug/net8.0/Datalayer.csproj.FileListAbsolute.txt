@@ -43,3 +43,17 @@ C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net8.0\ref
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.pdb
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.genruntimeconfig.cache
 C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Datalayer\obj\Debug\net8.0\ref\Datalayer.dll
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\bin\Debug\net8.0\Datalayer.deps.json
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\bin\Debug\net8.0\Datalayer.runtimeconfig.json
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\bin\Debug\net8.0\Datalayer.dll
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\bin\Debug\net8.0\Datalayer.pdb
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.csproj.AssemblyReference.cache
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.AssemblyInfoInputs.cache
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.AssemblyInfo.cs
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.csproj.CoreCompileInputs.cache
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.dll
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\refint\Datalayer.dll
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.pdb
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\Datalayer.genruntimeconfig.cache
+C:\Users\cc-mehdi\Downloads\Compressed\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Regular-3a56dd5c4b8ce7f64c896e444b17fbeff69ff887\Backend\Regular\Datalayer\obj\Debug\net8.0\ref\Datalayer.dll

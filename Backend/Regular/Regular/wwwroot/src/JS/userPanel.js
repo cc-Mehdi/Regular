@@ -470,7 +470,7 @@ function getProjectCard(item) {
                             <div class="userPanel-itemCard hc-box bc-primary">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
+                                        <img loading="lazy" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                 height="65px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(${item.id})">
@@ -699,7 +699,7 @@ function getOrganizationDetailsCard(item) {
                 <div class="w-100 d-flex align-items-center">
                   <!-- image -->
                   <div class="ms-3">
-                    <img src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
+                    <img loading="lazy" src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
                   </div>
                   <!-- title & id -->
                   <div>
@@ -777,7 +777,7 @@ function getOrganizationDetailsCard(item) {
                 <div class="w-100 d-flex align-items-center">
                   <!-- image -->
                   <div class="ms-3">
-                    <img src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
+                    <img loading="lazy" src="${item.imageName}" width="85px" height="85px" alt="hyper cloud logo" class="rounded-circle bg-white p-1" style="box-shadow: white 0px 0px 10px; --darkreader-inline-boxshadow: #181a1b 0px 0px 10px;" data-darkreader-inline-boxshadow="">
                   </div>
                   <!-- title & id -->
                   <div>
@@ -848,7 +848,7 @@ function getEmployeeCard(item) {
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
-                              <img src="${item.imageName}" width="100" height="100" alt="">
+                              <img loading="lazy" src="${item.imageName}" width="100" height="100" alt="">
                             </div>
 
                             <!-- item card FullName -->
@@ -901,7 +901,7 @@ function getSentEmployeeInviteCard(item) {
                           <div class="d-flex flex-column justify-content-center align-items-center">
                             <!-- item card Image -->
                             <div class="d-flex justify-content-center align-items-center w-100">
-                              <img src="${item.imageName}" width="100" height="100" alt="">
+                              <img loading="lazy" src="${item.imageName}" width="100" height="100" alt="">
                             </div>
 
                             <!-- item card FullName -->
@@ -952,7 +952,7 @@ function getUserInformationCard(item) {
         <!-- image and main info -->
         <div class="w-100 d-flex justify-content-end align-items-center row">
             <div class="col-md-4 col-sm-12  text-center">
-                <img src="${item.imageName}"
+                <img loading="lazy" src="${item.imageName}"
                      style="max-width: 200px; min-width: 100px; width: 100%;" alt="user profile image">
             </div>
             <div class="col-md-8 col-sm-12 d-flex flex-column py-3 px-1 text-center">

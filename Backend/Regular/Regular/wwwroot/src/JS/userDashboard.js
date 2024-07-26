@@ -308,7 +308,7 @@ function getAccountCard(item) {
 
                 <!-- user image -->
                 <div class="position-relative d-inline-block my-3 userInfo-image" onclick="onEdit(1)">
-                    <img id="imgAccountUserImage" src="${item.imageName}" class="rounded-circle d-block" width="225px" height="225px" style="box-shadow: 0 0 10px 5px white;" alt="user profile image">
+                    <img loading="lazy" id="imgAccountUserImage" src="${item.imageName}" class="rounded-circle d-block" width="225px" height="225px" style="box-shadow: 0 0 10px 5px white;" alt="user profile image">
                     <div class="userInfo-imageOverlay position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center rounded-circle opacity-0 cursor-pointer" style="width: 115px; height: 115px;">
                         <input type="file" name="txtAccountUserImage" id="txtAccountUserImage" hidden>
                         <i class="bi bi-pencil-square text-white hc-fs-paragraph1"></i>
@@ -379,7 +379,7 @@ function getRelationCard(item) {
                   <div class="userPanel-itemCard hc-box bc-secondary mt-2">
                       <div class="d-flex flex-column justify-content-center align-items-center">
                         <!-- item card image -->
-                        <img src="${item.organization.imageName}" alt="item card image" width="100px" height="100px" class="bg-white rounded-circle p-1">
+                        <img loading="lazy" src="${item.organization.imageName}" alt="item card image" width="100px" height="100px" class="bg-white rounded-circle p-1">
                         <!-- item card title -->
                         <h3 class="hc-fs-title3 my-2">${item.organization.title}</h3>
                         <!-- item card paragraph -->
@@ -402,7 +402,7 @@ function getRequestCard(item) {
                   </a><div class="d-flex flex-column justify-content-center align-items-center"><a href="#">
                     <!-- item card Image -->
                     <div class="d-flex flex-column justify-content-center align-items-center w-100">
-                      <img src="${item.imageName}" width="100" height="100" alt="" class="rounded-circle p-1 bg-white">
+                      <img loading="lazy" src="${item.imageName}" width="100" height="100" alt="" class="rounded-circle p-1 bg-white">
 
                         <!-- item card FullName -->
                         <h3 class="hc-fs-paragraph1 my-2">${item.title}</h3>
@@ -446,7 +446,7 @@ function getProjectCard(item) {
                             <div class="userPanel-itemCard hc-box bc-darkBlue">
                                     <div class="d-flex flex-column justify-content-center align-items-center">
                                         <!-- item card image -->
-                                        <img class="bg-white rounded-circle p-3" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="85px"
+                                        <img loading="lazy" class="bg-white rounded-circle p-3" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="85px"
                                                 height="85px" />
                                         <!-- item card title -->
                                         <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="ShowTasksByProjectId(${item.id})">
