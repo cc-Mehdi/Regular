@@ -1,4 +1,5 @@
-﻿using Datalayer.Models;
+﻿using Azure.Core;
+using Datalayer.Models;
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Utilities;
@@ -18,7 +19,7 @@ namespace Regular.Controllers.v1
             _webHostEnvironment = webHostEnvironment;
         }
 
-        [HttpPost]
+        [HttpPost("Edit")]
         public async Task<JsonResult> EditUser([FromForm] UserTemp userTemp, [FromForm] IFormFile? Image)
         {
             try
@@ -77,7 +78,7 @@ namespace Regular.Controllers.v1
         [HttpGet("isUserLogin")]
         public bool isUserLogin(HttpContext httpContext)
         {
-            if (Helper.GetCookie(httpContext, "loginToken") == null)
+            if (httpContext.Request.Cookies["loginToken"] == null)
                 return false;
             return true;
         }
@@ -88,7 +89,11 @@ namespace Regular.Controllers.v1
             string loginToken = Helper.GetCookie(httpContext, "loginToken").ToString();
             Users user = new Users();
             if(isUserLogin(httpContext))
-                 user = _unitOfWork.LoginsLogRepository.GetAllByFilterIncludeRelations(u => u.LoginToken == loginToken).FirstOrDefault().User;
+            {
+                var log = _unitOfWork.LoginsLogRepository.GetAllByFilterIncludeRelations(u => u.LoginToken == loginToken).FirstOrDefault();
+                if(log != null)
+                    user = log.User;
+            }
             return user;
         }
     }

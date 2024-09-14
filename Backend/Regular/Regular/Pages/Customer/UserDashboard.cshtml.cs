@@ -2,6 +2,7 @@
 using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection.Metadata.Ecma335;
 
 namespace Regular.Pages.Customer
@@ -72,7 +73,7 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetGetSentEmployeeInvites()
         {
             isUserLogin();
-            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList();
+            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.OrgTitle, OwnerName = u.Organization.Owner.FullName }).ToList();
             return new JsonResult(list);
         }
 
@@ -80,7 +81,7 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetGetSentEmployeeInvitesCount()
         {
             isUserLogin();
-            var requestsCount = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName, u.Organization.Title, OwnerName = u.Organization.Owner.FullName }).ToList().Count;
+            var requestsCount = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName, u.Organization.OrgTitle, OwnerName = u.Organization.Owner.FullName }).ToList().Count;
             return new JsonResult(new {count= requestsCount});
         }
 

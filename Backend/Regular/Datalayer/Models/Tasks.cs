@@ -20,6 +20,7 @@ namespace Datalayer.Models
         [Display(Name = "عنوان وظیفه")]
         [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [MinLength(3, ErrorMessage = "لطفا یک نام مناسب برای {0} انتخاب کنید")]
         [DataType(DataType.Text)]
         public string Title { get; set; }
 

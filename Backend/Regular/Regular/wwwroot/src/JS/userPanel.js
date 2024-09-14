@@ -1163,3 +1163,34 @@ function EditItem(sectionName, itemId) {
     });
 }
 // end base methods
+
+
+
+function UpsertOrganization() {
+    var orgTitle = $("#organizationForm_title").val();
+
+    var formData = new FormData();
+    formData.append("OrgTitle", orgTitle);
+
+    $.ajax({
+        url: "/api/Organization/Upsert",
+        type: "POST",
+        contentType: false, // Important for file uploads
+        processData: false, // Important for file uploads
+        data: formData,
+        success: function (data) {
+            if (data.isSuccess == true) {
+                toastr.success(data.message);
+                ShowAccountTab();
+            } else {
+                toastr.error(data.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            toastr.error("خطا در انجام عملیات: " + xhr.responseText);
+            console.error("Error: " + error);
+            console.error("Status: " + status);
+            console.error("Response: ", xhr.responseText);
+        }
+    });
+}

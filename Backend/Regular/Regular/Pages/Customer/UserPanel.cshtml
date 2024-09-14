@@ -92,7 +92,7 @@
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
                                     {
-                                        <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].Title</span>
+                                        <span id="ddlOrganization" class="px-1" data-id="@Model.OrganizationsList[0].Id">@Model.OrganizationsList[0].OrgTitle</span>
                                     }
                                     else
                                     {
@@ -105,9 +105,9 @@
                                     foreach (var item in Model.OrganizationsList)
                                     {
                                         <li class="d-flex flex-column align-items-center">
-                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.Title')">
+                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.OrgTitle')">
                                                 <span>
-                                                    @item.Title
+                                                    @item.OrgTitle
                                                 </span>
                                             </a>
                                             <div class="row w-100">
@@ -314,7 +314,6 @@
     </div>
     </div>
 
-
     <!-- Add New Organization Modal -->
     <div class="modal fade" id="newOrganizationModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
          aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -333,8 +332,8 @@
 
                         <div class="mb-3">
                             <label for="formTitle" class="form-label">عنوان سازمان</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="organizationForm_title" name="Title" placeholder="تکمیل طراحی اولیه" />
-                            <span class="text-danger" asp-validation-for="@Model.Organization.Title"></span>
+                            <input asp-for="@Model.Organization.OrgTitle" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="organizationForm_title" placeholder="تکمیل طراحی اولیه" />
+                            <span class="text-danger" asp-validation-for="@Model.Organization.OrgTitle"></span>
                         </div>
 
                         <div class="modal-footer bc-lightCyan">
@@ -369,13 +368,13 @@
 
                         <div class="mb-3">
                             <label for="taskTitle" class="form-label">عنوان وظیفه</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="title" id="taskForm_title" placeholder="طراحی بنر">
+                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="taskForm_title" placeholder="طراحی بنر">
                             <span class="text-danger" asp-validation-for="@Model.Task.Title"></span>
                         </div>
 
                         <div class="mb-3">
                             <label for="formPriority" class="form-label">اولویت</label>
-                            <select class="form-select text-white" name="priority" id="taskForm_priority">
+                            <select class="form-select text-white" id="taskForm_priority">
                                 <option selected>این وظیفه چقدر مهم است؟</option>
                                 <option value="1" class="bc-darkBlue">کم</option>
                                 <option value="2" class="bc-darkBlue">معمولی</option>
@@ -396,7 +395,7 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" name="project" value="" data-id="" disabled>
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" value="" data-id="" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
@@ -411,7 +410,6 @@
                                                     <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2"
                                                            type="radio"
                                                            value="@item.Id"
-                                                           name="project"
                                                            id="projectCheck@item.Id"
                                                            onchange="updateProject('@item.Title', '@item.Id')">
                                                     <label class="form-check-label w-100 hc-fs-paragraph3" for="projectCheck@item.Id">
@@ -431,7 +429,7 @@
                             <label for="formAssignee" class="form-label">اختصاص یافه به</label>
                             <div class="d-flex align-items-center mb-1">
                                 <img loading="lazy" src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" name="assignTo" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
@@ -454,7 +452,7 @@
                                                 @foreach (var item in Model.UsersList)
                                                 {
                                                     <div class="form-check form-check-reverse d-flex align-items-center">
-                                                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio" value="@item.Id" name="Employees" id="employeeCheck@item.Id" onchange="updateAssignee('@item.FullName', '@item.ImageName', '@item.Id')">
+                                                        <input class="form-check-input bc-secondary hc-fs-paragraph2 ms-2" type="radio" value="@item.Id" id="employeeCheck@item.Id" onchange="updateAssignee('@item.FullName', '@item.ImageName', '@item.Id')">
                                                         <label class="form-check-label w-100 hc-fs-paragraph3" for="employeeCheck@item.Id">
                                                             @item.FullName
                                                         </label>
@@ -475,7 +473,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="estimatedTime" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
-                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_estimateTime" name="estimateTime" placeholder="3h 30m">
+                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_estimateTime" placeholder="3h 30m">
                                         <span class="text-danger" asp-validation-for="@Model.Task.EstimateTime"></span>
                                     </div>
                                 </div>
@@ -484,7 +482,7 @@
 
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">توضیحات</label>
-                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_description" name="description" rows="3"></textarea>
+                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_description" rows="3"></textarea>
                             <span class="text-danger" asp-validation-for="@Model.Task.Description"></span>
                         </div>
 
@@ -526,7 +524,7 @@
                                     string atsine = "@";
                                 }
                                 <span class="input-group-text bc-darkBlue rounded-start-3 border-primary" id="basic-addon1">@atsine</span>
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" name="username" id="employeeUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="employeeUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                                 <span class="text-danger" asp-validation-for="@Model.User.Username"></span>
                             </div>
                         </div>
@@ -553,9 +551,13 @@
 
 
 
+
     <!-- JQuery Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- validation scripts -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
     <!-- Fontawesome Script -->
     <script src="https://kit.fontawesome.com/a904a1b9c2.js" crossorigin="anonymous"></script>
@@ -590,6 +592,11 @@
         $(document).ready(function () {
             $('#projectForm').on('submit', function (e) {
                 e.preventDefault(); // Prevent normal form submission
+
+                if ($("#projectForm_title").val() == "") {
+                    toastr.error("لطفا یک عنوان برای پروژه انتخاب کنید");
+                    return;
+                }
 
                 var formData = new FormData(this);
 
@@ -686,6 +693,11 @@
             $('#taskForm').on('submit', function (e) {
                 e.preventDefault(); // جلوگیری از ارسال فرم به صورت عادی
 
+                if ($("#taskForm_title").val() == "") {
+                    toastr.error("لطفا یک عنوان برای وظیفه انتخاب کنید");
+                    return;
+                }
+
                 var formData = new FormData(this);
 
                 var orgId = $("#ddlOrganization").data("id");
@@ -780,6 +792,7 @@
             });
         });
     </script>
+
 </body>
 
 </html>

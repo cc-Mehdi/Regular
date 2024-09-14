@@ -40,7 +40,7 @@ namespace Utilities
         }
         public static string GetCookie(HttpContext httpContext, string key)
         {
-            return httpContext.Request.Cookies[key];
+            return (httpContext.Request.Cookies["loginToken"] != null) ? httpContext.Request.Cookies[key] : "404";
         }
         public static void SetSession<T>(HttpContext httpContext, string key, T value)
         {

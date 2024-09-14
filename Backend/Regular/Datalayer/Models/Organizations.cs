@@ -12,9 +12,10 @@ namespace Datalayer.Models
 
         [Display(Name = "عنوان سازمان")]
         [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
+        [MinLength(3, ErrorMessage = "لطفا یک نام مناسب برای {0} انتخاب کنید")]
         [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
         [DataType(DataType.Text)]
-        public string Title { get; set; }
+        public string OrgTitle { get; set; }
 
 
         [Display(Name = "موسس")]

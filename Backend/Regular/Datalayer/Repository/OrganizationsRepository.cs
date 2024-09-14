@@ -31,7 +31,7 @@ namespace Datalayer.Repository
         public void Update(Organizations organization)
         {
             var objFromDb = _db.Organizations.FirstOrDefault(u => u.Id == organization.Id);
-            objFromDb.Title = organization.Title;
+            objFromDb.OrgTitle = organization.OrgTitle;
             objFromDb.Owner = organization.Owner;
             objFromDb.OwnerId = organization.OwnerId;
             if (objFromDb.ImageName != "")

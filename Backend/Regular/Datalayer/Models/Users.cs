@@ -13,6 +13,7 @@ namespace Datalayer.Models
         [Display(Name = "نام کامل")]
         [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
+        [MinLength(3, ErrorMessage = "لطفا یک نام مناسب برای {0} انتخاب کنید")]
         [DataType(DataType.Text)]
         public string FullName { get; set; }
 
@@ -32,7 +33,7 @@ namespace Datalayer.Models
         [Display(Name = "ایمیل")]
         [Required(ErrorMessage = "لطفا مقدار {0} را وارد کنید")]
         [MaxLength(300, ErrorMessage = "مقدار {0} بیش از حد مجاز است")]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.EmailAddress, ErrorMessage = "لطفا یک ایمیل معتبر وارد کنید")]
         public string Email { get; set; }
 
         [Display(Name = "تصویر پروفایل")]

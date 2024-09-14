@@ -47,6 +47,9 @@ namespace Regular.Pages.Customer
             // Get logged-in user 
             loggedInUser = Helper_Models_User.LoggedInUser(HttpContext);
 
+            if(loggedInUser.Id == 0)
+                Response.Redirect("/Customer/Login-Register");
+
             TasksList = _unitOfWork.TasksRepository.GetAllByFilter(u => u.ReporterId == loggedInUser.Id || u.AssigntoId == loggedInUser.Id).ToList();
             OrganizationsList = _unitOfWork.OrganizationsRepository.GetAllByFilter(u => u.OwnerId == loggedInUser.Id).ToList();
             int organizationId = OrganizationsList.Count == 0 ? 0 : OrganizationsList.FirstOrDefault().Id;
@@ -73,7 +76,7 @@ namespace Regular.Pages.Customer
             if (!hasAccessToCreateOrganization())
                 return new JsonResult(new { err = "شما به محدودیت ساخت سازمان رسیده اید!" });
 
-            var title = Request.Form["Title"];
+            var title = Request.Form["OrgTitle"];
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
             var id = Request.Form["Id"];
@@ -84,7 +87,7 @@ namespace Regular.Pages.Customer
             // convert data to model for sending to database
             var newItem = new Organizations
             {
-                Title = title,
+                OrgTitle = title,
                 ImageName = "/CustomerResources/DefaultSources/OrgImage.png",
                 OwnerId = loggedInUser.Id,
                 Owner = loggedInUser,

@@ -664,7 +664,7 @@ function EditUser() {
     }
 
     $.ajax({
-        url: "/api/Users/",
+        url: "/api/v1/Users/Edit",
         type: "POST",
         contentType: false, // Important for file uploads
         processData: false, // Important for file uploads

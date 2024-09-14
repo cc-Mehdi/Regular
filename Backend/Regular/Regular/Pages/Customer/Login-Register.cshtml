@@ -118,7 +118,7 @@
                                    aria-describedby="emailHelp"
                                    placeholder="ایمیل"
                                    asp-for="@Model.User.Email" />
-
+                                   <span class="text-danger" asp-validation-for="@Model.User.Email"></span>
                         </div>
                         <div class="form-group my-2">
                             <input type="password"
@@ -126,7 +126,7 @@
                                    id="exampleInputPassword1"
                                    placeholder="کلمه عبور"
                                    asp-for="@Model.User.Password" />
-
+                            <span class="text-danger" asp-validation-for="@Model.User.Password"></span>
                         </div>
                         <button type="submit"
                                 class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">
@@ -221,6 +221,8 @@
                                    id="exampleInputFullName"
                                    placeholder="نام و نام خانوادگی"
                                    asp-for="@Model.User.FullName" />
+                            <span class="text-danger" asp-validation-for="@Model.User.FullName"></span>
+
                         </div>
                         <div class="form-group my-2">
                             <input type="email"
@@ -229,6 +231,8 @@
                                    aria-describedby="emailHelp"
                                    placeholder="ایمیل"
                                    asp-for="@Model.User.Email" />
+                            <span class="text-danger" asp-validation-for="@Model.User.Email"></span>
+
                         </div>
                         <div class="form-group my-2">
                             <input type="password"
@@ -236,6 +240,7 @@
                                    id="exampleInputPassword1"
                                    placeholder="کلمه عبور"
                                    asp-for="@Model.User.Password" />
+                            <span class="text-danger" asp-validation-for="@Model.User.Password"></span>
                         </div>
                         <button type="submit"
                                 class="btn hc-btn-lg mt-3 col-12 fw-bold rounded-4 text-center align-items-center d-flex justify-content-center">
@@ -314,10 +319,14 @@
             duration: 1500,
         });
         isRegister();
-        ShowLoadingPageAnimation();
     </script>
 
     <!-- Toastr Script -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
+
+    <!-- validation scripts -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 </body>
 </html>
