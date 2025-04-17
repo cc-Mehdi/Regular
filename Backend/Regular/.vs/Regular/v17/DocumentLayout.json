@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\controllers\\v1\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\controllers\\v1\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\pages\\customer\\about-us.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\pages\\customer\\about-us.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\controllers\\v1\\invitescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\controllers\\v1\\invitescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\wwwroot\\src\\js\\userdashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\wwwroot\\src\\js\\userdashboard.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\controllers\\v1\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|solutionrelative:regular\\controllers\\v1\\organizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{49A8E437-2109-4873-B618-1E449A930975}|Regular\\Regular.csproj|c:\\users\\cc-mehdi\\desktop\\regular\\backend\\regular\\regular\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -37,28 +37,20 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "userDashboard.js",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
-              "ViewState": "AQIAAIoCAAAAAAAAAAAAAJoCAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-07-29T20:12:54.177Z"
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\UsersController.cs",
-              "RelativeDocumentMoniker": "Regular\\Controllers\\v1\\UsersController.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\UsersController.cs",
-              "RelativeToolTip": "Regular\\Controllers\\v1\\UsersController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T20:11:52.912Z",
+              "Title": "About-Us.cshtml",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\About-Us.cshtml",
+              "RelativeDocumentMoniker": "Regular\\Pages\\Customer\\About-Us.cshtml",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Pages\\Customer\\About-Us.cshtml",
+              "RelativeToolTip": "Regular\\Pages\\Customer\\About-Us.cshtml",
+              "ViewState": "AQIAACYAAAAAAAAAAAAowEMAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T13:12:41.87Z",
               "EditorCaption": ""
             },
             {
@@ -69,21 +61,36 @@
               "RelativeDocumentMoniker": "Regular\\Program.cs",
               "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Program.cs",
               "RelativeToolTip": "Regular\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAnAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAiwCsAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T20:03:38.073Z"
+              "WhenOpened": "2025-04-17T13:00:22.35Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "OrganizationController.cs",
-              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\OrganizationController.cs",
-              "RelativeDocumentMoniker": "Regular\\Controllers\\v1\\OrganizationController.cs",
-              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\OrganizationController.cs",
-              "RelativeToolTip": "Regular\\Controllers\\v1\\OrganizationController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABYAAAAyAAAA",
+              "Title": "userDashboard.js",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
+              "RelativeDocumentMoniker": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\wwwroot\\src\\JS\\userDashboard.js",
+              "RelativeToolTip": "Regular\\wwwroot\\src\\JS\\userDashboard.js",
+              "ViewState": "AQIAAJ0CAAAAAAAAAADwv6sCAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-04-17T12:39:02.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InvitesController.cs",
+              "DocumentMoniker": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\InvitesController.cs",
+              "RelativeDocumentMoniker": "Regular\\Controllers\\v1\\InvitesController.cs",
+              "ToolTip": "C:\\Users\\cc-mehdi\\Desktop\\Regular\\Backend\\Regular\\Regular\\Controllers\\v1\\InvitesController.cs",
+              "RelativeToolTip": "Regular\\Controllers\\v1\\InvitesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-29T19:55:56.037Z"
+              "WhenOpened": "2025-04-17T12:36:33.902Z",
+              "EditorCaption": ""
             }
           ]
         }

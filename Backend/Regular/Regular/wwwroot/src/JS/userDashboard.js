@@ -692,7 +692,7 @@ function SetInviteAnswer(intviteId, inviteStatus) {
     };
 
     $.ajax({
-        url: "/api/Invites/SetInviteStatus",
+        url: "/api/v1/Invites/SetInviteStatus",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(inviteData),

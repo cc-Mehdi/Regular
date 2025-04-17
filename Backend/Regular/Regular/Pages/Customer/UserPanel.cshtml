@@ -31,7 +31,7 @@
 </head>
 
 
-<body dir="rtl" class="overflow-x-hidden overflow-y-auto bc-darkBlue">
+<body dir="rtl" class="bc-darkBlue overflow-y-auto overflow-x-hidden">
     <div class="container-fluid">
         <header></header>
 
@@ -39,7 +39,7 @@
             <div class="container-fluid p-0 d-flex align-items-center justify-content-center">
                 <!-- OffCanvas button -->
                 <button id="btnShowMenuToggler" onclick="ShowoffcanvasMenu()"
-                        class="offcanvas-hoverButton btn m-2 position-fixed top-0 end-0 z-3 border-0 visually-hidden text-white hc-fs-title2"
+                        class="offcanvas-hoverButton btn m-2 position-fixed top-0 end-0 z-3 visually-hidden text-white hc-fs-title2 border-0"
                         type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
                         aria-controls="offcanvasScrolling">
                     <i class="bi bi-menu-app" data-bs-toggle="tooltip" data-bs-title="منو" data-bs-placement="bottom"></i>
@@ -66,11 +66,11 @@
                         </button>
                     </div>
                     <!-- offcanvas body -->
-                    <div class="offcanvas-body overflow-x-hidden px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100">
+                    <div class="offcanvas-body px-3 m-0 d-flex flex-column align-items-center justify-content-start w-100 overflow-x-hidden">
 
 
                         <!-- Logged In User Info -->
-                        <div class="w-100 border border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex justify-content-between align-items-center">
+                        <div class="w-100 border-1 rounded-3 bc-lightCyan p-3 mb-5 d-flex justify-content-between align-items-center border">
                             <div class="d-flex align-items-center" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="داشبورد">
                                 <a href="/customer/userdashboard" class="d-flex align-items-center">
                                     <img loading="lazy" src="@Model.loggedInUser.ImageName" alt="" class="rounded-circle ms-3" width="45" height="45">
@@ -78,16 +78,16 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="/customer/login-register" class="bc-lightBlue rounded-3 border-0 hc-fs-paragraph1 p-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="تعویض حساب کاربری"><i class="fa-solid fa-right-left d-flex justify-content-center align-items-center"></i></a>
-                                <a href="/Customer/UserDashboard" class="bc-lightBlue rounded-3 border-0 hc-fs-paragraph1 p-2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="داشبورد"><i class="fa-solid fa-bars-progress d-flex justify-content-center align-items-center"></i></a>
+                                <a href="/customer/login-register" class="bc-lightBlue rounded-3 hc-fs-paragraph1 p-2 border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="تعویض حساب کاربری"><i class="fa-solid fa-right-left d-flex justify-content-center align-items-center"></i></a>
+                                <a href="/Customer/UserDashboard" class="bc-lightBlue rounded-3 hc-fs-paragraph1 p-2 border-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="داشبورد"><i class="fa-solid fa-bars-progress d-flex justify-content-center align-items-center"></i></a>
                             </div>
                         </div>
 
 
 
                         <!-- Menu buttons -->
-                        <div class="w-100 d-flex justify-content-start align-items-center border border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4">
-                            <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 border border-0 py-2 d-flex justify-content-center align-items-center"
+                        <div class="w-100 d-flex justify-content-start align-items-center border-bottom-1 border-top-0 border-start-0 border-end-0 pb-4 border">
+                            <button class="btn btn-dark dropdown-toggle rounded-0 rounded-end-3 bc-darkBlue w-75 py-2 d-flex justify-content-center align-items-center border border-0"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 @{
                                     if (Model.OrganizationsList.Count > 0)
@@ -105,7 +105,7 @@
                                     foreach (var item in Model.OrganizationsList)
                                     {
                                         <li class="d-flex flex-column align-items-center">
-                                            <a class="dropdown-item text-end text-white py-3" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.OrgTitle')">
+                                            <a class="dropdown-item text-white py-3 text-end" onclick="UpdateProjectsByOrganizationId('@item.Id', '@item.OrgTitle')">
                                                 <span>
                                                     @item.OrgTitle
                                                 </span>
@@ -162,7 +162,7 @@
 
                         <!-- pro user panel button -->
                         <a href=""
-                           class="btn hc-btn-lg rounded-4 text-center align-items-center d-none justify-content-center mt-5">
+                           class="btn hc-btn-lg rounded-4 align-items-center d-none justify-content-center mt-5 text-center">
                             پنل
                             مدیریت
                             حرفه‌ای
@@ -179,7 +179,7 @@
                     <div class="row w-100 d-flex justify-content-center">
                         <!-- Search Box -->
                         <div class="row">
-                            <input type="search" onkeyup="filterItems(this.value)" class="form-control border-0 tc-lightBlue fs-5 py-2" placeholder="جستجو" />
+                            <input type="search" onkeyup="filterItems(this.value)" class="form-control tc-lightBlue fs-5 py-2 border-0" placeholder="جستجو" />
                         </div>
 
                         <div id="itemsList" class="row w-100 d-flex justify-content-center">
@@ -193,7 +193,7 @@
                                             <img loading="lazy" src="/src/media/Logo/regular-favicon-color.png" alt="item card image" width="65px"
                                                  height="65px" />
                                             <!-- item card title -->
-                                            <h3 class="hc-fs-paragraph2 my-2 text-center truncate" onclick="UpdateTasksByProjectId(@project.Id)">
+                                            <h3 class="hc-fs-paragraph2 my-2 truncate text-center" onclick="UpdateTasksByProjectId(@project.Id)">
                                                 <span class="itemCard-title truncate">@project.Title</span>
                                             </h3>
                                             <!-- item card tags -->
@@ -282,7 +282,7 @@
                         <input name="Id" id="projectForm_id" hidden />
                         <div class="mb-3">
                             <label class="form-label">عنوان پروژه</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" name="Title"
+                            <input type="text" class="form-control tc-lightBlue fs-5 py-2 mb-3 border-0" name="Title"
                                    placeholder="تکمیل طراحی اولیه" id="projectForm_title" />
                             <span class="text-danger" asp-validation-for="@Model.Project.Title"></span>
                         </div>
@@ -292,7 +292,7 @@
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب همکار</a>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <div class="multi-collapse collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newProjectModal_employeesList">
                                         </div>
                                     </div>
@@ -332,7 +332,7 @@
 
                         <div class="mb-3">
                             <label for="formTitle" class="form-label">عنوان سازمان</label>
-                            <input asp-for="@Model.Organization.OrgTitle" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="organizationForm_title" placeholder="تکمیل طراحی اولیه" />
+                            <input asp-for="@Model.Organization.OrgTitle" class="form-control tc-lightBlue fs-5 py-2 mb-3 border-0" id="organizationForm_title" placeholder="تکمیل طراحی اولیه" />
                             <span class="text-danger" asp-validation-for="@Model.Organization.OrgTitle"></span>
                         </div>
 
@@ -368,7 +368,7 @@
 
                         <div class="mb-3">
                             <label for="taskTitle" class="form-label">عنوان وظیفه</label>
-                            <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2 mb-3" id="taskForm_title" placeholder="طراحی بنر">
+                            <input type="text" class="form-control tc-lightBlue fs-5 py-2 mb-3 border-0" id="taskForm_title" placeholder="طراحی بنر">
                             <span class="text-danger" asp-validation-for="@Model.Task.Title"></span>
                         </div>
 
@@ -395,13 +395,13 @@
                                     var projectId = Model?.ProjectsList?.FirstOrDefault()?.Id ?? 0;
                                 }
 
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" id="taskForm_project" value="" data-id="" disabled>
+                                <input type="text" class="form-control tc-lightBlue fs-5 py-2 border-0" id="taskForm_project" value="" data-id="" disabled>
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب پروژه</a>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <div class="collapse multi-collapse" id="multiCollapseExample2">
+                                    <div class="multi-collapse collapse" id="multiCollapseExample2">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0" id="newTaskModal_projectsList">
                                             @for (int i = 0; i < Model.ProjectsList.Count; i++)
                                             {
@@ -429,13 +429,13 @@
                             <label for="formAssignee" class="form-label">اختصاص یافه به</label>
                             <div class="d-flex align-items-center mb-1">
                                 <img loading="lazy" src="@Model.loggedInUser.ImageName" class="ms-2" width="50" height="50" alt="" id="assigneeImage">
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-5 py-2" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
+                                <input type="text" class="form-control tc-lightBlue fs-5 py-2 border-0" value="@Model.loggedInUser.FullName" data-id="@Model.loggedInUser.Id" disabled id="taskForm_assignName">
                             </div>
 
                             <a class="btn bc-primary rounded-bottom-0 d-block" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">انتخاب مسئول</a>
                             <div class="row mb-3">
                                 <div class="col">
-                                    <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                    <div class="multi-collapse collapse" id="multiCollapseExample1">
                                         <div class="card card-body bc-primary tc-lightCyan rounded-top-0">
                                             @{
                                                 <div class="form-check form-check-reverse d-flex align-items-center">
@@ -469,11 +469,11 @@
 
                         <div class="mb-3">
                             <label for="workReport" class="form-label">گزارش کار</label>
-                            <div class="w-100 p-2 border border-light rounded-3">
+                            <div class="w-100 p-2 border-light rounded-3 border">
                                 <div class="row">
                                     <div class="col">
                                         <label for="estimatedTime" class="form-label hc-fs-paragraph2">زمان تخمینی</label>
-                                        <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_estimateTime" placeholder="3h 30m">
+                                        <input type="text" class="form-control tc-lightBlue fs-6 py-2 border-0" id="taskForm_estimateTime" placeholder="3h 30m">
                                         <span class="text-danger" asp-validation-for="@Model.Task.EstimateTime"></span>
                                     </div>
                                 </div>
@@ -482,7 +482,7 @@
 
                         <div class="mb-3">
                             <label for="taskDescription" class="form-label">توضیحات</label>
-                            <textarea class="form-control border-0 tc-lightBlue fs-6 py-2" id="taskForm_description" rows="3"></textarea>
+                            <textarea class="form-control tc-lightBlue fs-6 py-2 border-0" id="taskForm_description" rows="3"></textarea>
                             <span class="text-danger" asp-validation-for="@Model.Task.Description"></span>
                         </div>
 
@@ -524,7 +524,7 @@
                                     string atsine = "@";
                                 }
                                 <span class="input-group-text bc-darkBlue rounded-start-3 border-primary" id="basic-addon1">@atsine</span>
-                                <input type="text" class="form-control border-0 tc-lightBlue fs-6 py-2" id="employeeUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control tc-lightBlue fs-6 py-2 border-0" id="employeeUsername" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                                 <span class="text-danger" asp-validation-for="@Model.User.Username"></span>
                             </div>
                         </div>
@@ -712,6 +712,10 @@
 
                 formData.append('orgId', orgId);
                 formData.append('projectId', projectId);
+                formData.append('title', $("#taskForm_title").val());
+                formData.append('priority', $("#taskForm_priority").val());
+                formData.append('estimateTime', $("#taskForm_estimateTime").val());
+                formData.append('description', $("#taskForm_description").val());
 
 
                 $.ajax({
@@ -757,6 +761,7 @@
                 var formData = new FormData(this);
 
                 formData.append('orgId', $("#ddlOrganization").data("id"));
+                formData.append('username', $("#employeeUsername").val());
 
                 $.ajax({
                     url: '@Url.Page("/Customer/UserPanel", "AddEmployee")',

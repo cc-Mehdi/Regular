@@ -76,12 +76,12 @@ namespace Regular.Pages.Customer
             if (!hasAccessToCreateOrganization())
                 return new JsonResult(new { err = "شما به محدودیت ساخت سازمان رسیده اید!" });
 
-            var title = Request.Form["OrgTitle"];
+            var title = Request.Form["Organization.OrgTitle"];
             var image = Request.Form.Files["ImageName"];
             var employees = Request.Form["Employees"].ToList();
             var id = Request.Form["Id"];
 
-            if (title == "")
+            if (string.IsNullOrEmpty(title))
                 return new JsonResult(new { errorMessage = "لطفا یک عنوان برای سازمان انتخاب کنید" });
 
             // convert data to model for sending to database

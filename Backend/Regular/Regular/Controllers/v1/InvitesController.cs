@@ -3,18 +3,25 @@ using Datalayer.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
+using System.ComponentModel;
 
 namespace Regular.Controllers.v1
 {
     [Route("api/v1/[controller]/[action]")]
     [ApiController]
-    public class InvitesController
+    public class InvitesController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public InvitesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+        }
+
+        [HttpGet("Test")]
+        public async Task<JsonResult> GetTest()
+        {
+            return new JsonResult(new { message = $"عملیات با موفقیت " });
         }
 
 

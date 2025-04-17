@@ -17,7 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Set the URLs to listen on
-builder.WebHost.UseUrls("http://0.0.0.0:5000"); // یا URL و پورت دلخواه خودتان
+//builder.WebHost.UseUrls("http://0.0.0.0:5000"); // یا URL و پورت دلخواه خودتان
 
 // Add session services
 builder.Services.AddSession(options =>
@@ -29,6 +29,7 @@ builder.Services.AddSession(options =>
 
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -49,5 +50,8 @@ app.MapRazorPages();
 app.MapControllers();
 
 app.UseSession();
+
+app.MapGet("/ping", () => "Pong!");
+
 
 app.Run();

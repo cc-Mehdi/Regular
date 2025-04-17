@@ -73,7 +73,7 @@ namespace Regular.Pages.Customer
         public async Task<JsonResult> OnGetGetSentEmployeeInvites()
         {
             isUserLogin();
-            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.OrgTitle, OwnerName = u.Organization.Owner.FullName }).ToList();
+            var list = _unitOfWork.Organizations_UsersRepository.GetAllByFilterIncludeRelations(u => u.UserId == loggedInUser.Id && u.InviteStatus == "در انتظار پاسخ").Select(u => new { u.Id, u.Organization.ImageName,  u.Organization.OrgTitle, OwnerName = u.Organization.Owner.Username, Title = u.Organization.Owner.FullName }).ToList();
             return new JsonResult(list);
         }
 

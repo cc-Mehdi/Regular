@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\cc-mehdi\Desktop\Regular\Backend\Regular\Regular
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/cc-mehdi/AppData/Roaming/SonarLint for Visual Studio/.global/csharp/SonarLint.xml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/cc-mehdi/Desktop/Regular/Backend/Regular/Regular/Pages/Customer/About-Us.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ3VzdG9tZXJcQWJvdXQtVXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
